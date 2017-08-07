@@ -8,11 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		722A54281F35C79E00499113 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A54271F35C79E00499113 /* AppDelegate.swift */; };
-		722A542A1F35C79E00499113 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A54291F35C79E00499113 /* ViewController.swift */; };
 		722A542D1F35C79E00499113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 722A542B1F35C79E00499113 /* Main.storyboard */; };
 		722A542F1F35C79E00499113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 722A542E1F35C79E00499113 /* Assets.xcassets */; };
 		722A54321F35C79E00499113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 722A54301F35C79E00499113 /* LaunchScreen.storyboard */; };
 		722A543D1F35C79E00499113 /* HomeBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A543C1F35C79E00499113 /* HomeBaseTests.swift */; };
+		722A54EF1F38329900499113 /* TeamNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A54EE1F38329900499113 /* TeamNavigationViewController.swift */; };
+		722A54F11F38333B00499113 /* SquadNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A54F01F38333B00499113 /* SquadNavigationViewController.swift */; };
+		722A54F41F3834E600499113 /* TeamNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 722A54F21F3834E600499113 /* TeamNavigation.storyboard */; };
+		722A54FA1F3836D000499113 /* TeamMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A54F91F3836D000499113 /* TeamMainViewController.swift */; };
+		722A54FC1F38370900499113 /* SquadMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A54FB1F38370900499113 /* SquadMainViewController.swift */; };
+		722A55011F38385D00499113 /* SquadNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 722A54FF1F38385D00499113 /* SquadNavigation.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +33,6 @@
 /* Begin PBXFileReference section */
 		722A54241F35C79E00499113 /* HomeBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		722A54271F35C79E00499113 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		722A54291F35C79E00499113 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		722A542C1F35C79E00499113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		722A542E1F35C79E00499113 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		722A54311F35C79E00499113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +40,12 @@
 		722A54381F35C79E00499113 /* HomeBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		722A543C1F35C79E00499113 /* HomeBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseTests.swift; sourceTree = "<group>"; };
 		722A543E1F35C79E00499113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		722A54EE1F38329900499113 /* TeamNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamNavigationViewController.swift; sourceTree = "<group>"; };
+		722A54F01F38333B00499113 /* SquadNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadNavigationViewController.swift; sourceTree = "<group>"; };
+		722A54F31F3834E600499113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TeamNavigation.storyboard; sourceTree = "<group>"; };
+		722A54F91F3836D000499113 /* TeamMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMainViewController.swift; sourceTree = "<group>"; };
+		722A54FB1F38370900499113 /* SquadMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadMainViewController.swift; sourceTree = "<group>"; };
+		722A55001F38385D00499113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SquadNavigation.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				722A54271F35C79E00499113 /* AppDelegate.swift */,
-				722A54291F35C79E00499113 /* ViewController.swift */,
+				722A54FD1F38373E00499113 /* Team */,
+				722A54FE1F38374C00499113 /* Squad */,
 				722A542B1F35C79E00499113 /* Main.storyboard */,
+				722A54FF1F38385D00499113 /* SquadNavigation.storyboard */,
+				722A54F21F3834E600499113 /* TeamNavigation.storyboard */,
 				722A542E1F35C79E00499113 /* Assets.xcassets */,
 				722A54301F35C79E00499113 /* LaunchScreen.storyboard */,
 				722A54331F35C79E00499113 /* Info.plist */,
@@ -94,6 +107,24 @@
 				722A543E1F35C79E00499113 /* Info.plist */,
 			);
 			path = HomeBaseTests;
+			sourceTree = "<group>";
+		};
+		722A54FD1F38373E00499113 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				722A54EE1F38329900499113 /* TeamNavigationViewController.swift */,
+				722A54F91F3836D000499113 /* TeamMainViewController.swift */,
+			);
+			name = Team;
+			sourceTree = "<group>";
+		};
+		722A54FE1F38374C00499113 /* Squad */ = {
+			isa = PBXGroup;
+			children = (
+				722A54F01F38333B00499113 /* SquadNavigationViewController.swift */,
+				722A54FB1F38370900499113 /* SquadMainViewController.swift */,
+			);
+			name = Squad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +215,8 @@
 				722A54321F35C79E00499113 /* LaunchScreen.storyboard in Resources */,
 				722A542F1F35C79E00499113 /* Assets.xcassets in Resources */,
 				722A542D1F35C79E00499113 /* Main.storyboard in Resources */,
+				722A55011F38385D00499113 /* SquadNavigation.storyboard in Resources */,
+				722A54F41F3834E600499113 /* TeamNavigation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +234,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				722A542A1F35C79E00499113 /* ViewController.swift in Sources */,
+				722A54FC1F38370900499113 /* SquadMainViewController.swift in Sources */,
+				722A54EF1F38329900499113 /* TeamNavigationViewController.swift in Sources */,
 				722A54281F35C79E00499113 /* AppDelegate.swift in Sources */,
+				722A54FA1F3836D000499113 /* TeamMainViewController.swift in Sources */,
+				722A54F11F38333B00499113 /* SquadNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +275,22 @@
 				722A54311F35C79E00499113 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		722A54F21F3834E600499113 /* TeamNavigation.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				722A54F31F3834E600499113 /* Base */,
+			);
+			name = TeamNavigation.storyboard;
+			sourceTree = "<group>";
+		};
+		722A54FF1F38385D00499113 /* SquadNavigation.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				722A55001F38385D00499113 /* Base */,
+			);
+			name = SquadNavigation.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -414,6 +466,7 @@
 				722A54431F35C79E00499113 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		722A54441F35C79E00499113 /* Build configuration list for PBXNativeTarget "HomeBaseTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +475,7 @@
 				722A54461F35C79E00499113 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YuR-5G-Ir4">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Squad Main View Controller-->
+        <scene sceneID="Txe-Lt-1jJ">
+            <objects>
+                <viewController id="W9l-7V-6dC" customClass="SquadMainViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DfK-KJ-5Jr"/>
+                        <viewControllerLayoutGuide type="bottom" id="6vh-61-Eoz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k0Q-n8-hm0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cTH-Bp-pWn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bya-kd-ea4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2314" y="522"/>
+        </scene>
+        <!--Squad-->
+        <scene sceneID="2nN-hL-TbQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YuR-5G-Ir4" customClass="SquadNavigationViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Squad" id="CeO-zP-RG0"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SVf-GS-E0E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="W9l-7V-6dC" kind="relationship" relationship="rootViewController" id="5oB-lf-v55"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bxN-vp-Nkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="523"/>
+        </scene>
+    </scenes>
+</document>
