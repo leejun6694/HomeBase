@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="w2s-gJ-SVW">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Dgm-0z-drI" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Dgm-0z-drI" customClass="MainTabBarController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sJI-6V-Szn">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -22,11 +22,20 @@
                     <connections>
                         <segue destination="Uke-z7-oaz" kind="relationship" relationship="viewControllers" id="6ug-nr-wLQ"/>
                         <segue destination="8GW-jj-8a9" kind="relationship" relationship="viewControllers" id="i8F-zq-a8B"/>
+                        <segue destination="B1A-7n-M4Q" kind="presentation" identifier="segueTabToStart" id="zhc-sy-iI8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ky7-lP-Iia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
+        </scene>
+        <!--StartNavigation-->
+        <scene sceneID="O3G-TQ-lyg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="StartNavigation" id="B1A-7n-M4Q" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xt1-Yx-GgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725" y="-441"/>
         </scene>
         <!--TeamNavigation-->
         <scene sceneID="mWY-S0-a2S">

@@ -22,6 +22,7 @@
 		722A55071F3841F700499113 /* StartNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A55061F3841F700499113 /* StartNavigationViewController.swift */; };
 		722A55091F38420C00499113 /* TeamNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A55081F38420C00499113 /* TeamNameViewController.swift */; };
 		722A550B1F38421B00499113 /* TeamImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A550A1F38421B00499113 /* TeamImageViewController.swift */; };
+		72425E421F398A180071FA13 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425E411F398A180071FA13 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		722A55061F3841F700499113 /* StartNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartNavigationViewController.swift; sourceTree = "<group>"; };
 		722A55081F38420C00499113 /* TeamNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamNameViewController.swift; sourceTree = "<group>"; };
 		722A550A1F38421B00499113 /* TeamImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamImageViewController.swift; sourceTree = "<group>"; };
+		72425E411F398A180071FA13 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				722A54271F35C79E00499113 /* AppDelegate.swift */,
+				72425E411F398A180071FA13 /* MainTabBarController.swift */,
 				722A55051F3841C900499113 /* Start */,
 				722A54FD1F38373E00499113 /* Team */,
 				722A54FE1F38374C00499113 /* Squad */,
@@ -257,6 +260,7 @@
 			files = (
 				722A54FC1F38370900499113 /* SquadMainViewController.swift in Sources */,
 				722A550B1F38421B00499113 /* TeamImageViewController.swift in Sources */,
+				72425E421F398A180071FA13 /* MainTabBarController.swift in Sources */,
 				722A54EF1F38329900499113 /* TeamNavigationViewController.swift in Sources */,
 				722A54281F35C79E00499113 /* AppDelegate.swift in Sources */,
 				722A54FA1F3836D000499113 /* TeamMainViewController.swift in Sources */,

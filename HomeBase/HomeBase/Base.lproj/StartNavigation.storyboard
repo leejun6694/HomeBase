@@ -49,7 +49,7 @@
         <!--Start Navigation View Controller-->
         <scene sceneID="hBq-Ub-DSq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FaW-sj-OIB" customClass="StartNavigationViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="StartNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="FaW-sj-OIB" customClass="StartNavigationViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BuC-AT-wkU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

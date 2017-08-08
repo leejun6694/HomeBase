@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeamImageViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class TeamImageViewController: UIViewController {
     
     // MARK: Properties
     
@@ -31,6 +31,8 @@ class TeamImageViewController: UIViewController, UINavigationControllerDelegate,
         skipButton.titleLabel?.textAlignment = .center
         skipButton.translatesAutoresizingMaskIntoConstraints = false
         
+        skipButton.addTarget(self, action: #selector(clickSkipButton(_:)), for: .touchUpInside)
+        
         return skipButton
     }()
     
@@ -48,14 +50,14 @@ class TeamImageViewController: UIViewController, UINavigationControllerDelegate,
         doneButton.titleLabel?.textAlignment = .center
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         
+        doneButton.addTarget(self, action: #selector(clickDoneButton(_:)), for: .touchUpInside)
+        
         return doneButton
     }()
     
     // MARK: Actions
     
     @objc func clickPickerButton(_ sender: AnyObject) {
-        
-        
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
         
@@ -63,7 +65,30 @@ class TeamImageViewController: UIViewController, UINavigationControllerDelegate,
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    // MARK: Delegate
+    @objc func clickSkipButton(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func clickDoneButton(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.addSubview(pickerButton)
+        self.view.addSubview(skipButton)
+        
+        self.view.addConstraints(pickerButtonConstraints())
+        self.view.addConstraints(skipButtonConstraints())
+    }
+}
+
+// MARK: Delegate
+
+extension TeamImageViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -88,18 +113,6 @@ class TeamImageViewController: UIViewController, UINavigationControllerDelegate,
         
         dismiss(animated: true, completion: nil)
     }
-    
-    // MARK: Override
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.addSubview(pickerButton)
-        self.view.addSubview(skipButton)
-        
-        self.view.addConstraints(pickerButtonConstraints())
-        self.view.addConstraints(skipButtonConstraints())
-    }
 }
 
 // MARK: Layout Constraints
@@ -121,8 +134,8 @@ extension TeamImageViewController {
     }
     
     fileprivate func teamImageConstraint() -> [NSLayoutConstraint] {
-        let topConstraint = NSLayoutConstraint(item: teamImage, attribute: .top, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.3, constant: 0.0)
-        let bottomConstraint = NSLayoutConstraint(item: teamImage, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0.0)
+        let topConstraint = NSLayoutConstraint(item: teamImage, attribute: .top, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.5, constant: 0.0)
+        let bottomConstraint = NSLayoutConstraint(item: teamImage, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.2, constant: 0.0)
         let widthConstraint = NSLayoutConstraint(item: teamImage, attribute: .width, relatedBy: .equal, toItem: teamImage, attribute: .height, multiplier: 1.0, constant: 0.0)
         let centerXConstraint = NSLayoutConstraint(item: teamImage, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0)
         
@@ -131,7 +144,7 @@ extension TeamImageViewController {
     
     fileprivate func doneButtonConstraint() -> [NSLayoutConstraint] {
         let centerXConstraint = NSLayoutConstraint(item: doneButton, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let centerYConstraint = NSLayoutConstraint(item: doneButton, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.1, constant: 0.0)
+        let centerYConstraint = NSLayoutConstraint(item: doneButton, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.3, constant: 0.0)
         
         return [centerXConstraint, centerYConstraint]
     }
