@@ -14,7 +14,7 @@ class TeamNameViewController: UIViewController {
     
     fileprivate lazy var nameTextField: UITextField = {
         let nameTextField = UITextField()
-        nameTextField.placeholder = "팀 이름을 등록하세요"
+        nameTextField.placeholder = "팀 이름을 등록하세요 (2 - 10자)"
         nameTextField.font = UIFont(name: "System", size: 22.0)
         nameTextField.textAlignment = .center
         nameTextField.borderStyle = .none
@@ -38,23 +38,74 @@ class TeamNameViewController: UIViewController {
     // MARK: Actions
     
     @objc fileprivate func clickNextButton(_ sender: AnyObject) {
-        guard let teamImageViewController = storyboard?.instantiateViewController(withIdentifier: "TeamImageViewController") else { return }
+        let currentCount = self.nameTextField.text?.characters.count ?? 0
         
-        self.navigationController?.pushViewController(teamImageViewController, animated: false)
+        if currentCount < 2 {
+            let alertController = UIAlertController(title: "", message: "팀 명은 최소 2글자 입니다", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+        else {
+            guard let teamImageViewController = storyboard?.instantiateViewController(withIdentifier: "TeamImageViewController") else { return }
+            
+            self.navigationController?.pushViewController(teamImageViewController, animated: false)
+        }
     }
+    
+    @objc fileprivate func clickView(_ sender: AnyObject) {
+        self.view.endEditing(true)
+    }
+    
     // MARK: Override
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         self.view.addSubview(nameTextField)
+        self.nameTextField.delegate = self
         self.view.addSubview(nextButton)
         
         self.view.addConstraints(nameTextFieldConstraints())
         self.view.addConstraints(nextButtonConstraint())
         
-        self.tabBarController?.tabBar.isHidden = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickView(_:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
+}
+
+// MARK: Delegate
+
+extension TeamNameViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentCount = textField.text?.characters.count ?? 0
+        let replacementCount = currentCount + string.characters.count - range.length
+        
+        if replacementCount <= 10 {
+            return true
+        }
+        else {
+            let alertController = UIAlertController(title: "", message: "팀 명은 최대 10글자 입니다", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
+            
+            return false
+        }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        return true
+    }
+    
 }
 
 // MARK: Layout Constraints
