@@ -15,7 +15,6 @@ class MainTabBarController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
         if first == false {
             first = true
             performSegue(withIdentifier: "segueTabToStart", sender: self)

@@ -23,6 +23,11 @@
 		722A55091F38420C00499113 /* TeamNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A55081F38420C00499113 /* TeamNameViewController.swift */; };
 		722A550B1F38421B00499113 /* TeamImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A550A1F38421B00499113 /* TeamImageViewController.swift */; };
 		72425E421F398A180071FA13 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425E411F398A180071FA13 /* MainTabBarController.swift */; };
+		72425EF91F3A025D0071FA13 /* ScheduleNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72425EF71F3A025D0071FA13 /* ScheduleNavigation.storyboard */; };
+		72425EFC1F3A02C40071FA13 /* ScheduleNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425EFB1F3A02C40071FA13 /* ScheduleNavigationViewController.swift */; };
+		72425EFE1F3A02EF0071FA13 /* AllScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425EFD1F3A02EF0071FA13 /* AllScheduleViewController.swift */; };
+		72425F001F3A19040071FA13 /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425EFF1F3A19040071FA13 /* AddScheduleViewController.swift */; };
+		72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,11 @@
 		722A55081F38420C00499113 /* TeamNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamNameViewController.swift; sourceTree = "<group>"; };
 		722A550A1F38421B00499113 /* TeamImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamImageViewController.swift; sourceTree = "<group>"; };
 		72425E411F398A180071FA13 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		72425EF81F3A025D0071FA13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ScheduleNavigation.storyboard; sourceTree = "<group>"; };
+		72425EFB1F3A02C40071FA13 /* ScheduleNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleNavigationViewController.swift; sourceTree = "<group>"; };
+		72425EFD1F3A02EF0071FA13 /* AllScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllScheduleViewController.swift; sourceTree = "<group>"; };
+		72425EFF1F3A19040071FA13 /* AddScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
+		72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +111,13 @@
 				72425E411F398A180071FA13 /* MainTabBarController.swift */,
 				722A55051F3841C900499113 /* Start */,
 				722A54FD1F38373E00499113 /* Team */,
+				72425EFA1F3A02AC0071FA13 /* Schedule */,
 				722A54FE1F38374C00499113 /* Squad */,
 				722A542B1F35C79E00499113 /* Main.storyboard */,
 				722A55021F3841B100499113 /* StartNavigation.storyboard */,
 				722A54F21F3834E600499113 /* TeamNavigation.storyboard */,
 				722A54FF1F38385D00499113 /* SquadNavigation.storyboard */,
+				72425EF71F3A025D0071FA13 /* ScheduleNavigation.storyboard */,
 				722A542E1F35C79E00499113 /* Assets.xcassets */,
 				722A54301F35C79E00499113 /* LaunchScreen.storyboard */,
 				722A54331F35C79E00499113 /* Info.plist */,
@@ -148,6 +160,17 @@
 				722A550A1F38421B00499113 /* TeamImageViewController.swift */,
 			);
 			name = Start;
+			sourceTree = "<group>";
+		};
+		72425EFA1F3A02AC0071FA13 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				72425EFB1F3A02C40071FA13 /* ScheduleNavigationViewController.swift */,
+				72425EFD1F3A02EF0071FA13 /* AllScheduleViewController.swift */,
+				72425EFF1F3A19040071FA13 /* AddScheduleViewController.swift */,
+				72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */,
+			);
+			name = Schedule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +262,7 @@
 				722A542F1F35C79E00499113 /* Assets.xcassets in Resources */,
 				722A542D1F35C79E00499113 /* Main.storyboard in Resources */,
 				722A55041F3841B100499113 /* StartNavigation.storyboard in Resources */,
+				72425EF91F3A025D0071FA13 /* ScheduleNavigation.storyboard in Resources */,
 				722A55011F38385D00499113 /* SquadNavigation.storyboard in Resources */,
 				722A54F41F3834E600499113 /* TeamNavigation.storyboard in Resources */,
 			);
@@ -259,14 +283,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				722A54FC1F38370900499113 /* SquadMainViewController.swift in Sources */,
+				72425EFE1F3A02EF0071FA13 /* AllScheduleViewController.swift in Sources */,
 				722A550B1F38421B00499113 /* TeamImageViewController.swift in Sources */,
 				72425E421F398A180071FA13 /* MainTabBarController.swift in Sources */,
 				722A54EF1F38329900499113 /* TeamNavigationViewController.swift in Sources */,
 				722A54281F35C79E00499113 /* AppDelegate.swift in Sources */,
 				722A54FA1F3836D000499113 /* TeamMainViewController.swift in Sources */,
+				72425F001F3A19040071FA13 /* AddScheduleViewController.swift in Sources */,
 				722A54F11F38333B00499113 /* SquadNavigationViewController.swift in Sources */,
 				722A55071F3841F700499113 /* StartNavigationViewController.swift in Sources */,
 				722A55091F38420C00499113 /* TeamNameViewController.swift in Sources */,
+				72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */,
+				72425EFC1F3A02C40071FA13 /* ScheduleNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +355,14 @@
 				722A55031F3841B100499113 /* Base */,
 			);
 			name = StartNavigation.storyboard;
+			sourceTree = "<group>";
+		};
+		72425EF71F3A025D0071FA13 /* ScheduleNavigation.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72425EF81F3A025D0071FA13 /* Base */,
+			);
+			name = ScheduleNavigation.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
