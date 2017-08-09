@@ -29,6 +29,8 @@
 		72425EFE1F3A02EF0071FA13 /* AllScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425EFD1F3A02EF0071FA13 /* AllScheduleViewController.swift */; };
 		72425F001F3A19040071FA13 /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425EFF1F3A19040071FA13 /* AddScheduleViewController.swift */; };
 		72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */; };
+		72425F081F3AEC290071FA13 /* AllScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F071F3AEC290071FA13 /* AllScheduleTableViewCell.swift */; };
+		72425F0A1F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F091F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift */; };
 		A396F94C5C79E078FA99245A /* Pods_HomeBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EDEFF7345D89820147D740D /* Pods_HomeBase.framework */; };
 		C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */; };
 		C9A3E4601F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */; };
@@ -73,6 +75,8 @@
 		72425EFD1F3A02EF0071FA13 /* AllScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllScheduleViewController.swift; sourceTree = "<group>"; };
 		72425EFF1F3A19040071FA13 /* AddScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
 		72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewController.swift; sourceTree = "<group>"; };
+		72425F071F3AEC290071FA13 /* AllScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		72425F091F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		9EDEFF7345D89820147D740D /* Pods_HomeBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2571951D557027D0D74E103 /* Pods-HomeBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeBase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HomeBase/Pods-HomeBase.debug.xcconfig"; sourceTree = "<group>"; };
 		C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadAddPlayerViewController.swift; sourceTree = "<group>"; };
@@ -196,8 +200,10 @@
 			isa = PBXGroup;
 			children = (
 				72425EFB1F3A02C40071FA13 /* ScheduleNavigationViewController.swift */,
+				72425F071F3AEC290071FA13 /* AllScheduleTableViewCell.swift */,
 				72425EFD1F3A02EF0071FA13 /* AllScheduleViewController.swift */,
 				72425EFF1F3A19040071FA13 /* AddScheduleViewController.swift */,
+				72425F091F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift */,
 				72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */,
 			);
 			name = Schedule;
@@ -435,8 +441,10 @@
 				72425EFE1F3A02EF0071FA13 /* AllScheduleViewController.swift in Sources */,
 				722A550B1F38421B00499113 /* TeamImageViewController.swift in Sources */,
 				C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */,
+				72425F081F3AEC290071FA13 /* AllScheduleTableViewCell.swift in Sources */,
 				72425E421F398A180071FA13 /* MainTabBarController.swift in Sources */,
 				722A54EF1F38329900499113 /* TeamNavigationViewController.swift in Sources */,
+				72425F0A1F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift in Sources */,
 				722A54281F35C79E00499113 /* AppDelegate.swift in Sources */,
 				722A54FA1F3836D000499113 /* TeamMainViewController.swift in Sources */,
 				72425F001F3A19040071FA13 /* AddScheduleViewController.swift in Sources */,

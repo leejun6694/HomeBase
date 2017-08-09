@@ -21,4 +21,30 @@ class AllScheduleViewController: UIViewController {
         
         present(addScheduleViewController, animated: true, completion: nil)
     }
+    
+    // MARK: Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+    }
+}
+
+// MARK: TableView Delegate, DataSource
+
+extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AllScheduleTableViewCell", for: indexPath) as! AllScheduleTableViewCell
+        
+        cell.updateLabelsFont()
+        
+        return cell
+    }
+    
 }
