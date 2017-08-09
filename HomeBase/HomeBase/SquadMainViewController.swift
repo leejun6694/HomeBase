@@ -10,4 +10,12 @@ import UIKit
 
 class SquadMainViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    @IBAction func addButtonDidTap(_ sender: UIBarButtonItem) {
+        guard let squadAddPlayerViewController = storyboard?.instantiateViewController(withIdentifier: "SquadAddPlayerViewController") else { return }
+        present(squadAddPlayerViewController, animated: true, completion: nil)
+    }
 }
