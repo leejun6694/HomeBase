@@ -28,6 +28,9 @@
 		72425EFE1F3A02EF0071FA13 /* AllScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425EFD1F3A02EF0071FA13 /* AllScheduleViewController.swift */; };
 		72425F001F3A19040071FA13 /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425EFF1F3A19040071FA13 /* AddScheduleViewController.swift */; };
 		72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */; };
+		C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */; };
+		C9A3E4601F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */; };
+		C9A3E4621F3A2A7200F592A0 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E4611F3A2A7200F592A0 /* DBManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,9 @@
 		72425EFD1F3A02EF0071FA13 /* AllScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllScheduleViewController.swift; sourceTree = "<group>"; };
 		72425EFF1F3A19040071FA13 /* AddScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
 		72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewController.swift; sourceTree = "<group>"; };
+		C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadAddPlayerViewController.swift; sourceTree = "<group>"; };
+		C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadPlayerTableViewCell.swift; sourceTree = "<group>"; };
+		C9A3E4611F3A2A7200F592A0 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 			children = (
 				722A54271F35C79E00499113 /* AppDelegate.swift */,
 				72425E411F398A180071FA13 /* MainTabBarController.swift */,
+				C9A3E4611F3A2A7200F592A0 /* DBManager.swift */,
 				722A55051F3841C900499113 /* Start */,
 				722A54FD1F38373E00499113 /* Team */,
 				72425EFA1F3A02AC0071FA13 /* Schedule */,
@@ -148,6 +155,8 @@
 			children = (
 				722A54F01F38333B00499113 /* SquadNavigationViewController.swift */,
 				722A54FB1F38370900499113 /* SquadMainViewController.swift */,
+				C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */,
+				C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */,
 			);
 			name = Squad;
 			sourceTree = "<group>";
@@ -285,12 +294,15 @@
 				722A54FC1F38370900499113 /* SquadMainViewController.swift in Sources */,
 				72425EFE1F3A02EF0071FA13 /* AllScheduleViewController.swift in Sources */,
 				722A550B1F38421B00499113 /* TeamImageViewController.swift in Sources */,
+				C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */,
 				72425E421F398A180071FA13 /* MainTabBarController.swift in Sources */,
 				722A54EF1F38329900499113 /* TeamNavigationViewController.swift in Sources */,
 				722A54281F35C79E00499113 /* AppDelegate.swift in Sources */,
 				722A54FA1F3836D000499113 /* TeamMainViewController.swift in Sources */,
 				72425F001F3A19040071FA13 /* AddScheduleViewController.swift in Sources */,
+				C9A3E4621F3A2A7200F592A0 /* DBManager.swift in Sources */,
 				722A54F11F38333B00499113 /* SquadNavigationViewController.swift in Sources */,
+				C9A3E4601F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift in Sources */,
 				722A55071F3841F700499113 /* StartNavigationViewController.swift in Sources */,
 				722A55091F38420C00499113 /* TeamNameViewController.swift in Sources */,
 				72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */,
