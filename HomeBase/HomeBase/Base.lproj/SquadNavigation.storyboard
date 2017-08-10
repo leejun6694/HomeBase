@@ -27,7 +27,7 @@
                                 <rect key="frame" x="16" y="64" width="343" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RVy-Hh-luA" customClass="SquadPlayerTableViewCell" customModule="HomeBase" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SquadCell" id="RVy-Hh-luA" customClass="SquadPlayerTableViewCell" customModule="HomeBase" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RVy-Hh-luA" id="PzQ-4e-XU0">
@@ -81,6 +81,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="pOj-Y1-nhs" id="y0f-nb-Tcw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bya-kd-ea4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,7 +123,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3co-fB-6jb"/>
-                                    <barButtonItem systemItem="done" id="sMQ-c8-Cax"/>
+                                    <barButtonItem systemItem="done" id="sMQ-c8-Cax">
+                                        <connections>
+                                            <action selector="doneButtonDidTap:" destination="dQb-cR-PkC" id="ykn-tr-vaP"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="선수 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baz-ON-zK0">
