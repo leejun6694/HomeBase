@@ -10,4 +10,10 @@ import UIKit
 
 class TeamMainViewController: UIViewController {
     
+    @IBOutlet var teamMainTableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
+
