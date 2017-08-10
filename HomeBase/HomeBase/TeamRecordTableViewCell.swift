@@ -6,4 +6,10 @@
 //  Copyright © 2017년 LemonKooma. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class TeamRecordTableViewCell: UITableViewCell {
+    
+    @IBOutlet var playerNameLabel: UILabel!
+    @IBOutlet var recordLabel: UILabel!
+}

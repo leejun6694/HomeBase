@@ -6,4 +6,10 @@
 //  Copyright © 2017년 LemonKooma. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class TeamScheduleTableViewCell: UITableViewCell {
+    
+    @IBOutlet var matchDateLabel: UILabel!
+    @IBOutlet var matchOpponentLabel: UILabel!
+}

@@ -30,21 +30,7 @@ class SquadAddPlayerViewController: UIViewController {
     @IBAction func cancelButtonDidTap(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func doneButtonDidTap(_ sender: UIBarButtonItem) {
-        guard let name = playerNameTextField.text,
-            let backNumber = backNumberTextField.text else {
-            return
-        }
-        if name.isEmpty || backNumber.isEmpty {
-            let ac = UIAlertController(title: "모든 항목을 입력하새요", message: "", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-            ac.addAction(ok)
-            ac.present(self, animated: true, completion: nil)
-        } else {
-            
-        }
-    }
+
     
 }
 
