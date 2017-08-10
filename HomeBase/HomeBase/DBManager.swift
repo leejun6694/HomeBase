@@ -14,14 +14,16 @@ class DBManager: NSObject {
     static let shared: DBManager = DBManager()
     
     let db: Connection? = {
-        guard let path = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory, .userDomainMask, true
-            ).first else {
+        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
                 return nil
         }
-        let db = try? Connection("\(path)/db.sqlite3")
-        print("Make DB")
-        return db
+        
+        do {
+            let db = try Connection("\(path)/db.sqlite3")
+            return db
+        } catch {
+            NSLog("Database Connection Error")
+            return nil
+        }
     }()
-    
 }

@@ -69,7 +69,7 @@ class AddScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        matchTimePicker.minuteInterval = 5
+        matchTimePicker.minuteInterval = 10
         matchTimeLabel.text = dateFormatter.string(from: matchTimePicker.date)
     }
 }
