@@ -59,9 +59,11 @@ class AddScheduleViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    // 경기 일정을 추가함
-    // 데이터베이스 구현 필요
     @objc fileprivate func addSchedule(action: UIAlertAction) {
+        let teamSchedule = TeamSchedule(matchOpponent: opponentTextField.text!, matchDate: matchTimePicker.date, matchPlace: matchPlaceTextField.text!)
+        
+        TeamScheduleDAO.shared.insert(insertTeamSchedule: teamSchedule)
+        
         dismiss(animated: true, completion: nil)
     }
     

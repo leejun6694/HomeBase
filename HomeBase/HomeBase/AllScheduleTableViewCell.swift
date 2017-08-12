@@ -15,11 +15,4 @@ class AllScheduleTableViewCell: UITableViewCell {
     @IBOutlet var matchDateLabel: UILabel!
     @IBOutlet var matchOpponentLabel: UILabel!
     
-    // MARK: Functions
-    
-    func updateLabelsFont() {
-        let bodyFont = UIFont.preferredFont(forTextStyle: .body)
-        matchDateLabel.font = bodyFont
-        matchOpponentLabel.font = bodyFont
-    }
 }

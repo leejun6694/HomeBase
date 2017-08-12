@@ -253,9 +253,9 @@
 			children = (
 				C926BE311F3C38DC00B7A54B /* PlayerDAO.swift */,
 				C926BE391F3C3AAD00B7A54B /* PlayerRecordDAO.swift */,
-				C926BE3D1F3C3ADE00B7A54B /* TeamScheduleDAO.swift */,
-				C926BE411F3C3AFF00B7A54B /* TeamRecordDAO.swift */,
 				C926BE351F3C3A8600B7A54B /* TeamInfoDAO.swift */,
+				C926BE411F3C3AFF00B7A54B /* TeamRecordDAO.swift */,
+				C926BE3D1F3C3ADE00B7A54B /* TeamScheduleDAO.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -265,9 +265,9 @@
 			children = (
 				C926BE2F1F3C38C500B7A54B /* Player.swift */,
 				C926BE371F3C3A9E00B7A54B /* PlayerRecord.swift */,
-				C926BE3B1F3C3AC900B7A54B /* TeamSchedule.swift */,
-				C926BE3F1F3C3AED00B7A54B /* TeamRecord.swift */,
 				C926BE331F3C3A7A00B7A54B /* TeamInfo.swift */,
+				C926BE3F1F3C3AED00B7A54B /* TeamRecord.swift */,
+				C926BE3B1F3C3AC900B7A54B /* TeamSchedule.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";

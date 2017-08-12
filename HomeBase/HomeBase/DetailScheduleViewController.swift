@@ -15,6 +15,20 @@ class DetailScheduleViewController: UIViewController {
     @IBOutlet var matchDateLabel: UILabel!
     @IBOutlet var matchPlaceLabel: UILabel!
     @IBOutlet var matchTableView: UITableView!
+    
+    var matchDate: String!
+    var matchPlace: String!
+    var matchOpponent: String!
+    
+    // MARK: Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.title = matchOpponent
+        matchDateLabel.text = matchDate
+        matchPlaceLabel.text = matchPlace
+    }
 }
 
 // MARK: TableView Delegate, DataSource
@@ -27,8 +41,6 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailScheduleTableViewCell", for: indexPath) as! DetailScheduleTableViewCell
-        
-        cell.updateLabelsFont()
         
         return cell
     }

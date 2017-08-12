@@ -20,11 +20,4 @@ class DetailScheduleTableViewCell: UITableViewCell {
     @IBAction func clickAddButton(_ sender: UIButton) {
         
     }
-    
-    // MARK: Functions
-    
-    func updateLabelsFont() {
-        let bodyFont = UIFont.preferredFont(forTextStyle: .body)
-        playerLabel.font = bodyFont
-    }
 }
