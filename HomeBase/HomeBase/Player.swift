@@ -14,7 +14,7 @@ class Player: NSObject {
     var backNumber: Int64
     var position: String
     
-    init(id: Int64, name: String, backNumber: Int64, position: String) {
+    init(id: Int64 = 0, name: String, backNumber: Int64, position: String) {
         self.playerID = id
         self.name = name
         self.backNumber = backNumber
