@@ -7,3 +7,24 @@
 //
 
 import Foundation
+
+class TeamSchedule: NSObject {
+    
+    // MARK: Properties
+    
+    let matchOpponent: String
+    let matchDate: Date
+    let matchPlace: String
+    var homeScore: Int64?
+    var awayScore: Int64?
+    
+    // MARK: Initializer
+    
+    init (matchOpponent: String, matchDate: Date, matchPlace: String) {
+        self.matchOpponent = matchOpponent
+        self.matchDate = matchDate
+        self.matchPlace = matchPlace
+        self.homeScore = 0
+        self.awayScore = 0
+    }
+}
