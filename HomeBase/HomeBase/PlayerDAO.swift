@@ -9,25 +9,17 @@
 import SQLite
 
 class PlayerDAO {
-    static let shared = PlayerDAO()
     
-    static var playerShared = [Player]()
+    static var shared = PlayerDAO()
     
-    let playerID = Expression<Int64>("playerID")
-    var name = Expression<String>("name")
-    var backNumber = Expression<Int64>("backNumber")
-    var position = Expression<String>("position")
+    private let playerID = Expression<Int64>("playerID")
+    private let name = Expression<String>("name")
+    private let backNumber = Expression<Int64>("backNumber")
+    private let position = Expression<String>("position")
+    private let player: Table
     
-    let player: Table = {
-        let player = Table("Player")
-        return player
-    }()
-    
-    init() {
-        createTable()
-    }
-    
-    func createTable() {
+    private init() {
+        player = Table("Player")
         do {
             try DBManager.shared.db?.run(player.create(ifNotExists: true) { t in
                 t.column(playerID, primaryKey: .autoincrement)
@@ -37,13 +29,19 @@ class PlayerDAO {
         } catch {
             print(error)
         }
-        print("create table")
     }
     
+    func getTable() -> Table {
+        return player
+    }
     
-    func insert(_name: String, _backNumber: Int64, _position: String) {
+    func getReference() -> Expression<Int64> {
+        return playerID
+    }
+    
+    func insert(playerObject: Player) {
         do {
-            try DBManager.shared.db?.run(player.insert(name <- _name, backNumber <- _backNumber, position <- _position))
+            try DBManager.shared.db?.run(player.insert(name <- playerObject.name, backNumber <- playerObject.backNumber, position <- playerObject.position ) )
             do {
                 let select = player.select(playerID, name)
                 let prepare = try DBManager.shared.db?.prepare(select)
@@ -52,7 +50,7 @@ class PlayerDAO {
                 }
                 
             } catch {
-                
+                print("Error: \(error)")
             }
             
         } catch {
@@ -76,5 +74,14 @@ class PlayerDAO {
             print(error)
         }
         return playerArray
+    }
+    
+    func delete(id: Int64) {
+        do {
+            let filter = player.filter(playerID == id)
+            try DBManager.shared.db?.run(filter.delete())
+        } catch {
+            print("ERROR: \(error)")
+        }
     }
 }
