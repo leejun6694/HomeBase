@@ -19,11 +19,8 @@ class DetailScheduleViewController: UIViewController {
     @IBOutlet var awayScoreButton: UIButton!
     @IBOutlet var matchTableView: UITableView!
     
-    var scheduleID: Int64!
-    var matchDate: Date!
-    var matchPlace: String!
-    var matchOpponent: String!
-    let currentDate: Date = Date()
+    var scheduleItem: TeamSchedule!
+    let currentDate = Date()
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -50,7 +47,7 @@ class DetailScheduleViewController: UIViewController {
             if let homeTextField = alertController.textFields?[0] {
                 self.homeScoreButton.setTitle(homeTextField.text ?? "", for: .normal)
                 
-                TeamScheduleDAO.shared.updateHomeScore(updateScheduleID: self.scheduleID, Int64(homeTextField.text!) ?? -1)
+                TeamScheduleDAO.shared.updateHomeScore(updateScheduleID: self.scheduleItem.scheduleID, Int64(homeTextField.text!) ?? -1)
             }
         })
         alertController.addAction(cancelAction)
@@ -67,7 +64,7 @@ class DetailScheduleViewController: UIViewController {
             if let awayTextField = alertController.textFields?[0] {
                 self.awayScoreButton.setTitle(awayTextField.text ?? "", for: .normal)
                 
-                TeamScheduleDAO.shared.updateAwayScore(updateScheduleID: self.scheduleID, Int64(awayTextField.text!) ?? -1)
+                TeamScheduleDAO.shared.updateAwayScore(updateScheduleID: self.scheduleItem.scheduleID, Int64(awayTextField.text!) ?? -1)
             }
         })
         alertController.addAction(cancelAction)
@@ -94,16 +91,16 @@ class DetailScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "vs " + matchOpponent
-        matchDateLabel.text = dateFormatter.string(from: matchDate)
-        matchPlaceLabel.text = matchPlace
+        navigationItem.title = "vs " + scheduleItem.matchOpponent
+        matchDateLabel.text = dateFormatter.string(from: scheduleItem.matchDate)
+        matchPlaceLabel.text = scheduleItem.matchPlace
         
         matchTableView.allowsSelection = false
         matchTableView.delegate = self
         matchTableView.dataSource = self
     
         // 경기 시작 전
-        let compareDate = matchDate.timeIntervalSince(currentDate)
+        let compareDate = scheduleItem.matchDate.timeIntervalSince(currentDate)
         let compareHour = compareDate / 3600
         
         if compareHour > 0 {
@@ -124,8 +121,8 @@ class DetailScheduleViewController: UIViewController {
         }
         
         // Score
-        let homeScore = TeamScheduleDAO.shared.findHomeScore(findScheduleID: self.scheduleID)
-        let awayScore = TeamScheduleDAO.shared.findAwayScore(findScheduleID: self.scheduleID)
+        let homeScore = scheduleItem.homeScore
+        let awayScore = scheduleItem.awayScore
         
         if homeScore != -1, awayScore != -1 {
             homeScoreButton.setTitle("\(homeScore)", for: .normal)

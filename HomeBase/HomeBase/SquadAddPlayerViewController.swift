@@ -14,7 +14,6 @@ class SquadAddPlayerViewController: UIViewController {
     @IBOutlet var backNumberTextField: UITextField!
     @IBOutlet var positionPickerView: UIPickerView!
     @IBOutlet var doneButtonItem: UIBarButtonItem!
-    let playerDAO = PlayerDAO()
     
     var kindOfPosition: [String] = {
         var array = ["SP", "RP", "CP", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH"]
@@ -23,7 +22,6 @@ class SquadAddPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playerDAO.createTable()
         positionPickerView.dataSource = self
         positionPickerView.delegate = self
         
@@ -41,7 +39,8 @@ class SquadAddPlayerViewController: UIViewController {
         }
         print(backNumber)
         let position = kindOfPosition[positionPickerView.selectedRow(inComponent: 0)]
-        PlayerDAO.shared.insert(_name: name, _backNumber: backNumber, _position: position)
+        let player = Player(name: name, backNumber: backNumber, position: position)
+        PlayerDAO.shared.insert(playerObject: player)
         dismiss(animated: true, completion: nil)
     }
 
