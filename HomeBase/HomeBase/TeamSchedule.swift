@@ -16,7 +16,7 @@ class TeamSchedule: NSObject {
     let matchDate: Date
     let matchPlace: String
     var homeScore: Int64?
-    var opponentScore: Int64?
+    var awayScore: Int64?
     
     // MARK: Initializer
     
@@ -25,6 +25,6 @@ class TeamSchedule: NSObject {
         self.matchDate = matchDate
         self.matchPlace = matchPlace
         self.homeScore = 0
-        self.opponentScore = 0
+        self.awayScore = 0
     }
 }

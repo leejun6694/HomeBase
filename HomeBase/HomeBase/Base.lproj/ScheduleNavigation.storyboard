@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -103,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHw-gr-l1U">
-                                <rect key="frame" x="16" y="50" width="343" height="30"/>
+                                <rect key="frame" x="16" y="94" width="343" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경기 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fR-vo-7vZ">
                                         <rect key="frame" x="5" y="5" width="63.5" height="21"/>
@@ -128,7 +129,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypR-PE-Ivh">
-                                <rect key="frame" x="16" y="85" width="343" height="30"/>
+                                <rect key="frame" x="16" y="129" width="343" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경기 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRq-nJ-WfE">
                                         <rect key="frame" x="5" y="5" width="63.5" height="21"/>
@@ -152,70 +153,533 @@
                                     <constraint firstItem="rRq-nJ-WfE" firstAttribute="centerY" secondItem="ypR-PE-Ivh" secondAttribute="centerY" id="zgU-UA-f5k"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sr3-eJ-fCG">
-                                <rect key="frame" x="16" y="145" width="343" height="522"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lpn-Vg-vD9">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailScheduleTableViewCell" id="UJX-tW-r2J" customClass="DetailScheduleTableViewCell" customModule="HomeBase" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJX-tW-r2J" id="3bT-EU-3tC">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzI-vH-1QR">
-                                                    <rect key="frame" x="19" y="11" width="47" height="21"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEF-AC-JFl">
-                                                    <rect key="frame" x="279" y="6.5" width="56" height="30"/>
-                                                    <state key="normal" title="결과 입력"/>
-                                                    <connections>
-                                                        <action selector="clickAddButton:" destination="UJX-tW-r2J" eventType="touchUpInside" id="F2b-sH-bMW"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="YEF-AC-JFl" firstAttribute="centerY" secondItem="kzI-vH-1QR" secondAttribute="centerY" id="JbV-QH-n6d"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="YEF-AC-JFl" secondAttribute="trailing" id="UI1-4q-z1a"/>
-                                                <constraint firstItem="kzI-vH-1QR" firstAttribute="leading" secondItem="3bT-EU-3tC" secondAttribute="leadingMargin" constant="11" id="l7v-z9-aMs"/>
-                                                <constraint firstItem="kzI-vH-1QR" firstAttribute="centerY" secondItem="3bT-EU-3tC" secondAttribute="centerY" id="n0Q-6Z-qi7"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBw-ZG-eC5">
+                                <rect key="frame" x="16" y="189" width="343" height="478"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyc-Tb-jsn">
+                                        <rect key="frame" x="0.0" y="0.0" width="166.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Home"/>
                                         <connections>
-                                            <outlet property="addButton" destination="YEF-AC-JFl" id="LBC-l8-2QX"/>
-                                            <outlet property="playerLabel" destination="kzI-vH-1QR" id="OVI-qt-E2H"/>
+                                            <action selector="clickHomeScoreButton:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="a11-bq-ex6"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCf-TZ-GI5">
+                                        <rect key="frame" x="176" y="0.0" width="166.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Away"/>
+                                        <connections>
+                                            <action selector="clickAwayScoreButton:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="kcw-Df-QZE"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOW-zi-HPV">
+                                        <rect key="frame" x="166" y="6" width="10" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sr3-eJ-fCG">
+                                        <rect key="frame" x="0.0" y="46" width="343" height="432"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailScheduleTableViewCell" id="UJX-tW-r2J" customClass="DetailScheduleTableViewCell" customModule="HomeBase" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJX-tW-r2J" id="3bT-EU-3tC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzI-vH-1QR">
+                                                            <rect key="frame" x="19" y="11" width="47" height="21"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEF-AC-JFl">
+                                                            <rect key="frame" x="279" y="6.5" width="56" height="30"/>
+                                                            <state key="normal" title="결과 입력"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="YEF-AC-JFl" firstAttribute="centerY" secondItem="kzI-vH-1QR" secondAttribute="centerY" id="JbV-QH-n6d"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="YEF-AC-JFl" secondAttribute="trailing" id="UI1-4q-z1a"/>
+                                                        <constraint firstItem="kzI-vH-1QR" firstAttribute="leading" secondItem="3bT-EU-3tC" secondAttribute="leadingMargin" constant="11" id="l7v-z9-aMs"/>
+                                                        <constraint firstItem="kzI-vH-1QR" firstAttribute="centerY" secondItem="3bT-EU-3tC" secondAttribute="centerY" id="n0Q-6Z-qi7"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="playerLabel" destination="kzI-vH-1QR" id="OVI-qt-E2H"/>
+                                                    <outlet property="playerResultButton" destination="YEF-AC-JFl" id="poB-rz-7M5"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="sr3-eJ-fCG" secondAttribute="bottom" id="2fA-Wi-CI4"/>
+                                    <constraint firstAttribute="trailing" secondItem="sr3-eJ-fCG" secondAttribute="trailing" id="2mG-fI-NOU"/>
+                                    <constraint firstItem="lyc-Tb-jsn" firstAttribute="top" secondItem="cBw-ZG-eC5" secondAttribute="top" id="CGh-lx-MSG"/>
+                                    <constraint firstItem="sr3-eJ-fCG" firstAttribute="top" secondItem="lyc-Tb-jsn" secondAttribute="bottom" constant="10" id="CXC-3C-O4w"/>
+                                    <constraint firstItem="lCf-TZ-GI5" firstAttribute="centerY" secondItem="lyc-Tb-jsn" secondAttribute="centerY" id="FWV-5l-s4Q"/>
+                                    <constraint firstItem="kOW-zi-HPV" firstAttribute="leading" secondItem="lyc-Tb-jsn" secondAttribute="trailing" id="MbY-2d-0Qv"/>
+                                    <constraint firstAttribute="centerX" secondItem="lyc-Tb-jsn" secondAttribute="trailing" constant="5" id="NW2-jv-ymV"/>
+                                    <constraint firstItem="lCf-TZ-GI5" firstAttribute="width" secondItem="lyc-Tb-jsn" secondAttribute="width" id="RG1-UJ-HfJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="lCf-TZ-GI5" secondAttribute="trailing" id="XCl-B2-yVk"/>
+                                    <constraint firstItem="sr3-eJ-fCG" firstAttribute="leading" secondItem="cBw-ZG-eC5" secondAttribute="leading" id="bfZ-YZ-Gcy"/>
+                                    <constraint firstItem="lCf-TZ-GI5" firstAttribute="height" secondItem="lyc-Tb-jsn" secondAttribute="height" id="kYw-mF-4UL"/>
+                                    <constraint firstItem="kOW-zi-HPV" firstAttribute="trailing" secondItem="lCf-TZ-GI5" secondAttribute="leading" id="tmB-hV-20Q"/>
+                                    <constraint firstItem="kOW-zi-HPV" firstAttribute="centerY" secondItem="lyc-Tb-jsn" secondAttribute="centerY" id="v9H-Iw-TXz"/>
+                                    <constraint firstItem="lyc-Tb-jsn" firstAttribute="leading" secondItem="cBw-ZG-eC5" secondAttribute="leading" id="xUi-CL-jjt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sr3-eJ-fCG" firstAttribute="leading" secondItem="ypR-PE-Ivh" secondAttribute="leading" id="5EE-54-9tf"/>
-                            <constraint firstItem="sr3-eJ-fCG" firstAttribute="trailing" secondItem="ypR-PE-Ivh" secondAttribute="trailing" id="6C4-a2-NZ7"/>
+                            <constraint firstItem="IuW-ut-Zqe" firstAttribute="top" secondItem="cBw-ZG-eC5" secondAttribute="bottom" id="5Wu-UE-uUh"/>
+                            <constraint firstItem="cBw-ZG-eC5" firstAttribute="top" secondItem="ypR-PE-Ivh" secondAttribute="bottom" constant="30" id="ID5-PJ-3wp"/>
                             <constraint firstItem="ypR-PE-Ivh" firstAttribute="height" secondItem="kHw-gr-l1U" secondAttribute="height" id="K3u-gT-6gL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cBw-ZG-eC5" secondAttribute="trailing" id="MFX-JX-Wld"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kHw-gr-l1U" secondAttribute="trailing" id="P6Y-Mx-v6z"/>
-                            <constraint firstItem="IuW-ut-Zqe" firstAttribute="top" secondItem="sr3-eJ-fCG" secondAttribute="bottom" id="Qb7-MO-q9Q"/>
                             <constraint firstItem="ypR-PE-Ivh" firstAttribute="leading" secondItem="kHw-gr-l1U" secondAttribute="leading" id="SEC-R4-cTT"/>
                             <constraint firstItem="kHw-gr-l1U" firstAttribute="top" secondItem="7dz-Xw-8Jf" secondAttribute="bottom" constant="30" id="TId-2B-pTD"/>
                             <constraint firstItem="kHw-gr-l1U" firstAttribute="leading" secondItem="n64-Kx-HaD" secondAttribute="leadingMargin" id="YCV-vc-m1T"/>
                             <constraint firstItem="ypR-PE-Ivh" firstAttribute="top" secondItem="kHw-gr-l1U" secondAttribute="bottom" constant="5" id="gAF-MR-rRg"/>
-                            <constraint firstItem="sr3-eJ-fCG" firstAttribute="top" secondItem="ypR-PE-Ivh" secondAttribute="bottom" constant="30" id="gYH-lr-8y8"/>
                             <constraint firstItem="ypR-PE-Ivh" firstAttribute="trailing" secondItem="kHw-gr-l1U" secondAttribute="trailing" id="o8y-tY-xy2"/>
+                            <constraint firstItem="cBw-ZG-eC5" firstAttribute="leading" secondItem="n64-Kx-HaD" secondAttribute="leadingMargin" id="wUL-Md-8fV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="awayScoreButton" destination="lCf-TZ-GI5" id="AVX-cc-Efh"/>
+                        <outlet property="homeScoreButton" destination="lyc-Tb-jsn" id="leb-LN-LNV"/>
                         <outlet property="matchDateLabel" destination="Ve9-CA-2ii" id="UTg-i0-UWe"/>
                         <outlet property="matchPlaceLabel" destination="NBT-9j-Frl" id="vmK-Ob-zuZ"/>
                         <outlet property="matchTableView" destination="sr3-eJ-fCG" id="VR3-3Y-sDb"/>
+                        <outlet property="resultView" destination="cBw-ZG-eC5" id="BLr-2V-ktr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lx6-yh-OG4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2086" y="146"/>
+        </scene>
+        <!--Batter Record View Controller-->
+        <scene sceneID="v86-zG-WgH">
+            <objects>
+                <viewController storyboardIdentifier="BatterRecordViewController" id="Hn1-8C-QLl" customClass="BatterRecordViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ybL-Ov-FAa"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dtw-dC-ZxS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2JV-dF-SDw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOG-sI-91X" userLabel="BatterView">
+                                <rect key="frame" x="37" y="166.5" width="300" height="400.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="a9S-8P-XWT">
+                                        <rect key="frame" x="2" y="2" width="296" height="356.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RD7-v2-ueQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="296" height="87.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3O-8t-gqM" userLabel="Single">
+                                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617385786795" green="0.85530348241394571" blue="0.85843082812545968" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="1루타">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNL-f3-cqt" userLabel="Double">
+                                                        <rect key="frame" x="99.5" y="0.0" width="97" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="2루타">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtC-AZ-ZKP" userLabel="Triple">
+                                                        <rect key="frame" x="198.5" y="0.0" width="97.5" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="3루타">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="qEo-WR-Erz">
+                                                <rect key="frame" x="0.0" y="89.5" width="296" height="88"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqO-8F-YIE" userLabel="HomeRun">
+                                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="88"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="홈런">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iA-dr-ncP" userLabel="BaseOnBalls">
+                                                        <rect key="frame" x="99.5" y="0.0" width="97" height="88"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="볼넷">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCV-m1-Hp1" userLabel="SacrificeHit">
+                                                        <rect key="frame" x="198.5" y="0.0" width="97.5" height="88"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="희생타">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="FHk-dt-lIx">
+                                                <rect key="frame" x="0.0" y="179.5" width="296" height="87.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XO-0J-faS" userLabel="StrikeOut">
+                                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="삼진">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oz-Hq-mMq" userLabel="GroundBall">
+                                                        <rect key="frame" x="99.5" y="0.0" width="97" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="땅볼">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hql-uW-JUN" userLabel="FlyBall">
+                                                        <rect key="frame" x="198.5" y="0.0" width="97.5" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="뜬공">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jpO-bL-PMZ">
+                                                <rect key="frame" x="0.0" y="269" width="296" height="87.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKU-ub-cwt" userLabel="StolenBase">
+                                                        <rect key="frame" x="0.0" y="0.0" width="72.5" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="도루">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNZ-fE-ItD" userLabel="HitByPitcher">
+                                                        <rect key="frame" x="74.5" y="0.0" width="72.5" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="사구">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHC-Fl-v3B" userLabel="Run">
+                                                        <rect key="frame" x="149" y="0.0" width="72.5" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="득점">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pip-Ko-Wge" userLabel="RBI">
+                                                        <rect key="frame" x="223.5" y="0.0" width="72.5" height="87.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="타점">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EP-CL-loC" userLabel="OkButton">
+                                        <rect key="frame" x="0.0" y="360.5" width="300" height="40"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ccm-Lu-61X"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="확인">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickOkButton:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="5U9-vf-e6U"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="3EP-CL-loC" firstAttribute="top" secondItem="a9S-8P-XWT" secondAttribute="bottom" constant="2" id="2dC-hB-RMi"/>
+                                    <constraint firstAttribute="bottom" secondItem="3EP-CL-loC" secondAttribute="bottom" id="ADi-fR-XKO"/>
+                                    <constraint firstAttribute="trailing" secondItem="3EP-CL-loC" secondAttribute="trailing" id="Bzb-tV-B35"/>
+                                    <constraint firstItem="a9S-8P-XWT" firstAttribute="leading" secondItem="ZOG-sI-91X" secondAttribute="leading" constant="2" id="Lzj-qv-nmL"/>
+                                    <constraint firstAttribute="trailing" secondItem="a9S-8P-XWT" secondAttribute="trailing" constant="2" id="QmI-oz-rXH"/>
+                                    <constraint firstItem="3EP-CL-loC" firstAttribute="leading" secondItem="ZOG-sI-91X" secondAttribute="leading" id="ehD-8P-osd"/>
+                                    <constraint firstItem="a9S-8P-XWT" firstAttribute="top" secondItem="ZOG-sI-91X" secondAttribute="top" constant="2" id="kZh-OK-tcX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ZOG-sI-91X" firstAttribute="width" secondItem="2JV-dF-SDw" secondAttribute="width" multiplier="0.8" id="XEa-Iz-Dzm"/>
+                            <constraint firstItem="ZOG-sI-91X" firstAttribute="centerY" secondItem="2JV-dF-SDw" secondAttribute="centerY" multiplier="1.1" id="XHG-Yb-KFi"/>
+                            <constraint firstItem="ZOG-sI-91X" firstAttribute="height" secondItem="2JV-dF-SDw" secondAttribute="height" multiplier="0.6" id="cXK-FQ-9Lb"/>
+                            <constraint firstItem="ZOG-sI-91X" firstAttribute="centerX" secondItem="2JV-dF-SDw" secondAttribute="centerX" id="eeG-5j-ajY"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5wQ-M4-VpW" appends="YES" id="LwG-0C-zCo"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NFF-Pk-9QV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5wQ-M4-VpW">
+                    <connections>
+                        <action selector="clickBackgroundView:" destination="Hn1-8C-QLl" id="qKD-he-ojK"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2988" y="145"/>
+        </scene>
+        <!--Pitcher Record View Controller-->
+        <scene sceneID="YSf-Qz-o3C">
+            <objects>
+                <viewController storyboardIdentifier="PitcherRecordViewController" id="aW9-RQ-Zmm" customClass="PitcherRecordViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nb7-sT-2yS"/>
+                        <viewControllerLayoutGuide type="bottom" id="VaG-i6-YEc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xkP-M1-Pfz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x95-gx-1Lo" userLabel="PitcherView">
+                                <rect key="frame" x="37" y="166.5" width="300" height="400.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hwX-J8-yha">
+                                        <rect key="frame" x="0.0" y="2" width="300" height="356.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="eEE-T3-g58">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="117.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1Y-lv-rhm" userLabel="Win">
+                                                        <rect key="frame" x="0.0" y="0.0" width="73.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="승리">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXT-zd-Z4I" userLabel="Lose">
+                                                        <rect key="frame" x="75.5" y="0.0" width="73.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="패배">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJd-jd-uDs" userLabel="Hold">
+                                                        <rect key="frame" x="151" y="0.0" width="73.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="홀드">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="So7-go-0dY" userLabel="Save">
+                                                        <rect key="frame" x="226.5" y="0.0" width="73.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="세이브">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Qol-bO-qEy">
+                                                <rect key="frame" x="0.0" y="119.5" width="300" height="117.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjZ-sa-7Tc" userLabel="Walks">
+                                                        <rect key="frame" x="0.0" y="0.0" width="73.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="볼넷">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-2B-1Mj" userLabel="HitBatters">
+                                                        <rect key="frame" x="75.5" y="0.0" width="73.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="사구">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2g6-S7-Mdq" userLabel="StrikeOuts">
+                                                        <rect key="frame" x="151" y="0.0" width="73.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="탈삼진">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSy-Io-fVH" userLabel="Er">
+                                                        <rect key="frame" x="226.5" y="0.0" width="73.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="자책점">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="2Db-gI-6T7">
+                                                <rect key="frame" x="0.0" y="239" width="300" height="117.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZME-WO-36f" userLabel="Inning">
+                                                        <rect key="frame" x="0.0" y="0.0" width="98.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="이닝">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWd-8B-0g6" userLabel="Hits">
+                                                        <rect key="frame" x="100.5" y="0.0" width="99" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="피안타">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKC-LQ-7oe" userLabel="HomeRuns">
+                                                        <rect key="frame" x="201.5" y="0.0" width="98.5" height="117.5"/>
+                                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="피홈런">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijt-2W-UWq" userLabel="OkButton">
+                                        <rect key="frame" x="0.0" y="360.5" width="300" height="40"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="lhX-dL-2F1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="확인">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickOkButton:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="rQV-Qv-Av2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ijt-2W-UWq" secondAttribute="bottom" id="0qy-nJ-ogT"/>
+                                    <constraint firstItem="Ijt-2W-UWq" firstAttribute="top" secondItem="hwX-J8-yha" secondAttribute="bottom" constant="2" id="94Q-m8-1aQ"/>
+                                    <constraint firstItem="Ijt-2W-UWq" firstAttribute="leading" secondItem="x95-gx-1Lo" secondAttribute="leading" id="GyH-jo-IBZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ijt-2W-UWq" secondAttribute="trailing" id="JYs-Dr-4MK"/>
+                                    <constraint firstItem="hwX-J8-yha" firstAttribute="leading" secondItem="x95-gx-1Lo" secondAttribute="leading" id="MmR-No-BV9"/>
+                                    <constraint firstAttribute="trailing" secondItem="hwX-J8-yha" secondAttribute="trailing" id="ksV-BC-XVD"/>
+                                    <constraint firstItem="hwX-J8-yha" firstAttribute="top" secondItem="x95-gx-1Lo" secondAttribute="top" constant="2" id="yA2-5v-GEc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="x95-gx-1Lo" firstAttribute="width" secondItem="xkP-M1-Pfz" secondAttribute="width" multiplier="0.8" id="9Di-9M-VTd"/>
+                            <constraint firstItem="x95-gx-1Lo" firstAttribute="height" secondItem="xkP-M1-Pfz" secondAttribute="height" multiplier="0.6" id="QZr-dN-feA"/>
+                            <constraint firstItem="x95-gx-1Lo" firstAttribute="centerY" secondItem="xkP-M1-Pfz" secondAttribute="centerY" multiplier="1.1" id="icH-EH-QoN"/>
+                            <constraint firstItem="x95-gx-1Lo" firstAttribute="centerX" secondItem="xkP-M1-Pfz" secondAttribute="centerX" id="unF-FF-PY9"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="WdN-PE-xrZ" appends="YES" id="cBH-Ug-jDf"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WdT-9b-ink" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="WdN-PE-xrZ">
+                    <connections>
+                        <action selector="clickBackgroundView:" destination="aW9-RQ-Zmm" id="bSG-w6-Op4"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2988" y="851"/>
+        </scene>
+        <!--Select Position View Controller-->
+        <scene sceneID="wbg-87-Ifu">
+            <objects>
+                <viewController storyboardIdentifier="SelectPositionViewController" id="MKn-ji-cZu" customClass="SelectPositionViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="80g-jr-ero"/>
+                        <viewControllerLayoutGuide type="bottom" id="L9L-0b-CGs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vqL-7l-AIx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Li-vL-zoQ" userLabel="PositionView">
+                                <rect key="frame" x="37.5" y="166.5" width="300" height="333.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7Y-hO-CQW">
+                                        <rect key="frame" x="2" y="2" width="147" height="329.5"/>
+                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="타자">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickBatterButton:" destination="MKn-ji-cZu" eventType="touchUpInside" id="I6j-zx-97Z"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90F-cA-ank">
+                                        <rect key="frame" x="151" y="2" width="147" height="329.5"/>
+                                        <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="투수">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickPitcherButton:" destination="MKn-ji-cZu" eventType="touchUpInside" id="Na8-g6-IS7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="x7Y-hO-CQW" firstAttribute="top" secondItem="7Li-vL-zoQ" secondAttribute="top" constant="2" id="2uc-Ow-rtB"/>
+                                    <constraint firstAttribute="bottom" secondItem="x7Y-hO-CQW" secondAttribute="bottom" constant="2" id="INl-ko-Ouo"/>
+                                    <constraint firstItem="x7Y-hO-CQW" firstAttribute="leading" secondItem="7Li-vL-zoQ" secondAttribute="leading" constant="2" id="WDs-N0-0bQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="90F-cA-ank" secondAttribute="bottom" constant="2" id="gyb-G2-Lgd"/>
+                                    <constraint firstAttribute="trailing" secondItem="90F-cA-ank" secondAttribute="trailing" constant="2" id="jVq-Ui-ikV"/>
+                                    <constraint firstItem="90F-cA-ank" firstAttribute="top" secondItem="7Li-vL-zoQ" secondAttribute="top" constant="2" id="mfA-m2-2HY"/>
+                                    <constraint firstItem="90F-cA-ank" firstAttribute="leading" secondItem="x7Y-hO-CQW" secondAttribute="trailing" constant="2" id="rvY-pt-UPA"/>
+                                    <constraint firstItem="x7Y-hO-CQW" firstAttribute="width" secondItem="90F-cA-ank" secondAttribute="width" id="tV4-W1-xCf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="7Li-vL-zoQ" firstAttribute="width" secondItem="vqL-7l-AIx" secondAttribute="width" multiplier="0.8" id="BtR-yG-PvB"/>
+                            <constraint firstItem="7Li-vL-zoQ" firstAttribute="centerY" secondItem="vqL-7l-AIx" secondAttribute="centerY" id="O3e-gk-s19"/>
+                            <constraint firstItem="7Li-vL-zoQ" firstAttribute="height" secondItem="vqL-7l-AIx" secondAttribute="height" multiplier="0.5" id="dRO-lw-ogl"/>
+                            <constraint firstItem="7Li-vL-zoQ" firstAttribute="centerX" secondItem="vqL-7l-AIx" secondAttribute="centerX" id="wxM-hD-3i1"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4o6-IS-37r" appends="YES" id="e3F-lv-Nva"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1fx-vo-CH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4o6-IS-37r">
+                    <connections>
+                        <action selector="clickBackgroundView:" destination="MKn-ji-cZu" id="0XS-4q-U60"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2988" y="-563"/>
         </scene>
         <!--Add Schedule View Controller-->
         <scene sceneID="06g-G3-aNB">

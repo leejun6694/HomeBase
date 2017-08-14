@@ -13,11 +13,5 @@ class DetailScheduleTableViewCell: UITableViewCell {
     // MARK: Properties
     
     @IBOutlet var playerLabel: UILabel!
-    @IBOutlet var addButton: UIButton!
-    
-    // MARK: Actions
-    
-    @IBAction func clickAddButton(_ sender: UIButton) {
-        
-    }
+    @IBOutlet var playerResultButton: UIButton!
 }
