@@ -41,15 +41,21 @@ class TeamNameViewController: UIViewController {
         let currentCount = self.nameTextField.text?.characters.count ?? 0
         
         if currentCount < 2 {
-            let alertController = UIAlertController(title: "", message: "팀 명은 최소 2글자 입니다", preferredStyle: .alert)
+            let alertController = UIAlertController(
+                title: "",
+                message: "팀 명은 최소 2글자 입니다",
+                preferredStyle: .alert)
+            
             let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
             alertController.addAction(okAction)
             
             present(alertController, animated: true, completion: nil)
         }
         else {
-            guard let teamImageViewController = storyboard?.instantiateViewController(withIdentifier: "TeamImageViewController") else { return }
+            let teamImageViewController = storyboard?.instantiateViewController(
+                withIdentifier: "TeamImageViewController") as! TeamImageViewController
             
+            teamImageViewController.teamName = self.nameTextField.text ?? ""
             self.navigationController?.pushViewController(teamImageViewController, animated: false)
         }
     }
