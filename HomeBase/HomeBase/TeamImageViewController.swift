@@ -12,6 +12,8 @@ class TeamImageViewController: UIViewController {
     
     // MARK: Properties
     
+    var teamName: String!
+    
     fileprivate lazy var pickerButton: UIButton = {
         let pickerButton = UIButton(type: .system)
         pickerButton.setTitle("팀 대표 이미지를 등록하세요", for: .normal)
@@ -73,6 +75,25 @@ class TeamImageViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func saveInfo(image: UIImage) {
+        let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        
+        let url: URL = documentDirectory.appendingPathComponent("TeamImage")
+        let path = url.path
+        
+        if let data = UIImageJPEGRepresentation(image, 0.8) {
+            do {
+                try data.write(to: url, options: [.atomic])
+            } catch {
+                print("Write Error : \(error)")
+            }
+        }
+        
+        let teamInfo = TeamInfo(teamName: self.teamName, teamImagePath: path)
+        TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
+    }
+    
     // MARK: Override
     
     override func viewDidLoad() {
@@ -94,7 +115,9 @@ extension TeamImageViewController: UINavigationControllerDelegate, UIImagePicker
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         picker.allowsEditing = true
         
         guard let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
@@ -110,6 +133,8 @@ extension TeamImageViewController: UINavigationControllerDelegate, UIImagePicker
         self.view.addConstraints(doneButtonConstraint())
         
         self.teamImage.image = selectedImage
+        
+        saveInfo(image: selectedImage)
         
         dismiss(animated: true, completion: nil)
     }
