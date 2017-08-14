@@ -14,10 +14,7 @@ class AllScheduleViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet var scheduleTableView: UITableView!
-    var scheduleIDStroe = [Int64]()
-    var matchDateStore = [Date]()
-    var matchPlaceStore = [String]()
-    var matchOpponentStore = [String]()
+    var scheduleArray = [TeamSchedule]()
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -38,21 +35,7 @@ class AllScheduleViewController: UIViewController {
     // 매번 데이터를 불러올때 비웠다가 다시 하나씩 채워야함
     // 좀 더 깔끔하게 만들어보자
     private func loadData() {
-        scheduleIDStroe = []
-        matchDateStore = []
-        matchPlaceStore = []
-        matchOpponentStore = []
-        
-        do {
-            for schedule in try DBManager.shared.db!.prepare(TeamScheduleDAO.shared.teamSchedule.select(TeamScheduleDAO.shared.scheduleID, TeamScheduleDAO.shared.matchDate, TeamScheduleDAO.shared.matchPlace, TeamScheduleDAO.shared.matchOpponent).order(TeamScheduleDAO.shared.matchDate.desc)) {
-                scheduleIDStroe.append(schedule[TeamScheduleDAO.shared.scheduleID])
-                matchDateStore.append(schedule[TeamScheduleDAO.shared.matchDate])
-                matchPlaceStore.append(schedule[TeamScheduleDAO.shared.matchPlace])
-                matchOpponentStore.append(schedule[TeamScheduleDAO.shared.matchOpponent])
-            }
-        } catch {
-            NSLog("No Database!")
-        }
+        scheduleArray = TeamScheduleDAO.shared.findAllColumn()
     }
     
     // MARK: Override
@@ -64,8 +47,6 @@ class AllScheduleViewController: UIViewController {
         scheduleTableView.delegate = self
         scheduleTableView.dataSource = self
         
-        let teamScheduleDAO = TeamScheduleDAO()
-        teamScheduleDAO.createTable()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,10 +61,7 @@ class AllScheduleViewController: UIViewController {
             if let row = self.scheduleTableView.indexPathForSelectedRow?.row {
                 
                 let detailViewController = segue.destination as! DetailScheduleViewController
-                detailViewController.scheduleID = scheduleIDStroe[row]
-                detailViewController.matchDate = matchDateStore[row]
-                detailViewController.matchPlace = matchPlaceStore[row]
-                detailViewController.matchOpponent = matchOpponentStore[row]
+                detailViewController.scheduleItem = scheduleArray[row]
             }
         }
     }
@@ -98,13 +76,7 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var scheduleCount: Int
-        
-        do {
-            scheduleCount = try DBManager.shared.db?.scalar(TeamScheduleDAO.shared.teamSchedule.count) ?? 0
-        } catch {
-            scheduleCount = 0
-        }
+        let scheduleCount = TeamScheduleDAO.shared.countAll()
         
         return scheduleCount
     }
@@ -113,8 +85,8 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllScheduleTableViewCell", for: indexPath) as! AllScheduleTableViewCell
         
-        cell.matchDateLabel.text = dateFormatter.string(from: matchDateStore[indexPath.row])
-        cell.matchOpponentLabel.text = matchOpponentStore[indexPath.row]
+        cell.matchDateLabel.text = dateFormatter.string(from: scheduleArray[indexPath.row].matchDate)
+        cell.matchOpponentLabel.text = scheduleArray[indexPath.row].matchOpponent
         
         return cell
     }

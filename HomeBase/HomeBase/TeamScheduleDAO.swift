@@ -14,22 +14,19 @@ class TeamScheduleDAO {
     
     // MARK: Properties
     
-    let scheduleID = Expression<Int64>("scheduleID")
-    let matchOpponent = Expression<String>("matchOpponent")
-    let matchDate = Expression<Date>("matchDate")
-    let matchPlace = Expression<String>("matchPlace")
-    let homeScore = Expression<Int64>("homeScore")
-    let awayScore = Expression<Int64>("awayScore")
+    private let scheduleID = Expression<Int64>("scheduleID")
+    private let matchOpponent = Expression<String>("matchOpponent")
+    private let matchDate = Expression<Date>("matchDate")
+    private let matchPlace = Expression<String>("matchPlace")
+    private let homeScore = Expression<Int64>("homeScore")
+    private let awayScore = Expression<Int64>("awayScore")
     
-    let teamSchedule: Table = {
-        let teamSchedule = Table("TeamSchedule")
+    private let teamSchedule: Table
+    
+    private init() {
         
-        return teamSchedule
-    }()
-    
-    // MARK: Functions
-    
-    func createTable() {
+        teamSchedule = Table("TeamSchedule")
+        
         do {
             try DBManager.shared.db?.run(teamSchedule.create(ifNotExists: true) {
                 t in
@@ -46,43 +43,67 @@ class TeamScheduleDAO {
         }
     }
     
+    // MARK: Functions
+    
+    func getTable() -> Table {
+        return teamSchedule
+    }
+    
+    func getReference() -> Expression<Int64> {
+        return scheduleID
+    }
+    
     func insert(insertTeamSchedule: TeamSchedule) {
         do {
-            try DBManager.shared.db?.run(teamSchedule.insert(matchOpponent <- insertTeamSchedule.matchOpponent, matchDate <- insertTeamSchedule.matchDate, matchPlace <- insertTeamSchedule.matchPlace, homeScore <- -1, awayScore <- -1))
+            try DBManager.shared.db?.run(teamSchedule.insert(
+                matchOpponent <- insertTeamSchedule.matchOpponent,
+                matchDate <- insertTeamSchedule.matchDate,
+                matchPlace <- insertTeamSchedule.matchPlace,
+                homeScore <- -1,
+                awayScore <- -1))
         } catch {
             print("Insert Error: \(error)")
         }
     }
     
-    func findHomeScore(findScheduleID: Int64) -> Int64 {
+    func findAllColumn() -> [TeamSchedule] {
+        var teamScheduleArray = [TeamSchedule]()
+        
         do {
-            let query = teamSchedule.filter(self.scheduleID == findScheduleID)
-            let items = try DBManager.shared.db?.prepare(query)
-            for item in items! {
-                return item[homeScore]
+            if let query = try DBManager.shared.db?.prepare(teamSchedule.order(matchDate.desc)) {
+                for schedule in Array(query) {
+                    let scheduleItem = TeamSchedule(
+                        scheduleID: schedule[scheduleID],
+                        matchOpponent: schedule[matchOpponent],
+                        matchDate: schedule[matchDate],
+                        matchPlace: schedule[matchPlace])
+                    
+                    teamScheduleArray.append(scheduleItem)
+                }
             }
         } catch {
-            print("Find Error: \(error)")
+            print("Find Error : \(error)")
         }
-        return 0
+        
+        return teamScheduleArray
     }
     
-    func findAwayScore(findScheduleID: Int64) -> Int64 {
+    func countAll() -> Int {
         do {
-            let query = teamSchedule.filter(self.scheduleID == findScheduleID)
-            let items = try DBManager.shared.db?.prepare(query)
-            for item in items! {
-                return item[awayScore]
+            if let scheduleCount = try DBManager.shared.db?.scalar(teamSchedule.count) {
+                return scheduleCount
             }
         } catch {
-            print("Find Error: \(error)")
+            print("Count Error: \(error)")
         }
+        
         return 0
     }
 
     func updateHomeScore(updateScheduleID: Int64, _ updateHomeScore: Int64) {
         do {
-            try DBManager.shared.db?.run(teamSchedule.filter(self.scheduleID == updateScheduleID).update(self.homeScore <- updateHomeScore))
+            try DBManager.shared.db?.run(teamSchedule.filter(
+                self.scheduleID == updateScheduleID).update(self.homeScore <- updateHomeScore))
         } catch {
             print("Update Error: \(error)")
         }
@@ -90,7 +111,8 @@ class TeamScheduleDAO {
     
     func updateAwayScore(updateScheduleID: Int64, _ updateAwayScore: Int64) {
         do {
-            try DBManager.shared.db?.run(teamSchedule.filter(self.scheduleID == updateScheduleID).update(self.awayScore <- updateAwayScore))
+            try DBManager.shared.db?.run(teamSchedule.filter(
+                self.scheduleID == updateScheduleID).update(self.awayScore <- updateAwayScore))
         } catch {
             print("Update Error: \(error)")
         }

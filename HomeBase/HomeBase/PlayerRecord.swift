@@ -13,9 +13,9 @@ class PlayerRecord: NSObject {
     var playerID: Int64
     var scheduleID: Int64
     
-    var single: Double
-    var double: Double
-    var triple: Double
+    var singleHit: Double
+    var doubleHit: Double
+    var tripleHit: Double
     var homeRun: Double
     var baseOnBalls: Double
     var strikeOut: Double
@@ -43,9 +43,9 @@ class PlayerRecord: NSObject {
     init(playerRecordID: Int64 = 0,
          playerID: Int64,
          scheduleID: Int64,
-         single: Double = 0,
-         double: Double = 0,
-         triple: Double = 0,
+         singleHit: Double = 0,
+         doubleHit: Double = 0,
+         tripleHit: Double = 0,
          homeRun: Double = 0,
          baseOnBalls: Double = 0,
          strikeOut: Double = 0,
@@ -71,9 +71,9 @@ class PlayerRecord: NSObject {
         self.playerID = playerID
         self.scheduleID = scheduleID
         
-        self.single = single
-        self.double = double
-        self.triple = triple
+        self.singleHit = singleHit
+        self.doubleHit = doubleHit
+        self.tripleHit = tripleHit
         self.homeRun = homeRun
         self.baseOnBalls = baseOnBalls
         self.strikeOut = strikeOut
