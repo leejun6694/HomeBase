@@ -31,9 +31,7 @@ class PlayerDAO {
             print(error)
         }
     }
-    
 
-    
     func insert(playerObject: Player) {
         do {
             try DBManager.shared.db?.run(player.insert(name <- playerObject.name, backNumber <- playerObject.backNumber, position <- playerObject.position ) )
@@ -54,6 +52,18 @@ class PlayerDAO {
         print(player.count)
     }
     
+    func countAll() -> Int {
+        do {
+            if let playerCount = try DBManager.shared.db?.scalar(player.count) {
+                return playerCount
+            }
+        } catch {
+            print("Count Error: \(error)")
+        }
+        
+        return 0
+    }
+    
     func selectAll() -> [Player]? {
         var playerArray = [Player]()
         do {
@@ -61,8 +71,8 @@ class PlayerDAO {
                 return nil
             }
             for player in Array(query) {
-                let p = Player(id: player[playerID], name: player[name], backNumber: player[backNumber], position: player[position])
-                playerArray.append(p)
+                let playerItem = Player(id: player[playerID], name: player[name], backNumber: player[backNumber], position: player[position])
+                playerArray.append(playerItem)
             }
             
         } catch {

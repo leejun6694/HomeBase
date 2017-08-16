@@ -25,7 +25,6 @@ class PlayerRecord: NSObject {
     var flyBall: Double
     var sacrificeHit: Double
     var stolenBase: Double
-    
     var run: Double
     var RBI: Double
     
@@ -40,7 +39,6 @@ class PlayerRecord: NSObject {
     var hitBatters: Double
     var strikeOuts: Double
     var ER: Double
-    
     
     init(playerRecordID: Int64 = 0,
          playerID: Int64,
@@ -85,9 +83,9 @@ class PlayerRecord: NSObject {
         self.flyBall = flyBall
         self.sacrificeHit = sacrificeHit
         self.stolenBase = stolenBase
-        
         self.run = run
         self.RBI = RBI
+        
         self.win = win
         self.lose = lose
         self.save = save
@@ -100,5 +98,4 @@ class PlayerRecord: NSObject {
         self.strikeOuts = strikeOuts
         self.ER = ER
     }
-
 }

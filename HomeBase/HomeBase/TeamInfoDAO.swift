@@ -14,10 +14,10 @@ class TeamInfoDAO {
     
     // MARK: Properties
     
-    private let teamName = Expression<String>("teamName")
-    private let teamImagePath = Expression<String>("teamImagePath")
+    let teamName = Expression<String>("teamName")
+    let teamImagePath = Expression<String>("teamImagePath")
     
-    private let teamInfo: Table
+    let teamInfo: Table
     
     private init() {
         
@@ -37,10 +37,6 @@ class TeamInfoDAO {
     
     // MARK: Functions
     
-    func getTable() -> Table {
-        return teamInfo
-    }
-    
     func insert(insertTeamInfo: TeamInfo) {
         do {
             try DBManager.shared.db?.run(teamInfo.insert(
@@ -49,5 +45,22 @@ class TeamInfoDAO {
         } catch {
             print("Insert Error : \(error)")
         }
+    }
+    
+    func fetch() -> TeamInfo {
+        do {
+            if let query = try DBManager.shared.db?.prepare(teamInfo) {
+                for teamInfos in Array(query) {
+                    let teamInfoItem = TeamInfo(teamName: teamInfos[teamName],
+                                                teamImagePath: teamInfos[teamImagePath])
+                    
+                    return teamInfoItem
+                }
+            }
+        } catch {
+            print("Fetch Error : \(error)")
+        }
+        
+        return TeamInfo(teamName: "", teamImagePath: "")
     }
 }

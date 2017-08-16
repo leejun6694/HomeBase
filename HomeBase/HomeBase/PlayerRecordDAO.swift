@@ -22,7 +22,6 @@ class PlayerRecordDAO {
     let homeRun = Expression<Double>("homeRun")
     let baseOnBalls = Expression<Double>("baseOnBalls")
     let hitByPitch = Expression<Double>("hitByPitch")
-    
     let strikeOut = Expression<Double>("strikeOut")
     let groundBall = Expression<Double>("groundBall")
     let flyBall = Expression<Double>("flyBall")
@@ -49,6 +48,7 @@ class PlayerRecordDAO {
     
     let teamSchedule = TeamScheduleDAO.shared.teamSchedule
     let teamSchedule_reference = TeamScheduleDAO.shared.scheduleID
+
     let playerRecord: Table
     
     private init() {
@@ -86,13 +86,20 @@ class PlayerRecordDAO {
                 t.column(hitBatters)
                 t.column(strikeOuts)
                 t.column(ER)
-                t.foreignKey(playerID, references: player, player_reference, update: .cascade , delete: .cascade)
-                t.foreignKey(scheduleID, references: teamSchedule, teamSchedule_reference , update: .cascade, delete: .cascade)
+
+                t.foreignKey(playerID,
+                             references: player, player_reference,
+                             update: .cascade,
+                             delete: .cascade)
+                t.foreignKey(scheduleID,
+                             references: teamSchedule, teamSchedule_reference,
+                             update: .cascade ,
+                             delete: .cascade)
+
             })
         } catch {
             print(error)
         }
-        print("create table")
     }
 
     func insert(playerRecordObject: PlayerRecord) {
@@ -125,21 +132,10 @@ class PlayerRecordDAO {
                     hitBatters <- playerRecordObject.hitBatters,
                     strikeOuts <- playerRecordObject.strikeOuts,
                     ER <- playerRecordObject.ER ))
-            do {
-                let select = playerRecord.select(playerID, doubleHit)
-                let prepare = try DBManager.shared.db?.prepare(select)
-                for user in prepare!  {
-                    print("id: \(user[playerID]), name: \(user[doubleHit])")
-                }
-                
-            } catch {
-                
-            }
-            
+
         } catch {
-            print("Error: \(error)")
+            print("Insert Error: \(error)")
         }
-        print(playerRecord.count)
     }
     
     func selectOnSchedule(id: Int64) -> [PlayerRecord]? {
@@ -240,6 +236,46 @@ class PlayerRecordDAO {
         return totalRecord
         
     }
-
-
+    
+    func fetchPlayerRecordOnSchedule(playerID: Int64, scheduleID: Int64) -> PlayerRecord {
+        var playerRecordItem = PlayerRecord(playerID: 0, scheduleID: 0)
+        
+        do {
+            if let query = try DBManager.shared.db?.prepare(
+                playerRecord.filter(self.playerID == playerID).filter(self.scheduleID == scheduleID)) {
+                for record in Array(query) {
+                    playerRecordItem = PlayerRecord(playerRecordID: record[self.playerRecordID],
+                                                    playerID: record[self.playerID],
+                                                    scheduleID: record[self.scheduleID],
+                                                    singleHit: record[self.singleHit],
+                                                    doubleHit: record[self.doubleHit],
+                                                    tripleHit: record[self.tripleHit],
+                                                    homeRun: record[self.homeRun],
+                                                    baseOnBalls: record[self.baseOnBalls],
+                                                    strikeOut: record[self.strikeOut],
+                                                    groundBall: record[self.groundBall],
+                                                    flyBall: record[self.flyBall],
+                                                    sacrificeHit: record[self.sacrificeHit],
+                                                    stolenBase: record[self.stolenBase],
+                                                    run: record[self.run],
+                                                    RBI: record[self.RBI],
+                                                    win: record[self.win],
+                                                    lose: record[self.lose],
+                                                    save: record[self.save],
+                                                    hold: record[self.hold],
+                                                    inning: record[self.inning],
+                                                    hits: record[self.hits],
+                                                    homeRuns: record[self.homeRuns],
+                                                    walks: record[self.walks],
+                                                    hitBatters: record[self.hitBatters],
+                                                    strikeOuts: record[self.strikeOuts],
+                                                    ER: record[self.ER])
+                }
+            }
+        } catch {
+            print("Fetch Error : \(error)")
+        }
+        
+        return playerRecordItem
+    }
 }

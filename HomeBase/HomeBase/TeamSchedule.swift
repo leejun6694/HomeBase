@@ -10,7 +10,6 @@ import Foundation
 
 class TeamSchedule: NSObject {
     
-    // MARK: Properties
     let scheduleID: Int64
     let matchOpponent: String
     let matchDate: Date
@@ -18,14 +17,12 @@ class TeamSchedule: NSObject {
     var homeScore: Int64
     var awayScore: Int64
     
-    // MARK: Initializer
-    
-    init (scheduleID: Int64 = 0, matchOpponent: String, matchDate: Date, matchPlace: String) {
+    init(scheduleID: Int64 = 0, matchOpponent: String, matchDate: Date, matchPlace: String, homeScore: Int64 = -1, awayScore: Int64 = -1) {
         self.scheduleID = scheduleID
         self.matchOpponent = matchOpponent
         self.matchDate = matchDate
         self.matchPlace = matchPlace
-        self.homeScore = -1
-        self.awayScore = -1
+        self.homeScore = homeScore
+        self.awayScore = awayScore
     }
 }

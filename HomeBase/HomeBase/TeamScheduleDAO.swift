@@ -44,7 +44,7 @@ class TeamScheduleDAO {
     }
     
     // MARK: Functions
-    
+
     func insert(insertTeamSchedule: TeamSchedule) {
         do {
             try DBManager.shared.db?.run(teamSchedule.insert(
@@ -68,7 +68,9 @@ class TeamScheduleDAO {
                         scheduleID: schedule[scheduleID],
                         matchOpponent: schedule[matchOpponent],
                         matchDate: schedule[matchDate],
-                        matchPlace: schedule[matchPlace])
+                        matchPlace: schedule[matchPlace],
+                        homeScore: schedule[homeScore],
+                        awayScore: schedule[awayScore])
                     
                     teamScheduleArray.append(scheduleItem)
                 }

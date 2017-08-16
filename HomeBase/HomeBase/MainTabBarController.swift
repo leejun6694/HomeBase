@@ -10,13 +10,11 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    var first: Bool = false
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if first == false {
-            first = true
+        let teamInfo = TeamInfoDAO.shared.fetch()
+        if teamInfo.teamName == "" {
             performSegue(withIdentifier: "segueTabToStart", sender: self)
         }
     }
