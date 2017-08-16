@@ -21,11 +21,13 @@ class PlayerRecordDAO {
     let tripleHit = Expression<Double>("tripleHit")
     let homeRun = Expression<Double>("homeRun")
     let baseOnBalls = Expression<Double>("baseOnBalls")
+    let hitByPitch = Expression<Double>("hitByPitch")
     let strikeOut = Expression<Double>("strikeOut")
     let groundBall = Expression<Double>("groundBall")
     let flyBall = Expression<Double>("flyBall")
     let sacrificeHit = Expression<Double>("sacrificeHit")
     let stolenBase = Expression<Double>("stolenBase")
+    
     let run = Expression<Double>("run")
     let RBI = Expression<Double>("RBI")
     
@@ -65,6 +67,7 @@ class PlayerRecordDAO {
                 t.column(tripleHit)
                 t.column(homeRun)
                 t.column(baseOnBalls)
+                t.column(hitByPitch)
                 t.column(strikeOut)
                 t.column(groundBall)
                 t.column(flyBall)
@@ -83,6 +86,7 @@ class PlayerRecordDAO {
                 t.column(hitBatters)
                 t.column(strikeOuts)
                 t.column(ER)
+
                 t.foreignKey(playerID,
                              references: player, player_reference,
                              update: .cascade,
@@ -91,6 +95,7 @@ class PlayerRecordDAO {
                              references: teamSchedule, teamSchedule_reference,
                              update: .cascade ,
                              delete: .cascade)
+
             })
         } catch {
             print(error)
@@ -108,6 +113,7 @@ class PlayerRecordDAO {
                     tripleHit <- playerRecordObject.tripleHit,
                     homeRun <- playerRecordObject.homeRun,
                     baseOnBalls <- playerRecordObject.baseOnBalls,
+                    hitByPitch <- playerRecordObject.hitByPitch,
                     strikeOut <- playerRecordObject.strikeOut,
                     groundBall <- playerRecordObject.groundBall,
                     flyBall <- playerRecordObject.flyBall,
@@ -126,6 +132,7 @@ class PlayerRecordDAO {
                     hitBatters <- playerRecordObject.hitBatters,
                     strikeOuts <- playerRecordObject.strikeOuts,
                     ER <- playerRecordObject.ER ))
+
         } catch {
             print("Insert Error: \(error)")
         }
@@ -153,6 +160,7 @@ class PlayerRecordDAO {
                     tripleHit: record[tripleHit],
                     homeRun: record[homeRun],
                     baseOnBalls: record[baseOnBalls],
+                    hitByPitch: record[hitByPitch],
                     strikeOut: record[strikeOut],
                     groundBall: record[groundBall],
                     flyBall: record[flyBall],
@@ -180,28 +188,52 @@ class PlayerRecordDAO {
         return playerArrayOnSchedule
     }
     
-    func selectOnPlayer(id: Int64) -> [PlayerRecord]? {
+    func selectOnPlayer(id: Int64) -> PlayerRecord? {
         do {
             let count = try DBManager.shared.db?.scalar(playerRecord.select(playerRecordID.count))
             print(count!)
         } catch {
             print("Error: \(error)")
         }
-        var playerArrayOnSchedule = [PlayerRecord]()
+        let totalRecord: PlayerRecord = PlayerRecord(
+            playerRecordID: 0,
+            playerID: id,
+            scheduleID: 0)
         do {
             guard let query = try DBManager.shared.db?.prepare(playerRecord.filter(playerID == id)) else {
                 return nil
             }
             for record in Array(query) {
-                print("playerID: \(record[playerID]), scheduleID: \(record[scheduleID]), tripleHit: \(record[tripleHit])")
-                let p = PlayerRecord(playerID: record[playerID], scheduleID: record[scheduleID], tripleHit: record[tripleHit])
-                playerArrayOnSchedule.append(p)
+                totalRecord.singleHit += record[singleHit]
+                totalRecord.doubleHit += record[doubleHit]
+                totalRecord.tripleHit += record[tripleHit]
+                totalRecord.homeRun += record[homeRun]
+                totalRecord.baseOnBalls += record[baseOnBalls]
+                totalRecord.hitByPitch += record[hitByPitch]
+                totalRecord.strikeOut += record[strikeOut]
+                totalRecord.groundBall += record[groundBall]
+                totalRecord.flyBall += record[flyBall]
+                totalRecord.sacrificeHit += record[sacrificeHit]
+                totalRecord.stolenBase += record[stolenBase]
+                totalRecord.run += record[run]
+                totalRecord.RBI += record[RBI]
+                totalRecord.win += record[win]
+                totalRecord.lose += record[lose]
+                totalRecord.save += record[save]
+                totalRecord.hold += record[hold]
+                totalRecord.inning += record[inning]
+                totalRecord.hits += record[hits]
+                totalRecord.homeRuns += record[homeRuns]
+                totalRecord.walks += record[walks]
+                totalRecord.hitBatters += record[hitBatters]
+                totalRecord.strikeOuts += record[strikeOuts]
+                totalRecord.ER += record[ER]
             }
             
         } catch {
             print(error)
         }
-        return playerArrayOnSchedule
+        return totalRecord
         
     }
     

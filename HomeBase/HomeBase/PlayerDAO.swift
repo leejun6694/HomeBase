@@ -10,7 +10,7 @@ import SQLite
 
 class PlayerDAO {
     
-    static var shared = PlayerDAO()
+    static let shared = PlayerDAO()
     
     let playerID = Expression<Int64>("playerID")
     let name = Expression<String>("name")
@@ -31,7 +31,7 @@ class PlayerDAO {
             print(error)
         }
     }
-    
+
     func insert(playerObject: Player) {
         do {
             try DBManager.shared.db?.run(player.insert(name <- playerObject.name, backNumber <- playerObject.backNumber, position <- playerObject.position ) )
