@@ -12,6 +12,7 @@ class DetailScheduleTableViewCell: UITableViewCell {
     
     // MARK: Properties
     
+    @IBOutlet var playerBackNumber: UILabel!
     @IBOutlet var playerLabel: UILabel!
     @IBOutlet var playerResultButton: UIButton!
 }

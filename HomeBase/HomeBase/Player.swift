@@ -9,6 +9,7 @@
 import Foundation
 
 class Player: NSObject {
+    
     var playerID: Int64
     var name: String
     var backNumber: Int64

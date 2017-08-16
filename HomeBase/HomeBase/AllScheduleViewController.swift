@@ -32,12 +32,6 @@ class AllScheduleViewController: UIViewController {
         present(addScheduleViewController, animated: true, completion: nil)
     }
     
-    // 매번 데이터를 불러올때 비웠다가 다시 하나씩 채워야함
-    // 좀 더 깔끔하게 만들어보자
-    private func loadData() {
-        scheduleArray = TeamScheduleDAO.shared.findAllColumn()
-    }
-    
     // MARK: Override
     
     override func viewDidLoad() {
@@ -52,7 +46,7 @@ class AllScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        loadData()
+        scheduleArray = TeamScheduleDAO.shared.findAllColumn()
         scheduleTableView.reloadData()
     }
     
@@ -72,7 +66,7 @@ class AllScheduleViewController: UIViewController {
 extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 50
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +77,8 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AllScheduleTableViewCell", for: indexPath) as! AllScheduleTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AllScheduleTableViewCell",
+                                                 for: indexPath) as! AllScheduleTableViewCell
         
         cell.matchDateLabel.text = dateFormatter.string(from: scheduleArray[indexPath.row].matchDate)
         cell.matchOpponentLabel.text = scheduleArray[indexPath.row].matchOpponent

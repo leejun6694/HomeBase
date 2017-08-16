@@ -68,21 +68,20 @@ class TeamImageViewController: UIViewController {
     }
     
     @objc func clickSkipButton(_ sender: AnyObject) {
+        let teamInfo = TeamInfo(teamName: self.teamName)
+        TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
+        
         dismiss(animated: true, completion: nil)
     }
     
     @objc func clickDoneButton(_ sender: AnyObject) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func saveInfo(image: UIImage) {
         let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectory = documentsDirectories.first!
         
         let url: URL = documentDirectory.appendingPathComponent("TeamImage")
         let path = url.path
         
-        if let data = UIImageJPEGRepresentation(image, 0.8) {
+        if let data = UIImageJPEGRepresentation(teamImage.image!, 0.8) {
             do {
                 try data.write(to: url, options: [.atomic])
             } catch {
@@ -92,6 +91,8 @@ class TeamImageViewController: UIViewController {
         
         let teamInfo = TeamInfo(teamName: self.teamName, teamImagePath: path)
         TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
+        
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: Override
@@ -133,8 +134,6 @@ extension TeamImageViewController: UINavigationControllerDelegate, UIImagePicker
         self.view.addConstraints(doneButtonConstraint())
         
         self.teamImage.image = selectedImage
-        
-        saveInfo(image: selectedImage)
         
         dismiss(animated: true, completion: nil)
     }
