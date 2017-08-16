@@ -14,14 +14,14 @@ class TeamScheduleDAO {
     
     // MARK: Properties
     
-    private let scheduleID = Expression<Int64>("scheduleID")
-    private let matchOpponent = Expression<String>("matchOpponent")
-    private let matchDate = Expression<Date>("matchDate")
-    private let matchPlace = Expression<String>("matchPlace")
-    private let homeScore = Expression<Int64>("homeScore")
-    private let awayScore = Expression<Int64>("awayScore")
+    let scheduleID = Expression<Int64>("scheduleID")
+    let matchOpponent = Expression<String>("matchOpponent")
+    let matchDate = Expression<Date>("matchDate")
+    let matchPlace = Expression<String>("matchPlace")
+    let homeScore = Expression<Int64>("homeScore")
+    let awayScore = Expression<Int64>("awayScore")
     
-    private let teamSchedule: Table
+    let teamSchedule: Table
     
     private init() {
         
@@ -44,14 +44,6 @@ class TeamScheduleDAO {
     }
     
     // MARK: Functions
-    
-    func getTable() -> Table {
-        return teamSchedule
-    }
-    
-    func getReference() -> Expression<Int64> {
-        return scheduleID
-    }
     
     func insert(insertTeamSchedule: TeamSchedule) {
         do {

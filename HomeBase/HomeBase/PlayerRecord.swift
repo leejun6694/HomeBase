@@ -18,6 +18,8 @@ class PlayerRecord: NSObject {
     var tripleHit: Double
     var homeRun: Double
     var baseOnBalls: Double
+    var hitByPitch: Double
+    
     var strikeOut: Double
     var groundBall: Double
     var flyBall: Double
@@ -48,6 +50,7 @@ class PlayerRecord: NSObject {
          tripleHit: Double = 0,
          homeRun: Double = 0,
          baseOnBalls: Double = 0,
+         hitByPitch: Double = 0,
          strikeOut: Double = 0,
          groundBall: Double = 0,
          flyBall: Double = 0,
@@ -76,6 +79,7 @@ class PlayerRecord: NSObject {
         self.tripleHit = tripleHit
         self.homeRun = homeRun
         self.baseOnBalls = baseOnBalls
+        self.hitByPitch = hitByPitch
         self.strikeOut = strikeOut
         self.groundBall = groundBall
         self.flyBall = flyBall

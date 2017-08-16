@@ -10,19 +10,20 @@ import SQLite
 
 class PlayerDAO {
     
-    static var shared = PlayerDAO()
+    static let shared = PlayerDAO()
     
-    private let playerID = Expression<Int64>("playerID")
-    private let name = Expression<String>("name")
-    private let backNumber = Expression<Int64>("backNumber")
-    private let position = Expression<String>("position")
-    private let player: Table
+    let playerID = Expression<Int64>("playerID")
+    let name = Expression<String>("name")
+    let backNumber = Expression<Int64>("backNumber")
+    let position = Expression<String>("position")
+    let player: Table
     
     private init() {
         player = Table("Player")
         do {
             try DBManager.shared.db?.run(player.create(ifNotExists: true) { t in
                 t.column(playerID, primaryKey: .autoincrement)
+                t.column(name)
                 t.column(backNumber)
                 t.column(position)
             })
@@ -31,13 +32,7 @@ class PlayerDAO {
         }
     }
     
-    func getTable() -> Table {
-        return player
-    }
-    
-    func getReference() -> Expression<Int64> {
-        return playerID
-    }
+
     
     func insert(playerObject: Player) {
         do {
