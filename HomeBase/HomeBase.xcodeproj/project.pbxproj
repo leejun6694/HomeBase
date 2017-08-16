@@ -47,6 +47,10 @@
 		C926BE3E1F3C3ADE00B7A54B /* TeamScheduleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE3D1F3C3ADE00B7A54B /* TeamScheduleDAO.swift */; };
 		C926BE401F3C3AED00B7A54B /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE3F1F3C3AED00B7A54B /* TeamRecord.swift */; };
 		C926BE421F3C3AFF00B7A54B /* TeamRecordDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE411F3C3AFF00B7A54B /* TeamRecordDAO.swift */; };
+		C926BE561F41D9F300B7A54B /* SqaudPlayerRecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE551F41D9F300B7A54B /* SqaudPlayerRecordPageViewController.swift */; };
+		C926BE581F420E3200B7A54B /* SquadPlayerRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE571F420E3200B7A54B /* SquadPlayerRecordViewController.swift */; };
+		C926BE5A1F42ACC900B7A54B /* BatterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE591F42ACC900B7A54B /* BatterViewController.swift */; };
+		C926BE5C1F42ACE200B7A54B /* PitcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE5B1F42ACE200B7A54B /* PitcherViewController.swift */; };
 		C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */; };
 		C9A3E4601F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */; };
 		C9A3E4621F3A2A7200F592A0 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E4611F3A2A7200F592A0 /* DBManager.swift */; };
@@ -109,6 +113,10 @@
 		C926BE3D1F3C3ADE00B7A54B /* TeamScheduleDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamScheduleDAO.swift; sourceTree = "<group>"; };
 		C926BE3F1F3C3AED00B7A54B /* TeamRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamRecord.swift; sourceTree = "<group>"; };
 		C926BE411F3C3AFF00B7A54B /* TeamRecordDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamRecordDAO.swift; sourceTree = "<group>"; };
+		C926BE551F41D9F300B7A54B /* SqaudPlayerRecordPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SqaudPlayerRecordPageViewController.swift; sourceTree = "<group>"; };
+		C926BE571F420E3200B7A54B /* SquadPlayerRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadPlayerRecordViewController.swift; sourceTree = "<group>"; };
+		C926BE591F42ACC900B7A54B /* BatterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatterViewController.swift; sourceTree = "<group>"; };
+		C926BE5B1F42ACE200B7A54B /* PitcherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitcherViewController.swift; sourceTree = "<group>"; };
 		C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadAddPlayerViewController.swift; sourceTree = "<group>"; };
 		C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		C9A3E4611F3A2A7200F592A0 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -216,6 +224,10 @@
 				722A54FB1F38370900499113 /* SquadMainViewController.swift */,
 				C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */,
 				C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */,
+				C926BE551F41D9F300B7A54B /* SqaudPlayerRecordPageViewController.swift */,
+				C926BE571F420E3200B7A54B /* SquadPlayerRecordViewController.swift */,
+				C926BE591F42ACC900B7A54B /* BatterViewController.swift */,
+				C926BE5B1F42ACE200B7A54B /* PitcherViewController.swift */,
 			);
 			name = Squad;
 			sourceTree = "<group>";
@@ -498,6 +510,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C926BE561F41D9F300B7A54B /* SqaudPlayerRecordPageViewController.swift in Sources */,
+				C926BE5C1F42ACE200B7A54B /* PitcherViewController.swift in Sources */,
 				722A54FC1F38370900499113 /* SquadMainViewController.swift in Sources */,
 				C91971021F3AED8D005805C7 /* TeamRecordTableViewCell.swift in Sources */,
 				C91970FC1F3AEC1E005805C7 /* TeamScheduleTableViewCell.swift in Sources */,
@@ -507,6 +521,7 @@
 				C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */,
 				72D6BBD81F4035D40058B698 /* SelectPositionViewController.swift in Sources */,
 				C926BE401F3C3AED00B7A54B /* TeamRecord.swift in Sources */,
+				C926BE581F420E3200B7A54B /* SquadPlayerRecordViewController.swift in Sources */,
 				72425F081F3AEC290071FA13 /* AllScheduleTableViewCell.swift in Sources */,
 				C926BE3E1F3C3ADE00B7A54B /* TeamScheduleDAO.swift in Sources */,
 				72425E421F398A180071FA13 /* MainTabBarController.swift in Sources */,
@@ -530,6 +545,7 @@
 				C926BE3C1F3C3AC900B7A54B /* TeamSchedule.swift in Sources */,
 				72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */,
 				C926BE421F3C3AFF00B7A54B /* TeamRecordDAO.swift in Sources */,
+				C926BE5A1F42ACC900B7A54B /* BatterViewController.swift in Sources */,
 				72425EFC1F3A02C40071FA13 /* ScheduleNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
