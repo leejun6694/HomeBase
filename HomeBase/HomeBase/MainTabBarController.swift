@@ -14,6 +14,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidAppear(animated)
         
         let teamInfo = TeamInfoDAO.shared.fetch()
+        print(teamInfo.teamImagePath)
         if teamInfo.teamName == "" {
             performSegue(withIdentifier: "segueTabToStart", sender: self)
         }

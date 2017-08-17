@@ -138,18 +138,15 @@ class PlayerRecordDAO {
         }
     }
     
+    // 스케줄 당 선수들의 기록
     func selectOnSchedule(id: Int64) -> [PlayerRecord]? {
-        do {
-            let count = try DBManager.shared.db?.scalar(playerRecord.select(playerRecordID.count))
-            print(count!)
-        } catch {
-            print("Error: \(error)")
-        }
         var playerArrayOnSchedule = [PlayerRecord]()
+        
         do {
             guard let query = try DBManager.shared.db?.prepare(playerRecord.filter(scheduleID == id)) else {
                 return nil
             }
+            
             for record in Array(query) {
                 let recordObject = PlayerRecord(
                     playerRecordID: record[playerRecordID],
@@ -181,28 +178,22 @@ class PlayerRecordDAO {
                     ER: record[ER])
                 playerArrayOnSchedule.append(recordObject)
             }
-            
         } catch {
             print(error)
         }
+        
         return playerArrayOnSchedule
     }
     
+    // 선수의 모든 기록
     func selectOnPlayer(id: Int64) -> PlayerRecord? {
-        do {
-            let count = try DBManager.shared.db?.scalar(playerRecord.select(playerRecordID.count))
-            print(count!)
-        } catch {
-            print("Error: \(error)")
-        }
-        let totalRecord: PlayerRecord = PlayerRecord(
-            playerRecordID: 0,
-            playerID: id,
-            scheduleID: 0)
+        let totalRecord: PlayerRecord = PlayerRecord(playerRecordID: 0, playerID: id, scheduleID: 0)
+        
         do {
             guard let query = try DBManager.shared.db?.prepare(playerRecord.filter(playerID == id)) else {
                 return nil
             }
+            
             for record in Array(query) {
                 totalRecord.singleHit += record[singleHit]
                 totalRecord.doubleHit += record[doubleHit]
@@ -229,20 +220,51 @@ class PlayerRecordDAO {
                 totalRecord.strikeOuts += record[strikeOuts]
                 totalRecord.ER += record[ER]
             }
-            
         } catch {
             print(error)
         }
-        return totalRecord
         
+        return totalRecord
     }
     
+    // 타자 출전 횟수
+    func countPlayerBatterRecord(playerID: Int64) -> Int {
+        do {
+            if let recordCount = try DBManager.shared.db?.scalar(
+                playerRecord.filter(self.playerID == playerID).filter(self.inning == 0).count) {
+                
+                return recordCount
+            }
+        } catch {
+            print("Count Error: \(error)")
+        }
+        
+        return 0
+    }
+    
+    // 투수 출전 횟수
+    func countPlayerPitcherRecord(playerID: Int64) -> Int {
+        do {
+            if let recordCount = try DBManager.shared.db?.scalar(
+                playerRecord.filter(self.playerID == playerID).filter(self.inning != 0).count) {
+                
+                return recordCount
+            }
+        } catch {
+            print("Count Error: \(error)")
+        }
+        
+        return 0
+    }
+    
+    // 스케줄 하나의 선수 기록
     func fetchPlayerRecordOnSchedule(playerID: Int64, scheduleID: Int64) -> PlayerRecord {
         var playerRecordItem = PlayerRecord(playerID: 0, scheduleID: 0)
         
         do {
             if let query = try DBManager.shared.db?.prepare(
                 playerRecord.filter(self.playerID == playerID).filter(self.scheduleID == scheduleID)) {
+                
                 for record in Array(query) {
                     playerRecordItem = PlayerRecord(playerRecordID: record[self.playerRecordID],
                                                     playerID: record[self.playerID],

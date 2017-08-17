@@ -9,11 +9,15 @@
 import UIKit
 
 class SquadPlayerRecordViewController: UIViewController {
+    
+    // MARK: Properties
+    
     @IBOutlet var containerView: UIView!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var backNumberLabel: UILabel!
     @IBOutlet var positionLabel: UILabel!
     @IBOutlet var playerRecordNavegationIntem: UINavigationItem!
+    
     var player: Player!
     var playerRecord: PlayerRecord!
     var squadPlayerRecordPageViewController: SquadPlayerRecordPageViewController? {
@@ -22,12 +26,24 @@ class SquadPlayerRecordViewController: UIViewController {
         }
     }
 
+    // MARK: Actions
+    
+    @IBAction func clickEditButton(_ sender: UIBarButtonItem) {
+        let squadEditPlayerViewController = self.storyboard?.instantiateViewController(
+            withIdentifier: "SquadEditPlayerViewController") as! SquadEditPlayerViewController
+        
+        squadEditPlayerViewController.playerName = self.player.name
+        squadEditPlayerViewController.backNumber = self.player.backNumber
+        squadEditPlayerViewController.position = self.player.position
+        
+        present(squadEditPlayerViewController, animated: true, completion: nil)
+    }
+    
+    // MAKR: Override
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("container view controller")
-        print(player.playerID)
-        print(playerRecord.baseOnBalls)
+        
         pageControl.addTarget(self, action: #selector(SquadPlayerRecordViewController.didChangePageControlValue), for: .valueChanged)
     }
     
@@ -46,6 +62,7 @@ class SquadPlayerRecordViewController: UIViewController {
             squadPlayerRecordPageViewController.playerRecord = self.playerRecord
         }
     }
+    
     func didChangePageControlValue() {
         squadPlayerRecordPageViewController?.scrollToViewController(index: pageControl.currentPage)
     }

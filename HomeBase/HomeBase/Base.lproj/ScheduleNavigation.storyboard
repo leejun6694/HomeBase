@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iqt-va-nDu" id="9i8-8H-6hD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4t-hV-7nR">
@@ -77,7 +77,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="전체 경기 일정" id="dUi-qu-vLC">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3ys-qb-efN">
+                        <barButtonItem key="rightBarButtonItem" image="addSchedule" id="3ys-qb-efN">
                             <connections>
                                 <action selector="clickAddButton:" destination="eyd-EV-JaM" id="Zb4-eF-Ll8"/>
                             </connections>
@@ -186,7 +186,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJX-tW-r2J" id="3bT-EU-3tC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEF-AC-JFl">
@@ -900,4 +900,7 @@
             <point key="canvasLocation" x="164" y="145.27736131934034"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="addSchedule" width="25" height="25"/>
+    </resources>
 </document>

@@ -34,18 +34,7 @@ class PlayerDAO {
 
     func insert(playerObject: Player) {
         do {
-            try DBManager.shared.db?.run(player.insert(name <- playerObject.name, backNumber <- playerObject.backNumber, position <- playerObject.position ) )
-            do {
-                let select = player.select(playerID, name)
-                let prepare = try DBManager.shared.db?.prepare(select)
-                for user in prepare!  {
-                    print("id: \(user[playerID]), name: \(user[name])")
-                }
-                
-            } catch {
-                print("Error: \(error)")
-            }
-            
+            try DBManager.shared.db?.run(player.insert(name <- playerObject.name, backNumber <- playerObject.backNumber, position <- playerObject.position ) )            
         } catch {
             print("Error: \(error)")
         }
@@ -88,5 +77,21 @@ class PlayerDAO {
         } catch {
             print("ERROR: \(error)")
         }
+    }
+    
+    func selectAllNumber() -> [Int] {
+        var numberArray = [Int]()
+        do {
+            if let query = try DBManager.shared.db?.prepare(player.select(self.backNumber)) {
+                for number in Array(query) {
+                    numberArray.append(Int(number[backNumber]))
+                }
+            }
+        } catch {
+            print("Select Error : \(error)")
+        }
+
+        
+        return numberArray
     }
 }

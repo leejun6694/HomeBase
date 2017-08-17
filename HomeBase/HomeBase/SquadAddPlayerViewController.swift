@@ -30,7 +30,16 @@ class SquadAddPlayerViewController: UIViewController {
     }
     
     @IBAction func doneButtonDidTap(_ sender: UIBarButtonItem) {
-        let alertController: UIAlertController
+        var alertController: UIAlertController
+        var overlapNumber: Bool = false
+        
+        let numbers = PlayerDAO.shared.selectAllNumber()
+        for index in 0..<numbers.count {
+            if backNumberTextField.text == "\(numbers[index])" {
+                overlapNumber = true
+                break
+            }
+        }
         
         if playerNameTextField.text == "" {
             alertController = UIAlertController(title: "경고",
@@ -43,6 +52,14 @@ class SquadAddPlayerViewController: UIViewController {
         else if backNumberTextField.text == "" {
             alertController = UIAlertController(title: "경고",
                                                 message: "선수 번호를 입력하세요",
+                                                preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(okAction)
+        }
+        else if overlapNumber == true {
+            alertController = UIAlertController(title: "경고",
+                                                message: "중복되는 선수 번호입니다",
                                                 preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)

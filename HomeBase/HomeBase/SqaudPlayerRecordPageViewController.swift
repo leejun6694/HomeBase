@@ -21,11 +21,10 @@ class SquadPlayerRecordPageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         dataSource = self
         delegate = self
-        print("page view controller")
-        print(player.playerID)
-        print(playerRecord.baseOnBalls)
+        
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
                                direction: .forward,
@@ -36,15 +35,7 @@ class SquadPlayerRecordPageViewController: UIPageViewController {
         positionDelegate?.positionPageViewController(self, didUpdatePageCount: orderedViewControllers.count)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("page view controller view will appear")
-
-        
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("page view controller prepare batter")
         if let batterViewController = segue.destination as? BatterViewController {
             batterViewController.record = playerRecord
         }
