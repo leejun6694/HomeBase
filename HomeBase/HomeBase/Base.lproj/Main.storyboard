@@ -37,10 +37,10 @@
             </objects>
             <point key="canvasLocation" x="725" y="-441"/>
         </scene>
-        <!--ScheduleNavigation-->
+        <!--TeamNavigation-->
         <scene sceneID="mWY-S0-a2S">
             <objects>
-                <viewControllerPlaceholder storyboardName="ScheduleNavigation" id="Uke-z7-oaz" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="TeamNavigation" id="Uke-z7-oaz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Team" image="team" selectedImage="team" id="1Sr-OZ-z6B"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0d-IH-Pbz" userLabel="First Responder" sceneMemberID="firstResponder"/>

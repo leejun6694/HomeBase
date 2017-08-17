@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderViewCell" id="KGk-i7-Jjw" customClass="HeaderViewCell" customModule="HomeBase" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUh-Jw-cex">
+                        <rect key="frame" x="8" y="10" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNM-PF-8gY">
+                        <rect key="frame" x="267" y="1" width="30" height="30"/>
+                        <state key="normal" title="ALL"/>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.73336521300000002" green="0.90180576609999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="FUh-Jw-cex" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6Lp-0O-srP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rNM-PF-8gY" secondAttribute="trailing" constant="15" id="T2B-uD-s3t"/>
+                    <constraint firstItem="rNM-PF-8gY" firstAttribute="bottom" secondItem="FUh-Jw-cex" secondAttribute="bottom" id="TSa-Da-uIc"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="FUh-Jw-cex" secondAttribute="bottom" id="pCh-lI-1HR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="allButton" destination="rNM-PF-8gY" id="wSC-ir-kcg"/>
+                <outlet property="titleLabel" destination="FUh-Jw-cex" id="NGZ-Cf-Zto"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

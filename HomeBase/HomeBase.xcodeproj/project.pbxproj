@@ -51,6 +51,11 @@
 		C926BE581F420E3200B7A54B /* SquadPlayerRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE571F420E3200B7A54B /* SquadPlayerRecordViewController.swift */; };
 		C926BE5A1F42ACC900B7A54B /* BatterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE591F42ACC900B7A54B /* BatterViewController.swift */; };
 		C926BE5C1F42ACE200B7A54B /* PitcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926BE5B1F42ACE200B7A54B /* PitcherViewController.swift */; };
+		C98CD8CB1F457DA300C09D58 /* AddScheduleViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C98CD8C91F457DA300C09D58 /* AddScheduleViewController.storyboard */; };
+		C98CD8D01F457FF300C09D58 /* FooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98CD8CC1F457FF300C09D58 /* FooterViewCell.swift */; };
+		C98CD8D11F457FF300C09D58 /* FooterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98CD8CD1F457FF300C09D58 /* FooterViewCell.xib */; };
+		C98CD8D21F457FF300C09D58 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98CD8CE1F457FF300C09D58 /* HeaderViewCell.swift */; };
+		C98CD8D31F457FF300C09D58 /* HeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98CD8CF1F457FF300C09D58 /* HeaderViewCell.xib */; };
 		C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */; };
 		C9A3E4601F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */; };
 		C9A3E4621F3A2A7200F592A0 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E4611F3A2A7200F592A0 /* DBManager.swift */; };
@@ -117,6 +122,11 @@
 		C926BE571F420E3200B7A54B /* SquadPlayerRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadPlayerRecordViewController.swift; sourceTree = "<group>"; };
 		C926BE591F42ACC900B7A54B /* BatterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatterViewController.swift; sourceTree = "<group>"; };
 		C926BE5B1F42ACE200B7A54B /* PitcherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitcherViewController.swift; sourceTree = "<group>"; };
+		C98CD8CA1F457DA300C09D58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AddScheduleViewController.storyboard; sourceTree = "<group>"; };
+		C98CD8CC1F457FF300C09D58 /* FooterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewCell.swift; sourceTree = "<group>"; };
+		C98CD8CD1F457FF300C09D58 /* FooterViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterViewCell.xib; sourceTree = "<group>"; };
+		C98CD8CE1F457FF300C09D58 /* HeaderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
+		C98CD8CF1F457FF300C09D58 /* HeaderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderViewCell.xib; sourceTree = "<group>"; };
 		C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadAddPlayerViewController.swift; sourceTree = "<group>"; };
 		C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		C9A3E4611F3A2A7200F592A0 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -186,10 +196,15 @@
 				72425EFA1F3A02AC0071FA13 /* Schedule */,
 				722A54FE1F38374C00499113 /* Squad */,
 				722A542B1F35C79E00499113 /* Main.storyboard */,
+				C98CD8CC1F457FF300C09D58 /* FooterViewCell.swift */,
+				C98CD8CD1F457FF300C09D58 /* FooterViewCell.xib */,
+				C98CD8CE1F457FF300C09D58 /* HeaderViewCell.swift */,
+				C98CD8CF1F457FF300C09D58 /* HeaderViewCell.xib */,
 				722A55021F3841B100499113 /* StartNavigation.storyboard */,
 				722A54F21F3834E600499113 /* TeamNavigation.storyboard */,
 				722A54FF1F38385D00499113 /* SquadNavigation.storyboard */,
 				72425EF71F3A025D0071FA13 /* ScheduleNavigation.storyboard */,
+				C98CD8C91F457DA300C09D58 /* AddScheduleViewController.storyboard */,
 				722A542E1F35C79E00499113 /* Assets.xcassets */,
 				722A54301F35C79E00499113 /* LaunchScreen.storyboard */,
 				722A54331F35C79E00499113 /* Info.plist */,
@@ -384,11 +399,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C98CD8CB1F457DA300C09D58 /* AddScheduleViewController.storyboard in Resources */,
 				722A54321F35C79E00499113 /* LaunchScreen.storyboard in Resources */,
 				722A542F1F35C79E00499113 /* Assets.xcassets in Resources */,
+				C98CD8D11F457FF300C09D58 /* FooterViewCell.xib in Resources */,
 				722A542D1F35C79E00499113 /* Main.storyboard in Resources */,
 				722A55041F3841B100499113 /* StartNavigation.storyboard in Resources */,
 				72425EF91F3A025D0071FA13 /* ScheduleNavigation.storyboard in Resources */,
+				C98CD8D31F457FF300C09D58 /* HeaderViewCell.xib in Resources */,
 				722A55011F38385D00499113 /* SquadNavigation.storyboard in Resources */,
 				722A54F41F3834E600499113 /* TeamNavigation.storyboard in Resources */,
 			);
@@ -516,6 +534,7 @@
 				C91971021F3AED8D005805C7 /* TeamRecordTableViewCell.swift in Sources */,
 				C91970FC1F3AEC1E005805C7 /* TeamScheduleTableViewCell.swift in Sources */,
 				72425EFE1F3A02EF0071FA13 /* AllScheduleViewController.swift in Sources */,
+				C98CD8D21F457FF300C09D58 /* HeaderViewCell.swift in Sources */,
 				C926BE301F3C38C500B7A54B /* Player.swift in Sources */,
 				722A550B1F38421B00499113 /* TeamImageViewController.swift in Sources */,
 				C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */,
@@ -543,6 +562,7 @@
 				722A55091F38420C00499113 /* TeamNameViewController.swift in Sources */,
 				C926BE321F3C38DC00B7A54B /* PlayerDAO.swift in Sources */,
 				72D6BBDC1F40467C0058B698 /* PitcherRecordViewController.swift in Sources */,
+				C98CD8D01F457FF300C09D58 /* FooterViewCell.swift in Sources */,
 				C926BE3C1F3C3AC900B7A54B /* TeamSchedule.swift in Sources */,
 				72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */,
 				C926BE421F3C3AFF00B7A54B /* TeamRecordDAO.swift in Sources */,
@@ -615,6 +635,14 @@
 				72425EF81F3A025D0071FA13 /* Base */,
 			);
 			name = ScheduleNavigation.storyboard;
+			sourceTree = "<group>";
+		};
+		C98CD8C91F457DA300C09D58 /* AddScheduleViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C98CD8CA1F457DA300C09D58 /* Base */,
+			);
+			name = AddScheduleViewController.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
