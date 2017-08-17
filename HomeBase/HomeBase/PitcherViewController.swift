@@ -10,11 +10,13 @@ import UIKit
 
 class PitcherViewController: UIViewController {
     
+    // MARK: Properties
+    
     @IBOutlet var backgroundView: UIView!
     
     var pitcherStackView: UIStackView = UIStackView()
     var record: PlayerRecord!
-    var recordLabel: [Double] = [Double]()
+    var recordLabel: [String] = [String]()
     var recordLabelArray: [String] = {
         var array = ["경기 수", "방어율", "이닝", "자책점",
                      "승리", "패배", "홀드", "세이브",
@@ -23,29 +25,69 @@ class PitcherViewController: UIViewController {
         return array
     }()
     
+    let numberFormatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.minimumFractionDigits = 2
+        nf.maximumFractionDigits = 2
+        
+        return nf
+    }()
+    
+    // MARK: Override
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        recordLabel.append(0) // 경기수
-        recordLabel.append(0) // 방어율
-        recordLabel.append(record.inning) // 이닝
-        recordLabel.append(record.ER) // 자책점
         
-        recordLabel.append(record.win) // 승리
-        recordLabel.append(record.lose) // 패배
-        recordLabel.append(record.hold) // 홀드
-        recordLabel.append(record.save) // 세이브
+        let pitcherAppear = PlayerRecordDAO.shared.countPlayerPitcherRecord(playerID: record.playerID)
         
-        recordLabel.append(record.strikeOuts) // 탈삼진
-        recordLabel.append(record.walks) // 볼넷
-        recordLabel.append(record.hitBatters) // 사구
-        recordLabel.append(record.hits) // 피안타
+        var ERA: Double
+        var WHIP: Double
         
-        recordLabel.append(record.homeRuns) // 피홈런
-        recordLabel.append(record.walks + record.hits) // WHIP
-        recordLabel.append(0) // K/9
-        recordLabel.append(0) // K/BB
+        if record.inning == 0 {
+            ERA = 0.0
+            WHIP = 0.0
+        }
+        else {
+            ERA = (record.ER * 9) / record.inning
+            WHIP = (record.walks + record.hits) / record.inning
+        }
+        
+        var strikeOutDividedBaseOnBalls: Double
+        if (record.walks + record.hitBatters) == 0 {
+            strikeOutDividedBaseOnBalls = 0.0
+        }
+        else {
+            strikeOutDividedBaseOnBalls = record.strikeOuts / (record.walks + record.hitBatters)
+        }
+        
+        let inningRemainder = (Int(record.inning * 10) % 10) / 3
+        let inning = Int(record.inning)
+        
+        recordLabel.append("\(pitcherAppear)")
+        recordLabel.append("\(numberFormatter.string(from: NSNumber(value: ERA))!)")
+        recordLabel.append("\(inning) \(inningRemainder)/3")
+        recordLabel.append("\(Int(record.ER))")
+        
+        recordLabel.append("\(Int(record.win))")
+        recordLabel.append("\(Int(record.lose))")
+        recordLabel.append("\(Int(record.hold))")
+        recordLabel.append("\(Int(record.save))")
+        
+        recordLabel.append("\(Int(record.strikeOuts))")
+        recordLabel.append("\(Int(record.walks))")
+        recordLabel.append("\(Int(record.hitBatters))")
+        recordLabel.append("\(Int(record.hits))")
+        
+        recordLabel.append("\(Int(record.homeRuns))")
+        recordLabel.append("\(numberFormatter.string(from: NSNumber(value: WHIP))!)")
+        recordLabel.append("\(numberFormatter.string(from: NSNumber(value: record.strikeOuts/9.0))!)")
+        recordLabel.append("\(numberFormatter.string(from: NSNumber(value: strikeOutDividedBaseOnBalls))!)")
+        
         initRecordStackView()
     }
+    
+    // MARK: RecordStackView
     
     private func initRecordStackView() {
         pitcherStackView.axis = .vertical

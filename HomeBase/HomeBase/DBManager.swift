@@ -18,8 +18,6 @@ class DBManager: NSObject {
                 return nil
         }
         
-        print(path)
-        
         do {
             let db = try Connection("\(path)/db.sqlite3")
             return db

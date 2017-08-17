@@ -10,34 +10,29 @@ import UIKit
 
 class SquadMainViewController: UIViewController {
     
+    // MARK: Properties
+    
     var playerArray = [Player]()
     var playerRecord: PlayerRecord!
+    
     @IBOutlet var tableView: UITableView!
+    
+    // MARK: Override
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.dataSource = self
         self.automaticallyAdjustsScrollViewInsets = false
-//        let calendar = Calendar(identifier:  .gregorian)
-//        let date1 = calendar.date(from: DateComponents(year: 2017, month:  9, day: 11))
-//        let date2 = calendar.date(from: DateComponents(year: 2017, month:  9, day: 20))
-//        let schedule1 = TeamSchedule(matchOpponent: "야구야구", matchDate: date1!, matchPlace: "서울")
-//        let schedule2 = TeamSchedule(matchOpponent: "둘째에요", matchDate: date2!, matchPlace: "부산")
-//        TeamScheduleDAO.shared.insert(insertTeamSchedule: schedule1)
-//        TeamScheduleDAO.shared.insert(insertTeamSchedule: schedule2)
         
-//        let record = PlayerRecord(playerID: 1, scheduleID: 1, singleHit: 3, doubleHit: 1, tripleHit: 1, homeRun: 0, baseOnBalls: 0, strikeOut: 1, groundBall: 1, flyBall: 2, sacrificeHit: 3, stolenBase: 1, run: 3, RBI: 1)
-//        PlayerRecordDAO.shared.insert(playerRecordObject: record)
-//        
-//        let record2 = PlayerRecord(playerID: 1, scheduleID: 2, singleHit: 1, doubleHit: 0, tripleHit: 0, homeRun: 1, baseOnBalls: 2, strikeOut: 0, groundBall: 0, flyBall: 0, sacrificeHit: 1, stolenBase: 0, run: 2, RBI: 0)
-//        PlayerRecordDAO.shared.insert(playerRecordObject: record2)
-        
-        
+        let teamInfo = TeamInfoDAO.shared.fetch()
+        self.navigationItem.title = teamInfo.teamName
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         playerArray = PlayerDAO.shared.selectAll()!
-        print(playerArray.count)
         tableView.reloadData()
     }
     
@@ -47,8 +42,7 @@ class SquadMainViewController: UIViewController {
                 let selectedPlayer = playerArray[row]
                 let squadPlayerRecordViewController = segue.destination as! SquadPlayerRecordViewController
                 self.playerRecord = PlayerRecordDAO.shared.selectOnPlayer(id: selectedPlayer.playerID)
-                print("main to page")
-                print(self.playerRecord.baseOnBalls)
+                
                 squadPlayerRecordViewController.player = selectedPlayer
                 squadPlayerRecordViewController.playerRecord = self.playerRecord
                 
@@ -60,18 +54,19 @@ class SquadMainViewController: UIViewController {
                 if let batterViewController = segue.destination as? BatterViewController {
                     batterViewController.record = playerRecord
                 }
-
-                
-                
             }
         }
     }
+    
+    // MARK: Actions
     
     @IBAction func addButtonDidTap(_ sender: UIBarButtonItem) {
         guard let squadAddPlayerViewController = storyboard?.instantiateViewController(withIdentifier: "SquadAddPlayerViewController") else { return }
         present(squadAddPlayerViewController, animated: true, completion: nil)
     }
 }
+
+// MARK: Delegate
 
 extension SquadMainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

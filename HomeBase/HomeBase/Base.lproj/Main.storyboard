@@ -22,7 +22,7 @@
                     <connections>
                         <segue destination="Uke-z7-oaz" kind="relationship" relationship="viewControllers" id="6ug-nr-wLQ"/>
                         <segue destination="8GW-jj-8a9" kind="relationship" relationship="viewControllers" id="i8F-zq-a8B"/>
-                        <segue destination="B1A-7n-M4Q" kind="presentation" identifier="segueTabToStart" id="zhc-sy-iI8"/>
+                        <segue destination="B1A-7n-M4Q" kind="presentation" identifier="segueTabToStart" animates="NO" id="zhc-sy-iI8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ky7-lP-Iia" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37,11 +37,11 @@
             </objects>
             <point key="canvasLocation" x="725" y="-441"/>
         </scene>
-        <!--TeamNavigation-->
+        <!--ScheduleNavigation-->
         <scene sceneID="mWY-S0-a2S">
             <objects>
-                <viewControllerPlaceholder storyboardName="TeamNavigation" id="Uke-z7-oaz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="1Sr-OZ-z6B"/>
+                <viewControllerPlaceholder storyboardName="ScheduleNavigation" id="Uke-z7-oaz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Team" image="team" selectedImage="team" id="1Sr-OZ-z6B"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0d-IH-Pbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -51,11 +51,15 @@
         <scene sceneID="Vhl-U6-WcK">
             <objects>
                 <viewControllerPlaceholder storyboardName="SquadNavigation" id="8GW-jj-8a9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="GLG-y1-zfZ"/>
+                    <tabBarItem key="tabBarItem" title="Squad" image="person" selectedImage="person" id="GLG-y1-zfZ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKf-d0-OGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1125" y="358"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="person" width="25" height="25"/>
+        <image name="team" width="25" height="25"/>
+    </resources>
 </document>

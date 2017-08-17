@@ -10,10 +10,14 @@ import UIKit
 
 class BatterViewController: UIViewController {
     
+    // MARK: Properties
+    
     @IBOutlet var backgroundView: UIView!
+    
     var batterStackView: UIStackView = UIStackView()
     var record: PlayerRecord!
-    var recordLabel: [Double] = [Double]()
+    var recordLabel: [String] = [String]()
+    
     var recordLabelArray: [String] = {
         var array = ["경기 수", "타율", "타석", "타수", "득점",
                      "1루타", "2루타", "3루타", "홈런", "타점",
@@ -21,33 +25,74 @@ class BatterViewController: UIViewController {
                      "희생타", "도루", "장타율", "출루율", "OPS"]
         return array
     }()
+    
+    let numberFormatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.minimumFractionDigits = 3
+        nf.maximumFractionDigits = 3
+        
+        return nf
+    }()
 
+    // MARK: Override
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        recordLabel.append(0) // 경기수
-        recordLabel.append(0) // 타율
-        recordLabel.append(0) // 타석
-        recordLabel.append(0) // 타수
-        recordLabel.append(record.run) // 득점
-        recordLabel.append(record.singleHit)
-        recordLabel.append(record.doubleHit)
-        recordLabel.append(record.tripleHit)
-        recordLabel.append(record.homeRun)
-        recordLabel.append(record.RBI) // 타점
-        recordLabel.append(record.baseOnBalls) // 볼넷
-        recordLabel.append(record.hitByPitch) // 사구
-        recordLabel.append(record.strikeOut) // 삼진
-        recordLabel.append(record.groundBall) // 땅볼
-        recordLabel.append(record.flyBall) // 뜬공
-        recordLabel.append(record.sacrificeHit) // 희생타
-        recordLabel.append(record.stolenBase) // 도루
-        recordLabel.append(0) // 장타율
-        recordLabel.append(0) // 출루율
-        recordLabel.append(0) // ""
+        
+        let batterAppear = PlayerRecordDAO.shared.countPlayerBatterRecord(playerID: record.playerID)
+        
+        let hits = record.singleHit + record.doubleHit + record.tripleHit + record.homeRun
+        let batterBox = hits + record.baseOnBalls + record.hitByPitch + record.strikeOut + record.groundBall + record.flyBall + record.sacrificeHit
+        let atBox = hits + record.strikeOut + record.groundBall + record.flyBall
+        
+        var battingAverage: Double
+        var sluggingPercentage: Double
+        var onBaseAverage: Double
+        
+        if atBox == 0.0 {
+            battingAverage = 0.0
+            sluggingPercentage = 0.0
+        }
+        else {
+            battingAverage = hits / atBox
+            sluggingPercentage = (record.singleHit + (2 * record.doubleHit) + (3 * record.tripleHit) + (4 * record.homeRun)) / atBox
+        }
+        
+        if batterBox == 0.0 {
+            onBaseAverage = 0.0
+        }
+        else {
+            onBaseAverage = (hits + record.baseOnBalls + record.hitByPitch) / batterBox
+        }
+        
+        let OPS = sluggingPercentage + onBaseAverage
+    
+        recordLabel.append("\(batterAppear)")
+        recordLabel.append("\(numberFormatter.string(from: NSNumber(value: battingAverage))!)")
+        recordLabel.append("\(Int(batterBox))")
+        recordLabel.append("\(Int(atBox))")
+        recordLabel.append("\(Int(record.run))")
+        recordLabel.append("\(Int(record.singleHit))")
+        recordLabel.append("\(Int(record.doubleHit))")
+        recordLabel.append("\(Int(record.tripleHit))")
+        recordLabel.append("\(Int(record.homeRun))")
+        recordLabel.append("\(Int(record.RBI))")
+        recordLabel.append("\(Int(record.baseOnBalls))")
+        recordLabel.append("\(Int(record.hitByPitch))")
+        recordLabel.append("\(Int(record.strikeOut))")
+        recordLabel.append("\(Int(record.groundBall))")
+        recordLabel.append("\(Int(record.flyBall))")
+        recordLabel.append("\(Int(record.sacrificeHit))")
+        recordLabel.append("\(Int(record.stolenBase))")
+        recordLabel.append("\(numberFormatter.string(from: NSNumber(value: sluggingPercentage))!)")
+        recordLabel.append("\(numberFormatter.string(from: NSNumber(value: onBaseAverage))!)")
+        recordLabel.append("\(numberFormatter.string(from: NSNumber(value: OPS))!)")
         initRecordStackView()
 
     }
+    
+    // MARK: RecordStackView
     
     private func initRecordStackView() {
         batterStackView.axis = .vertical
@@ -72,6 +117,7 @@ class BatterViewController: UIViewController {
             stackView.distribution = .fillEqually
             stackView.spacing = 1
         }
+        
         batterStackView.distribution = .fillEqually
         batterStackView.spacing = 5
         backgroundView.addSubview(batterStackView)

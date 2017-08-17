@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ehc-xS-lrN" id="afX-ey-LFR">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BP8-UB-CUc">
@@ -63,7 +63,7 @@
                                         <rect key="frame" x="0.0" y="72" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I6q-MB-cJd" id="aoY-eY-R7c">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMp-2O-oF3">
@@ -116,7 +116,7 @@
         <scene sceneID="0Kk-fg-X7O">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pNL-6C-LvD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Team" id="ge0-1H-sT9"/>
+                    <tabBarItem key="tabBarItem" title="Team" image="team" id="ge0-1H-sT9"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IxF-H8-LBM">
@@ -133,4 +133,7 @@
             <point key="canvasLocation" x="1125.5999999999999" y="-142.57871064467767"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="team" width="25" height="25"/>
+    </resources>
 </document>
