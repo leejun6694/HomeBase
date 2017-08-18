@@ -66,6 +66,20 @@ class PlayerDAO {
         return 0
     }
     
+    func findName(findPlayerID: Int64) -> String {
+        do {
+            if let query = try DBManager.shared.db?.prepare(player.select(name).filter(self.playerID == findPlayerID)) {
+                for playerName in Array(query) {
+                    return playerName[name]
+                }
+            }
+        } catch {
+            print("Find Error : \(error)")
+        }
+        
+        return ""
+    }
+    
     func selectAll() -> [Player]? {
         var playerArray = [Player]()
         do {

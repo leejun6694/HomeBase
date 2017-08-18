@@ -11,6 +11,7 @@ import UIKit
 class FooterViewCell: UITableViewCell {
     
     @IBOutlet var addScheduleButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +22,4 @@ class FooterViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

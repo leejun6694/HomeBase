@@ -18,7 +18,7 @@ class AllScheduleViewController: UIViewController {
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .long
+        formatter.dateStyle = .medium
         formatter.timeStyle = .short
         
         return formatter
@@ -81,7 +81,7 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
                                                  for: indexPath) as! AllScheduleTableViewCell
         
         cell.matchDateLabel.text = dateFormatter.string(from: scheduleArray[indexPath.row].matchDate)
-        cell.matchOpponentLabel.text = scheduleArray[indexPath.row].matchOpponent
+        cell.matchOpponentLabel.text = "vs " + scheduleArray[indexPath.row].matchOpponent
         
         return cell
     }

@@ -11,53 +11,142 @@ import UIKit
 
 class TeamMainViewController: UIViewController {
     
+    // MARK: Properties
+    
     @IBOutlet var mainImageView: UIImageView!
     @IBOutlet var teamNameLabel: UILabel!
     @IBOutlet var teamMainTableView: UITableView!
+    @IBOutlet var matchResultsTextField: UILabel!
+    @IBOutlet var teamBattingAverageTextField: UILabel!
+    @IBOutlet var teamERATextField: UILabel!
     
     var teamInfo: TeamInfo?
     var schedule: [TeamSchedule] = [TeamSchedule]()
-    
+    var playerBattingAverage = [Int64:Double]()
+    var playerPitchingAverage = [Int64:Double]()
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .long
+        formatter.dateStyle = .short
         formatter.timeStyle = .short
         
         return formatter
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        teamInfo = TeamInfoDAO.shared.fetch()
-        guard let teamImage = teamInfo?.teamImagePath else {
-            return
-        }
-        print(" image path is \(teamImage)")
-        let url = URL(fileURLWithPath: teamImage)
-        print(" URL is \(url)")
+    let batterNumberFormatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.minimumFractionDigits = 3
+        nf.maximumFractionDigits = 3
+        
+        return nf
+    }()
+    
+    let pitcherNumberFormatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.minimumFractionDigits = 2
+        nf.maximumFractionDigits = 2
+        
+        return nf
+    }()
+    
+    // MARK: Functions
+    
+    fileprivate func fetchImage() {
+        let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        
+        let url: URL = documentDirectory.appendingPathComponent("TeamImage")
+        
         do {
             let data = try Data(contentsOf: url, options: .alwaysMapped)
-            mainImageView.image = UIImage(data: data)
+            self.mainImageView.image = UIImage(data: data)
+            self.mainImageView.alpha = 0.5
         } catch {
-            print(error)
+            print("Team Image Error : \(error)")
         }
+    }
+    
+    fileprivate func calculateMatchRecords() {
+        let matchRecord = TeamScheduleDAO.shared.fetchMatchResult()
+        
+        matchResultsTextField.text = "\(matchRecord.win)승 \(matchRecord.draw)무 \(matchRecord.lose)패"
+    }
+    
+    fileprivate func calculateTeamBattingAverage() {
+        let teamHit = PlayerRecordDAO.shared.selectHits()
+        let teamOut = PlayerRecordDAO.shared.selectOuts()
+        
+        
+        if (teamHit + teamOut) == 0.0 {
+            teamBattingAverageTextField.text = "0.000"
+        }
+        else {
+            let teamBattingAverage: Double = teamHit / (teamHit + teamOut)
+            teamBattingAverageTextField.text = "\(batterNumberFormatter.string(from: NSNumber(value: teamBattingAverage))!)"
+        }
+    }
+    
+    fileprivate func calculateTeamERA() {
+        let teamER = PlayerRecordDAO.shared.selectER()
+        let teamInning = PlayerRecordDAO.shared.selectInning()
+        
+        if teamInning == 0.0 {
+            teamERATextField.text = "0.00"
+        }
+        else {
+            let teamERA = teamER * 9 / teamInning
+            teamERATextField.text = "\(pitcherNumberFormatter.string(from: NSNumber(value: teamERA))!)"
+        }
+    }
+    
+    // MARK: Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        teamInfo = TeamInfoDAO.shared.fetch()
+        
+        fetchImage()
+        
         teamNameLabel.text = teamInfo?.teamName
+        
         teamMainTableView.sectionFooterHeight = 0
         self.automaticallyAdjustsScrollViewInsets = false
+        
         teamMainTableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "HeaderViewCell")
         teamMainTableView.register(UINib(nibName: "FooterViewCell", bundle: nil), forCellReuseIdentifier: "FooterViewCell")
+        
         teamMainTableView.dataSource = self
         teamMainTableView.delegate = self
-        
+        teamMainTableView.allowsSelection = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         schedule = TeamScheduleDAO.shared.findAllColumn()
+        
+        calculateMatchRecords()
+        calculateTeamBattingAverage()
+        calculateTeamERA()
+        
+        playerBattingAverage = PlayerRecordDAO.shared.selectPlayerBatting()
+        playerPitchingAverage = PlayerRecordDAO.shared.selectPlayerPitching()
         teamMainTableView.reloadData()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    // MARK: Actions
     
     func allScheduleButtonDidTap(_ btControl: UIButton) {
         let allScheduleViewController = storyboard?.instantiateViewController(
@@ -73,6 +162,8 @@ class TeamMainViewController: UIViewController {
     
 }
 
+// MARK: TableViewDataSource
+
 extension TeamMainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,6 +172,7 @@ extension TeamMainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numberOfRows = 0
+        
         switch section {
         case 0:
             if schedule.count < 4 {
@@ -90,9 +182,19 @@ extension TeamMainViewController: UITableViewDataSource {
             }
             
         case 1:
-            numberOfRows = 3
+            if playerBattingAverage.count <= 3 {
+                numberOfRows = playerBattingAverage.count
+            }
+            else {
+                numberOfRows = 3
+            }
         case 2:
-            numberOfRows = 3
+            if playerPitchingAverage.count <= 3 {
+                numberOfRows = playerPitchingAverage.count
+            }
+            else {
+                numberOfRows = 3
+            }
         default:
             break
         }
@@ -103,9 +205,9 @@ extension TeamMainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentSection = indexPath.section
         let currentRow = indexPath.row
+        
         if currentSection == 0 {
             if (schedule.count < 4 && currentRow == schedule.count) || currentRow == 4{
-                print("-----------------------")
                 let footerCell = tableView.dequeueReusableCell(withIdentifier: "FooterViewCell") as! FooterViewCell
                 footerCell.addScheduleButton.addTarget(
                     self,
@@ -116,15 +218,36 @@ extension TeamMainViewController: UITableViewDataSource {
                 let scheduleCell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as! TeamScheduleTableViewCell
                 let scheduleAtRow = schedule[indexPath.row]
                 scheduleCell.matchDateLabel.text = dateFormatter.string(from: scheduleAtRow.matchDate)
-                scheduleCell.matchOpponentLabel.text = scheduleAtRow.matchOpponent
+                scheduleCell.matchOpponentLabel.text = "vs " + scheduleAtRow.matchOpponent
                 return scheduleCell
             }
+        } else if currentSection == 1 {
+            let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TeamRecordTableViewCell
+            
+            let sortedBattingAverage = playerBattingAverage.sorted(by: { $0.1 > $1.1 })
+            
+            if currentRow < sortedBattingAverage.count {
+                recordCell.playerNameLabel.text = PlayerDAO.shared.findName(findPlayerID: Array(sortedBattingAverage)[currentRow].key)
+                recordCell.recordLabel.text = "\(batterNumberFormatter.string(from: NSNumber(value: Array(sortedBattingAverage)[currentRow].value))!)"
+            }
+            
+            return recordCell
         } else {
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TeamRecordTableViewCell
+            
+            let sortedPitchingAverage = playerPitchingAverage.sorted(by: { $0.1 < $1.1 })
+            
+            if currentRow < sortedPitchingAverage.count {
+                recordCell.playerNameLabel.text = PlayerDAO.shared.findName(findPlayerID: Array(sortedPitchingAverage)[currentRow].key)
+                recordCell.recordLabel.text = "\(pitcherNumberFormatter.string(from: NSNumber(value: Array(sortedPitchingAverage)[currentRow].value))!)"
+            }
+            
             return recordCell
         }
     }
 }
+
+// MARK: TableViewDelegate
 
 extension TeamMainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
@@ -132,9 +255,7 @@ extension TeamMainViewController: UITableViewDelegate {
         return 40
     }
     
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        print("viewForHeaderInSection")
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderViewCell") as! HeaderViewCell
         switch section {
         case 0:

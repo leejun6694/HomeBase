@@ -10,13 +10,17 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let teamInfo = TeamInfoDAO.shared.fetch()
-        print(teamInfo.teamImagePath)
-        if teamInfo.teamName == "" {
-            performSegue(withIdentifier: "segueTabToStart", sender: self)
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.perform(#selector(self.checkTeamInfoAndPresent))
+//    }
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//    }
+//    
+//    
+//    func checkTeamInfoAndPresent() {
+//    }
 }

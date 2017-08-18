@@ -82,6 +82,34 @@ class TeamScheduleDAO {
         return teamScheduleArray
     }
     
+    func fetchMatchResult() -> TeamRecord {
+        let teamRecord = TeamRecord()
+        
+        do {
+            if let query = try DBManager.shared.db?.prepare(teamSchedule.select(self.homeScore, self.awayScore)) {
+                for result in Array(query) {
+                    if result[homeScore] == -1 || result[awayScore] == -1 {
+                        continue
+                    }
+                    
+                    if result[homeScore] > result[awayScore] {
+                        teamRecord.win += 1
+                    }
+                    else if result[homeScore] == result[awayScore] {
+                        teamRecord.draw += 1
+                    }
+                    else {
+                        teamRecord.lose += 1
+                    }
+                }
+            }
+        } catch {
+            print("Fetch Error : \(error)")
+        }
+        
+        return teamRecord
+    }
+    
     func countAll() -> Int {
         do {
             if let scheduleCount = try DBManager.shared.db?.scalar(teamSchedule.count) {

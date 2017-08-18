@@ -71,7 +71,10 @@ class TeamImageViewController: UIViewController {
         let teamInfo = TeamInfo(teamName: self.teamName)
         TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
         
-        dismiss(animated: true, completion: nil)
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainTabbarController = mainStoryBoard.instantiateInitialViewController()
+        
+        UIApplication.shared.keyWindow?.rootViewController = mainTabbarController
     }
     
     @objc func clickDoneButton(_ sender: AnyObject) {
@@ -92,7 +95,11 @@ class TeamImageViewController: UIViewController {
         let teamInfo = TeamInfo(teamName: self.teamName, teamImagePath: path)
         TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
         
-        dismiss(animated: true, completion: nil)
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainTabbarController = mainStoryBoard.instantiateInitialViewController()
+        
+        UIApplication.shared.keyWindow?.rootViewController = mainTabbarController
+        
     }
     
     // MARK: Override
