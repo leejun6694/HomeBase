@@ -15,7 +15,7 @@
         <!--팀 이름-->
         <scene sceneID="Txe-Lt-1jJ">
             <objects>
-                <viewController id="W9l-7V-6dC" customClass="SquadMainViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SquadMainViewController" id="W9l-7V-6dC" customClass="SquadMainViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DfK-KJ-5Jr"/>
                         <viewControllerLayoutGuide type="bottom" id="6vh-61-Eoz"/>
@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RVy-Hh-luA" id="PzQ-4e-XU0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMP-Dk-5CX">
@@ -72,7 +72,6 @@
                                             <outlet property="playerBackNumberLabel" destination="Dah-h7-onO" id="5Bf-xM-b6P"/>
                                             <outlet property="playerNameLabel" destination="NMP-Dk-5CX" id="nz2-fV-5Al"/>
                                             <outlet property="positionLabel" destination="k17-Kw-jWa" id="OEa-fz-lBE"/>
-                                            <segue destination="8iX-Ah-FSX" kind="show" identifier="fromSquadMainToPageControl" id="Vqd-gt-OhU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -87,6 +86,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="팀 이름" id="cTH-Bp-pWn">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="T48-2f-Ito">
+                            <connections>
+                                <action selector="editButtonDidTap:" destination="W9l-7V-6dC" id="dtp-f2-jIp"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="addPerson" id="G0B-pd-TS9">
                             <connections>
                                 <action selector="addButtonDidTap:" destination="W9l-7V-6dC" id="cHy-7J-Nvd"/>
@@ -104,7 +108,7 @@
         <!--Squad Player Record Page View Controller-->
         <scene sceneID="Tql-eS-saT">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="b8L-hl-ioW" customClass="SquadPlayerRecordPageViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="SquadPlayerRecordPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="b8L-hl-ioW" customClass="SquadPlayerRecordPageViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4P-hF-f4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4033" y="531"/>
@@ -112,7 +116,7 @@
         <!--Title-->
         <scene sceneID="2Jq-X7-5r0">
             <objects>
-                <viewController id="8iX-Ah-FSX" customClass="SquadPlayerRecordViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SquadPlayerRecordViewController" id="8iX-Ah-FSX" customClass="SquadPlayerRecordViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fz4-MR-pOU"/>
                         <viewControllerLayoutGuide type="bottom" id="g2K-Bu-p5B"/>
@@ -176,13 +180,7 @@
                             <constraint firstItem="a6C-Xy-al7" firstAttribute="top" secondItem="out-Hu-leo" secondAttribute="bottom" constant="-60" id="yVH-S7-0rA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Gjn-O0-JiE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eOh-2J-HJk">
-                            <connections>
-                                <action selector="clickEditButton:" destination="8iX-Ah-FSX" id="Vzs-WJ-aD6"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="Gjn-O0-JiE"/>
                     <connections>
                         <outlet property="backNumberLabel" destination="od1-Ma-Rhs" id="18S-71-VpT"/>
                         <outlet property="containerView" destination="out-Hu-leo" id="KdR-GT-lbN"/>
