@@ -26,15 +26,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNM-PF-8gY">
-                        <rect key="frame" x="267" y="1" width="30" height="30"/>
+                        <rect key="frame" x="282" y="5.5" width="30" height="30"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" title="ALL"/>
                     </button>
                 </subviews>
-                <color key="backgroundColor" red="0.73336521300000002" green="0.90180576609999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
                     <constraint firstItem="FUh-Jw-cex" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6Lp-0O-srP"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="rNM-PF-8gY" secondAttribute="trailing" constant="15" id="T2B-uD-s3t"/>
-                    <constraint firstItem="rNM-PF-8gY" firstAttribute="bottom" secondItem="FUh-Jw-cex" secondAttribute="bottom" id="TSa-Da-uIc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rNM-PF-8gY" secondAttribute="trailing" id="T2B-uD-s3t"/>
+                    <constraint firstItem="rNM-PF-8gY" firstAttribute="centerY" secondItem="FUh-Jw-cex" secondAttribute="centerY" id="TSa-Da-uIc"/>
                     <constraint firstAttribute="bottomMargin" secondItem="FUh-Jw-cex" secondAttribute="bottom" id="pCh-lI-1HR"/>
                 </constraints>
             </tableViewCellContentView>

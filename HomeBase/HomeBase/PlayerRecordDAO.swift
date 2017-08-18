@@ -227,6 +227,121 @@ class PlayerRecordDAO {
         return totalRecord
     }
     
+    func selectPlayerBatting() -> [Int64:Double] {
+        var playerBattingAverage = [Int64:Double]()
+    
+        do {
+            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.playerID, self.singleHit.sum, self.doubleHit.sum, self.tripleHit.sum, self.homeRun.sum, self.strikeOut.sum, self.groundBall.sum, self.flyBall.sum).group(self.playerID)) {
+                
+                for batting in Array(query) {
+                    let battingHits = Double(batting[singleHit.sum]! + batting[doubleHit.sum]! + batting[tripleHit.sum]! + batting[homeRun.sum]!)
+                    let battingOuts = Double(batting[strikeOut.sum]! + batting[groundBall.sum]! + batting[flyBall.sum]!)
+                    
+                    if battingHits != 0.0, battingOuts != 0.0 {
+                        playerBattingAverage[batting[playerID]] = battingHits / (battingHits + battingOuts)
+                    }
+                }
+            }
+            
+        } catch {
+            print("Select Error : \(error)")
+        }
+        
+        return playerBattingAverage
+    }
+    
+    func selectPlayerPitching() -> [Int64:Double] {
+        var playerERA = [Int64:Double]()
+        
+        do {
+            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.playerID, self.ER.sum, self.inning.sum).group(self.playerID)) {
+                
+                for pitching in Array(query) {
+                    if pitching[inning.sum] != 0.0 {
+                        let pitchingERA = Double(pitching[ER.sum]!) * 9.0 / Double(pitching[inning.sum]!)
+                        playerERA[pitching[playerID]] = pitchingERA
+                    }
+                }
+            }
+        } catch {
+            print("Select Error : \(error)")
+        }
+        
+        return playerERA
+    }
+    
+    func selectHits() -> Double {
+        var teamHit: Double = 0.0
+        
+        do {
+            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.singleHit, self.doubleHit, self.tripleHit, self.homeRun)) {
+                
+                for hit in Array(query) {
+                    teamHit += Double(hit[singleHit])
+                    teamHit += Double(hit[doubleHit])
+                    teamHit += Double(hit[tripleHit])
+                    teamHit += Double(hit[homeRun])
+                }
+            }
+        } catch {
+            print("Select Error : \(error)")
+        }
+        
+        return teamHit
+    }
+    
+    func selectOuts() -> Double {
+        var teamOut: Double = 0.0
+        
+        do {
+            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.strikeOut, self.groundBall, self.flyBall)) {
+                
+                for out in Array(query) {
+                    teamOut += Double(out[strikeOut])
+                    teamOut += Double(out[groundBall])
+                    teamOut += Double(out[flyBall])
+                }
+            }
+        } catch {
+            print("Select Error : \(error)")
+        }
+        
+        return teamOut
+    }
+    
+    func selectER() -> Double {
+        var teamER: Double = 0.0
+        
+        do {
+            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.ER)) {
+                for ERItem in Array(query) {
+                    teamER += ERItem[ER]
+                    
+                }
+            }
+        } catch {
+            print("Select Error : \(error)")
+        }
+        
+        return teamER
+    }
+    
+    func selectInning() -> Double {
+        var teamInning: Double = 0.0
+        
+        do {
+            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.inning)) {
+                for ERItem in Array(query) {
+                    teamInning += ERItem[inning]
+                }
+            }
+        } catch {
+            print("Select Error : \(error)")
+        }
+        
+        return teamInning
+    }
+    
     // 타자 출전 횟수
     func countPlayerBatterRecord(playerID: Int64) -> Int {
         do {

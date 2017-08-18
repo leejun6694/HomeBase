@@ -10,5 +10,13 @@ import Foundation
 
 class TeamRecord: NSObject {
     
+    var win: Int
+    var draw: Int
+    var lose: Int
     
+    init(win: Int = 0, draw: Int = 0, lose: Int = 0) {
+        self.win = win
+        self.draw = draw
+        self.lose = lose
+    }
 }

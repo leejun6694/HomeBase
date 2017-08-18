@@ -66,7 +66,12 @@ class PitcherViewController: UIViewController {
         
         recordLabel.append("\(pitcherAppear)")
         recordLabel.append("\(numberFormatter.string(from: NSNumber(value: ERA))!)")
-        recordLabel.append("\(inning) \(inningRemainder)/3")
+        if inningRemainder == 0 {
+            recordLabel.append("\(inning)")
+        }
+        else {
+            recordLabel.append("\(inning) \(inningRemainder)/3")
+        }
         recordLabel.append("\(Int(record.ER))")
         
         recordLabel.append("\(Int(record.win))")

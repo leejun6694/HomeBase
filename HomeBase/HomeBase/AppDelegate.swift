@@ -13,9 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let teamInfo = TeamInfoDAO.shared.fetch()
+        
+        if teamInfo.teamName.isEmpty {
+            let storyBoard = UIStoryboard(name: "StartNavigation", bundle: nil)
+            let startNavigation = storyBoard.instantiateInitialViewController()
+            
+            self.window?.rootViewController = startNavigation
+        }
+
         return true
     }
 

@@ -196,10 +196,8 @@
 				72425EFA1F3A02AC0071FA13 /* Schedule */,
 				722A54FE1F38374C00499113 /* Squad */,
 				722A542B1F35C79E00499113 /* Main.storyboard */,
-				C98CD8CC1F457FF300C09D58 /* FooterViewCell.swift */,
-				C98CD8CD1F457FF300C09D58 /* FooterViewCell.xib */,
-				C98CD8CE1F457FF300C09D58 /* HeaderViewCell.swift */,
 				C98CD8CF1F457FF300C09D58 /* HeaderViewCell.xib */,
+				C98CD8CD1F457FF300C09D58 /* FooterViewCell.xib */,
 				722A55021F3841B100499113 /* StartNavigation.storyboard */,
 				722A54F21F3834E600499113 /* TeamNavigation.storyboard */,
 				722A54FF1F38385D00499113 /* SquadNavigation.storyboard */,
@@ -228,6 +226,8 @@
 				722A54F91F3836D000499113 /* TeamMainViewController.swift */,
 				C91970FB1F3AEC1E005805C7 /* TeamScheduleTableViewCell.swift */,
 				C91971011F3AED8D005805C7 /* TeamRecordTableViewCell.swift */,
+				C98CD8CE1F457FF300C09D58 /* HeaderViewCell.swift */,
+				C98CD8CC1F457FF300C09D58 /* FooterViewCell.swift */,
 			);
 			name = Team;
 			sourceTree = "<group>";
