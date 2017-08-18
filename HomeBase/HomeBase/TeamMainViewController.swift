@@ -62,7 +62,7 @@ class TeamMainViewController: UIViewController {
     func allScheduleButtonDidTap(_ btControl: UIButton) {
         let allScheduleViewController = storyboard?.instantiateViewController(
             withIdentifier: "AllScheduleViewController")
-        self.navigationController?.pushViewController(allScheduleViewController!, animated: false)
+        self.navigationController?.pushViewController(allScheduleViewController!, animated: true)
     }
     
     func addScheduleButtonDidTap(_ btControl: UIButton) {

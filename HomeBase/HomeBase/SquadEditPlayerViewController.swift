@@ -12,9 +12,7 @@ class SquadEditPlayerViewController: UIViewController {
     
     // MARK: Properties
     
-    var playerName: String!
-    var backNumber: Int64!
-    var position: String!
+    var player: Player!
     
     @IBOutlet var playerNameTextField: UITextField!
     @IBOutlet var backNumberTextField: UITextField!
@@ -26,11 +24,30 @@ class SquadEditPlayerViewController: UIViewController {
         return array
     }()
     
+    var positionNumber: Int = 0
+    
     // MAKR: Actions
     
     @IBAction func clickCancelButton(_ sender: UIBarButtonItem) {
+        
+        dismiss(animated: true, completion: nil)
     }
     @IBAction func clickDoneButton(_ sender: UIBarButtonItem) {
+        if let updatedName = playerNameTextField.text,
+            let updatedBackNumberString = backNumberTextField.text {
+
+            let updatedPosition = kindOfPosition[positionPickerView.selectedRow(inComponent: 0)]
+            
+            let updatePlayer = Player(
+                id: player.playerID,
+                name: updatedName,
+                backNumber: Int64(updatedBackNumberString)!,
+                position: updatedPosition)
+            
+            PlayerDAO.shared.update(playerObject: updatePlayer)
+
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: Override
@@ -38,21 +55,26 @@ class SquadEditPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        playerNameTextField.text = playerName
-        backNumberTextField.text = String(backNumber)
         
-        var positionNumber: Int = 0
-        for index in 0..<kindOfPosition.count {
-            if position == "\(kindOfPosition[index])" {
-                positionNumber = index
-            }
-        }
-        positionPickerView.selectRow(positionNumber, inComponent: 0, animated: false)
+        playerNameTextField.text = player.name
+        backNumberTextField.text = String(player.backNumber)
         
         positionPickerView.dataSource = self
         positionPickerView.delegate = self
         
         backNumberTextField.delegate = self
+        for index in 0..<kindOfPosition.count {
+            if player.position == "\(kindOfPosition[index])" {
+                print(kindOfPosition[index])
+                positionNumber = index
+                break
+            }
+        }
+        positionPickerView.showsSelectionIndicator = true
+        positionPickerView.selectRow(positionNumber, inComponent: 0, animated: false)
+        
+
+        
     }
 }
 
@@ -71,6 +93,7 @@ extension SquadEditPlayerViewController: UIPickerViewDataSource, UIPickerViewDel
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return kindOfPosition[row]
     }
+    
 }
 
 

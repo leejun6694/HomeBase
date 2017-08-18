@@ -32,9 +32,7 @@ class SquadPlayerRecordViewController: UIViewController {
         let squadEditPlayerViewController = self.storyboard?.instantiateViewController(
             withIdentifier: "SquadEditPlayerViewController") as! SquadEditPlayerViewController
         
-        squadEditPlayerViewController.playerName = self.player.name
-        squadEditPlayerViewController.backNumber = self.player.backNumber
-        squadEditPlayerViewController.position = self.player.position
+        squadEditPlayerViewController.player = self.player
         
         present(squadEditPlayerViewController, animated: true, completion: nil)
     }
