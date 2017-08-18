@@ -41,6 +41,19 @@ class PlayerDAO {
         print(player.count)
     }
     
+    func update(playerObject: Player) {
+        do {
+            let updatedPlayer = player.filter(playerID == playerObject.playerID)
+            try DBManager.shared.db?.run(updatedPlayer.update(
+                name <- playerObject.name,
+                backNumber <- playerObject.backNumber,
+                position <- playerObject.position ) )
+        } catch {
+            print("Error: \(error)")
+        }
+
+    }
+    
     func countAll() -> Int {
         do {
             if let playerCount = try DBManager.shared.db?.scalar(player.count) {
