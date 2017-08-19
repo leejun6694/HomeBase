@@ -57,6 +57,41 @@ class TeamImageViewController: UIViewController {
         return doneButton
     }()
     
+    // MARK: Functions
+    
+    fileprivate func skipAction(action: UIAlertAction) {
+        let teamInfo = TeamInfo(teamName: self.teamName)
+        TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
+        
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainTabbarController = mainStoryBoard.instantiateInitialViewController()
+        
+        UIApplication.shared.keyWindow?.rootViewController = mainTabbarController
+    }
+    
+    fileprivate func doneAction(action: UIAlertAction) {
+        let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        
+        let url: URL = documentDirectory.appendingPathComponent("TeamImage")
+        
+        if let data = UIImageJPEGRepresentation(teamImage.image!, 0.8) {
+            do {
+                try data.write(to: url, options: [.atomic])
+            } catch {
+                print("Write Error : \(error)")
+            }
+        }
+        
+        let teamInfo = TeamInfo(teamName: self.teamName)
+        TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
+        
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainTabbarController = mainStoryBoard.instantiateInitialViewController()
+        
+        UIApplication.shared.keyWindow?.rootViewController = mainTabbarController
+    }
+    
     // MARK: Actions
     
     @objc func clickPickerButton(_ sender: AnyObject) {
@@ -68,38 +103,29 @@ class TeamImageViewController: UIViewController {
     }
     
     @objc func clickSkipButton(_ sender: AnyObject) {
-        let teamInfo = TeamInfo(teamName: self.teamName)
-        TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
+        let alertController = UIAlertController(title: "\(teamName ?? "")",
+                                                message: "팀 등록을 하시겠습니까?",
+                                                preferredStyle: .alert)
         
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabbarController = mainStoryBoard.instantiateInitialViewController()
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: skipAction)
+        let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
         
-        UIApplication.shared.keyWindow?.rootViewController = mainTabbarController
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func clickDoneButton(_ sender: AnyObject) {
-        let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentDirectory = documentsDirectories.first!
+        let alertController = UIAlertController(title: "\(teamName ?? "")",
+                                                message: "팀 등록을 하시겠습니까?",
+                                                preferredStyle: .alert)
         
-        let url: URL = documentDirectory.appendingPathComponent("TeamImage")
-        let path = url.path
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: doneAction)
+        let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
         
-        if let data = UIImageJPEGRepresentation(teamImage.image!, 0.8) {
-            do {
-                try data.write(to: url, options: [.atomic])
-            } catch {
-                print("Write Error : \(error)")
-            }
-        }
-        
-        let teamInfo = TeamInfo(teamName: self.teamName, teamImagePath: path)
-        TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
-        
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabbarController = mainStoryBoard.instantiateInitialViewController()
-        
-        UIApplication.shared.keyWindow?.rootViewController = mainTabbarController
-        
+        present(alertController, animated: true, completion: nil)
     }
     
     // MARK: Override
@@ -128,8 +154,14 @@ extension TeamImageViewController: UINavigationControllerDelegate, UIImagePicker
         
         picker.allowsEditing = true
         
-        guard let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
-            return
+        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.teamImage.image = selectedImage
+        }
+        else if let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            self.teamImage.image = selectedImage
+        }
+        else {
+            print("Picker Error")
         }
         
         self.pickerButton.removeFromSuperview()
@@ -139,8 +171,6 @@ extension TeamImageViewController: UINavigationControllerDelegate, UIImagePicker
         self.view.addConstraints(teamImageConstraint())
         self.view.addSubview(doneButton)
         self.view.addConstraints(doneButtonConstraint())
-        
-        self.teamImage.image = selectedImage
         
         dismiss(animated: true, completion: nil)
     }

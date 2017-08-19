@@ -6,11 +6,119 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Team Setting View Controller-->
+        <scene sceneID="aMj-sO-k8e">
+            <objects>
+                <viewController storyboardIdentifier="TeamSettingViewController" id="07h-JW-1TT" customClass="TeamSettingViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QPj-ww-sBs"/>
+                        <viewControllerLayoutGuide type="bottom" id="92e-pT-bph"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9ks-6s-8Hi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKQ-dB-qo3">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="cancel" id="uA0-eg-x4Q">
+                                        <connections>
+                                            <action selector="clickCancelButton:" destination="07h-JW-1TT" id="d0h-L1-Tpk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rxe-Bw-bOy"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="oe1-6d-R2w"/>
+                                    <barButtonItem systemItem="done" id="bAY-0Q-8pf">
+                                        <connections>
+                                            <action selector="clickDoneButton:" destination="07h-JW-1TT" id="j64-X1-UIR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kF9-Y0-5ml">
+                                <rect key="frame" x="172.5" y="32" width="29.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ft5-Dm-CmM">
+                                <rect key="frame" x="16" y="94" width="57.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀 이미지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjM-H2-8t5">
+                                <rect key="frame" x="16" y="148" width="74.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQk-jL-Typ">
+                                <rect key="frame" x="234.5" y="143.5" width="78" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="이미지 변경">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickChangeImageButton:" destination="07h-JW-1TT" eventType="touchUpInside" id="qVh-g2-lZf"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ⓒ 2017. LemonKooma all rights reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7R-bt-T8i">
+                                <rect key="frame" x="46.5" y="629" width="283" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="팀 이름을 등록하세요" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2EO-PC-flG">
+                                <rect key="frame" x="187.5" y="94" width="171.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="aQk-jL-Typ" firstAttribute="centerY" secondItem="zjM-H2-8t5" secondAttribute="centerY" id="5uY-sG-08J"/>
+                            <constraint firstItem="92e-pT-bph" firstAttribute="top" secondItem="j7R-bt-T8i" secondAttribute="bottom" constant="20" id="IpE-bq-nPy"/>
+                            <constraint firstItem="ft5-Dm-CmM" firstAttribute="leading" secondItem="9ks-6s-8Hi" secondAttribute="leadingMargin" id="JBF-bL-1As"/>
+                            <constraint firstItem="2EO-PC-flG" firstAttribute="leading" secondItem="9ks-6s-8Hi" secondAttribute="centerX" id="MGp-M4-apl"/>
+                            <constraint firstItem="aQk-jL-Typ" firstAttribute="centerX" secondItem="2EO-PC-flG" secondAttribute="centerX" id="MPK-I2-eou"/>
+                            <constraint firstItem="2EO-PC-flG" firstAttribute="top" secondItem="ft5-Dm-CmM" secondAttribute="top" id="OFs-AL-d2d"/>
+                            <constraint firstItem="zKQ-dB-qo3" firstAttribute="top" secondItem="QPj-ww-sBs" secondAttribute="bottom" id="RZv-pZ-yfF"/>
+                            <constraint firstItem="kF9-Y0-5ml" firstAttribute="centerY" secondItem="zKQ-dB-qo3" secondAttribute="centerY" id="VtR-WT-HCr"/>
+                            <constraint firstAttribute="trailing" secondItem="zKQ-dB-qo3" secondAttribute="trailing" id="ZUV-gS-U5x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2EO-PC-flG" secondAttribute="trailing" id="dx0-AT-ziz"/>
+                            <constraint firstItem="zjM-H2-8t5" firstAttribute="top" secondItem="ft5-Dm-CmM" secondAttribute="bottom" constant="30" id="k1R-De-TOD"/>
+                            <constraint firstItem="zKQ-dB-qo3" firstAttribute="leading" secondItem="9ks-6s-8Hi" secondAttribute="leading" id="l2o-VR-8Lj"/>
+                            <constraint firstItem="ft5-Dm-CmM" firstAttribute="top" secondItem="zKQ-dB-qo3" secondAttribute="bottom" constant="30" id="mzP-Nj-TTA"/>
+                            <constraint firstItem="zjM-H2-8t5" firstAttribute="leading" secondItem="ft5-Dm-CmM" secondAttribute="leading" id="pTO-9T-TSN"/>
+                            <constraint firstItem="j7R-bt-T8i" firstAttribute="centerX" secondItem="9ks-6s-8Hi" secondAttribute="centerX" id="qNX-ll-7HK"/>
+                            <constraint firstItem="kF9-Y0-5ml" firstAttribute="centerX" secondItem="zKQ-dB-qo3" secondAttribute="centerX" id="z6S-pg-j0x"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Um2-fO-fs2" appends="YES" id="YkY-k6-Hvz"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="teamNameTextField" destination="2EO-PC-flG" id="VsR-fh-jv0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kkg-ko-WZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Um2-fO-fs2">
+                    <connections>
+                        <action selector="tapBackgroundView:" destination="07h-JW-1TT" id="kjl-d2-eKs"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2081" y="-819"/>
+        </scene>
         <!--ScheduleNavigation-->
         <scene sceneID="hCP-yp-DRu">
             <objects>
@@ -69,8 +177,8 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pE1-42-iR5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayj-xK-viY">
-                                            <rect key="frame" x="148.5" y="112" width="78" height="36"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayj-xK-viY">
+                                            <rect key="frame" x="145" y="112" width="85" height="36"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -149,12 +257,25 @@
                                                 </stackView>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUH-fc-e3K">
+                                            <rect key="frame" x="340" y="5" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="T4a-Z1-N0y"/>
+                                                <constraint firstAttribute="width" constant="30" id="gjW-6B-jbs"/>
+                                            </constraints>
+                                            <state key="normal" image="setting"/>
+                                            <connections>
+                                                <action selector="clickSettingButton:" destination="Us5-QM-ERa" eventType="touchUpInside" id="ER9-si-R9S"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="0E0-YH-DFd" secondAttribute="bottom" id="1nO-yw-UQb"/>
                                         <constraint firstItem="pE1-42-iR5" firstAttribute="height" secondItem="ABa-0x-B19" secondAttribute="height" multiplier="0.8" id="2IQ-Ed-uRs"/>
+                                        <constraint firstItem="TUH-fc-e3K" firstAttribute="top" secondItem="ABa-0x-B19" secondAttribute="top" constant="5" id="2d8-oG-eOc"/>
                                         <constraint firstItem="ayj-xK-viY" firstAttribute="centerX" secondItem="pE1-42-iR5" secondAttribute="centerX" id="Fqx-aI-yfW"/>
+                                        <constraint firstAttribute="trailing" secondItem="TUH-fc-e3K" secondAttribute="trailing" constant="5" id="VzQ-No-Cyb"/>
                                         <constraint firstItem="0E0-YH-DFd" firstAttribute="leading" secondItem="pE1-42-iR5" secondAttribute="leading" id="bYm-P6-pm6"/>
                                         <constraint firstAttribute="trailing" secondItem="pE1-42-iR5" secondAttribute="trailing" id="cU1-bw-2Iq"/>
                                         <constraint firstItem="ayj-xK-viY" firstAttribute="centerY" secondItem="pE1-42-iR5" secondAttribute="centerY" id="dC1-k1-FSR"/>
@@ -253,10 +374,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndG-BB-966" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2082" y="-143"/>
+            <point key="canvasLocation" x="2080.8000000000002" y="-143.47826086956522"/>
         </scene>
     </scenes>
     <resources>
+        <image name="setting" width="25" height="25"/>
         <image name="team" width="25" height="25"/>
     </resources>
 </document>

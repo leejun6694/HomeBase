@@ -86,7 +86,7 @@ class PlayerRecordDAO {
                 t.column(hitBatters)
                 t.column(strikeOuts)
                 t.column(ER)
-
+            
                 t.foreignKey(playerID,
                              references: player, player_reference,
                              update: .cascade,
@@ -95,8 +95,10 @@ class PlayerRecordDAO {
                              references: teamSchedule, teamSchedule_reference,
                              update: .cascade ,
                              delete: .cascade)
-
             })
+            
+            let _ = try DBManager.shared.db?.prepare("PRAGMA foreign_keys = ON")
+            
         } catch {
             print(error)
         }

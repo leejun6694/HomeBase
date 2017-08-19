@@ -11,10 +11,8 @@ import Foundation
 class TeamInfo: NSObject {
     
     let teamName: String
-    let teamImagePath: String
     
-    init(teamName: String, teamImagePath: String = "") {
+    init(teamName: String) {
         self.teamName = teamName
-        self.teamImagePath = teamImagePath
     }
 }

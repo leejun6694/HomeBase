@@ -38,28 +38,6 @@ class SquadMainViewController: UIViewController {
         tableView.reloadData()
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "fromSquadMainToPageControl" {
-//            if let row = tableView.indexPathForSelectedRow?.row {
-//                let selectedPlayer = playerArray[row]
-//                let squadPlayerRecordViewController = segue.destination as! SquadPlayerRecordViewController
-//                self.playerRecord = PlayerRecordDAO.shared.selectOnPlayer(id: selectedPlayer.playerID)
-//                
-//                squadPlayerRecordViewController.player = selectedPlayer
-//                squadPlayerRecordViewController.playerRecord = self.playerRecord
-//                
-//                if let squadPlayerRecordPageViewController = segue.destination as? SquadPlayerRecordPageViewController {
-//                    //squadPlayerRecordPageViewController.positionDelegate = self
-//                    squadPlayerRecordPageViewController.player = selectedPlayer
-//                    squadPlayerRecordPageViewController.playerRecord = self.playerRecord
-//                }
-//                if let batterViewController = segue.destination as? BatterViewController {
-//                    batterViewController.record = playerRecord
-//                }
-//            }
-//        }
-//    }
-    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
@@ -86,6 +64,10 @@ class SquadMainViewController: UIViewController {
 // MARK: Delegate
 
 extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playerArray.count
     }

@@ -59,12 +59,9 @@ class TeamMainViewController: UIViewController {
         
         let url: URL = documentDirectory.appendingPathComponent("TeamImage")
         
-        do {
-            let data = try Data(contentsOf: url, options: .alwaysMapped)
+        if let data = try? Data(contentsOf: url, options: .alwaysMapped) {
             self.mainImageView.image = UIImage(data: data)
             self.mainImageView.alpha = 0.5
-        } catch {
-            print("Team Image Error : \(error)")
         }
     }
     
@@ -106,12 +103,6 @@ class TeamMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        teamInfo = TeamInfoDAO.shared.fetch()
-        
-        fetchImage()
-        
-        teamNameLabel.text = teamInfo?.teamName
-        
         teamMainTableView.sectionFooterHeight = 0
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -125,6 +116,12 @@ class TeamMainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        teamInfo = TeamInfoDAO.shared.fetch()
+        
+        fetchImage()
+        
+        teamNameLabel.text = teamInfo?.teamName
         
         schedule = TeamScheduleDAO.shared.findAllColumn()
         
@@ -160,6 +157,11 @@ class TeamMainViewController: UIViewController {
         present(addScheduleViewController, animated: true, completion: nil)
     }
     
+    @IBAction func clickSettingButton(_ sender: UIButton) {
+        let teamSettingViewController = self.storyboard?.instantiateViewController(withIdentifier: "TeamSettingViewController") as! TeamSettingViewController
+        
+        present(teamSettingViewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: TableViewDataSource
