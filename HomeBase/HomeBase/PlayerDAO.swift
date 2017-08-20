@@ -81,6 +81,12 @@ class PlayerDAO {
     }
     
     func selectAll() -> [Player]? {
+        do {
+            let count = try DBManager.shared.db?.scalar(player.select(playerID.count))
+            print("count of player: \(count ?? 0)")
+        } catch {
+            print("Error: \(error)")
+        }
         var playerArray = [Player]()
         do {
             guard let query = try DBManager.shared.db?.prepare(player.order(backNumber.asc)) else {
@@ -98,12 +104,29 @@ class PlayerDAO {
     }
     
     func delete(id: Int64) {
+        print("Before Delete")
         do {
-            let filter = player.filter(playerID == id)
+            let count = try DBManager.shared.db?.scalar(player.select(playerID.count))
+            print("count of player: \(count ?? 0)")
+        } catch {
+            print("Error: \(error)")
+        }
+
+        do {
+            let join = player.join(PlayerRecordDAO.shared.playerRecord, on: playerID == PlayerRecordDAO.shared.playerID)
+            let filter = join.filter(playerID == id)
             try DBManager.shared.db?.run(filter.delete())
         } catch {
             print("ERROR: \(error)")
         }
+        print("After Delete")
+        do {
+            let count = try DBManager.shared.db?.scalar(player.select(playerID.count))
+            print("count of player: \(count ?? 0)")
+        } catch {
+            print("Error: \(error)")
+        }
+
     }
     
     func selectAllNumber() -> [Int] {
