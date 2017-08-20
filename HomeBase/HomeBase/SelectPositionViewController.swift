@@ -16,25 +16,35 @@ class SelectPositionViewController: UIViewController {
     var playerID: Int64!
     var scheduleID: Int64!
     
+    // MARK: Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
+        self.view.isOpaque = false
+    }
+    
     // MARK: Actions
     
     @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
         dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func clickBatterButton(_ sender: UIButton) {
+    @IBAction func batterButtonDidTapped(_ sender: UIButton) {
         let batterRecordViewController = self.storyboard!.instantiateViewController(
             withIdentifier: "BatterRecordViewController") as! BatterRecordViewController
         
         batterRecordViewController.row = self.row
         batterRecordViewController.playerID = self.playerID
         batterRecordViewController.scheduleID = self.scheduleID
-    
+        
         batterRecordViewController.modalPresentationStyle = .currentContext
+        
         present(batterRecordViewController, animated: false, completion: nil)
     }
     
-    @IBAction func clickPitcherButton(_ sender: UIButton) {
+    @IBAction func pitcherButtonDidTapped(_ sender: UIButton) {
         let pitcherRecordViewController = self.storyboard!.instantiateViewController(
             withIdentifier: "PitcherRecordViewController") as! PitcherRecordViewController
         
@@ -43,15 +53,7 @@ class SelectPositionViewController: UIViewController {
         pitcherRecordViewController.scheduleID = self.scheduleID
         
         pitcherRecordViewController.modalPresentationStyle = .currentContext
-        present(pitcherRecordViewController, animated: false, completion: nil)
-    }
-    
-    // MARK: Override
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
-        self.view.isOpaque = false
+        present(pitcherRecordViewController, animated: false, completion: nil)
     }
 }

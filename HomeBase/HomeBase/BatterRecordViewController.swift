@@ -30,12 +30,6 @@ class BatterRecordViewController: UIViewController {
     private var run: Double = 0.0
     private var RBI: Double = 0.0
     
-    // MARK: Actions
-    
-    @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
-        dismiss(animated: false, completion: nil)
-    }
-    
     // MARK: Override
     
     override func viewDidLoad() {
@@ -47,7 +41,6 @@ class BatterRecordViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindBatterToDetail" {
-            print("batter record player id = \(self.playerID)")
             let playerRecord = PlayerRecord(playerID: self.playerID,
                                             scheduleID: self.scheduleID,
                                             singleHit: self.singleHit,
@@ -67,69 +60,75 @@ class BatterRecordViewController: UIViewController {
         }
     }
     
+    // MARK: Actions
+    
+    @IBAction func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
+    }
+    
     // MARK: Record Buttons
     
-    @IBAction func clickSingleHit(_ sender: UIButton) {
+    @IBAction func singleHitDidTapped(_ sender: UIButton) {
         self.singleHit += 1
         sender.setTitle("1루타\n\(Int(singleHit))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickDoubleHit(_ sender: UIButton) {
+    @IBAction func doubleHitDidTapped(_ sender: UIButton) {
         self.doubleHit += 1
         sender.setTitle("2루타\n\(Int(doubleHit))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickTripleHit(_ sender: UIButton) {
+    @IBAction func tripleHitDidTapped(_ sender: UIButton) {
         self.tripleHit += 1
         sender.setTitle("3루타\n\(Int(tripleHit))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickHomeRun(_ sender: UIButton) {
+    @IBAction func homeRunDidTapped(_ sender: UIButton) {
         self.homeRun += 1
         sender.setTitle("홈런\n\(Int(homeRun))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickBaseOnBalls(_ sender: UIButton) {
+    @IBAction func baseOnBallsDidTapped(_ sender: UIButton) {
         self.baseOnBalls += 1
         sender.setTitle("볼넷\n\(Int(baseOnBalls))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickSacrificeHit(_ sender: UIButton) {
+    @IBAction func sacrificeHitDidTapped(_ sender: UIButton) {
         self.sacrificeHit += 1
         sender.setTitle("희생타\n\(Int(sacrificeHit))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickStrikeOut(_ sender: UIButton) {
+    @IBAction func strikeOutDidTapped(_ sender: UIButton) {
         self.strikeOut += 1
         sender.setTitle("삼진\n\(Int(strikeOut))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickGroundBall(_ sender: UIButton) {
+    @IBAction func groundBallDidTapped(_ sender: UIButton) {
         self.groundBall += 1
         sender.setTitle("땅볼\n\(Int(groundBall))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickFlyBall(_ sender: UIButton) {
+    @IBAction func flyBallDidTapped(_ sender: UIButton) {
         self.flyBall += 1
         sender.setTitle("뜬공\n\(Int(flyBall))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickStolenBase(_ sender: UIButton) {
+    @IBAction func stolenBaseDidTapped(_ sender: UIButton) {
         self.stolenBase += 1
         sender.setTitle("도루\n\(Int(stolenBase))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickHitByPitch(_ sender: UIButton) {
+    @IBAction func hitByPitchDidTapped(_ sender: UIButton) {
         self.hitByPitch += 1
         sender.setTitle("사구\n\(Int(hitByPitch))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickRun(_ sender: UIButton) {
+    @IBAction func runDidTapped(_ sender: UIButton) {
         self.run += 1
         sender.setTitle("득점\n\(Int(run))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
-    @IBAction func clickRBI(_ sender: UIButton) {
+    @IBAction func RBIDidTapped(_ sender: UIButton) {
         self.RBI += 1
         sender.setTitle("타점\n\(Int(RBI))", for: .normal)
         sender.titleLabel?.textAlignment = .center
