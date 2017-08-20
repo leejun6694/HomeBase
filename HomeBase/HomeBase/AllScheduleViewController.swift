@@ -59,12 +59,6 @@ class AllScheduleViewController: UIViewController {
             }
         }
     }
-    
-    static func storyboardInstance() -> AllScheduleViewController? {
-        let storyboard = UIStoryboard(name: classNameToString(), bundle: nil)
-        return storyboard.instantiateInitialViewController() as? AllScheduleViewController
-        
-    }
 }
 
 // MARK: TableView Delegate, DataSource

@@ -11,13 +11,6 @@ import UIKit
 class TeamImageViewController: UIViewController {
     
     // MARK: Properties
-    
-    static func storyboardInstance() -> TeamImageViewController? {
-        let storyboard = UIStoryboard(name: classNameToString(), bundle: nil)
-        return storyboard.instantiateInitialViewController() as? TeamImageViewController
-        
-    }
-    
     var teamName: String!
     
     fileprivate lazy var pickerButton: UIButton = {
@@ -217,12 +210,4 @@ extension TeamImageViewController {
     }
 }
 
-extension NSObject {
-    func classNameToString() -> String {
-        return String(reflecting: type(of: self)).components(separatedBy: ".").last!
-    }
-    static func classNameToString() -> String {
-        return String(reflecting: type(of: self)).components(separatedBy: ".").last!
-    }
 
-}

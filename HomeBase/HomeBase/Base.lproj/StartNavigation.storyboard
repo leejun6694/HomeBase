@@ -31,7 +31,7 @@
         <!--Team Image View Controller-->
         <scene sceneID="IXT-BR-guu">
             <objects>
-                <viewController storyboardIdentifier="TeamImageViewController" id="PJh-Xx-r1d" customClass="TeamImageViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamImageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PJh-Xx-r1d" customClass="TeamImageViewController" customModule="HomeBase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tSE-TN-TGA"/>
                         <viewControllerLayoutGuide type="bottom" id="qey-rS-WcE"/>
