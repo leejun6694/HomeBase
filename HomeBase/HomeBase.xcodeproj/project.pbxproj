@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5941518F67A8EBB1F29542CE /* Pods_HomeBaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC494B5586CABF6946FC04BD /* Pods_HomeBaseTests.framework */; };
+		721568821F4824A300F1D077 /* TeamSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721568811F4824A300F1D077 /* TeamSettingViewController.swift */; };
 		722A54281F35C79E00499113 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A54271F35C79E00499113 /* AppDelegate.swift */; };
 		722A542D1F35C79E00499113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 722A542B1F35C79E00499113 /* Main.storyboard */; };
 		722A542F1F35C79E00499113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 722A542E1F35C79E00499113 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 /* Begin PBXFileReference section */
 		48EECDDD73528DA9CAFC5CCE /* Pods-HomeBaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeBaseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HomeBaseTests/Pods-HomeBaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		72023B3B200B389AEBFC2FDE /* Pods-HomeBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeBase.release.xcconfig"; path = "Pods/Target Support Files/Pods-HomeBase/Pods-HomeBase.release.xcconfig"; sourceTree = "<group>"; };
+		721568811F4824A300F1D077 /* TeamSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamSettingViewController.swift; sourceTree = "<group>"; };
 		722A54241F35C79E00499113 /* HomeBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		722A54271F35C79E00499113 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		722A542C1F35C79E00499113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				C91971011F3AED8D005805C7 /* TeamRecordTableViewCell.swift */,
 				C98CD8CE1F457FF300C09D58 /* HeaderViewCell.swift */,
 				C98CD8CC1F457FF300C09D58 /* FooterViewCell.swift */,
+				721568811F4824A300F1D077 /* TeamSettingViewController.swift */,
 			);
 			name = Team;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				C926BE3C1F3C3AC900B7A54B /* TeamSchedule.swift in Sources */,
 				72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */,
 				C926BE421F3C3AFF00B7A54B /* TeamRecordDAO.swift in Sources */,
+				721568821F4824A300F1D077 /* TeamSettingViewController.swift in Sources */,
 				C926BE5A1F42ACC900B7A54B /* BatterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -64,6 +64,10 @@ class SquadMainViewController: UIViewController {
 // MARK: Delegate
 
 extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playerArray.count
     }

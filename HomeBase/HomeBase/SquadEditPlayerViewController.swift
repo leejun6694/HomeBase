@@ -72,9 +72,6 @@ class SquadEditPlayerViewController: UIViewController {
         }
         positionPickerView.showsSelectionIndicator = true
         positionPickerView.selectRow(positionNumber, inComponent: 0, animated: false)
-        
-
-        
     }
 }
 

@@ -15,7 +15,6 @@ class TeamInfoDAO {
     // MARK: Properties
     
     let teamName = Expression<String>("teamName")
-    let teamImagePath = Expression<String>("teamImagePath")
     
     let teamInfo: Table
     
@@ -28,7 +27,6 @@ class TeamInfoDAO {
                 t in
                 
                 t.column(teamName)
-                t.column(teamImagePath)
             })
         } catch {
             print("Error : \(error)")
@@ -40,8 +38,7 @@ class TeamInfoDAO {
     func insert(insertTeamInfo: TeamInfo) {
         do {
             try DBManager.shared.db?.run(teamInfo.insert(
-                teamName <- insertTeamInfo.teamName,
-                teamImagePath <- insertTeamInfo.teamImagePath))
+                teamName <- insertTeamInfo.teamName))
         } catch {
             print("Insert Error : \(error)")
         }
@@ -51,8 +48,7 @@ class TeamInfoDAO {
         do {
             if let query = try DBManager.shared.db?.prepare(teamInfo) {
                 for teamInfos in Array(query) {
-                    let teamInfoItem = TeamInfo(teamName: teamInfos[teamName],
-                                                teamImagePath: teamInfos[teamImagePath])
+                    let teamInfoItem = TeamInfo(teamName: teamInfos[teamName])
                     
                     return teamInfoItem
                 }
@@ -61,6 +57,14 @@ class TeamInfoDAO {
             print("Fetch Error : \(error)")
         }
         
-        return TeamInfo(teamName: "", teamImagePath: "")
+        return TeamInfo(teamName: "")
+    }
+    
+    func updateTeamName(updateTeamName: String) {
+        do {
+            try DBManager.shared.db?.run(teamInfo.update(self.teamName <- updateTeamName))
+        } catch {
+            print("Update Error : \(error)")
+        }
     }
 }
