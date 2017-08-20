@@ -86,9 +86,26 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             let deleteIndex = indexPath.row
             let deletePlayer = playerArray[deleteIndex]
-            playerArray.remove(at: deleteIndex)
-            PlayerDAO.shared.delete(id: deletePlayer.playerID)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+
+            let title = "\(deletePlayer.name) 선수 삭제"
+            let message = "정말로 지우시겠습니까?"
+            let ac = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: .actionSheet)
+            let deleteAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { (action) -> Void in
+                    self.playerArray.remove(at: deleteIndex)
+                    PlayerDAO.shared.delete(id: deletePlayer.playerID)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(deleteAction)
+            ac.addAction(cancelAction)
+            present(ac, animated: true, completion: nil)
+            
         }
     }
     
@@ -103,7 +120,6 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
             let squadEditPlayerViewController = storyboard?.instantiateViewController(
                 withIdentifier: "SquadEditPlayerViewController") as? SquadEditPlayerViewController
             // Edit
-            //self.navigationController?.pushViewController(squadEditPlayerViewController!, animated: true)
             let selectedPlayer = playerArray[indexPath.row]
             squadEditPlayerViewController?.player = selectedPlayer
             present(squadEditPlayerViewController!, animated: true, completion: nil)

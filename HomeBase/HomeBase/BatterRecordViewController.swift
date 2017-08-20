@@ -47,7 +47,7 @@ class BatterRecordViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindBatterToDetail" {
-            
+            print("batter record player id = \(self.playerID)")
             let playerRecord = PlayerRecord(playerID: self.playerID,
                                             scheduleID: self.scheduleID,
                                             singleHit: self.singleHit,
