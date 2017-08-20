@@ -38,28 +38,6 @@ class SquadMainViewController: UIViewController {
         tableView.reloadData()
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "fromSquadMainToPageControl" {
-//            if let row = tableView.indexPathForSelectedRow?.row {
-//                let selectedPlayer = playerArray[row]
-//                let squadPlayerRecordViewController = segue.destination as! SquadPlayerRecordViewController
-//                self.playerRecord = PlayerRecordDAO.shared.selectOnPlayer(id: selectedPlayer.playerID)
-//                
-//                squadPlayerRecordViewController.player = selectedPlayer
-//                squadPlayerRecordViewController.playerRecord = self.playerRecord
-//                
-//                if let squadPlayerRecordPageViewController = segue.destination as? SquadPlayerRecordPageViewController {
-//                    //squadPlayerRecordPageViewController.positionDelegate = self
-//                    squadPlayerRecordPageViewController.player = selectedPlayer
-//                    squadPlayerRecordPageViewController.playerRecord = self.playerRecord
-//                }
-//                if let batterViewController = segue.destination as? BatterViewController {
-//                    batterViewController.record = playerRecord
-//                }
-//            }
-//        }
-//    }
-    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
@@ -104,9 +82,26 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             let deleteIndex = indexPath.row
             let deletePlayer = playerArray[deleteIndex]
-            playerArray.remove(at: deleteIndex)
-            PlayerDAO.shared.delete(id: deletePlayer.playerID)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+
+            let title = "\(deletePlayer.name) 선수 삭제"
+            let message = "정말로 지우시겠습니까?"
+            let ac = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: .actionSheet)
+            let deleteAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { (action) -> Void in
+                    self.playerArray.remove(at: deleteIndex)
+                    PlayerDAO.shared.delete(id: deletePlayer.playerID)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(deleteAction)
+            ac.addAction(cancelAction)
+            present(ac, animated: true, completion: nil)
+            
         }
     }
     
@@ -121,7 +116,6 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
             let squadEditPlayerViewController = storyboard?.instantiateViewController(
                 withIdentifier: "SquadEditPlayerViewController") as? SquadEditPlayerViewController
             // Edit
-            //self.navigationController?.pushViewController(squadEditPlayerViewController!, animated: true)
             let selectedPlayer = playerArray[indexPath.row]
             squadEditPlayerViewController?.player = selectedPlayer
             present(squadEditPlayerViewController!, animated: true, completion: nil)

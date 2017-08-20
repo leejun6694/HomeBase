@@ -86,21 +86,20 @@ class PlayerRecordDAO {
                 t.column(hitBatters)
                 t.column(strikeOuts)
                 t.column(ER)
-
-                t.foreignKey(playerID,
-                             references: player, player_reference,
-                             update: .cascade,
-                             delete: .cascade)
+                t.foreignKey(playerID, references: player, player_reference, update: .cascade, delete: .cascade)
+                
                 t.foreignKey(scheduleID,
                              references: teamSchedule, teamSchedule_reference,
                              update: .cascade ,
                              delete: .cascade)
-
             })
+            let _ = try DBManager.shared.db?.prepare("PRAGMA foreign_keys = ON")
+            print("Player Record Table Make")
+            
         } catch {
             print(error)
         }
-    }
+            }
 
     func insert(playerRecordObject: PlayerRecord) {
         do {
@@ -187,6 +186,24 @@ class PlayerRecordDAO {
     
     // 선수의 모든 기록
     func selectOnPlayer(id: Int64) -> PlayerRecord? {
+        do {
+            let count = try DBManager.shared.db?.scalar(playerRecord.select(playerRecordID.count))
+            print("count of playerRecord: \(count ?? 0)")
+        } catch {
+            print("Error: \(error)")
+        }
+        do {
+            let count = try DBManager.shared.db?.scalar(playerRecord.select(playerID.count))
+            print("count of playerRecord: \(count ?? 0)")
+        } catch {
+            print("Error: \(error)")
+        }
+        do {
+            let count = try DBManager.shared.db?.scalar(playerRecord.select(scheduleID.count))
+            print("count of playerRecord: \(count ?? 0)")
+        } catch {
+            print("Error: \(error)")
+        }
         let totalRecord: PlayerRecord = PlayerRecord(playerRecordID: 0, playerID: id, scheduleID: 0)
         
         do {
@@ -232,12 +249,18 @@ class PlayerRecordDAO {
     
         do {
             if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.playerID, self.singleHit.sum, self.doubleHit.sum, self.tripleHit.sum, self.homeRun.sum, self.strikeOut.sum, self.groundBall.sum, self.flyBall.sum).group(self.playerID)) {
+
                 
                 for batting in Array(query) {
+                    print("player id: \(batting[playerID])")
+                
                     let battingHits = Double(batting[singleHit.sum]! + batting[doubleHit.sum]! + batting[tripleHit.sum]! + batting[homeRun.sum]!)
+                    print(battingHits)
                     let battingOuts = Double(batting[strikeOut.sum]! + batting[groundBall.sum]! + batting[flyBall.sum]!)
+                    print(battingOuts)
                     
                     if battingHits != 0.0, battingOuts != 0.0 {
+                        print("둘 다 0이 아니다")
                         playerBattingAverage[batting[playerID]] = battingHits / (battingHits + battingOuts)
                     }
                 }

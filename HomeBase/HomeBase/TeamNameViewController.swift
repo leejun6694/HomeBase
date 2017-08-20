@@ -52,11 +52,9 @@ class TeamNameViewController: UIViewController {
             present(alertController, animated: true, completion: nil)
         }
         else {
-            let teamImageViewController = storyboard?.instantiateViewController(
-                withIdentifier: "TeamImageViewController") as! TeamImageViewController
-            
-            teamImageViewController.teamName = self.nameTextField.text ?? ""
-            self.navigationController?.pushViewController(teamImageViewController, animated: false)
+            let teamImageViewController = TeamImageViewController.storyboardInstance()
+            teamImageViewController?.teamName = self.nameTextField.text ?? ""
+            self.navigationController?.pushViewController(teamImageViewController!, animated: false)
         }
     }
     

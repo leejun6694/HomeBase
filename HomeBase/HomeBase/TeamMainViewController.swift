@@ -22,6 +22,8 @@ class TeamMainViewController: UIViewController {
     
     var teamInfo: TeamInfo?
     var schedule: [TeamSchedule] = [TeamSchedule]()
+    var player: PlayerDAO?
+    
     var playerBattingAverage = [Int64:Double]()
     var playerPitchingAverage = [Int64:Double]()
     
@@ -106,6 +108,7 @@ class TeamMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         teamInfo = TeamInfoDAO.shared.fetch()
         
         fetchImage()
@@ -132,6 +135,7 @@ class TeamMainViewController: UIViewController {
         calculateTeamBattingAverage()
         calculateTeamERA()
         
+        player = PlayerDAO.shared
         playerBattingAverage = PlayerRecordDAO.shared.selectPlayerBatting()
         playerPitchingAverage = PlayerRecordDAO.shared.selectPlayerPitching()
         teamMainTableView.reloadData()
@@ -222,6 +226,7 @@ extension TeamMainViewController: UITableViewDataSource {
                 return scheduleCell
             }
         } else if currentSection == 1 {
+            print(playerBattingAverage)
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TeamRecordTableViewCell
             
             let sortedBattingAverage = playerBattingAverage.sorted(by: { $0.1 > $1.1 })
