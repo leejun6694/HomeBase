@@ -106,7 +106,7 @@ class PlayerDAO {
         return nil
     }
     
-    func findName(findPlayerID: Int64) -> String {
+    func selectName(findPlayerID: Int64) -> String {
         let filter = player.select(name).filter(self.playerID == findPlayerID)
         let result = DBManager.shared.select(filter)
         switch result {

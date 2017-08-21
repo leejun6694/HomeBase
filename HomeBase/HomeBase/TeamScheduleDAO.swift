@@ -128,7 +128,7 @@ class TeamScheduleDAO {
 
     // select
     
-    func findAllColumn() -> [T]? {
+    func selectAllColumn() -> [T]? {
         var teamScheduleArray = [T]()
         let orderdSchedule = teamSchedule.order(matchDate.desc)
         let resultSet = DBManager.shared.select(orderdSchedule)
@@ -151,7 +151,7 @@ class TeamScheduleDAO {
         return nil
     }
     
-    func fetchMatchResult() -> TeamRecord{
+    func selectMatchResult() -> TeamRecord{
         let teamRecord = TeamRecord()
         let filter = teamSchedule.select(self.homeScore, self.awayScore)
         let resultSet = DBManager.shared.select(filter)

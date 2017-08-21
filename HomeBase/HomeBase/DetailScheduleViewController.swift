@@ -8,7 +8,11 @@
 
 import UIKit
 
-class DetailScheduleViewController: UIViewController {
+class DetailScheduleViewController: UIViewController, CustomAlertShowing {
+    
+    var viewController: UIViewController {
+        return self
+    }
     
     // MARK: Properties
     
@@ -22,6 +26,9 @@ class DetailScheduleViewController: UIViewController {
     fileprivate var playerArray = [Player]()
     private let currentDate = Date()
     var scheduleItem: TeamSchedule!
+    
+    var homeScore: Int = -1
+    var awayScore: Int = -1
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -73,8 +80,8 @@ class DetailScheduleViewController: UIViewController {
             beforeDateLabel.text = "경기 시작 \(Int(compareHour * 60))분 전입니다"
         }
         
-        let homeScore = scheduleItem.homeScore
-        let awayScore = scheduleItem.awayScore
+        homeScore = scheduleItem.homeScore
+        awayScore = scheduleItem.awayScore
         
         if homeScore != -1, awayScore != -1 {
             homeScoreButton.setTitle("\(homeScore)", for: .normal)
@@ -100,6 +107,7 @@ class DetailScheduleViewController: UIViewController {
                 
                 TeamScheduleDAO.shared.updateHomeScore(
                     updateScheduleID: self.scheduleItem.scheduleID, Int(homeTextField.text!) ?? -1)
+                self.homeScore = Int(homeTextField.text!) ?? -1
             }
         })
         
@@ -123,6 +131,7 @@ class DetailScheduleViewController: UIViewController {
                 
                 TeamScheduleDAO.shared.updateAwayScore(
                     updateScheduleID: self.scheduleItem.scheduleID, Int(awayTextField.text!) ?? -1)
+                self.awayScore = Int(awayTextField.text!) ?? -1
             }
         })
         
@@ -138,18 +147,22 @@ class DetailScheduleViewController: UIViewController {
     }
     
     @objc fileprivate func playerResultButtonDidTapped(_ sender: UIButton) {
-        let buttonRow = sender.tag
-        
-        let selectPositionViewController = self.storyboard!.instantiateViewController(
-            withIdentifier: "SelectPositionViewController") as! SelectPositionViewController
-        
-        selectPositionViewController.row = buttonRow
-        selectPositionViewController.playerID = self.playerArray[buttonRow].playerID
-        selectPositionViewController.scheduleID = self.scheduleItem.scheduleID
-        
-        selectPositionViewController.modalPresentationStyle = .overCurrentContext
-        
-        present(selectPositionViewController, animated: false, completion: nil)
+        if homeScore == -1 || awayScore == -1 {
+            showAlertOneButton(title: "경고", message: "경기 결과를 먼저 입력하세요")
+        } else {
+            let buttonRow = sender.tag
+            
+            let selectPositionViewController = self.storyboard!.instantiateViewController(
+                withIdentifier: "SelectPositionViewController") as! SelectPositionViewController
+            
+            selectPositionViewController.row = buttonRow
+            selectPositionViewController.playerID = self.playerArray[buttonRow].playerID
+            selectPositionViewController.scheduleID = self.scheduleItem.scheduleID
+            
+            selectPositionViewController.modalPresentationStyle = .overCurrentContext
+            
+            present(selectPositionViewController, animated: false, completion: nil)
+        }
     }
     
     // MARK: Unwind
@@ -180,7 +193,7 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
             action: #selector(playerResultButtonDidTapped(_:)),
             for: .touchUpInside)
         
-        let playerRecordItem = PlayerRecordDAO.shared.fetchPlayerRecordOnSchedule(
+        let playerRecordItem = PlayerRecordDAO.shared.selectPlayerRecordOnSchedule(
             playerID: playerArray[indexPath.row].playerID, scheduleID: scheduleItem.scheduleID)
         
         if playerRecordItem?.playerID != 0 {
