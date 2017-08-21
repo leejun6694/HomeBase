@@ -340,6 +340,7 @@
                                                         <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="희생타">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
                                                     </button>
                                                 </subviews>
                                             </stackView>
