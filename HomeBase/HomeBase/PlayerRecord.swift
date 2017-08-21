@@ -92,7 +92,7 @@ class PlayerRecord: NSObject {
         self.hold = hold
         self.inning = inning
         self.hits = hits
-        self.homeRuns = homeRun
+        self.homeRuns = homeRuns
         self.walks = walks
         self.hitBatters = hitBatters
         self.strikeOuts = strikeOuts

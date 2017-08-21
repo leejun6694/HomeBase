@@ -66,11 +66,10 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
             let updatePlayer = Player(
                 id: player.playerID,
                 name: updatedName,
-                backNumber: Int64(updatedBackNumberString)!,
+                backNumber: Int(updatedBackNumberString)!,
                 position: updatedPosition)
             
-            PlayerDAO.shared.update(playerObject: updatePlayer)
-            
+            PlayerDAO.shared.update(item: updatePlayer)
         }
         
         dismiss(animated: true, completion: nil)

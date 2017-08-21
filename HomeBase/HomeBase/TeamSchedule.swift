@@ -14,10 +14,15 @@ class TeamSchedule: NSObject {
     let matchOpponent: String
     let matchDate: Date
     let matchPlace: String
-    var homeScore: Int64
-    var awayScore: Int64
+    var homeScore: Int
+    var awayScore: Int
     
-    init(scheduleID: Int64 = 0, matchOpponent: String, matchDate: Date, matchPlace: String, homeScore: Int64 = -1, awayScore: Int64 = -1) {
+    init(scheduleID: Int64 = 0,
+         matchOpponent: String,
+         matchDate: Date,
+         matchPlace: String,
+         homeScore: Int = -1,
+         awayScore: Int = -1) {
         self.scheduleID = scheduleID
         self.matchOpponent = matchOpponent
         self.matchDate = matchDate

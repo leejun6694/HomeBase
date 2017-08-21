@@ -36,7 +36,7 @@ class SquadMainViewController: UIViewController, CustomAlertShowing {
         self.automaticallyAdjustsScrollViewInsets = false
         
         let teamInfo = TeamInfoDAO.shared.fetch()
-        self.navigationItem.title = teamInfo.teamName
+        self.navigationItem.title = teamInfo?.teamName
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +92,27 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let deleteIndex = indexPath.row
+            let deletePlayer = playerArray[deleteIndex]
+
+            let title = "\(deletePlayer.name) 선수 삭제"
+            let message = "정말로 지우시겠습니까?"
+            let ac = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { (action) -> Void in
+                    self.playerArray.remove(at: deleteIndex)
+                    PlayerDAO.shared.delete(id: deletePlayer.playerID)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(cancelAction)
+            ac.addAction(deleteAction)
+            present(ac, animated: true, completion: nil)
             
             deleteRow = indexPath.row
             deleteIndexPath = indexPath

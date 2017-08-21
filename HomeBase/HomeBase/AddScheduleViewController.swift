@@ -69,7 +69,7 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
             matchDate: matchTimePicker.date,
             matchPlace: matchPlaceTextField.text!)
         
-        TeamScheduleDAO.shared.insert(insertTeamSchedule: teamSchedule)
+        TeamScheduleDAO.shared.insert(item: teamSchedule)
         
         dismiss(animated: true, completion: nil)
     }
@@ -77,7 +77,7 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
 
 // MARK: Delegate
 
-extension AddScheduleViewController: UITextFieldDelegate {
+extension EditScheduleViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         

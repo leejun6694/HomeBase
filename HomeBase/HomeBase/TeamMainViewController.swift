@@ -125,15 +125,15 @@ class TeamMainViewController: UIViewController {
         
         teamNameLabel.text = teamInfo?.teamName
         
-        schedule = TeamScheduleDAO.shared.findAllColumn()
+        schedule = TeamScheduleDAO.shared.findAllColumn()!
         
         calculateMatchRecords()
         calculateTeamBattingAverage()
         calculateTeamERA()
         
         player = PlayerDAO.shared
-        playerBattingAverage = PlayerRecordDAO.shared.selectPlayerBatting()
-        playerPitchingAverage = PlayerRecordDAO.shared.selectPlayerPitching()
+        playerBattingAverage = PlayerRecordDAO.shared.selectPlayerBatting()!
+        playerPitchingAverage = PlayerRecordDAO.shared.selectPlayerPitching()!
         teamMainTableView.reloadData()
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)

@@ -14,57 +14,57 @@ class TeamInfoDAO {
     
     // MARK: Properties
     
+    private let tableName = "TeamInfo"
+    typealias T = TeamInfo
+    let teamInfo: Table
+
     let teamName = Expression<String>("teamName")
     
-    let teamInfo: Table
-    
     private init() {
-        
-        teamInfo = Table("TeamInfo")
-        
-        do {
-            try DBManager.shared.db?.run(teamInfo.create(ifNotExists: true) {
-                t in
-                
-                t.column(teamName)
-            })
-        } catch {
-            print("Error : \(error)")
+        teamInfo = Table(tableName)
+        let statement = teamInfo.create(ifNotExists: true) { t in
+            t.column(teamName)
+        }
+        let result = DBManager.shared.createTable(statement)
+        switch result {
+        case .ok:
+            print("TeamInfo Table Created")
+        case .error(_): break
         }
     }
     
     // MARK: Functions
     
-    func insert(insertTeamInfo: TeamInfo) {
-        do {
-            try DBManager.shared.db?.run(teamInfo.insert(
-                teamName <- insertTeamInfo.teamName))
-        } catch {
-            print("Insert Error : \(error)")
+    func insert(item: T) {
+        let query = teamInfo.insert(teamName <- item.teamName)
+        let result = DBManager.shared.insert(query)
+        switch result {
+        case .ok(_): break
+        case .error(_): break
         }
-    }
-    
-    func fetch() -> TeamInfo {
-        do {
-            if let query = try DBManager.shared.db?.prepare(teamInfo) {
-                for teamInfos in Array(query) {
-                    let teamInfoItem = TeamInfo(teamName: teamInfos[teamName])
-                    
-                    return teamInfoItem
-                }
-            }
-        } catch {
-            print("Fetch Error : \(error)")
-        }
-        
-        return TeamInfo(teamName: "")
     }
     
     func updateTeamName(updateTeamName: String) {
-        do {
-            try DBManager.shared.db?.run(teamInfo.update(self.teamName <- updateTeamName))
-        } catch {
-            print("Update Error : \(error)")
+        let quary = teamInfo.update(self.teamName <- updateTeamName)
+        let result = DBManager.shared.update(quary)
+        switch result {
+        case .ok(_): break
+        case .error(_): break
         }
     }
+    
+    func fetch() -> T? {
+        let resultSet = DBManager.shared.select(teamInfo)
+        switch resultSet {
+        case let .ok(rows):
+            for teamInfos in Array(rows) {
+                let teamInfoItem = TeamInfo(teamName: teamInfos[teamName])
+                return teamInfoItem
+            }
+        case .error: break
+        }
+        return nil
+    }
+    
+    
 }

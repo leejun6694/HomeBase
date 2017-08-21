@@ -12,6 +12,11 @@ class PlayerRecordDAO {
     
     static let shared = PlayerRecordDAO()
     
+    private let tableName = "PlayerRecord"
+    
+    typealias T = PlayerRecord
+    let playerRecord: Table
+    
     let playerRecordID = Expression<Int64>("playerRecordID")
     let playerID = Expression<Int64>("playerID")
     let scheduleID = Expression<Int64>("scheduleID")
@@ -49,173 +54,163 @@ class PlayerRecordDAO {
     let teamSchedule = TeamScheduleDAO.shared.teamSchedule
     let teamSchedule_reference = TeamScheduleDAO.shared.scheduleID
 
-    let playerRecord: Table
     
+    // create table
     private init() {
-        playerRecord = Table("PlayerRecord")
+        playerRecord = Table(tableName)
         createTable()
     }
-    
+     
     func createTable() {
+        let statement = playerRecord.create(ifNotExists: true) { t in
+            t.column(playerRecordID, primaryKey: .autoincrement)
+            t.column(playerID)
+            t.column(scheduleID)
+            t.column(singleHit)
+            t.column(doubleHit)
+            t.column(tripleHit)
+            t.column(homeRun)
+            t.column(baseOnBalls)
+            t.column(hitByPitch)
+            t.column(strikeOut)
+            t.column(groundBall)
+            t.column(flyBall)
+            t.column(sacrificeHit)
+            t.column(stolenBase)
+            t.column(run)
+            t.column(RBI)
+            t.column(win)
+            t.column(lose)
+            t.column(save)
+            t.column(hold)
+            t.column(inning)
+            t.column(hits)
+            t.column(homeRuns)
+            t.column(walks)
+            t.column(hitBatters)
+            t.column(strikeOuts)
+            t.column(ER)
+            
+            t.foreignKey(playerID,
+                         references: player, player_reference,
+                         update: .cascade,
+                         delete: .cascade)
+            
+            t.foreignKey(scheduleID,
+                         references: teamSchedule, teamSchedule_reference,
+                         update: .cascade ,
+                         delete: .cascade)
+        }
+        let result = DBManager.shared.createTable(statement)
         do {
-            try DBManager.shared.db?.run(playerRecord.create(ifNotExists: true) { t in
-                t.column(playerRecordID, primaryKey: .autoincrement)
-                t.column(playerID)
-                t.column(scheduleID)
-                t.column(singleHit)
-                t.column(doubleHit)
-                t.column(tripleHit)
-                t.column(homeRun)
-                t.column(baseOnBalls)
-                t.column(hitByPitch)
-                t.column(strikeOut)
-                t.column(groundBall)
-                t.column(flyBall)
-                t.column(sacrificeHit)
-                t.column(stolenBase)
-                t.column(run)
-                t.column(RBI)
-                t.column(win)
-                t.column(lose)
-                t.column(save)
-                t.column(hold)
-                t.column(inning)
-                t.column(hits)
-                t.column(homeRuns)
-                t.column(walks)
-                t.column(hitBatters)
-                t.column(strikeOuts)
-                t.column(ER)
-            
-                t.foreignKey(playerID,
-                             references: player, player_reference,
-                             update: .cascade,
-                             delete: .cascade)
-
-                t.foreignKey(scheduleID,
-                             references: teamSchedule, teamSchedule_reference,
-                             update: .cascade ,
-                             delete: .cascade)
-            })
-
             let _ = try DBManager.shared.db?.prepare("PRAGMA foreign_keys = ON")
-            
         } catch {
             print(error)
         }
-            }
-
-    func insert(playerRecordObject: PlayerRecord) {
-        do {
-            try DBManager.shared.db?.run(
-                playerRecord.insert(
-                    playerID <- playerRecordObject.playerID,
-                    scheduleID <- playerRecordObject.scheduleID,
-                    singleHit <- playerRecordObject.singleHit,
-                    doubleHit <- playerRecordObject.doubleHit,
-                    tripleHit <- playerRecordObject.tripleHit,
-                    homeRun <- playerRecordObject.homeRun,
-                    baseOnBalls <- playerRecordObject.baseOnBalls,
-                    hitByPitch <- playerRecordObject.hitByPitch,
-                    strikeOut <- playerRecordObject.strikeOut,
-                    groundBall <- playerRecordObject.groundBall,
-                    flyBall <- playerRecordObject.flyBall,
-                    sacrificeHit <- playerRecordObject.sacrificeHit,
-                    stolenBase <- playerRecordObject.stolenBase,
-                    run <- playerRecordObject.run,
-                    RBI <- playerRecordObject.RBI,
-                    win <- playerRecordObject.win,
-                    lose <- playerRecordObject.lose,
-                    save <- playerRecordObject.save,
-                    hold <- playerRecordObject.hold,
-                    inning <- playerRecordObject.inning,
-                    hits <- playerRecordObject.hits,
-                    homeRuns <- playerRecordObject.homeRuns,
-                    walks <- playerRecordObject.walks,
-                    hitBatters <- playerRecordObject.hitBatters,
-                    strikeOuts <- playerRecordObject.strikeOuts,
-                    ER <- playerRecordObject.ER ))
-
-        } catch {
-            print("Insert Error: \(error)")
+        switch result {
+        case .ok:
+            print("Create Player Record Table")
+        case .error(_): break
         }
     }
     
-    // 스케줄 당 선수들의 기록
-    func selectOnSchedule(id: Int64) -> [PlayerRecord]? {
-        var playerArrayOnSchedule = [PlayerRecord]()
-        
-        do {
-            guard let query = try DBManager.shared.db?.prepare(playerRecord.filter(scheduleID == id)) else {
-                return nil
-            }
-            
-            for record in Array(query) {
-                let recordObject = PlayerRecord(
-                    playerRecordID: record[playerRecordID],
-                    playerID: record[playerID],
-                    scheduleID: record[scheduleID],
-                    singleHit: record[singleHit],
-                    doubleHit: record[doubleHit],
-                    tripleHit: record[tripleHit],
-                    homeRun: record[homeRun],
-                    baseOnBalls: record[baseOnBalls],
-                    hitByPitch: record[hitByPitch],
-                    strikeOut: record[strikeOut],
-                    groundBall: record[groundBall],
-                    flyBall: record[flyBall],
-                    sacrificeHit: record[sacrificeHit],
-                    stolenBase: record[stolenBase],
-                    run: record[run],
-                    RBI: record[RBI],
-                    win: record[win],
-                    lose: record[lose],
-                    save: record[save],
-                    hold: record[hold],
-                    inning: record[inning],
-                    hits: record[hits],
-                    homeRuns: record[homeRuns],
-                    walks: record[walks],
-                    hitBatters: record[hitBatters],
-                    strikeOuts: record[strikeOuts],
-                    ER: record[ER])
-                playerArrayOnSchedule.append(recordObject)
-            }
-        } catch {
-            print(error)
+    // insert
+    
+    func insert(item: T) {
+        let query = playerRecord.insert(
+            playerID <- item.playerID,
+            scheduleID <- item.scheduleID,
+            singleHit <- item.singleHit,
+            doubleHit <- item.doubleHit,
+            tripleHit <- item.tripleHit,
+            homeRun <- item.homeRun,
+            baseOnBalls <- item.baseOnBalls,
+            hitByPitch <- item.hitByPitch,
+            strikeOut <- item.strikeOut,
+            groundBall <- item.groundBall,
+            flyBall <- item.flyBall,
+            sacrificeHit <- item.sacrificeHit,
+            stolenBase <- item.stolenBase,
+            run <- item.run,
+            RBI <- item.RBI,
+            win <- item.win,
+            lose <- item.lose,
+            save <- item.save,
+            hold <- item.hold,
+            inning <- item.inning,
+            hits <- item.hits,
+            homeRuns <- item.homeRuns,
+            walks <- item.walks,
+            hitBatters <- item.hitBatters,
+            strikeOuts <- item.strikeOuts,
+            ER <- item.ER
+        )
+        let result = DBManager.shared.insert(query)
+        switch result {
+        case .ok(_): break
+        case .error(_): break
         }
-        
-        return playerArrayOnSchedule
     }
+    
+    // select    
+    // 스케줄 하나의 선수 기록
+    func fetchPlayerRecordOnSchedule(playerID: Int64, scheduleID: Int64) -> T? {
+        var playerRecordItem = T (playerID: 0, scheduleID: 0)
+        let filter = playerRecord.filter(self.playerID == playerID)
+            .filter(self.scheduleID == scheduleID)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for record in Array(rows) {
+                playerRecordItem = T (
+                    playerRecordID: record[self.playerRecordID],
+                    playerID: record[self.playerID],
+                    scheduleID: record[self.scheduleID],
+                    singleHit: record[self.singleHit],
+                    doubleHit: record[self.doubleHit],
+                    tripleHit: record[self.tripleHit],
+                    homeRun: record[self.homeRun],
+                    baseOnBalls: record[self.baseOnBalls],
+                    strikeOut: record[self.strikeOut],
+                    groundBall: record[self.groundBall],
+                    flyBall: record[self.flyBall],
+                    sacrificeHit: record[self.sacrificeHit],
+                    stolenBase: record[self.stolenBase],
+                    run: record[self.run],
+                    RBI: record[self.RBI],
+                    win: record[self.win],
+                    lose: record[self.lose],
+                    save: record[self.save],
+                    hold: record[self.hold],
+                    inning: record[self.inning],
+                    hits: record[self.hits],
+                    homeRuns: record[self.homeRuns],
+                    walks: record[self.walks],
+                    hitBatters: record[self.hitBatters],
+                    strikeOuts: record[self.strikeOuts],
+                    ER: record[self.ER])
+            }
+            return playerRecordItem
+        case .error: break
+        }
+        return nil
+    }
+
     
     // 선수의 모든 기록
-    func selectOnPlayer(id: Int64) -> PlayerRecord? {
-        do {
-            let count = try DBManager.shared.db?.scalar(playerRecord.select(playerRecordID.count))
-            print("count of playerRecord: \(count ?? 0)")
-        } catch {
-            print("Error: \(error)")
-        }
+    func selectOnPlayer(id: Int64) -> T? {
         do {
             let count = try DBManager.shared.db?.scalar(playerRecord.select(playerID.count))
             print("count of playerRecord: \(count ?? 0)")
         } catch {
             print("Error: \(error)")
         }
-        do {
-            let count = try DBManager.shared.db?.scalar(playerRecord.select(scheduleID.count))
-            print("count of playerRecord: \(count ?? 0)")
-        } catch {
-            print("Error: \(error)")
-        }
-        let totalRecord: PlayerRecord = PlayerRecord(playerRecordID: 0, playerID: id, scheduleID: 0)
-        
-        do {
-            guard let query = try DBManager.shared.db?.prepare(playerRecord.filter(playerID == id)) else {
-                return nil
-            }
-            
-            for record in Array(query) {
+        let totalRecord: T = T (playerRecordID: 0, playerID: id, scheduleID: 0)
+        let selectedPlayer = playerRecord.filter(playerID == id)
+        let resultSet = DBManager.shared.select(selectedPlayer)
+        switch resultSet {
+        case let .ok(rows):
+            for record in Array(rows) {
                 totalRecord.singleHit += record[singleHit]
                 totalRecord.doubleHit += record[doubleHit]
                 totalRecord.tripleHit += record[tripleHit]
@@ -241,205 +236,169 @@ class PlayerRecordDAO {
                 totalRecord.strikeOuts += record[strikeOuts]
                 totalRecord.ER += record[ER]
             }
-        } catch {
-            print(error)
+            return totalRecord
+        case .error: break
         }
-        
-        return totalRecord
+        return nil
     }
     
-    func selectPlayerBatting() -> [Int64:Double] {
+    func selectPlayerBatting() -> [Int64:Double]? {
         var playerBattingAverage = [Int64:Double]()
-    
-        do {
-            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.playerID, self.singleHit.sum, self.doubleHit.sum, self.tripleHit.sum, self.homeRun.sum, self.strikeOut.sum, self.groundBall.sum, self.flyBall.sum).group(self.playerID)) {
-
+        let filter = playerRecord.select(
+            self.playerID,
+            self.singleHit.sum,
+            self.doubleHit.sum,
+            self.tripleHit.sum,
+            self.homeRun.sum,
+            self.strikeOut.sum,
+            self.groundBall.sum,
+            self.flyBall.sum).group(self.playerID)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for batting in Array(rows) {
+                print("player id: \(batting[playerID])")
                 
-                for batting in Array(query) {
-                    print("player id: \(batting[playerID])")
+                let battingHits = Double(
+                    batting[singleHit.sum]!
+                        + batting[doubleHit.sum]!
+                        + batting[tripleHit.sum]!
+                        + batting[homeRun.sum]!)
+                print(battingHits)
                 
-                    let battingHits = Double(batting[singleHit.sum]! + batting[doubleHit.sum]! + batting[tripleHit.sum]! + batting[homeRun.sum]!)
-                    print(battingHits)
-                    let battingOuts = Double(batting[strikeOut.sum]! + batting[groundBall.sum]! + batting[flyBall.sum]!)
-                    print(battingOuts)
-                    
-                    if battingHits != 0.0, battingOuts != 0.0 {
-                        print("둘 다 0이 아니다")
-                        playerBattingAverage[batting[playerID]] = battingHits / (battingHits + battingOuts)
-                    }
+                let battingOuts = Double(
+                    batting[strikeOut.sum]!
+                        + batting[groundBall.sum]!
+                        + batting[flyBall.sum]!)
+                print(battingOuts)
+                
+                if battingHits != 0.0, battingOuts != 0.0 {
+                    print("둘 다 0이 아니다")
+                    playerBattingAverage[batting[playerID]] = battingHits / (battingHits + battingOuts)
                 }
             }
-            
-        } catch {
-            print("Select Error : \(error)")
+            return playerBattingAverage
+        case .error: break
         }
-        
-        return playerBattingAverage
+        return nil
     }
     
-    func selectPlayerPitching() -> [Int64:Double] {
+    func selectPlayerPitching() -> [Int64:Double]? {
         var playerERA = [Int64:Double]()
-        
-        do {
-            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.playerID, self.ER.sum, self.inning.sum).group(self.playerID)) {
-                
-                for pitching in Array(query) {
-                    if pitching[inning.sum] != 0.0 {
-                        let pitchingERA = Double(pitching[ER.sum]!) * 9.0 / Double(pitching[inning.sum]!)
-                        playerERA[pitching[playerID]] = pitchingERA
-                    }
+        let filter = playerRecord.select(
+            self.playerID,
+            self.ER.sum,
+            self.inning.sum).group(self.playerID)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for pitching in Array(rows) {
+                if pitching[inning.sum] != 0.0 {
+                    let pitchingERA = Double(pitching[ER.sum]!) * 9.0 / Double(pitching[inning.sum]!)
+                    playerERA[pitching[playerID]] = pitchingERA
                 }
             }
-        } catch {
-            print("Select Error : \(error)")
+            return playerERA
+        case .error: break
         }
-        
-        return playerERA
+        return nil
     }
     
     func selectHits() -> Double {
         var teamHit: Double = 0.0
-        
-        do {
-            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.singleHit, self.doubleHit, self.tripleHit, self.homeRun)) {
-                
-                for hit in Array(query) {
-                    teamHit += Double(hit[singleHit])
-                    teamHit += Double(hit[doubleHit])
-                    teamHit += Double(hit[tripleHit])
-                    teamHit += Double(hit[homeRun])
-                }
+        let filter = playerRecord.select(
+            self.singleHit,
+            self.doubleHit,
+            self.tripleHit,
+            self.homeRun)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for hit in Array(rows) {
+                teamHit += Double(hit[singleHit])
+                teamHit += Double(hit[doubleHit])
+                teamHit += Double(hit[tripleHit])
+                teamHit += Double(hit[homeRun])
             }
-        } catch {
-            print("Select Error : \(error)")
+        case .error: break
         }
-        
         return teamHit
     }
     
     func selectOuts() -> Double {
         var teamOut: Double = 0.0
-        
-        do {
-            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.strikeOut, self.groundBall, self.flyBall)) {
-                
-                for out in Array(query) {
-                    teamOut += Double(out[strikeOut])
-                    teamOut += Double(out[groundBall])
-                    teamOut += Double(out[flyBall])
-                }
+        let filter = playerRecord.select(self.strikeOut, self.groundBall, self.flyBall)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for out in Array(rows) {
+                teamOut += Double(out[strikeOut])
+                teamOut += Double(out[groundBall])
+                teamOut += Double(out[flyBall])
             }
-        } catch {
-            print("Select Error : \(error)")
+           
+        case .error: break
         }
-        
         return teamOut
     }
     
     func selectER() -> Double {
         var teamER: Double = 0.0
-        
-        do {
-            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.ER)) {
-                for ERItem in Array(query) {
-                    teamER += ERItem[ER]
-                    
-                }
+        let filter = playerRecord.select(self.ER)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for ERItem in Array(rows) {
+                teamER += ERItem[ER]
+                
             }
-        } catch {
-            print("Select Error : \(error)")
+            
+        case .error: break
         }
-        
         return teamER
     }
     
     func selectInning() -> Double {
         var teamInning: Double = 0.0
-        
-        do {
-            if let query = try DBManager.shared.db?.prepare(playerRecord.select(self.inning)) {
-                for ERItem in Array(query) {
-                    teamInning += ERItem[inning]
-                }
+        let filter = playerRecord.select(self.inning)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for ERItem in Array(rows) {
+                teamInning += ERItem[inning]
             }
-        } catch {
-            print("Select Error : \(error)")
+        case .error: break
         }
-        
         return teamInning
     }
     
+    // aggregate
     // 타자 출전 횟수
     func countPlayerBatterRecord(playerID: Int64) -> Int {
-        do {
-            if let recordCount = try DBManager.shared.db?.scalar(
-                playerRecord.filter(self.playerID == playerID).filter(self.inning == 0).count) {
-                
-                return recordCount
-            }
-        } catch {
-            print("Count Error: \(error)")
+        let calculation = playerRecord.filter(self.playerID == playerID)
+            .filter(self.inning == 0)
+            .count
+        let result = DBManager.shared.aggregate(calculation)
+        switch result {
+        case let .ok(value):
+            return value
+        case .error: break
         }
-        
         return 0
     }
     
     // 투수 출전 횟수
     func countPlayerPitcherRecord(playerID: Int64) -> Int {
-        do {
-            if let recordCount = try DBManager.shared.db?.scalar(
-                playerRecord.filter(self.playerID == playerID).filter(self.inning != 0).count) {
-                
-                return recordCount
-            }
-        } catch {
-            print("Count Error: \(error)")
-        }
-        
+        let calculation = playerRecord.filter(self.playerID == playerID)
+            .filter(self.inning != 0)
+            .count
+        let result = DBManager.shared.aggregate(calculation)
+        switch result {
+        case let .ok(value):
+            return value
+        case .error: break
+        }        
         return 0
     }
     
-    // 스케줄 하나의 선수 기록
-    func fetchPlayerRecordOnSchedule(playerID: Int64, scheduleID: Int64) -> PlayerRecord {
-        var playerRecordItem = PlayerRecord(playerID: 0, scheduleID: 0)
-        
-        do {
-            if let query = try DBManager.shared.db?.prepare(
-                playerRecord.filter(self.playerID == playerID).filter(self.scheduleID == scheduleID)) {
-                
-                for record in Array(query) {
-                    playerRecordItem = PlayerRecord(playerRecordID: record[self.playerRecordID],
-                                                    playerID: record[self.playerID],
-                                                    scheduleID: record[self.scheduleID],
-                                                    singleHit: record[self.singleHit],
-                                                    doubleHit: record[self.doubleHit],
-                                                    tripleHit: record[self.tripleHit],
-                                                    homeRun: record[self.homeRun],
-                                                    baseOnBalls: record[self.baseOnBalls],
-                                                    strikeOut: record[self.strikeOut],
-                                                    groundBall: record[self.groundBall],
-                                                    flyBall: record[self.flyBall],
-                                                    sacrificeHit: record[self.sacrificeHit],
-                                                    stolenBase: record[self.stolenBase],
-                                                    run: record[self.run],
-                                                    RBI: record[self.RBI],
-                                                    win: record[self.win],
-                                                    lose: record[self.lose],
-                                                    save: record[self.save],
-                                                    hold: record[self.hold],
-                                                    inning: record[self.inning],
-                                                    hits: record[self.hits],
-                                                    homeRuns: record[self.homeRuns],
-                                                    walks: record[self.walks],
-                                                    hitBatters: record[self.hitBatters],
-                                                    strikeOuts: record[self.strikeOuts],
-                                                    ER: record[self.ER])
-                }
-            }
-        } catch {
-            print("Fetch Error : \(error)")
-        }
-        
-        return playerRecordItem
-    }
 }

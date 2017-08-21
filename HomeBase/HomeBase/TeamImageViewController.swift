@@ -69,7 +69,7 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
     
     private func skipAction(action: UIAlertAction) {
         let teamInfo = TeamInfo(teamName: self.teamName)
-        TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
+        TeamInfoDAO.shared.insert(item: teamInfo)
         
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabbarController = mainStoryBoard.instantiateInitialViewController()
@@ -92,7 +92,7 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
         }
         
         let teamInfo = TeamInfo(teamName: self.teamName)
-        TeamInfoDAO.shared.insert(insertTeamInfo: teamInfo)
+        TeamInfoDAO.shared.insert(item: teamInfo)
         
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabbarController = mainStoryBoard.instantiateInitialViewController()
