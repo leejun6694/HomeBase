@@ -8,7 +8,11 @@
 
 import UIKit
 
-class SquadEditPlayerViewController: UIViewController {
+class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
+    
+    var viewController: UIViewController {
+        return self
+    }
     
     // MARK: Properties
     
@@ -29,13 +33,34 @@ class SquadEditPlayerViewController: UIViewController {
     // MAKR: Actions
     
     @IBAction func clickCancelButton(_ sender: UIBarButtonItem) {
-        
         dismiss(animated: true, completion: nil)
     }
     @IBAction func clickDoneButton(_ sender: UIBarButtonItem) {
+        var overlapNumber: Bool = false
+        
+        let numbers = PlayerDAO.shared.selectAllNumber()
+        for index in 0..<numbers.count {
+            if backNumberTextField.text == "\(numbers[index])" {
+                overlapNumber = true
+                break
+            }
+        }
+        
+        if playerNameTextField.text == "" {
+            showAlertOneButton(title: "경고", message: "선수 이름을 입력하세요")
+        } else if backNumberTextField.text == "" {
+            showAlertOneButton(title: "경고", message: "선수 번호를 입력하세요")
+        } else if overlapNumber == true {
+            showAlertOneButton(title: "경고", message: "팀에 중복되는 번호가 있습니다")
+        } else {
+            showAlertTwoButton(title: "선수 수정", message: "선수 정보를 수정하시겠습니까?", okAction: editPlayer)
+        }
+    }
+    
+    fileprivate func editPlayer(action: UIAlertAction) {
         if let updatedName = playerNameTextField.text,
             let updatedBackNumberString = backNumberTextField.text {
-
+            
             let updatedPosition = kindOfPosition[positionPickerView.selectedRow(inComponent: 0)]
             
             let updatePlayer = Player(
@@ -45,10 +70,11 @@ class SquadEditPlayerViewController: UIViewController {
                 position: updatedPosition)
             
             PlayerDAO.shared.update(item: updatePlayer)
-
         }
+        
         dismiss(animated: true, completion: nil)
     }
+    
     
     // MARK: Override
     
@@ -65,7 +91,6 @@ class SquadEditPlayerViewController: UIViewController {
         backNumberTextField.delegate = self
         for index in 0..<kindOfPosition.count {
             if player.position == "\(kindOfPosition[index])" {
-                print(kindOfPosition[index])
                 positionNumber = index
                 break
             }
@@ -107,12 +132,7 @@ extension SquadEditPlayerViewController: UITextFieldDelegate {
             return true
         }
         else {
-            let alertController = UIAlertController(title: "", message: "선수 번호는 최대 99 입니다",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            
-            present(alertController, animated: true, completion: nil)
+            showAlertOneButton(title: "경고", message: "선수 번호는 최대 99 입니다")
             
             return false
         }

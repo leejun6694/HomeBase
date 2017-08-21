@@ -31,6 +31,7 @@
 		72425F021F3A31340071FA13 /* DetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */; };
 		72425F081F3AEC290071FA13 /* AllScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F071F3AEC290071FA13 /* AllScheduleTableViewCell.swift */; };
 		72425F0A1F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F091F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift */; };
+		72765A4F1F49809800EC9F44 /* CustomAlertShowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72765A4E1F49809800EC9F44 /* CustomAlertShowing.swift */; };
 		728C3F8E1F45691900A4E9DB /* SquadEditPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C3F8D1F45691900A4E9DB /* SquadEditPlayerViewController.swift */; };
 		72D6BBD81F4035D40058B698 /* SelectPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6BBD71F4035D40058B698 /* SelectPositionViewController.swift */; };
 		72D6BBDA1F4046600058B698 /* BatterRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6BBD91F4046600058B698 /* BatterRecordViewController.swift */; };
@@ -103,6 +104,7 @@
 		72425F011F3A31340071FA13 /* DetailScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewController.swift; sourceTree = "<group>"; };
 		72425F071F3AEC290071FA13 /* AllScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		72425F091F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		72765A4E1F49809800EC9F44 /* CustomAlertShowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertShowing.swift; sourceTree = "<group>"; };
 		728C3F8D1F45691900A4E9DB /* SquadEditPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadEditPlayerViewController.swift; sourceTree = "<group>"; };
 		72D6BBD71F4035D40058B698 /* SelectPositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPositionViewController.swift; sourceTree = "<group>"; };
 		72D6BBD91F4046600058B698 /* BatterRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatterRecordViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				722A54271F35C79E00499113 /* AppDelegate.swift */,
+				72765A4E1F49809800EC9F44 /* CustomAlertShowing.swift */,
 				72425E411F398A180071FA13 /* MainTabBarController.swift */,
 				C9A3E4611F3A2A7200F592A0 /* DBManager.swift */,
 				C926BE2E1F3C38B600B7A54B /* Model */,
@@ -543,6 +546,7 @@
 				C98CD8D21F457FF300C09D58 /* HeaderViewCell.swift in Sources */,
 				C926BE301F3C38C500B7A54B /* Player.swift in Sources */,
 				722A550B1F38421B00499113 /* TeamImageViewController.swift in Sources */,
+				72765A4F1F49809800EC9F44 /* CustomAlertShowing.swift in Sources */,
 				C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */,
 				72D6BBD81F4035D40058B698 /* SelectPositionViewController.swift in Sources */,
 				C926BE401F3C3AED00B7A54B /* TeamRecord.swift in Sources */,

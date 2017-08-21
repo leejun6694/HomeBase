@@ -14,5 +14,4 @@ class AllScheduleTableViewCell: UITableViewCell {
     
     @IBOutlet var matchDateLabel: UILabel!
     @IBOutlet var matchOpponentLabel: UILabel!
-    
 }

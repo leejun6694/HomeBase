@@ -14,9 +14,10 @@ class AllScheduleViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet var scheduleTableView: UITableView!
-    var scheduleArray = [TeamSchedule]()
     
-    let dateFormatter: DateFormatter = {
+    fileprivate var scheduleArray = [TeamSchedule]()
+    
+    fileprivate let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
@@ -24,20 +25,13 @@ class AllScheduleViewController: UIViewController {
         return formatter
     }()
     
-    // MARK: Actions
-    
-    @IBAction func clickAddButton(_ sender: UIBarButtonItem) {
-        guard let addScheduleViewController = storyboard?.instantiateViewController(withIdentifier: "AddScheduleViewController") else { return }
-        
-        present(addScheduleViewController, animated: true, completion: nil)
-    }
-    
     // MARK: Override
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         self.automaticallyAdjustsScrollViewInsets = false
+        
         scheduleTableView.delegate = self
         scheduleTableView.dataSource = self
         
@@ -59,6 +53,15 @@ class AllScheduleViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: Actions
+    
+    @IBAction func addButtonDidTapped(_ sender: UIBarButtonItem) {
+        guard let addScheduleViewController = storyboard?.instantiateViewController(
+            withIdentifier: "AddScheduleViewController") else { return }
+        
+        present(addScheduleViewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: TableView Delegate, DataSource
@@ -77,8 +80,8 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AllScheduleTableViewCell",
-                                                 for: indexPath) as! AllScheduleTableViewCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "AllScheduleTableViewCell", for: indexPath) as! AllScheduleTableViewCell
         
         cell.matchDateLabel.text = dateFormatter.string(from: scheduleArray[indexPath.row].matchDate)
         cell.matchOpponentLabel.text = "vs " + scheduleArray[indexPath.row].matchOpponent

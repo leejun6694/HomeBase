@@ -8,7 +8,11 @@
 
 import UIKit
 
-class TeamSettingViewController: UIViewController {
+class TeamSettingViewController: UIViewController, CustomAlertShowing {
+    
+    var viewController: UIViewController {
+        return self
+    }
     
     // MARK: Properties
     
@@ -30,13 +34,7 @@ class TeamSettingViewController: UIViewController {
     // MARK: Functions
     
     fileprivate func changeTeamImage() {
-        let alertController = UIAlertController(title: "팀 이미지 변경",
-                                                message: "변경된 이미지를 적용하려면 Done을 누르세요",
-                                                preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        
-        present(alertController, animated: true, completion: nil)
+        showAlertOneButton(title: "팀 이미지 변경", message: "변경된 이미지를 적용하려면 Done을 누르세요")
     }
     
     fileprivate func changeTeamInfo(action: UIAlertAction) {
@@ -77,29 +75,14 @@ class TeamSettingViewController: UIViewController {
     }
     
     @IBAction func clickDoneButton(_ sender: UIBarButtonItem) {
-        let alertController: UIAlertController
         let countTextField = teamNameTextField.text?.characters.count ?? 0
         
         if countTextField < 2 {
-            alertController = UIAlertController(title: "",
-                                                message: "팀 명은 최소 2글자 입니다",
-                                                preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(okAction)
+            showAlertOneButton(message: "팀 명은 최소 2글자 입니다")
         }
         else {
-            alertController = UIAlertController(title: "팀 정보 수정",
-                                                message: "팀 정보를 수정하시겠습니까?",
-                                                preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: changeTeamInfo)
-            let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
+            showAlertTwoButton(title: "팀 정보 수정", message: "팀 정보를 수정하시겠습니까?", okAction: changeTeamInfo)
         }
-        
-        present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func tapBackgroundView(_ sender: UITapGestureRecognizer) {
@@ -158,12 +141,8 @@ extension TeamSettingViewController: UITextFieldDelegate {
             return true
         }
         else {
-            let alertController = UIAlertController(title: "", message: "팀 명은 최대 10글자 입니다", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            
-            present(alertController, animated: true, completion: nil)
-            
+            showAlertOneButton(message: "팀 명은 최대 10글자 입니다")
+           
             return false
         }
     }

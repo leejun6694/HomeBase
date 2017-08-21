@@ -19,11 +19,11 @@ class DetailScheduleViewController: UIViewController {
     @IBOutlet var awayScoreButton: UIButton!
     @IBOutlet var matchTableView: UITableView!
     
-    var playerArray = [Player]()
+    fileprivate var playerArray = [Player]()
+    private let currentDate = Date()
     var scheduleItem: TeamSchedule!
-    let currentDate = Date()
     
-    let dateFormatter: DateFormatter = {
+    private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .short
@@ -38,12 +38,58 @@ class DetailScheduleViewController: UIViewController {
         return beforeDateLabel
     }()
     
+    // MARK: Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        playerArray = PlayerDAO.shared.selectAll() ?? []
+    
+        navigationItem.title = "vs " + scheduleItem.matchOpponent
+        
+        matchDateLabel.text = dateFormatter.string(from: scheduleItem.matchDate)
+        matchPlaceLabel.text = scheduleItem.matchPlace
+        
+        matchTableView.allowsSelection = false
+        matchTableView.delegate = self
+        matchTableView.dataSource = self
+    
+        let compareDate = scheduleItem.matchDate.timeIntervalSince(currentDate)
+        let compareHour = compareDate / 3600
+        
+        // before match date
+        if compareHour > 0 {
+            resultView.removeFromSuperview()
+            self.view.addSubview(beforeDateLabel)
+            beforeDateLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            beforeDateLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        }
+        
+        if compareHour > 24 {
+            beforeDateLabel.text = "경기 시작 \(Int(compareHour / 24))일 전입니다"
+        } else if compareHour >= 1 {
+            beforeDateLabel.text = "경기 시작 \(Int(compareHour) % 24)시간 전입니다"
+        } else if compareHour > 0 {
+            beforeDateLabel.text = "경기 시작 \(Int(compareHour * 60))분 전입니다"
+        }
+        
+        let homeScore = scheduleItem.homeScore
+        let awayScore = scheduleItem.awayScore
+        
+        if homeScore != -1, awayScore != -1 {
+            homeScoreButton.setTitle("\(homeScore)", for: .normal)
+            awayScoreButton.setTitle("\(awayScore)", for: .normal)
+        }
+    }
+    
+    
     // MARK: Actions
     
-    @IBAction func clickHomeScoreButton(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "홈 팀 점수를 입력하세요",
-                                                message: "",
-                                                preferredStyle: .alert)
+    @IBAction func homeScoreButtonDidTapped(_ sender: UIButton) {
+        let alertController = UIAlertController(
+            title: "홈 팀 점수를 입력하세요",
+            message: "",
+            preferredStyle: .alert)
         
         alertController.addTextField(configurationHandler: configurationTextField(textField:))
         
@@ -63,7 +109,7 @@ class DetailScheduleViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func clickAwayScoreButton(_ sender: UIButton) {
+    @IBAction func awayScoreButtonDidTapped(_ sender: UIButton) {
         let alertController = UIAlertController(title: "원정 팀 점수를 입력하세요",
                                                 message: "",
                                                 preferredStyle: .alert)
@@ -91,8 +137,7 @@ class DetailScheduleViewController: UIViewController {
         textField.keyboardType = .numberPad
     }
     
-    @objc fileprivate func clickPlayerResultButton(_ sender: UIButton) {
-        
+    @objc fileprivate func playerResultButtonDidTapped(_ sender: UIButton) {
         let buttonRow = sender.tag
         
         let selectPositionViewController = self.storyboard!.instantiateViewController(
@@ -103,54 +148,8 @@ class DetailScheduleViewController: UIViewController {
         selectPositionViewController.scheduleID = self.scheduleItem.scheduleID
         
         selectPositionViewController.modalPresentationStyle = .overCurrentContext
+        
         present(selectPositionViewController, animated: false, completion: nil)
-    }
-    
-    // MARK: Override
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        playerArray = PlayerDAO.shared.selectAll() ?? []
-    
-        navigationItem.title = "vs " + scheduleItem.matchOpponent
-        
-        matchDateLabel.text = dateFormatter.string(from: scheduleItem.matchDate)
-        matchPlaceLabel.text = scheduleItem.matchPlace
-        
-        matchTableView.allowsSelection = false
-        matchTableView.delegate = self
-        matchTableView.dataSource = self
-    
-        // 경기 시작 전
-        let compareDate = scheduleItem.matchDate.timeIntervalSince(currentDate)
-        let compareHour = compareDate / 3600
-        
-        if compareHour > 0 {
-            resultView.removeFromSuperview()
-            self.view.addSubview(beforeDateLabel)
-            beforeDateLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-            beforeDateLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        }
-        
-        if compareHour > 24 {
-            beforeDateLabel.text = "경기 시작 \(Int(compareHour / 24))일 전입니다"
-        }
-        else if compareHour >= 1 {
-            beforeDateLabel.text = "경기 시작 \(Int(compareHour) % 24)시간 전입니다"
-        }
-        else if compareHour > 0 {
-            beforeDateLabel.text = "경기 시작 \(Int(compareHour * 60))분 전입니다"
-        }
-        
-        // Score
-        let homeScore = scheduleItem.homeScore
-        let awayScore = scheduleItem.awayScore
-        
-        if homeScore != -1, awayScore != -1 {
-            homeScoreButton.setTitle("\(homeScore)", for: .normal)
-            awayScoreButton.setTitle("\(awayScore)", for: .normal)
-        }
     }
     
     // MARK: Unwind
@@ -176,21 +175,23 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
         cell.playerBackNumber.text = "\(playerArray[indexPath.row].backNumber)"
         cell.playerLabel.text = playerArray[indexPath.row].name
         cell.playerResultButton.tag = indexPath.row
-        cell.playerResultButton.addTarget(self,
-                                          action: #selector(clickPlayerResultButton(_:)),
-                                          for: .touchUpInside)
+        cell.playerResultButton.addTarget(
+            self,
+            action: #selector(playerResultButtonDidTapped(_:)),
+            for: .touchUpInside)
         
         let playerRecordItem = PlayerRecordDAO.shared.fetchPlayerRecordOnSchedule(
             playerID: playerArray[indexPath.row].playerID, scheduleID: scheduleItem.scheduleID)
         
         if playerRecordItem?.playerID != 0 {
             cell.playerResultButton.isEnabled = false
-            cell.playerResultButton.tintColor = .black
+            
             // Batter
             if playerRecordItem?.inning == 0 {
                 let hits = (playerRecordItem?.singleHit)! + (playerRecordItem?.doubleHit)! + (playerRecordItem?.tripleHit)! + (playerRecordItem?.homeRun)!
                 let atBat = hits + (playerRecordItem?.strikeOut)! + (playerRecordItem?.groundBall)! +
                     (playerRecordItem?.flyBall)!
+
                 
                 cell.playerResultButton.setTitle("\(Int(atBat))타수 \(Int(hits))안타", for: .disabled)
             }
@@ -201,10 +202,13 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
                 let pitcherER = Int((playerRecordItem?.ER)!)
                 
                 if inningRemainder == 0 {
-                    cell.playerResultButton.setTitle("\(pitcherInning)이닝 \(pitcherER)자책", for: .disabled)
-                }
-                else {
-                    cell.playerResultButton.setTitle("\(pitcherInning) \(inningRemainder)/3이닝 \(pitcherER)자책", for: .disabled)
+                    cell.playerResultButton.setTitle(
+                        "\(pitcherInning)이닝 \(pitcherER)자책",
+                        for: .disabled)
+                } else {
+                    cell.playerResultButton.setTitle(
+                        "\(pitcherInning) \(inningRemainder)/3이닝 \(pitcherER)자책",
+                        for: .disabled)
                 }
             }
         }
