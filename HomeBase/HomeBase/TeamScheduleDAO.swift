@@ -101,13 +101,6 @@ class TeamScheduleDAO {
     // delete
     
     func delete(id: Int64) {
-        print("Before Delete")
-        do {
-            let count = try DBManager.shared.db?.scalar(teamSchedule.select(scheduleID.count))
-            print("count of player: \(count ?? 0)")
-        } catch {
-            print("Error: \(error)")
-        }
         let selectedSchedule = teamSchedule.filter(scheduleID == id)
         let query = selectedSchedule.delete()
         let result = DBManager.shared.delete(query)
@@ -115,15 +108,6 @@ class TeamScheduleDAO {
         case .ok(_): break
         case .error: break
         }
-        
-        print("After Delete")
-        do {
-            let count = try DBManager.shared.db?.scalar(teamSchedule.select(scheduleID.count))
-            print("count of player: \(count ?? 0)")
-        } catch {
-            print("Error: \(error)")
-        }
-        
     }
 
     // select
