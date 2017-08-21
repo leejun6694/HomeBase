@@ -301,9 +301,6 @@
                                                         <state key="normal" title="1루타">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="singleHitDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="tP4-WG-vDv"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pNL-f3-cqt" userLabel="Double">
                                                         <rect key="frame" x="99.5" y="0.0" width="97" height="87.5"/>
@@ -311,9 +308,6 @@
                                                         <state key="normal" title="2루타">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="doubleHitDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="lJT-eC-tKL"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RtC-AZ-ZKP" userLabel="Triple">
                                                         <rect key="frame" x="198.5" y="0.0" width="97.5" height="87.5"/>
@@ -321,9 +315,6 @@
                                                         <state key="normal" title="3루타">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="tripleHitDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="6Ko-ZE-TE9"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -336,9 +327,6 @@
                                                         <state key="normal" title="홈런">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="homeRunDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="7bY-ai-TC4"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="8iA-dr-ncP" userLabel="BaseOnBalls">
                                                         <rect key="frame" x="99.5" y="0.0" width="97" height="88"/>
@@ -346,19 +334,12 @@
                                                         <state key="normal" title="볼넷">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="baseOnBallsDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="qeD-LV-iVl"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NCV-m1-Hp1" userLabel="SacrificeHit">
                                                         <rect key="frame" x="198.5" y="0.0" width="97.5" height="88"/>
                                                         <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="희생타">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="sacrificeHitDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="R26-Pt-F7g"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -371,9 +352,6 @@
                                                         <state key="normal" title="삼진">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="strikeOutDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="Qyr-p4-VCU"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0oz-Hq-mMq" userLabel="GroundBall">
                                                         <rect key="frame" x="99.5" y="0.0" width="97" height="87.5"/>
@@ -381,9 +359,6 @@
                                                         <state key="normal" title="땅볼">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="groundBallDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="2nw-Ep-3zc"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hql-uW-JUN" userLabel="FlyBall">
                                                         <rect key="frame" x="198.5" y="0.0" width="97.5" height="87.5"/>
@@ -391,9 +366,6 @@
                                                         <state key="normal" title="뜬공">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="flyBallDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="TI9-Xz-5li"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -406,9 +378,6 @@
                                                         <state key="normal" title="도루">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="stolenBaseDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="Fc4-r6-0dc"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="xNZ-fE-ItD" userLabel="HitByPitcher">
                                                         <rect key="frame" x="74.5" y="0.0" width="72.5" height="87.5"/>
@@ -416,9 +385,6 @@
                                                         <state key="normal" title="사구">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="hitByPitchDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="WeZ-N6-Ha0"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="XHC-Fl-v3B" userLabel="Run">
                                                         <rect key="frame" x="149" y="0.0" width="72.5" height="87.5"/>
@@ -426,9 +392,6 @@
                                                         <state key="normal" title="득점">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="runDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="1vf-qM-qxp"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pip-Ko-Wge" userLabel="RBI">
                                                         <rect key="frame" x="223.5" y="0.0" width="72.5" height="87.5"/>
@@ -436,9 +399,6 @@
                                                         <state key="normal" title="타점">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="RBIDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="tJe-9w-Nrk"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -483,6 +443,21 @@
                             <outletCollection property="gestureRecognizers" destination="5wQ-M4-VpW" appends="YES" id="LwG-0C-zCo"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="RBIButton" destination="pip-Ko-Wge" id="RSL-lW-koA"/>
+                        <outlet property="baseOnBallsButton" destination="8iA-dr-ncP" id="fwZ-zg-Ccv"/>
+                        <outlet property="doubleHitButton" destination="pNL-f3-cqt" id="LnW-OV-8XA"/>
+                        <outlet property="flyBallButton" destination="hql-uW-JUN" id="YF6-cZ-cJo"/>
+                        <outlet property="groundBallButton" destination="0oz-Hq-mMq" id="7cc-8t-gKb"/>
+                        <outlet property="hitByPitchButton" destination="xNZ-fE-ItD" id="8bA-Es-pfV"/>
+                        <outlet property="homeRunButton" destination="hqO-8F-YIE" id="hrh-1U-bUf"/>
+                        <outlet property="runButton" destination="XHC-Fl-v3B" id="ApY-FL-aXZ"/>
+                        <outlet property="sacrificeHitButton" destination="NCV-m1-Hp1" id="Kac-GS-5T7"/>
+                        <outlet property="singleHitButton" destination="G3O-8t-gqM" id="hXa-VQ-4Aa"/>
+                        <outlet property="stolenBaseButton" destination="gKU-ub-cwt" id="x85-2m-Fae"/>
+                        <outlet property="strikeOutButton" destination="9XO-0J-faS" id="KQ6-XH-ost"/>
+                        <outlet property="tripleHitButton" destination="RtC-AZ-ZKP" id="lhS-9k-WzV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NFF-Pk-9QV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="49D-VU-pu1" userLabel="Exit" sceneMemberID="exit"/>
@@ -521,9 +496,6 @@
                                                         <state key="normal" title="승리">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="winDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="lh0-cZ-BaK"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bXT-zd-Z4I" userLabel="Lose">
                                                         <rect key="frame" x="75.5" y="0.0" width="73.5" height="117.5"/>
@@ -531,9 +503,6 @@
                                                         <state key="normal" title="패배">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="loseDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="P0v-ra-9cJ"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="AJd-jd-uDs" userLabel="Hold">
                                                         <rect key="frame" x="151" y="0.0" width="73.5" height="117.5"/>
@@ -541,9 +510,6 @@
                                                         <state key="normal" title="홀드">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="holdDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="9ru-FL-rPF"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="So7-go-0dY" userLabel="Save">
                                                         <rect key="frame" x="226.5" y="0.0" width="73.5" height="117.5"/>
@@ -551,9 +517,6 @@
                                                         <state key="normal" title="세이브">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="saveDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="Fg8-CD-1ZA"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -566,9 +529,6 @@
                                                         <state key="normal" title="볼넷">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="walksDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="z3T-br-NBN"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-2B-1Mj" userLabel="HitBatters">
                                                         <rect key="frame" x="75.5" y="0.0" width="73.5" height="117.5"/>
@@ -576,9 +536,6 @@
                                                         <state key="normal" title="사구">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="hitBattersDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="oIr-kC-pdD"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VWd-8B-0g6" userLabel="Hits">
                                                         <rect key="frame" x="151" y="0.0" width="73.5" height="117.5"/>
@@ -586,9 +543,6 @@
                                                         <state key="normal" title="피안타">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="hitsDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="Vzb-E0-NwR"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HKC-LQ-7oe" userLabel="HomeRuns">
                                                         <rect key="frame" x="226.5" y="0.0" width="73.5" height="117.5"/>
@@ -596,9 +550,6 @@
                                                         <state key="normal" title="피홈런">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="homeRunsDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="x1w-QA-bVt"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -611,9 +562,6 @@
                                                         <state key="normal" title="이닝">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="inningDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="7vf-bc-ydd"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="2g6-S7-Mdq" userLabel="StrikeOuts">
                                                         <rect key="frame" x="100.5" y="0.0" width="99" height="117.5"/>
@@ -621,9 +569,6 @@
                                                         <state key="normal" title="탈삼진">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="strikeOutsDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="QEZ-uT-l2e"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="DSy-Io-fVH" userLabel="Er">
                                                         <rect key="frame" x="201.5" y="0.0" width="98.5" height="117.5"/>
@@ -631,9 +576,6 @@
                                                         <state key="normal" title="자책점">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="ERDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="Gww-kQ-hqm"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -679,9 +621,20 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="ERButton" destination="DSy-Io-fVH" id="b3B-Uj-TrU"/>
+                        <outlet property="hitBattersButton" destination="Feg-2B-1Mj" id="W2e-cC-Gdj"/>
+                        <outlet property="hitsButton" destination="VWd-8B-0g6" id="UeV-mI-dSG"/>
+                        <outlet property="holdButton" destination="AJd-jd-uDs" id="t9o-eX-Lk8"/>
+                        <outlet property="homeRunsButton" destination="HKC-LQ-7oe" id="0UD-Hc-WLq"/>
+                        <outlet property="inningButton" destination="ZME-WO-36f" id="dse-cy-dmX"/>
+                        <outlet property="loseButton" destination="bXT-zd-Z4I" id="xwx-3h-xHl"/>
                         <outlet property="pitcherStackView" destination="eEE-T3-g58" id="kJe-q0-Ogg"/>
                         <outlet property="pitcherView" destination="x95-gx-1Lo" id="KGn-AU-EfH"/>
+                        <outlet property="saveButton" destination="So7-go-0dY" id="hKI-ym-oLn"/>
+                        <outlet property="strikeOutsButton" destination="2g6-S7-Mdq" id="5eO-b5-kya"/>
                         <outlet property="tapGestureRecognizer" destination="WdN-PE-xrZ" id="f5S-jW-TnI"/>
+                        <outlet property="walksButton" destination="SjZ-sa-7Tc" id="12l-nb-RvR"/>
+                        <outlet property="winButton" destination="q1Y-lv-rhm" id="vfi-Sl-ELv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WdT-9b-ink" userLabel="First Responder" sceneMemberID="firstResponder"/>
