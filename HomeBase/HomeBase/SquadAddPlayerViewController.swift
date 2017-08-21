@@ -8,7 +8,11 @@
 
 import UIKit
 
-class SquadAddPlayerViewController: UIViewController {
+class SquadAddPlayerViewController: UIViewController, CustomAlertShowing {
+    
+    var viewController: UIViewController {
+        return self
+    }
     
     // MARK: Properties
     
@@ -30,7 +34,6 @@ class SquadAddPlayerViewController: UIViewController {
     }
     
     @IBAction func doneButtonDidTap(_ sender: UIBarButtonItem) {
-        var alertController: UIAlertController
         var overlapNumber: Bool = false
         
         let numbers = PlayerDAO.shared.selectAllNumber()
@@ -42,44 +45,17 @@ class SquadAddPlayerViewController: UIViewController {
         }
         
         if playerNameTextField.text == "" {
-            alertController = UIAlertController(title: "경고",
-                                                message: "선수 이름을 입력하세요",
-                                                preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(okAction)
+            showAlertOneButton(title: "경고", message: "선수 이름을 입력하세요")
+        } else if backNumberTextField.text == "" {
+            showAlertOneButton(title: "경고", message: "선수 번호를 입력하세요")
+        } else if overlapNumber == true {
+            showAlertOneButton(title: "경고", message: "팀에 중복되는 번호가 있습니다")
+        } else {
+            showAlertTwoButton(title: "선수 추가", message: "선수를 추가하시겠습니까?", okAction: addPlayer)
         }
-        else if backNumberTextField.text == "" {
-            alertController = UIAlertController(title: "경고",
-                                                message: "선수 번호를 입력하세요",
-                                                preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(okAction)
-        }
-        else if overlapNumber == true {
-            alertController = UIAlertController(title: "경고",
-                                                message: "중복되는 선수 번호입니다",
-                                                preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(okAction)
-        }
-        else {
-            alertController = UIAlertController(title: "선수 추가",
-                                                message: "선수를 추가하시겠습니까?",
-                                                preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: addPlayer)
-            let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
-        }
-        
-        present(alertController, animated: true, completion: nil)
     }
     
-    @objc fileprivate func addPlayer(action: UIAlertAction) {
+    fileprivate func addPlayer(action: UIAlertAction) {
         let name = playerNameTextField.text!
         let backNumber = Int64(backNumberTextField.text!)!
         
@@ -130,15 +106,9 @@ extension SquadAddPlayerViewController: UITextFieldDelegate {
         
         if replacementCount <= 2 {
             return true
-        }
-        else {
-            let alertController = UIAlertController(title: "", message: "선수 번호는 최대 99 입니다",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            
-            present(alertController, animated: true, completion: nil)
-            
+        } else {
+            showAlertOneButton(title: "경고", message: "선수 번호는 최대 99입니다")
+    
             return false
         }
     }

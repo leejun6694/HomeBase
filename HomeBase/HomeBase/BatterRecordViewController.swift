@@ -51,7 +51,6 @@ class BatterRecordViewController: UIViewController {
     var playerID: Int64!
     var scheduleID: Int64!
 
-    
     // MARK: Override
     
     override func viewDidLoad() {
@@ -99,7 +98,6 @@ class BatterRecordViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindBatterToDetail" {
-            print("batter record player id = \(self.playerID)")
             let playerRecord = PlayerRecord(playerID: self.playerID,
                                             scheduleID: self.scheduleID,
                                             singleHit: self.batterRecords[0],
@@ -121,14 +119,13 @@ class BatterRecordViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
-        dismiss(animated: false, completion: nil)
-    }
-    
     @objc private func batterRecordButtonDidTapped(_ sender: UIButton) {
         self.batterRecords[sender.tag] += 1.0
-        print(batterRecords[sender.tag])
         sender.setTitle("\(batterRecordTexts[sender.tag])\n\(Int(batterRecords[sender.tag]))", for: .normal)
         sender.titleLabel?.textAlignment = .center
+    }
+  
+    @IBAction func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
     }
 }

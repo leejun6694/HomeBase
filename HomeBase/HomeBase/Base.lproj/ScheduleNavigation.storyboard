@@ -77,9 +77,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="전체 경기 일정" id="dUi-qu-vLC">
-                        <barButtonItem key="rightBarButtonItem" image="addSchedule" id="3ys-qb-efN">
+                        <barButtonItem key="rightBarButtonItem" image="addSchedule" id="3ys-qb-efN" userLabel="AddScheduleButton">
                             <connections>
-                                <action selector="clickAddButton:" destination="eyd-EV-JaM" id="Zb4-eF-Ll8"/>
+                                <action selector="addButtonDidTapped:" destination="eyd-EV-JaM" id="6mM-NV-6EO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -161,7 +161,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Home"/>
                                         <connections>
-                                            <action selector="clickHomeScoreButton:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="a11-bq-ex6"/>
+                                            <action selector="homeScoreButtonDidTapped:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="Qyo-S2-whd"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCf-TZ-GI5">
@@ -169,7 +169,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Away"/>
                                         <connections>
-                                            <action selector="clickAwayScoreButton:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="kcw-Df-QZE"/>
+                                            <action selector="awayScoreButtonDidTapped:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="5M8-qD-tqH"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOW-zi-HPV">
@@ -340,7 +340,6 @@
                                                         <color key="backgroundColor" red="0.86502617390000003" green="0.85530348239999998" blue="0.85843082810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="희생타">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -464,7 +463,7 @@
                 <exit id="49D-VU-pu1" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="5wQ-M4-VpW">
                     <connections>
-                        <action selector="clickBackgroundView:" destination="Hn1-8C-QLl" id="qKD-he-ojK"/>
+                        <action selector="backgroundViewDidTapped:" destination="Hn1-8C-QLl" id="Ijt-T2-Z4f"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -642,7 +641,7 @@
                 <exit id="rQv-fz-qau" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="WdN-PE-xrZ">
                     <connections>
-                        <action selector="clickBackgroundView:" destination="aW9-RQ-Zmm" id="bSG-w6-Op4"/>
+                        <action selector="backgroundViewDidTapped:" destination="aW9-RQ-Zmm" id="tsn-lG-k26"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -671,7 +670,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="clickBatterButton:" destination="MKn-ji-cZu" eventType="touchUpInside" id="I6j-zx-97Z"/>
+                                            <action selector="batterButtonDidTapped:" destination="MKn-ji-cZu" eventType="touchUpInside" id="XwY-HU-sGK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90F-cA-ank">
@@ -682,7 +681,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="clickPitcherButton:" destination="MKn-ji-cZu" eventType="touchUpInside" id="Na8-g6-IS7"/>
+                                            <action selector="pitcherButtonDidTapped:" destination="MKn-ji-cZu" eventType="touchUpInside" id="kPe-Je-bzw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -727,7 +726,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="AddScheduleViewController" storyboardName="AddScheduleViewController" referencedIdentifier="AddScheduleViewController" id="bJp-LK-x67" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hA4-i3-WN7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="-562"/>
+            <point key="canvasLocation" x="1103" y="-309"/>
         </scene>
     </scenes>
     <resources>

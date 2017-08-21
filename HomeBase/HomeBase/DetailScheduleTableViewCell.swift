@@ -15,4 +15,5 @@ class DetailScheduleTableViewCell: UITableViewCell {
     @IBOutlet var playerBackNumber: UILabel!
     @IBOutlet var playerLabel: UILabel!
     @IBOutlet var playerResultButton: UIButton!
+    
 }

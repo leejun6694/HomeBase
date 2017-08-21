@@ -119,11 +119,7 @@ class PitcherRecordViewController: UIViewController {
     }
     
     // MARK: Actions
-    
-    @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
-        dismiss(animated: false, completion: nil)
-    }
-    
+
     @objc private func pitcherRecordButtonDidTapped(_ sender: UIButton) {
         if sender.tag == 8 {
             self.inningRemainder += 1.0
@@ -151,8 +147,12 @@ class PitcherRecordViewController: UIViewController {
             pitcherStackView.alpha = 0.5
             pitcherStackView.isUserInteractionEnabled = false
         }
-        
+      
         sender.titleLabel?.textAlignment = .center
+    }
+  
+    @IBAction func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
     }
 }
 

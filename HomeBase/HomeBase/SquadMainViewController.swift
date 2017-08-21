@@ -8,12 +8,20 @@
 
 import UIKit
 
-class SquadMainViewController: UIViewController {
+class SquadMainViewController: UIViewController, CustomAlertShowing {
+    
+    var viewController: UIViewController {
+        return self
+    }
     
     // MARK: Properties
     
     var playerArray = [Player]()
     var playerRecord: PlayerRecord!
+    
+    var deleteRow: Int = 0
+    var deleteIndexPath: IndexPath = IndexPath()
+    var deletePlayer: Player = Player(name: "", backNumber: 0, position: "")
     
     @IBOutlet var tableView: UITableView!
     
@@ -84,29 +92,22 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let deleteIndex = indexPath.row
-            let deletePlayer = playerArray[deleteIndex]
-
-            let title = "\(deletePlayer.name) 선수 삭제"
-            let message = "정말로 지우시겠습니까?"
-            let ac = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: .actionSheet)
-            let deleteAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            let cancelAction = UIAlertAction(
-                title: "Delete",
-                style: .destructive,
-                handler: { (action) -> Void in
-                    self.playerArray.remove(at: deleteIndex)
-                    PlayerDAO.shared.delete(id: deletePlayer.playerID)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            ac.addAction(deleteAction)
-            ac.addAction(cancelAction)
-            present(ac, animated: true, completion: nil)
             
+            deleteRow = indexPath.row
+            deleteIndexPath = indexPath
+            deletePlayer = playerArray[deleteRow]
+            
+            showAlertTwoButton(
+                title: "\(deletePlayer.name)",
+                message: "선수 정보를 삭제하시겠습니까?",
+                okAction: deletePlayer)
         }
+    }
+    
+    func deletePlayer(action: UIAlertAction) {
+        self.playerArray.remove(at: deleteRow)
+        PlayerDAO.shared.delete(id: deletePlayer.playerID)
+        tableView.deleteRows(at: [deleteIndexPath], with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -114,7 +115,6 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt")
         let currentRow = indexPath.row
         if tableView.isEditing {
             let squadEditPlayerViewController = storyboard?.instantiateViewController(
