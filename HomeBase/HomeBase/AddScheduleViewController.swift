@@ -59,7 +59,12 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
             showAlertOneButton(title: "경고", message: "경기 장소를 입력하세요")
         }
         else {
-            showAlertTwoButton(title: "일정 추가", message: "경기를 추가하시겠습니까?", confirmAction: addSchedule)
+            showAlertTwoButton(
+                title: "일정 추가",
+                message: "경기를 추가하시겠습니까?",
+                cancelActionTitle: "취소",
+                confirmActionTitle: "확인",
+                confirmAction: addSchedule)
         }
     }
     

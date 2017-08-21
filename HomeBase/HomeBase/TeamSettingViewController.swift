@@ -65,8 +65,8 @@ class TeamSettingViewController: UIViewController, CustomAlertShowing {
     @IBAction func clickChangeImageButton(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
-        
         imagePickerController.delegate = self
+        
         present(imagePickerController, animated: true, completion: nil)
     }
     
@@ -81,7 +81,12 @@ class TeamSettingViewController: UIViewController, CustomAlertShowing {
             showAlertOneButton(message: "팀 명은 최소 2글자 입니다")
         }
         else {
-            showAlertTwoButton(title: "팀 정보 수정", message: "팀 정보를 수정하시겠습니까?", confirmAction: changeTeamInfo)
+            showAlertTwoButton(
+                title: "팀 정보 수정",
+                message: "팀 정보를 수정하시겠습니까?",
+                cancelActionTitle: "취소",
+                confirmActionTitle: "확인",
+                confirmAction: changeTeamInfo)
         }
     }
     

@@ -107,8 +107,8 @@ class BatterRecordViewController: UIViewController {
                                             baseOnBalls: self.batterRecords[4],
                                             strikeOut: self.batterRecords[5],
                                             groundBall: self.batterRecords[6],
-                                            flyBall: self.batterRecords[7],
-                                            sacrificeHit: self.batterRecords[8],
+                                            flyBall: self.batterRecords[8],
+                                            sacrificeHit: self.batterRecords[5],
                                             stolenBase: self.batterRecords[9],
                                             run: self.batterRecords[10],
                                             RBI: self.batterRecords[11])

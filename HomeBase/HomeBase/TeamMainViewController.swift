@@ -227,7 +227,6 @@ extension TeamMainViewController: UITableViewDataSource {
                 return scheduleCell
             }
         } else if currentSection == 1 {
-            print(playerBattingAverage)
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TeamRecordTableViewCell
             
             let sortedBattingAverage = playerBattingAverage.sorted(by: { $0.1 > $1.1 })
