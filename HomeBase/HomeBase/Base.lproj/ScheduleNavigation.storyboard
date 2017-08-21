@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iqt-va-nDu" id="9i8-8H-6hD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4t-hV-7nR">
@@ -77,9 +77,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="전체 경기 일정" id="dUi-qu-vLC">
-                        <barButtonItem key="rightBarButtonItem" image="addSchedule" id="3ys-qb-efN">
+                        <barButtonItem key="rightBarButtonItem" image="addSchedule" id="3ys-qb-efN" userLabel="AddScheduleButton">
                             <connections>
-                                <action selector="clickAddButton:" destination="eyd-EV-JaM" id="Zb4-eF-Ll8"/>
+                                <action selector="addButtonDidTapped:" destination="eyd-EV-JaM" id="6mM-NV-6EO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -104,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHw-gr-l1U">
-                                <rect key="frame" x="16" y="94" width="343" height="30"/>
+                                <rect key="frame" x="16" y="50" width="343" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경기 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fR-vo-7vZ">
                                         <rect key="frame" x="5" y="5" width="63.5" height="21"/>
@@ -129,7 +129,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypR-PE-Ivh">
-                                <rect key="frame" x="16" y="129" width="343" height="30"/>
+                                <rect key="frame" x="16" y="85" width="343" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경기 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRq-nJ-WfE">
                                         <rect key="frame" x="5" y="5" width="63.5" height="21"/>
@@ -154,14 +154,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBw-ZG-eC5">
-                                <rect key="frame" x="16" y="189" width="343" height="478"/>
+                                <rect key="frame" x="16" y="145" width="343" height="522"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyc-Tb-jsn">
                                         <rect key="frame" x="0.0" y="0.0" width="166.5" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Home"/>
                                         <connections>
-                                            <action selector="clickHomeScoreButton:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="a11-bq-ex6"/>
+                                            <action selector="homeScoreButtonDidTapped:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="Qyo-S2-whd"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCf-TZ-GI5">
@@ -169,7 +169,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Away"/>
                                         <connections>
-                                            <action selector="clickAwayScoreButton:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="kcw-Df-QZE"/>
+                                            <action selector="awayScoreButtonDidTapped:" destination="grA-Ev-Ijz" eventType="touchUpInside" id="5M8-qD-tqH"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOW-zi-HPV">
@@ -179,14 +179,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sr3-eJ-fCG">
-                                        <rect key="frame" x="0.0" y="46" width="343" height="432"/>
+                                        <rect key="frame" x="0.0" y="46" width="343" height="476"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailScheduleTableViewCell" id="UJX-tW-r2J" customClass="DetailScheduleTableViewCell" customModule="HomeBase" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJX-tW-r2J" id="3bT-EU-3tC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEF-AC-JFl">
@@ -302,7 +302,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickSingleHit:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="xkV-4b-zS5"/>
+                                                            <action selector="singleHitDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="tP4-WG-vDv"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pNL-f3-cqt" userLabel="Double">
@@ -312,7 +312,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickDoubleHit:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="fMK-ma-Zzh"/>
+                                                            <action selector="doubleHitDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="lJT-eC-tKL"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RtC-AZ-ZKP" userLabel="Triple">
@@ -322,7 +322,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickTripleHit:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="FLA-xG-MI4"/>
+                                                            <action selector="tripleHitDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="6Ko-ZE-TE9"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -337,7 +337,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickHomeRun:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="83x-NJ-q2R"/>
+                                                            <action selector="homeRunDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="7bY-ai-TC4"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="8iA-dr-ncP" userLabel="BaseOnBalls">
@@ -347,7 +347,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickBaseOnBalls:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="hIT-D1-Goz"/>
+                                                            <action selector="baseOnBallsDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="qeD-LV-iVl"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NCV-m1-Hp1" userLabel="SacrificeHit">
@@ -357,7 +357,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickSacrificeHit:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="w78-Nz-qEf"/>
+                                                            <action selector="sacrificeHitDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="R26-Pt-F7g"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -372,7 +372,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickStrikeOut:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="9yV-0c-bn0"/>
+                                                            <action selector="strikeOutDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="Qyr-p4-VCU"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0oz-Hq-mMq" userLabel="GroundBall">
@@ -382,7 +382,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickGroundBall:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="itV-EN-nTG"/>
+                                                            <action selector="groundBallDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="2nw-Ep-3zc"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hql-uW-JUN" userLabel="FlyBall">
@@ -392,7 +392,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickFlyBall:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="IFj-qA-kqV"/>
+                                                            <action selector="flyBallDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="TI9-Xz-5li"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -407,7 +407,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickStolenBase:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="aVJ-lB-lmM"/>
+                                                            <action selector="stolenBaseDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="Fc4-r6-0dc"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="xNZ-fE-ItD" userLabel="HitByPitcher">
@@ -417,7 +417,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickHitByPitch:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="cbK-oo-jLU"/>
+                                                            <action selector="hitByPitchDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="WeZ-N6-Ha0"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="XHC-Fl-v3B" userLabel="Run">
@@ -427,7 +427,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickRun:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="qSp-iD-7RB"/>
+                                                            <action selector="runDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="1vf-qM-qxp"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pip-Ko-Wge" userLabel="RBI">
@@ -437,7 +437,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickRBI:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="lRM-V6-rVi"/>
+                                                            <action selector="RBIDidTapped:" destination="Hn1-8C-QLl" eventType="touchUpInside" id="tJe-9w-Nrk"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -488,7 +488,7 @@
                 <exit id="49D-VU-pu1" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="5wQ-M4-VpW">
                     <connections>
-                        <action selector="clickBackgroundView:" destination="Hn1-8C-QLl" id="qKD-he-ojK"/>
+                        <action selector="backgroundViewDidTapped:" destination="Hn1-8C-QLl" id="Ijt-T2-Z4f"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -522,7 +522,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickWin:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="FjG-PQ-XX1"/>
+                                                            <action selector="winDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="lh0-cZ-BaK"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bXT-zd-Z4I" userLabel="Lose">
@@ -532,7 +532,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickLose:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="0Lv-3E-UUY"/>
+                                                            <action selector="loseDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="P0v-ra-9cJ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="AJd-jd-uDs" userLabel="Hold">
@@ -542,7 +542,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickHold:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="dy5-lr-xYa"/>
+                                                            <action selector="holdDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="9ru-FL-rPF"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="So7-go-0dY" userLabel="Save">
@@ -552,7 +552,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickSave:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="EWs-gN-vnb"/>
+                                                            <action selector="saveDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="Fg8-CD-1ZA"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -567,7 +567,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickWalks:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="rTh-iQ-3M2"/>
+                                                            <action selector="walksDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="z3T-br-NBN"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-2B-1Mj" userLabel="HitBatters">
@@ -577,7 +577,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickHitBatters:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="ibA-9K-QhF"/>
+                                                            <action selector="hitBattersDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="oIr-kC-pdD"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VWd-8B-0g6" userLabel="Hits">
@@ -587,7 +587,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickHits:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="ObQ-IM-tYV"/>
+                                                            <action selector="hitsDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="Vzb-E0-NwR"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HKC-LQ-7oe" userLabel="HomeRuns">
@@ -597,7 +597,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickHomeRuns:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="pqS-wM-W7c"/>
+                                                            <action selector="homeRunsDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="x1w-QA-bVt"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -612,7 +612,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickInning:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="pMF-yA-7Bg"/>
+                                                            <action selector="inningDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="7vf-bc-ydd"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="2g6-S7-Mdq" userLabel="StrikeOuts">
@@ -622,7 +622,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickStrikeOuts:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="j0Q-AV-xO2"/>
+                                                            <action selector="strikeOutsDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="QEZ-uT-l2e"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="DSy-Io-fVH" userLabel="Er">
@@ -632,7 +632,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickER:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="JGW-SM-Zty"/>
+                                                            <action selector="ERDidTapped:" destination="aW9-RQ-Zmm" eventType="touchUpInside" id="Gww-kQ-hqm"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -688,7 +688,7 @@
                 <exit id="rQv-fz-qau" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="WdN-PE-xrZ">
                     <connections>
-                        <action selector="clickBackgroundView:" destination="aW9-RQ-Zmm" id="bSG-w6-Op4"/>
+                        <action selector="backgroundViewDidTapped:" destination="aW9-RQ-Zmm" id="tsn-lG-k26"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -717,7 +717,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="clickBatterButton:" destination="MKn-ji-cZu" eventType="touchUpInside" id="I6j-zx-97Z"/>
+                                            <action selector="batterButtonDidTapped:" destination="MKn-ji-cZu" eventType="touchUpInside" id="XwY-HU-sGK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90F-cA-ank">
@@ -728,7 +728,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="clickPitcherButton:" destination="MKn-ji-cZu" eventType="touchUpInside" id="Na8-g6-IS7"/>
+                                            <action selector="pitcherButtonDidTapped:" destination="MKn-ji-cZu" eventType="touchUpInside" id="kPe-Je-bzw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -773,7 +773,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="AddScheduleViewController" storyboardName="AddScheduleViewController" referencedIdentifier="AddScheduleViewController" id="bJp-LK-x67" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hA4-i3-WN7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="-562"/>
+            <point key="canvasLocation" x="1103" y="-309"/>
         </scene>
     </scenes>
     <resources>

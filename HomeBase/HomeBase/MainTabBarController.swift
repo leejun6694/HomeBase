@@ -10,17 +10,4 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.perform(#selector(self.checkTeamInfoAndPresent))
-//    }
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//    }
-//    
-//    
-//    func checkTeamInfoAndPresent() {
-//    }
 }

@@ -27,13 +27,13 @@
                                 <items>
                                     <barButtonItem systemItem="cancel" id="ahh-4W-C41">
                                         <connections>
-                                            <action selector="clickCancelButton:" destination="H6a-ZK-rUB" id="mcv-Qm-ylW"/>
+                                            <action selector="cancelButtonDidTapped:" destination="H6a-ZK-rUB" id="efE-hY-wjF"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="WTc-vM-TV0"/>
                                     <barButtonItem systemItem="done" id="BKq-cc-h0S">
                                         <connections>
-                                            <action selector="clickDoneButton:" destination="H6a-ZK-rUB" id="Oz2-dF-kqV"/>
+                                            <action selector="doneButtonDidTapped:" destination="H6a-ZK-rUB" id="1Un-9f-vWO"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -80,7 +80,7 @@
                                     <!--2017-08-08 16:01:13 +0000-->
                                 </date>
                                 <connections>
-                                    <action selector="changeMatchTimePicker:" destination="H6a-ZK-rUB" eventType="valueChanged" id="eWT-Vn-hDJ"/>
+                                    <action selector="matchTimePickerDidChanged:" destination="H6a-ZK-rUB" eventType="valueChanged" id="baw-MX-JgO"/>
                                 </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTM-iK-wlz">
