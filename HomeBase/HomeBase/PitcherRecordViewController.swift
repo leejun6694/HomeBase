@@ -12,32 +12,45 @@ class PitcherRecordViewController: UIViewController {
    
     // MARK: Properties
     
+    @IBOutlet fileprivate var pitcherView: UIView!
+    @IBOutlet private var tapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet private var pitcherStackView: UIStackView!
+    
+    @IBOutlet private var winButton: UIButton!
+    @IBOutlet private var loseButton: UIButton!
+    @IBOutlet private var holdButton: UIButton!
+    @IBOutlet private var saveButton: UIButton!
+    @IBOutlet private var walksButton: UIButton!
+    @IBOutlet private var hitBattersButton: UIButton!
+    @IBOutlet private var hitsButton: UIButton!
+    @IBOutlet private var homeRunsButton: UIButton!
+    @IBOutlet private var inningButton: UIButton!
+    @IBOutlet private var strikeOutsButton: UIButton!
+    @IBOutlet private var ERButton: UIButton!
+    
+    private var win: Double = 0.0
+    private var lose: Double = 0.0
+    private var hold: Double = 0.0
+    private var save: Double = 0.0
+    private var walks: Double = 0.0
+    private var hitBatters: Double = 0.0
+    private var hits: Double = 0.0
+    private var homeRuns: Double = 0.0
+    private var inning: Double = 0.0
+    private var strikeOuts: Double = 0.0
+    private var ER: Double = 0.0
+    
+    private var inningRemainder: Double = 0.0
+    
+    private var pitcherButtons = [UIButton]()
+    private var pitcherRecords = [Double]()
+    private var pitcherRecordTexts = ["승리", "패배", "홀드", "세이브",
+                                      "볼넷", "사구", "피안타", "피홈런",
+                                      "이닝", "탈삼진", "자책점"]
+    
     var row: Int!
     var playerID: Int64!
     var scheduleID: Int64!
-    
-    var win: Double = 0.0
-    var lose: Double = 0.0
-    var hold: Double = 0.0
-    var save: Double = 0.0
-    var inning: Double = 0.0
-    var inningRemainder: Double = 0.0
-    var hits: Double = 0.0
-    var homeRuns: Double = 0.0
-    var walks: Double = 0.0
-    var hitBatters: Double = 0.0
-    var strikeOuts: Double = 0.0
-    var ER: Double = 0.0
-    
-    @IBOutlet var pitcherView: UIView!
-    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
-    @IBOutlet var pitcherStackView: UIStackView!
-    
-    // MARK: Actions
-    
-    @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
-        dismiss(animated: false, completion: nil)
-    }
     
     // MARK: Override
     
@@ -48,110 +61,97 @@ class PitcherRecordViewController: UIViewController {
         self.view.isOpaque = false
         
         tapGestureRecognizer.delegate = self
+        
+        pitcherButtons.append(winButton)
+        pitcherButtons.append(loseButton)
+        pitcherButtons.append(holdButton)
+        pitcherButtons.append(saveButton)
+        pitcherButtons.append(walksButton)
+        pitcherButtons.append(hitBattersButton)
+        pitcherButtons.append(hitsButton)
+        pitcherButtons.append(homeRunsButton)
+        pitcherButtons.append(inningButton)
+        pitcherButtons.append(strikeOutsButton)
+        pitcherButtons.append(ERButton)
+        
+        pitcherRecords.append(win)
+        pitcherRecords.append(lose)
+        pitcherRecords.append(hold)
+        pitcherRecords.append(save)
+        pitcherRecords.append(walks)
+        pitcherRecords.append(hitBatters)
+        pitcherRecords.append(hits)
+        pitcherRecords.append(homeRuns)
+        pitcherRecords.append(inning)
+        pitcherRecords.append(strikeOuts)
+        pitcherRecords.append(ER)
+        
+        for index in 0..<pitcherButtons.count {
+            pitcherButtons[index].tag = index
+            pitcherButtons[index].addTarget(
+                self,
+                action: #selector(pitcherRecordButtonDidTapped(_:)),
+                for: .touchUpInside)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindPitcherToDetail" {
             
-            self.inning += self.inningRemainder / 3.0
+            self.pitcherRecords[8] += self.inningRemainder / 3.0
             
             let playerRecord = PlayerRecord(playerID: self.playerID,
                                             scheduleID: self.scheduleID,
-                                            win: self.win,
-                                            lose: self.lose,
-                                            save: self.save,
-                                            hold: self.hold,
-                                            inning: self.inning,
-                                            hits: self.hits,
-                                            homeRuns: self.homeRuns,
-                                            walks: self.walks,
-                                            hitBatters: self.hitBatters,
-                                            strikeOuts: self.strikeOuts,
-                                            ER: self.ER)
+                                            win: self.pitcherRecords[0],
+                                            lose: self.pitcherRecords[1],
+                                            save: self.pitcherRecords[3],
+                                            hold: self.pitcherRecords[2],
+                                            inning: self.pitcherRecords[8],
+                                            hits: self.pitcherRecords[6],
+                                            homeRuns: self.pitcherRecords[7],
+                                            walks: self.pitcherRecords[4],
+                                            hitBatters: self.pitcherRecords[5],
+                                            strikeOuts: self.pitcherRecords[9],
+                                            ER: self.pitcherRecords[10])
             
             PlayerRecordDAO.shared.insert(playerRecordObject: playerRecord)
         }
     }
     
+    // MARK: Actions
     
-    // MARK: Record Buttons
+    @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
+    }
     
-    @IBAction func clickWin(_ sender: UIButton) {
-        self.win += 1.0
-        sender.setTitle("승리\n\(Int(win))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-        
-        pitcherStackView.alpha = 0.5
-        pitcherStackView.isUserInteractionEnabled = false
-    }
-    @IBAction func clickLose(_ sender: UIButton) {
-        self.lose += 1.0
-        sender.setTitle("패배\n\(Int(lose))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-        
-        pitcherStackView.alpha = 0.5
-        pitcherStackView.isUserInteractionEnabled = false
-    }
-    @IBAction func clickHold(_ sender: UIButton) {
-        self.hold += 1.0
-        sender.setTitle("홀드\n\(Int(hold))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-        
-        pitcherStackView.alpha = 0.5
-        pitcherStackView.isUserInteractionEnabled = false
-    }
-    @IBAction func clickSave(_ sender: UIButton) {
-        self.save += 1.0
-        sender.setTitle("세이브\n\(Int(save))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-        
-        pitcherStackView.alpha = 0.5
-        pitcherStackView.isUserInteractionEnabled = false
-    }
-    @IBAction func clickWalks(_ sender: UIButton) {
-        self.walks += 1.0
-        sender.setTitle("볼넷\n\(Int(walks))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickHitBatters(_ sender: UIButton) {
-        self.hitBatters += 1.0
-        sender.setTitle("사구\n\(Int(hitBatters))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickStrikeOuts(_ sender: UIButton) {
-        self.strikeOuts += 1.0
-        sender.setTitle("탈삼진\n\(Int(strikeOuts))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickER(_ sender: UIButton) {
-        self.ER += 1.0
-        sender.setTitle("자책점\n\(Int(ER))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickInning(_ sender: UIButton) {
-        self.inningRemainder += 1.0
-        if inningRemainder == 3.0 {
-            self.inning += 1.0
-            self.inningRemainder = 0.0
+    @objc private func pitcherRecordButtonDidTapped(_ sender: UIButton) {
+        if sender.tag == 8 {
+            self.inningRemainder += 1.0
+            if inningRemainder == 3.0 {
+                self.pitcherRecords[sender.tag] += 1.0
+                self.inningRemainder = 0.0
+            }
+            
+            if self.inningRemainder == 0.0 {
+                sender.setTitle(
+                    "\(pitcherRecordTexts[sender.tag])\n\(Int(pitcherRecords[sender.tag]))", for: .normal)
+            } else {
+                sender.setTitle(
+                    "\(pitcherRecordTexts[sender.tag])\n\(Int(pitcherRecords[sender.tag])) \(Int(inningRemainder))/3",
+                    for: .normal)
+            }
+        } else {
+            self.pitcherRecords[sender.tag] += 1.0
+            sender.setTitle(
+                "\(pitcherRecordTexts[sender.tag])\n\(Int(pitcherRecords[sender.tag]))",
+                for: .normal)
         }
         
-        if self.inningRemainder == 0.0 {
-            sender.setTitle("이닝\n\(Int(inning))", for: .normal)
-        }
-        else {
-            sender.setTitle("이닝\n\(Int(inning)) \(Int(inningRemainder))/3", for: .normal)
+        if sender.tag < 4 {
+            pitcherStackView.alpha = 0.5
+            pitcherStackView.isUserInteractionEnabled = false
         }
         
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickHits(_ sender: UIButton) {
-        self.hits += 1.0
-        sender.setTitle("피안타\n\(Int(hits))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickHomeRuns(_ sender: UIButton) {
-        self.homeRuns += 1.0
-        sender.setTitle("피홈런\n\(Int(homeRuns))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
 }

@@ -12,9 +12,19 @@ class BatterRecordViewController: UIViewController {
     
     // MARK: Properties
     
-    var row: Int!
-    var playerID: Int64!
-    var scheduleID: Int64!
+    @IBOutlet private var singleHitButton: UIButton!
+    @IBOutlet private var doubleHitButton: UIButton!
+    @IBOutlet private var tripleHitButton: UIButton!
+    @IBOutlet private var homeRunButton: UIButton!
+    @IBOutlet private var baseOnBallsButton: UIButton!
+    @IBOutlet private var sacrificeHitButton: UIButton!
+    @IBOutlet private var strikeOutButton: UIButton!
+    @IBOutlet private var groundBallButton: UIButton!
+    @IBOutlet private var flyBallButton: UIButton!
+    @IBOutlet private var stolenBaseButton: UIButton!
+    @IBOutlet private var hitByPitchButton: UIButton!
+    @IBOutlet private var runButton: UIButton!
+    @IBOutlet private var RBIButton: UIButton!
     
     private var singleHit: Double = 0.0
     private var doubleHit: Double = 0.0
@@ -30,11 +40,17 @@ class BatterRecordViewController: UIViewController {
     private var run: Double = 0.0
     private var RBI: Double = 0.0
     
-    // MARK: Actions
+    private var batterButtons = [UIButton]()
+    private var batterRecords = [Double]()
+    private let batterRecordTexts = ["1루타", "2루타", "3루타",
+                                     "홈런", "볼넷", "희생타",
+                                     "삼진", "땅볼", "뜬공",
+                                     "도루", "사구", "득점", "타점"]
     
-    @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
-        dismiss(animated: false, completion: nil)
-    }
+    var row: Int!
+    var playerID: Int64!
+    var scheduleID: Int64!
+
     
     // MARK: Override
     
@@ -43,6 +59,42 @@ class BatterRecordViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
         self.view.isOpaque = false
+        
+        batterButtons.append(singleHitButton)
+        batterButtons.append(doubleHitButton)
+        batterButtons.append(tripleHitButton)
+        batterButtons.append(homeRunButton)
+        batterButtons.append(baseOnBallsButton)
+        batterButtons.append(sacrificeHitButton)
+        batterButtons.append(strikeOutButton)
+        batterButtons.append(groundBallButton)
+        batterButtons.append(flyBallButton)
+        batterButtons.append(stolenBaseButton)
+        batterButtons.append(hitByPitchButton)
+        batterButtons.append(runButton)
+        batterButtons.append(RBIButton)
+        
+        batterRecords.append(singleHit)
+        batterRecords.append(doubleHit)
+        batterRecords.append(tripleHit)
+        batterRecords.append(homeRun)
+        batterRecords.append(baseOnBalls)
+        batterRecords.append(sacrificeHit)
+        batterRecords.append(strikeOut)
+        batterRecords.append(groundBall)
+        batterRecords.append(flyBall)
+        batterRecords.append(stolenBase)
+        batterRecords.append(hitByPitch)
+        batterRecords.append(run)
+        batterRecords.append(RBI)
+        
+        for index in 0..<batterButtons.count {
+            batterButtons[index].tag = index
+            batterButtons[index].addTarget(
+                self,
+                action: #selector(batterRecordButtonDidTapped(_:)),
+                for: .touchUpInside)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,89 +102,33 @@ class BatterRecordViewController: UIViewController {
             print("batter record player id = \(self.playerID)")
             let playerRecord = PlayerRecord(playerID: self.playerID,
                                             scheduleID: self.scheduleID,
-                                            singleHit: self.singleHit,
-                                            doubleHit: self.doubleHit,
-                                            tripleHit: self.tripleHit,
-                                            homeRun: self.homeRun,
-                                            baseOnBalls: self.baseOnBalls,
-                                            strikeOut: self.strikeOut,
-                                            groundBall: self.groundBall,
-                                            flyBall: self.flyBall,
-                                            sacrificeHit: self.sacrificeHit,
-                                            stolenBase: self.stolenBase,
-                                            run: self.run,
-                                            RBI: self.RBI)
+                                            singleHit: self.batterRecords[0],
+                                            doubleHit: self.batterRecords[1],
+                                            tripleHit: self.batterRecords[2],
+                                            homeRun: self.batterRecords[3],
+                                            baseOnBalls: self.batterRecords[4],
+                                            strikeOut: self.batterRecords[5],
+                                            groundBall: self.batterRecords[6],
+                                            flyBall: self.batterRecords[7],
+                                            sacrificeHit: self.batterRecords[8],
+                                            stolenBase: self.batterRecords[9],
+                                            run: self.batterRecords[10],
+                                            RBI: self.batterRecords[11])
             
             PlayerRecordDAO.shared.insert(playerRecordObject: playerRecord)
         }
     }
     
-    // MARK: Record Buttons
+    // MARK: Actions
     
-    @IBAction func clickSingleHit(_ sender: UIButton) {
-        self.singleHit += 1
-        sender.setTitle("1루타\n\(Int(singleHit))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickDoubleHit(_ sender: UIButton) {
-        self.doubleHit += 1
-        sender.setTitle("2루타\n\(Int(doubleHit))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickTripleHit(_ sender: UIButton) {
-        self.tripleHit += 1
-        sender.setTitle("3루타\n\(Int(tripleHit))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickHomeRun(_ sender: UIButton) {
-        self.homeRun += 1
-        sender.setTitle("홈런\n\(Int(homeRun))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickBaseOnBalls(_ sender: UIButton) {
-        self.baseOnBalls += 1
-        sender.setTitle("볼넷\n\(Int(baseOnBalls))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickSacrificeHit(_ sender: UIButton) {
-        self.sacrificeHit += 1
-        sender.setTitle("희생타\n\(Int(sacrificeHit))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickStrikeOut(_ sender: UIButton) {
-        self.strikeOut += 1
-        sender.setTitle("삼진\n\(Int(strikeOut))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickGroundBall(_ sender: UIButton) {
-        self.groundBall += 1
-        sender.setTitle("땅볼\n\(Int(groundBall))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickFlyBall(_ sender: UIButton) {
-        self.flyBall += 1
-        sender.setTitle("뜬공\n\(Int(flyBall))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickStolenBase(_ sender: UIButton) {
-        self.stolenBase += 1
-        sender.setTitle("도루\n\(Int(stolenBase))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickHitByPitch(_ sender: UIButton) {
-        self.hitByPitch += 1
-        sender.setTitle("사구\n\(Int(hitByPitch))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickRun(_ sender: UIButton) {
-        self.run += 1
-        sender.setTitle("득점\n\(Int(run))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
-    }
-    @IBAction func clickRBI(_ sender: UIButton) {
-        self.RBI += 1
-        sender.setTitle("타점\n\(Int(RBI))", for: .normal)
-        sender.titleLabel?.textAlignment = .center
+    @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
     }
     
+    @objc private func batterRecordButtonDidTapped(_ sender: UIButton) {
+        self.batterRecords[sender.tag] += 1.0
+        print(batterRecords[sender.tag])
+        sender.setTitle("\(batterRecordTexts[sender.tag])\n\(Int(batterRecords[sender.tag]))", for: .normal)
+        sender.titleLabel?.textAlignment = .center
+    }
 }
