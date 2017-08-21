@@ -85,7 +85,7 @@ class DetailScheduleViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func homeScoreButtonDidTapped(_ sender: UIButton) {
+    @IBAction private func homeScoreButtonDidTapped(_ sender: UIButton) {
         let alertController = UIAlertController(
             title: "홈 팀 점수를 입력하세요",
             message: "",
@@ -109,7 +109,7 @@ class DetailScheduleViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func awayScoreButtonDidTapped(_ sender: UIButton) {
+    @IBAction private func awayScoreButtonDidTapped(_ sender: UIButton) {
         let alertController = UIAlertController(title: "원정 팀 점수를 입력하세요",
                                                 message: "",
                                                 preferredStyle: .alert)
@@ -132,7 +132,7 @@ class DetailScheduleViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    fileprivate func configurationTextField(textField: UITextField) {
+    private func configurationTextField(textField: UITextField) {
         textField.placeholder = ""
         textField.keyboardType = .numberPad
     }

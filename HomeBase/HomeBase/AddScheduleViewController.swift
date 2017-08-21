@@ -43,15 +43,15 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
     
     // MARK: Actions
     
-    @IBAction func matchTimePickerDidChanged(_ sender: UIDatePicker) {
+    @IBAction private func matchTimePickerDidChanged(_ sender: UIDatePicker) {
         matchTimeLabel.text = dateFormatter.string(from: matchTimePicker.date)
     }
     
-    @IBAction func cancelButtonDidTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func cancelButtonDidTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func doneButtonDidTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func doneButtonDidTapped(_ sender: UIBarButtonItem) {
         if opponentTextField.text == "" {
             showAlertOneButton(title: "경고", message: "상대 팀명을 입력하세요")
         }
@@ -59,7 +59,7 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
             showAlertOneButton(title: "경고", message: "경기 장소를 입력하세요")
         }
         else {
-            showAlertTwoButton(title: "일정 추가", message: "경기를 추가하시겠습니까?", okAction: addSchedule)
+            showAlertTwoButton(title: "일정 추가", message: "경기를 추가하시겠습니까?", confirmAction: addSchedule)
         }
     }
     

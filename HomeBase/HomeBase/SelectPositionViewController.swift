@@ -27,11 +27,11 @@ class SelectPositionViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func clickBackgroundView(_ sender: UITapGestureRecognizer) {
+    @IBAction private func clickBackgroundView(_ sender: UITapGestureRecognizer) {
         dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func batterButtonDidTapped(_ sender: UIButton) {
+    @IBAction private func batterButtonDidTapped(_ sender: UIButton) {
         let batterRecordViewController = self.storyboard!.instantiateViewController(
             withIdentifier: "BatterRecordViewController") as! BatterRecordViewController
         
@@ -44,7 +44,7 @@ class SelectPositionViewController: UIViewController {
         present(batterRecordViewController, animated: false, completion: nil)
     }
     
-    @IBAction func pitcherButtonDidTapped(_ sender: UIButton) {
+    @IBAction private func pitcherButtonDidTapped(_ sender: UIButton) {
         let pitcherRecordViewController = self.storyboard!.instantiateViewController(
             withIdentifier: "PitcherRecordViewController") as! PitcherRecordViewController
         

@@ -51,7 +51,7 @@ class SquadAddPlayerViewController: UIViewController, CustomAlertShowing {
         } else if overlapNumber == true {
             showAlertOneButton(title: "경고", message: "팀에 중복되는 번호가 있습니다")
         } else {
-            showAlertTwoButton(title: "선수 추가", message: "선수를 추가하시겠습니까?", okAction: addPlayer)
+            showAlertTwoButton(title: "선수 추가", message: "선수를 추가하시겠습니까?", confirmAction: addPlayer)
         }
     }
     

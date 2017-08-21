@@ -100,7 +100,7 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
             showAlertTwoButton(
                 title: "\(deletePlayer.name)",
                 message: "선수 정보를 삭제하시겠습니까?",
-                okAction: deletePlayer)
+                confirmAction: deletePlayer)
         }
     }
     

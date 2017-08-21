@@ -119,13 +119,17 @@ class BatterRecordViewController: UIViewController {
     
     // MARK: Actions
     
+    /// Tap action for Batter buttons.
+    /// Increase button's record and show record on button title
+    ///
+    /// - Parameter sender: batter button
     @objc private func batterRecordButtonDidTapped(_ sender: UIButton) {
         self.batterRecords[sender.tag] += 1.0
         sender.setTitle("\(batterRecordTexts[sender.tag])\n\(Int(batterRecords[sender.tag]))", for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
   
-    @IBAction func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction private func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {
         dismiss(animated: false, completion: nil)
     }
 }

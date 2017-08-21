@@ -15,6 +15,7 @@ class AllScheduleViewController: UIViewController {
     
     @IBOutlet var scheduleTableView: UITableView!
     
+    /// Array of all team schedules
     fileprivate var scheduleArray = [TeamSchedule]()
     
     fileprivate let dateFormatter: DateFormatter = {
@@ -34,7 +35,6 @@ class AllScheduleViewController: UIViewController {
         
         scheduleTableView.delegate = self
         scheduleTableView.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +56,7 @@ class AllScheduleViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func addButtonDidTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func addButtonDidTapped(_ sender: UIBarButtonItem) {
         guard let addScheduleViewController = storyboard?.instantiateViewController(
             withIdentifier: "AddScheduleViewController") else { return }
         

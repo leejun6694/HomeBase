@@ -81,7 +81,7 @@ class TeamSettingViewController: UIViewController, CustomAlertShowing {
             showAlertOneButton(message: "팀 명은 최소 2글자 입니다")
         }
         else {
-            showAlertTwoButton(title: "팀 정보 수정", message: "팀 정보를 수정하시겠습니까?", okAction: changeTeamInfo)
+            showAlertTwoButton(title: "팀 정보 수정", message: "팀 정보를 수정하시겠습니까?", confirmAction: changeTeamInfo)
         }
     }
     

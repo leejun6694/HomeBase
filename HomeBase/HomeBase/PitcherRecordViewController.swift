@@ -120,6 +120,10 @@ class PitcherRecordViewController: UIViewController {
     
     // MARK: Actions
 
+    /// Tap action for Pitcher buttons.
+    /// Increase button's record and show record on button title
+    ///
+    /// - Parameter sender: pitcher button
     @objc private func pitcherRecordButtonDidTapped(_ sender: UIButton) {
         if sender.tag == 8 {
             self.inningRemainder += 1.0
@@ -151,7 +155,7 @@ class PitcherRecordViewController: UIViewController {
         sender.titleLabel?.textAlignment = .center
     }
   
-    @IBAction func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction private func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {
         dismiss(animated: false, completion: nil)
     }
 }
