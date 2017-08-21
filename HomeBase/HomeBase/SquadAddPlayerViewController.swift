@@ -33,12 +33,14 @@ class SquadAddPlayerViewController: UIViewController {
         var alertController: UIAlertController
         var overlapNumber: Bool = false
         
-        let numbers = PlayerDAO.shared.selectAllNumber()
-        for index in 0..<numbers.count {
-            if backNumberTextField.text == "\(numbers[index])" {
-                overlapNumber = true
-                break
+        if let numbers = PlayerDAO.shared.selectAllNumber() {
+            for index in 0..<numbers.count {
+                if backNumberTextField.text == "\(numbers[index])" {
+                    overlapNumber = true
+                    break
+                }
             }
+
         }
         
         if playerNameTextField.text == "" {
@@ -81,11 +83,11 @@ class SquadAddPlayerViewController: UIViewController {
     
     @objc fileprivate func addPlayer(action: UIAlertAction) {
         let name = playerNameTextField.text!
-        let backNumber = Int64(backNumberTextField.text!)!
+        let backNumber = Int(backNumberTextField.text!)!
         
         let position = kindOfPosition[positionPickerView.selectedRow(inComponent: 0)]
         let player = Player(name: name, backNumber: backNumber, position: position)
-        PlayerDAO.shared.insert(playerObject: player)
+        PlayerDAO.shared.insert(item: player)
         
         dismiss(animated: true, completion: nil)
     }

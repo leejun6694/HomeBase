@@ -13,7 +13,7 @@ class TeamSettingViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet var teamNameTextField: UITextField!
-    fileprivate let teamInfo: TeamInfo = TeamInfoDAO.shared.fetch()
+    fileprivate let teamInfo: TeamInfo? = TeamInfoDAO.shared.fetch()
     
     fileprivate lazy var teamImage: UIImage = {
         let teamImage = UIImage()
@@ -40,7 +40,7 @@ class TeamSettingViewController: UIViewController {
     }
     
     fileprivate func changeTeamInfo(action: UIAlertAction) {
-        if teamInfo.teamName != teamNameTextField.text {
+        if teamInfo?.teamName != teamNameTextField.text {
             TeamInfoDAO.shared.updateTeamName(updateTeamName: teamNameTextField.text ?? "")
         }
         
@@ -111,7 +111,7 @@ class TeamSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        teamNameTextField.text = teamInfo.teamName
+        teamNameTextField.text = teamInfo?.teamName
         teamNameTextField.delegate = self
     }
 }

@@ -53,7 +53,7 @@ class DetailScheduleViewController: UIViewController {
                 self.homeScoreButton.setTitle(homeTextField.text ?? "", for: .normal)
                 
                 TeamScheduleDAO.shared.updateHomeScore(
-                    updateScheduleID: self.scheduleItem.scheduleID, Int64(homeTextField.text!) ?? -1)
+                    updateScheduleID: self.scheduleItem.scheduleID, Int(homeTextField.text!) ?? -1)
             }
         })
         
@@ -76,7 +76,7 @@ class DetailScheduleViewController: UIViewController {
                 self.awayScoreButton.setTitle(awayTextField.text ?? "", for: .normal)
                 
                 TeamScheduleDAO.shared.updateAwayScore(
-                    updateScheduleID: self.scheduleItem.scheduleID, Int64(awayTextField.text!) ?? -1)
+                    updateScheduleID: self.scheduleItem.scheduleID, Int(awayTextField.text!) ?? -1)
             }
         })
         
@@ -183,22 +183,22 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
         let playerRecordItem = PlayerRecordDAO.shared.fetchPlayerRecordOnSchedule(
             playerID: playerArray[indexPath.row].playerID, scheduleID: scheduleItem.scheduleID)
         
-        if playerRecordItem.playerID != 0 {
+        if playerRecordItem?.playerID != 0 {
             cell.playerResultButton.isEnabled = false
             cell.playerResultButton.tintColor = .black
             // Batter
-            if playerRecordItem.inning == 0 {
-                let hits = playerRecordItem.singleHit + playerRecordItem.doubleHit + playerRecordItem.tripleHit + playerRecordItem.homeRun
-                let atBat = hits + playerRecordItem.strikeOut + playerRecordItem.groundBall +
-                    playerRecordItem.flyBall
+            if playerRecordItem?.inning == 0 {
+                let hits = (playerRecordItem?.singleHit)! + (playerRecordItem?.doubleHit)! + (playerRecordItem?.tripleHit)! + (playerRecordItem?.homeRun)!
+                let atBat = hits + (playerRecordItem?.strikeOut)! + (playerRecordItem?.groundBall)! +
+                    (playerRecordItem?.flyBall)!
                 
                 cell.playerResultButton.setTitle("\(Int(atBat))타수 \(Int(hits))안타", for: .disabled)
             }
             // Pitcher
             else {
-                let pitcherInning = Int(playerRecordItem.inning)
-                let inningRemainder = (Int(playerRecordItem.inning * 10) % 10) / 3
-                let pitcherER = Int(playerRecordItem.ER)
+                let pitcherInning = Int((playerRecordItem?.inning)!)
+                let inningRemainder = (Int((playerRecordItem?.inning)! * 10) % 10) / 3
+                let pitcherER = Int((playerRecordItem?.ER)!)
                 
                 if inningRemainder == 0 {
                     cell.playerResultButton.setTitle("\(pitcherInning)이닝 \(pitcherER)자책", for: .disabled)

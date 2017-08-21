@@ -28,7 +28,7 @@ class SquadMainViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         let teamInfo = TeamInfoDAO.shared.fetch()
-        self.navigationItem.title = teamInfo.teamName
+        self.navigationItem.title = teamInfo?.teamName
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,8 +93,8 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
                 title: title,
                 message: message,
                 preferredStyle: .actionSheet)
-            let deleteAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            let cancelAction = UIAlertAction(
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(
                 title: "Delete",
                 style: .destructive,
                 handler: { (action) -> Void in
@@ -102,8 +102,8 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
                     PlayerDAO.shared.delete(id: deletePlayer.playerID)
                     tableView.deleteRows(at: [indexPath], with: .automatic)
             })
-            ac.addAction(deleteAction)
             ac.addAction(cancelAction)
+            ac.addAction(deleteAction)
             present(ac, animated: true, completion: nil)
             
         }

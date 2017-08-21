@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let teamInfo = TeamInfoDAO.shared.fetch()
         
-        if teamInfo.teamName.isEmpty {
+        if teamInfo == nil {
             let storyBoard = UIStoryboard(name: "StartNavigation", bundle: nil)
             let startNavigation = storyBoard.instantiateInitialViewController()
             

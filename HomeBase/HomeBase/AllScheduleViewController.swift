@@ -46,7 +46,7 @@ class AllScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        scheduleArray = TeamScheduleDAO.shared.findAllColumn()
+        scheduleArray = TeamScheduleDAO.shared.findAllColumn()!
         scheduleTableView.reloadData()
     }
     
@@ -84,6 +84,72 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         cell.matchOpponentLabel.text = "vs " + scheduleArray[indexPath.row].matchOpponent
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let deleteIndex = indexPath.row
+            let selectedSchedule = scheduleArray[deleteIndex]
+            
+            let title = "일정을 지우시겠습니까?"
+            let ac = UIAlertController(
+                title: title,
+                message: "",
+                preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { (action) -> Void in
+                    self.scheduleArray.remove(at: deleteIndex)
+                    TeamScheduleDAO.shared.delete(id: selectedSchedule.scheduleID)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(deleteAction)
+            ac.addAction(cancelAction)
+            present(ac, animated: true, completion: nil)
+        }
+        if editingStyle == .insert {
+            
+        }
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteIndex = indexPath.row
+        let selectedSchedule = self.scheduleArray[deleteIndex]
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // delete item at indexPath
+            let title = "일정을 지우시겠습니까?"
+            let ac = UIAlertController(
+                title: title,
+                message: "",
+                preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { (action) -> Void in
+                    self.scheduleArray.remove(at: deleteIndex)
+                    TeamScheduleDAO.shared.delete(id: selectedSchedule.scheduleID)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(deleteAction)
+            ac.addAction(cancelAction)
+            self.present(ac, animated: true, completion: nil)
+        }
+        
+        let editScheduleViewController = storyboard?.instantiateViewController(
+            withIdentifier: "EditScheduleViewController") as? EditScheduleViewController
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            let selectedSchedule = self.scheduleArray[indexPath.row]
+            editScheduleViewController?.preSchedule = selectedSchedule
+            self.present(editScheduleViewController!, animated: true, completion: nil)
+
+        }
+        
+        edit.backgroundColor = UIColor(red: 178.0/255.0, green: 235.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        
+        return [delete, edit]
     }
 }
 

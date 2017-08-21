@@ -69,7 +69,7 @@ class PitcherRecordViewController: UIViewController {
                                             strikeOuts: self.strikeOuts,
                                             ER: self.ER)
             
-            PlayerRecordDAO.shared.insert(playerRecordObject: playerRecord)
+            PlayerRecordDAO.shared.insert(item: playerRecord)
         }
     }
     

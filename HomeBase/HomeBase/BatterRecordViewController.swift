@@ -63,7 +63,7 @@ class BatterRecordViewController: UIViewController {
                                             run: self.run,
                                             RBI: self.RBI)
             
-            PlayerRecordDAO.shared.insert(playerRecordObject: playerRecord)
+            PlayerRecordDAO.shared.insert(item: playerRecord)
         }
     }
     
