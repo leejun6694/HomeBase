@@ -17,7 +17,7 @@ class TeamSettingViewController: UIViewController, CustomAlertShowing {
     // MARK: Properties
     
     @IBOutlet var teamNameTextField: UITextField!
-    fileprivate let teamInfo: TeamInfo? = TeamInfoDAO.shared.fetch()
+    fileprivate let teamInfo: TeamInfo? = TeamInfoDAO.shared.select()
     
     fileprivate lazy var teamImage: UIImage = {
         let teamImage = UIImage()

@@ -154,7 +154,7 @@ class PlayerRecordDAO {
     
     // select    
     // 스케줄 하나의 선수 기록
-    func fetchPlayerRecordOnSchedule(playerID: Int64, scheduleID: Int64) -> T? {
+    func selectPlayerRecordOnSchedule(playerID: Int64, scheduleID: Int64) -> T? {
         var playerRecordItem = T (playerID: 0, scheduleID: 0)
         let filter = playerRecord.filter(self.playerID == playerID)
             .filter(self.scheduleID == scheduleID)

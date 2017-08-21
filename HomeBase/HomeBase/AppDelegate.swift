@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let teamInfo = TeamInfoDAO.shared.fetch()
+        let teamInfo = TeamInfoDAO.shared.select()
         
         if teamInfo == nil {
             let storyBoard = UIStoryboard(name: "StartNavigation", bundle: nil)

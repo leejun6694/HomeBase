@@ -53,7 +53,7 @@ class TeamInfoDAO {
         }
     }
     
-    func fetch() -> T? {
+    func select() -> T? {
         let resultSet = DBManager.shared.select(teamInfo)
         switch resultSet {
         case let .ok(rows):
