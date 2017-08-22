@@ -188,6 +188,8 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
         cell.playerBackNumber.text = "\(playerArray[indexPath.row].backNumber)"
         cell.playerLabel.text = playerArray[indexPath.row].name
         cell.playerResultButton.tag = indexPath.row
+        
+        cell.playerResultButton.setTitle("결과 입력", for: .normal)
         cell.playerResultButton.addTarget(
             self,
             action: #selector(playerResultButtonDidTapped(_:)),
@@ -195,7 +197,7 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
         
         if let playerRecordItem = PlayerRecordDAO.shared.selectPlayerRecordOnSchedule(
             playerID: playerArray[indexPath.row].playerID, scheduleID: scheduleItem.scheduleID) {
-        
+            
             if playerRecordItem.playerID != 0 {
                 let sumOfPlayerRecord = PlayerRecordDAO.shared.selectSumOfPlayerRecord(
                     playerRecordID: playerRecordItem.playerRecordID)
@@ -205,8 +207,12 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
                 if sumOfPlayerRecord == 0 {
                     cell.playerResultButton.setTitle("결과 입력", for: .normal)
                 } else if sumOfBatterRecord != 0 {
-                    let hits = (playerRecordItem.singleHit) + (playerRecordItem.doubleHit) + (playerRecordItem.tripleHit) + (playerRecordItem.homeRun)
-                    let atBat = hits + (playerRecordItem.strikeOut) + (playerRecordItem.groundBall) +
+                    let hits = (playerRecordItem.singleHit) +
+                        (playerRecordItem.doubleHit) +
+                        (playerRecordItem.tripleHit) +
+                        (playerRecordItem.homeRun)
+                    let atBat = hits + (playerRecordItem.strikeOut) +
+                        (playerRecordItem.groundBall) +
                         (playerRecordItem.flyBall)
                     
                     cell.playerResultButton.setTitle("\(Int(atBat))타수 \(Int(hits))안타", for: .normal)
