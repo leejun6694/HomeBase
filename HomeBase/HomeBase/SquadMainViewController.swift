@@ -35,7 +35,7 @@ class SquadMainViewController: UIViewController, CustomAlertShowing {
         tableView.allowsSelectionDuringEditing = true
         self.automaticallyAdjustsScrollViewInsets = false
         
-        let teamInfo = TeamInfoDAO.shared.fetch()
+        let teamInfo = TeamInfoDAO.shared.select()
         self.navigationItem.title = teamInfo?.teamName
     }
     

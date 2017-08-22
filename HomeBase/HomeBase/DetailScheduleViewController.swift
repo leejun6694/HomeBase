@@ -8,7 +8,11 @@
 
 import UIKit
 
-class DetailScheduleViewController: UIViewController {
+class DetailScheduleViewController: UIViewController, CustomAlertShowing {
+    
+    var viewController: UIViewController {
+        return self
+    }
     
     // MARK: Properties
     
@@ -22,6 +26,9 @@ class DetailScheduleViewController: UIViewController {
     fileprivate var playerArray = [Player]()
     private let currentDate = Date()
     var scheduleItem: TeamSchedule!
+    
+    var homeScore: Int = -1
+    var awayScore: Int = -1
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -73,8 +80,8 @@ class DetailScheduleViewController: UIViewController {
             beforeDateLabel.text = "경기 시작 \(Int(compareHour * 60))분 전입니다"
         }
         
-        let homeScore = scheduleItem.homeScore
-        let awayScore = scheduleItem.awayScore
+        homeScore = scheduleItem.homeScore
+        awayScore = scheduleItem.awayScore
         
         if homeScore != -1, awayScore != -1 {
             homeScoreButton.setTitle("\(homeScore)", for: .normal)
@@ -100,6 +107,7 @@ class DetailScheduleViewController: UIViewController {
                 
                 TeamScheduleDAO.shared.updateHomeScore(
                     updateScheduleID: self.scheduleItem.scheduleID, Int(homeTextField.text!) ?? -1)
+                self.homeScore = Int(homeTextField.text!) ?? -1
             }
         })
         
@@ -123,6 +131,7 @@ class DetailScheduleViewController: UIViewController {
                 
                 TeamScheduleDAO.shared.updateAwayScore(
                     updateScheduleID: self.scheduleItem.scheduleID, Int(awayTextField.text!) ?? -1)
+                self.awayScore = Int(awayTextField.text!) ?? -1
             }
         })
         
@@ -138,18 +147,22 @@ class DetailScheduleViewController: UIViewController {
     }
     
     @objc fileprivate func playerResultButtonDidTapped(_ sender: UIButton) {
-        let buttonRow = sender.tag
-        
-        let selectPositionViewController = self.storyboard!.instantiateViewController(
-            withIdentifier: "SelectPositionViewController") as! SelectPositionViewController
-        
-        selectPositionViewController.row = buttonRow
-        selectPositionViewController.playerID = self.playerArray[buttonRow].playerID
-        selectPositionViewController.scheduleID = self.scheduleItem.scheduleID
-        
-        selectPositionViewController.modalPresentationStyle = .overCurrentContext
-        
-        present(selectPositionViewController, animated: false, completion: nil)
+        if homeScore == -1 || awayScore == -1 {
+            showAlertOneButton(title: "경고", message: "경기 결과를 먼저 입력하세요")
+        } else {
+            let buttonRow = sender.tag
+            
+            let selectPositionViewController = self.storyboard!.instantiateViewController(
+                withIdentifier: "SelectPositionViewController") as! SelectPositionViewController
+            
+            selectPositionViewController.row = buttonRow
+            selectPositionViewController.playerID = self.playerArray[buttonRow].playerID
+            selectPositionViewController.scheduleID = self.scheduleItem.scheduleID
+            
+            selectPositionViewController.modalPresentationStyle = .overCurrentContext
+            
+            present(selectPositionViewController, animated: false, completion: nil)
+        }
     }
     
     // MARK: Unwind
@@ -180,35 +193,37 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
             action: #selector(playerResultButtonDidTapped(_:)),
             for: .touchUpInside)
         
-        let playerRecordItem = PlayerRecordDAO.shared.fetchPlayerRecordOnSchedule(
-            playerID: playerArray[indexPath.row].playerID, scheduleID: scheduleItem.scheduleID)
+        if let playerRecordItem = PlayerRecordDAO.shared.selectPlayerRecordOnSchedule(
+            playerID: playerArray[indexPath.row].playerID, scheduleID: scheduleItem.scheduleID) {
         
-        if playerRecordItem?.playerID != 0 {
-            cell.playerResultButton.isEnabled = false
-            
-            // Batter
-            if playerRecordItem?.inning == 0 {
-                let hits = (playerRecordItem?.singleHit)! + (playerRecordItem?.doubleHit)! + (playerRecordItem?.tripleHit)! + (playerRecordItem?.homeRun)!
-                let atBat = hits + (playerRecordItem?.strikeOut)! + (playerRecordItem?.groundBall)! +
-                    (playerRecordItem?.flyBall)!
-
+            if playerRecordItem.playerID != 0 {
+                let sumOfPlayerRecord = PlayerRecordDAO.shared.selectSumOfPlayerRecord(
+                    playerRecordID: playerRecordItem.playerRecordID)
+                let sumOfBatterRecord = PlayerRecordDAO.shared.selectSumOfBatterRecord(
+                    playerRecordID: playerRecordItem.playerRecordID)
                 
-                cell.playerResultButton.setTitle("\(Int(atBat))타수 \(Int(hits))안타", for: .disabled)
-            }
-            // Pitcher
-            else {
-                let pitcherInning = Int((playerRecordItem?.inning)!)
-                let inningRemainder = (Int((playerRecordItem?.inning)! * 10) % 10) / 3
-                let pitcherER = Int((playerRecordItem?.ER)!)
-                
-                if inningRemainder == 0 {
-                    cell.playerResultButton.setTitle(
-                        "\(pitcherInning)이닝 \(pitcherER)자책",
-                        for: .disabled)
+                if sumOfPlayerRecord == 0 {
+                    cell.playerResultButton.setTitle("결과 입력", for: .normal)
+                } else if sumOfBatterRecord != 0 {
+                    let hits = (playerRecordItem.singleHit) + (playerRecordItem.doubleHit) + (playerRecordItem.tripleHit) + (playerRecordItem.homeRun)
+                    let atBat = hits + (playerRecordItem.strikeOut) + (playerRecordItem.groundBall) +
+                        (playerRecordItem.flyBall)
+                    
+                    cell.playerResultButton.setTitle("\(Int(atBat))타수 \(Int(hits))안타", for: .normal)
                 } else {
-                    cell.playerResultButton.setTitle(
-                        "\(pitcherInning) \(inningRemainder)/3이닝 \(pitcherER)자책",
-                        for: .disabled)
+                    let pitcherInning = Int((playerRecordItem.inning))
+                    let inningRemainder = (Int((playerRecordItem.inning) * 10) % 10) / 3
+                    let pitcherER = Int((playerRecordItem.ER))
+                    
+                    if inningRemainder == 0 {
+                        cell.playerResultButton.setTitle(
+                            "\(pitcherInning)이닝 \(pitcherER)자책",
+                            for: .normal)
+                    } else {
+                        cell.playerResultButton.setTitle(
+                            "\(pitcherInning) \(inningRemainder)/3이닝 \(pitcherER)자책",
+                            for: .normal)
+                    }
                 }
             }
         }

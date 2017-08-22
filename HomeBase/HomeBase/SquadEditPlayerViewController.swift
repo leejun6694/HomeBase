@@ -35,6 +35,7 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
     @IBAction func clickCancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func clickDoneButton(_ sender: UIBarButtonItem) {
         var overlapNumber: Bool = false
         
@@ -54,7 +55,12 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
         } else if overlapNumber == true {
             showAlertOneButton(title: "경고", message: "팀에 중복되는 번호가 있습니다")
         } else {
-            showAlertTwoButton(title: "선수 수정", message: "선수 정보를 수정하시겠습니까?", confirmAction: editPlayer)
+            showAlertTwoButton(
+                title: "선수 수정",
+                message: "선수 정보를 수정하시겠습니까?",
+                cancelActionTitle: "취소",
+                confirmActionTitle: "확인",
+                confirmAction: editPlayer)
         }
     }
     

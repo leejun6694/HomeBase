@@ -153,13 +153,13 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        teamInfo = TeamInfoDAO.shared.fetch()
+        teamInfo = TeamInfoDAO.shared.select()
         
         fetchImage()
         
         teamNameLabel.text = teamInfo?.teamName
         
-        schedule = TeamScheduleDAO.shared.findAllColumn()!
+        schedule = TeamScheduleDAO.shared.selectAllColumn()!
         
         calculateMatchRecords()
         calculateTeamBattingAverage()
@@ -286,7 +286,7 @@ extension TeamMainViewController: UITableViewDataSource {
             let sortedBattingAverage = playerBattingAverage.sorted(by: { $0.1 > $1.1 })
             
             if currentRow < sortedBattingAverage.count {
-                recordCell.playerNameLabel.text = PlayerDAO.shared.findName(findPlayerID: Array(sortedBattingAverage)[currentRow].key)
+                recordCell.playerNameLabel.text = PlayerDAO.shared.selectName(findPlayerID: Array(sortedBattingAverage)[currentRow].key)
                 recordCell.recordLabel.text = "\(batterNumberFormatter.string(from: NSNumber(value: Array(sortedBattingAverage)[currentRow].value))!)"
             }
             
@@ -297,7 +297,7 @@ extension TeamMainViewController: UITableViewDataSource {
             let sortedPitchingAverage = playerPitchingAverage.sorted(by: { $0.1 < $1.1 })
             
             if currentRow < sortedPitchingAverage.count {
-                recordCell.playerNameLabel.text = PlayerDAO.shared.findName(findPlayerID: Array(sortedPitchingAverage)[currentRow].key)
+                recordCell.playerNameLabel.text = PlayerDAO.shared.selectName(findPlayerID: Array(sortedPitchingAverage)[currentRow].key)
                 recordCell.recordLabel.text = "\(pitcherNumberFormatter.string(from: NSNumber(value: Array(sortedPitchingAverage)[currentRow].value))!)"
             }
             

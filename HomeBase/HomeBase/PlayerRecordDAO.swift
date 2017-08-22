@@ -152,9 +152,47 @@ class PlayerRecordDAO {
         }
     }
     
+    // update
+    
+    func update(item: T) {
+        let selected = playerRecord.filter(playerRecordID == item.playerRecordID)
+        let query = selected.update(
+            playerID <- item.playerID,
+            scheduleID <- item.scheduleID,
+            singleHit <- item.singleHit,
+            doubleHit <- item.doubleHit,
+            tripleHit <- item.tripleHit,
+            homeRun <- item.homeRun,
+            baseOnBalls <- item.baseOnBalls,
+            hitByPitch <- item.hitByPitch,
+            strikeOut <- item.strikeOut,
+            groundBall <- item.groundBall,
+            flyBall <- item.flyBall,
+            sacrificeHit <- item.sacrificeHit,
+            stolenBase <- item.stolenBase,
+            run <- item.run,
+            RBI <- item.RBI,
+            win <- item.win,
+            lose <- item.lose,
+            save <- item.save,
+            hold <- item.hold,
+            inning <- item.inning,
+            hits <- item.hits,
+            homeRuns <- item.homeRuns,
+            walks <- item.walks,
+            hitBatters <- item.hitBatters,
+            strikeOuts <- item.strikeOuts,
+            ER <- item.ER)
+        let result = DBManager.shared.update(query)
+        switch result {
+        case .ok(_): break
+        case .error: break
+        }
+    }
+    
     // select    
     // 스케줄 하나의 선수 기록
-    func fetchPlayerRecordOnSchedule(playerID: Int64, scheduleID: Int64) -> T? {
+    func selectPlayerRecordOnSchedule(playerID: Int64, scheduleID: Int64) -> T? {
         var playerRecordItem = T (playerID: 0, scheduleID: 0)
         let filter = playerRecord.filter(self.playerID == playerID)
             .filter(self.scheduleID == scheduleID)
@@ -171,22 +209,22 @@ class PlayerRecordDAO {
                     tripleHit: record[self.tripleHit],
                     homeRun: record[self.homeRun],
                     baseOnBalls: record[self.baseOnBalls],
+                    sacrificeHit: record[self.sacrificeHit],
                     strikeOut: record[self.strikeOut],
                     groundBall: record[self.groundBall],
                     flyBall: record[self.flyBall],
-                    sacrificeHit: record[self.sacrificeHit],
                     stolenBase: record[self.stolenBase],
                     run: record[self.run],
                     RBI: record[self.RBI],
                     win: record[self.win],
                     lose: record[self.lose],
-                    save: record[self.save],
                     hold: record[self.hold],
-                    inning: record[self.inning],
-                    hits: record[self.hits],
-                    homeRuns: record[self.homeRuns],
+                    save: record[self.save],
                     walks: record[self.walks],
                     hitBatters: record[self.hitBatters],
+                    hits: record[self.hits],
+                    homeRuns: record[self.homeRuns],
+                    inning: record[self.inning],
                     strikeOuts: record[self.strikeOuts],
                     ER: record[self.ER])
             }
@@ -199,12 +237,6 @@ class PlayerRecordDAO {
     
     // 선수의 모든 기록
     func selectOnPlayer(id: Int64) -> T? {
-        do {
-            let count = try DBManager.shared.db?.scalar(playerRecord.select(playerID.count))
-            print("count of playerRecord: \(count ?? 0)")
-        } catch {
-            print("Error: \(error)")
-        }
         let totalRecord: T = T (playerRecordID: 0, playerID: id, scheduleID: 0)
         let selectedPlayer = playerRecord.filter(playerID == id)
         let resultSet = DBManager.shared.select(selectedPlayer)
@@ -242,6 +274,147 @@ class PlayerRecordDAO {
         return nil
     }
     
+    func selectSumOfBatterRecord(playerRecordID: Int64) -> Int {
+        var sumOfBatterRecord: Int = 0
+        let filter = playerRecord.filter(self.playerRecordID == playerRecordID).select(
+            self.singleHit,
+            self.doubleHit,
+            self.tripleHit,
+            self.homeRun,
+            self.baseOnBalls,
+            self.sacrificeHit,
+            self.strikeOut,
+            self.groundBall,
+            self.flyBall,
+            self.stolenBase,
+            self.hitByPitch,
+            self.run,
+            self.RBI)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for record in Array(rows) {
+                sumOfBatterRecord += Int(record[self.singleHit])
+                sumOfBatterRecord += Int(record[self.doubleHit])
+                sumOfBatterRecord += Int(record[self.tripleHit])
+                sumOfBatterRecord += Int(record[self.homeRun])
+                sumOfBatterRecord += Int(record[self.baseOnBalls])
+                sumOfBatterRecord += Int(record[self.sacrificeHit])
+                sumOfBatterRecord += Int(record[self.strikeOut])
+                sumOfBatterRecord += Int(record[self.groundBall])
+                sumOfBatterRecord += Int(record[self.flyBall])
+                sumOfBatterRecord += Int(record[self.stolenBase])
+                sumOfBatterRecord += Int(record[self.hitByPitch])
+                sumOfBatterRecord += Int(record[self.run])
+                sumOfBatterRecord += Int(record[self.RBI])
+            }
+            return sumOfBatterRecord
+        case .error: break
+        }
+        
+        return sumOfBatterRecord
+    }
+    
+    func selectSumOfPitcherRecord(playerRecordID: Int64) -> Int {
+        var sumOfPitcherRecord: Int = 0
+        let filter = playerRecord.filter(self.playerRecordID == playerRecordID).select(
+            self.win,
+            self.lose,
+            self.hold,
+            self.save,
+            self.walks,
+            self.hitBatters,
+            self.hits,
+            self.homeRuns,
+            self.inning,
+            self.strikeOuts,
+            self.ER)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for record in Array(rows) {
+                sumOfPitcherRecord += Int(record[self.win])
+                sumOfPitcherRecord += Int(record[self.lose])
+                sumOfPitcherRecord += Int(record[self.hold])
+                sumOfPitcherRecord += Int(record[self.save])
+                sumOfPitcherRecord += Int(record[self.walks])
+                sumOfPitcherRecord += Int(record[self.hitBatters])
+                sumOfPitcherRecord += Int(record[self.hits])
+                sumOfPitcherRecord += Int(record[self.homeRuns])
+                sumOfPitcherRecord += Int(record[self.inning])
+                sumOfPitcherRecord += Int(record[self.strikeOuts])
+                sumOfPitcherRecord += Int(record[self.ER])
+            }
+            return sumOfPitcherRecord
+        case .error: break
+        }
+        
+        return sumOfPitcherRecord
+    }
+    
+    func selectSumOfPlayerRecord(playerRecordID: Int64) -> Int {
+        var sumOfPlayerRecord: Int = 0
+        let filter = playerRecord.filter(self.playerRecordID == playerRecordID).select(
+            self.singleHit,
+            self.doubleHit,
+            self.tripleHit,
+            self.homeRun,
+            self.baseOnBalls,
+            self.sacrificeHit,
+            self.strikeOut,
+            self.groundBall,
+            self.flyBall,
+            self.stolenBase,
+            self.hitByPitch,
+            self.run,
+            self.RBI,
+            self.win,
+            self.lose,
+            self.hold,
+            self.save,
+            self.walks,
+            self.hitBatters,
+            self.hits,
+            self.homeRuns,
+            self.inning,
+            self.strikeOuts,
+            self.ER)
+        let resultSet = DBManager.shared.select(filter)
+        switch resultSet {
+        case let .ok(rows):
+            for record in Array(rows) {
+                sumOfPlayerRecord += Int(record[self.singleHit])
+                sumOfPlayerRecord += Int(record[self.doubleHit])
+                sumOfPlayerRecord += Int(record[self.tripleHit])
+                sumOfPlayerRecord += Int(record[self.homeRun])
+                sumOfPlayerRecord += Int(record[self.baseOnBalls])
+                sumOfPlayerRecord += Int(record[self.sacrificeHit])
+                sumOfPlayerRecord += Int(record[self.strikeOut])
+                sumOfPlayerRecord += Int(record[self.groundBall])
+                sumOfPlayerRecord += Int(record[self.flyBall])
+                sumOfPlayerRecord += Int(record[self.stolenBase])
+                sumOfPlayerRecord += Int(record[self.hitByPitch])
+                sumOfPlayerRecord += Int(record[self.run])
+                sumOfPlayerRecord += Int(record[self.RBI])
+                sumOfPlayerRecord += Int(record[self.win])
+                sumOfPlayerRecord += Int(record[self.lose])
+                sumOfPlayerRecord += Int(record[self.hold])
+                sumOfPlayerRecord += Int(record[self.save])
+                sumOfPlayerRecord += Int(record[self.walks])
+                sumOfPlayerRecord += Int(record[self.hitBatters])
+                sumOfPlayerRecord += Int(record[self.hits])
+                sumOfPlayerRecord += Int(record[self.homeRuns])
+                sumOfPlayerRecord += Int(record[self.inning])
+                sumOfPlayerRecord += Int(record[self.strikeOuts])
+                sumOfPlayerRecord += Int(record[self.ER])
+            }
+            return sumOfPlayerRecord
+        case .error: break
+        }
+        
+        return sumOfPlayerRecord
+    }
+    
     func selectPlayerBatting() -> [Int64:Double]? {
         var playerBattingAverage = [Int64:Double]()
         let filter = playerRecord.select(
@@ -267,6 +440,7 @@ class PlayerRecordDAO {
                     batting[strikeOut.sum]!
                         + batting[groundBall.sum]!
                         + batting[flyBall.sum]!)                
+
                 if battingHits != 0.0, battingOuts != 0.0 {
                     playerBattingAverage[batting[playerID]] = battingHits / (battingHits + battingOuts)
                 }

@@ -40,7 +40,7 @@ class AllScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        scheduleArray = TeamScheduleDAO.shared.findAllColumn()!
+        scheduleArray = TeamScheduleDAO.shared.selectAllColumn()!
         scheduleTableView.reloadData()
     }
     
