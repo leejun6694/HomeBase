@@ -193,35 +193,37 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
             action: #selector(playerResultButtonDidTapped(_:)),
             for: .touchUpInside)
         
-        let playerRecordItem = PlayerRecordDAO.shared.selectPlayerRecordOnSchedule(
-            playerID: playerArray[indexPath.row].playerID, scheduleID: scheduleItem.scheduleID)
+        if let playerRecordItem = PlayerRecordDAO.shared.selectPlayerRecordOnSchedule(
+            playerID: playerArray[indexPath.row].playerID, scheduleID: scheduleItem.scheduleID) {
         
-        if playerRecordItem?.playerID != 0 {
-            cell.playerResultButton.isEnabled = false
-            
-            // Batter
-            if playerRecordItem?.inning == 0 {
-                let hits = (playerRecordItem?.singleHit)! + (playerRecordItem?.doubleHit)! + (playerRecordItem?.tripleHit)! + (playerRecordItem?.homeRun)!
-                let atBat = hits + (playerRecordItem?.strikeOut)! + (playerRecordItem?.groundBall)! +
-                    (playerRecordItem?.flyBall)!
-
+            if playerRecordItem.playerID != 0 {
+                let sumOfPlayerRecord = PlayerRecordDAO.shared.selectSumOfPlayerRecord(
+                    playerRecordID: playerRecordItem.playerRecordID)
+                let sumOfBatterRecord = PlayerRecordDAO.shared.selectSumOfBatterRecord(
+                    playerRecordID: playerRecordItem.playerRecordID)
                 
-                cell.playerResultButton.setTitle("\(Int(atBat))타수 \(Int(hits))안타", for: .disabled)
-            }
-            // Pitcher
-            else {
-                let pitcherInning = Int((playerRecordItem?.inning)!)
-                let inningRemainder = (Int((playerRecordItem?.inning)! * 10) % 10) / 3
-                let pitcherER = Int((playerRecordItem?.ER)!)
-                
-                if inningRemainder == 0 {
-                    cell.playerResultButton.setTitle(
-                        "\(pitcherInning)이닝 \(pitcherER)자책",
-                        for: .disabled)
+                if sumOfPlayerRecord == 0 {
+                    cell.playerResultButton.setTitle("결과 입력", for: .normal)
+                } else if sumOfBatterRecord != 0 {
+                    let hits = (playerRecordItem.singleHit) + (playerRecordItem.doubleHit) + (playerRecordItem.tripleHit) + (playerRecordItem.homeRun)
+                    let atBat = hits + (playerRecordItem.strikeOut) + (playerRecordItem.groundBall) +
+                        (playerRecordItem.flyBall)
+                    
+                    cell.playerResultButton.setTitle("\(Int(atBat))타수 \(Int(hits))안타", for: .normal)
                 } else {
-                    cell.playerResultButton.setTitle(
-                        "\(pitcherInning) \(inningRemainder)/3이닝 \(pitcherER)자책",
-                        for: .disabled)
+                    let pitcherInning = Int((playerRecordItem.inning))
+                    let inningRemainder = (Int((playerRecordItem.inning) * 10) % 10) / 3
+                    let pitcherER = Int((playerRecordItem.ER))
+                    
+                    if inningRemainder == 0 {
+                        cell.playerResultButton.setTitle(
+                            "\(pitcherInning)이닝 \(pitcherER)자책",
+                            for: .normal)
+                    } else {
+                        cell.playerResultButton.setTitle(
+                            "\(pitcherInning) \(inningRemainder)/3이닝 \(pitcherER)자책",
+                            for: .normal)
+                    }
                 }
             }
         }

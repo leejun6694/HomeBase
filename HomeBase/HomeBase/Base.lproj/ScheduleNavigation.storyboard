@@ -406,7 +406,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EP-CL-loC" userLabel="OkButton">
-                                        <rect key="frame" x="0.0" y="361" width="300" height="40"/>
+                                        <rect key="frame" x="151" y="361" width="149" height="40"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ccm-Lu-61X"/>
@@ -419,16 +419,31 @@
                                             <segue destination="49D-VU-pu1" kind="unwind" identifier="unwindBatterToDetail" animates="NO" unwindAction="unwindToDetailVCWithSegue:" id="rPw-FU-SVJ"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnS-Qb-bDQ" userLabel="resetButton">
+                                        <rect key="frame" x="0.0" y="361" width="149" height="40"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ysg-vK-Ubn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="초기화">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="3EP-CL-loC" firstAttribute="top" secondItem="a9S-8P-XWT" secondAttribute="bottom" constant="2" id="2dC-hB-RMi"/>
                                     <constraint firstAttribute="bottom" secondItem="3EP-CL-loC" secondAttribute="bottom" id="ADi-fR-XKO"/>
                                     <constraint firstAttribute="trailing" secondItem="3EP-CL-loC" secondAttribute="trailing" id="Bzb-tV-B35"/>
+                                    <constraint firstItem="lnS-Qb-bDQ" firstAttribute="bottom" secondItem="3EP-CL-loC" secondAttribute="bottom" id="G1V-LE-4nG"/>
                                     <constraint firstItem="a9S-8P-XWT" firstAttribute="leading" secondItem="ZOG-sI-91X" secondAttribute="leading" constant="2" id="Lzj-qv-nmL"/>
+                                    <constraint firstItem="3EP-CL-loC" firstAttribute="width" secondItem="lnS-Qb-bDQ" secondAttribute="width" id="MYK-vF-sM0"/>
                                     <constraint firstAttribute="trailing" secondItem="a9S-8P-XWT" secondAttribute="trailing" constant="2" id="QmI-oz-rXH"/>
-                                    <constraint firstItem="3EP-CL-loC" firstAttribute="leading" secondItem="ZOG-sI-91X" secondAttribute="leading" id="ehD-8P-osd"/>
+                                    <constraint firstItem="lnS-Qb-bDQ" firstAttribute="leading" secondItem="ZOG-sI-91X" secondAttribute="leading" id="e4f-FK-Wnh"/>
+                                    <constraint firstItem="3EP-CL-loC" firstAttribute="leading" secondItem="lnS-Qb-bDQ" secondAttribute="trailing" constant="2" id="kNw-t8-ojd"/>
                                     <constraint firstItem="a9S-8P-XWT" firstAttribute="top" secondItem="ZOG-sI-91X" secondAttribute="top" constant="2" id="kZh-OK-tcX"/>
+                                    <constraint firstItem="lnS-Qb-bDQ" firstAttribute="top" secondItem="3EP-CL-loC" secondAttribute="top" id="oTH-nd-gRd"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -452,6 +467,7 @@
                         <outlet property="groundBallButton" destination="0oz-Hq-mMq" id="7cc-8t-gKb"/>
                         <outlet property="hitByPitchButton" destination="xNZ-fE-ItD" id="8bA-Es-pfV"/>
                         <outlet property="homeRunButton" destination="hqO-8F-YIE" id="hrh-1U-bUf"/>
+                        <outlet property="resetButton" destination="lnS-Qb-bDQ" id="JfO-IS-FPd"/>
                         <outlet property="runButton" destination="XHC-Fl-v3B" id="ApY-FL-aXZ"/>
                         <outlet property="sacrificeHitButton" destination="NCV-m1-Hp1" id="Kac-GS-5T7"/>
                         <outlet property="singleHitButton" destination="G3O-8t-gqM" id="hXa-VQ-4Aa"/>
@@ -583,7 +599,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijt-2W-UWq" userLabel="OkButton">
-                                        <rect key="frame" x="0.0" y="361" width="300" height="40"/>
+                                        <rect key="frame" x="151" y="361" width="149" height="40"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="lhX-dL-2F1"/>
@@ -596,16 +612,29 @@
                                             <segue destination="rQv-fz-qau" kind="unwind" identifier="unwindPitcherToDetail" animates="NO" unwindAction="unwindToDetailVCWithSegue:" id="dFV-2Y-0n0"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUi-e5-M4c">
+                                        <rect key="frame" x="0.0" y="361" width="149" height="40"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="초기화">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Ijt-2W-UWq" secondAttribute="bottom" id="0qy-nJ-ogT"/>
+                                    <constraint firstItem="Ijt-2W-UWq" firstAttribute="bottom" secondItem="EUi-e5-M4c" secondAttribute="bottom" id="1Nw-RD-f0q"/>
+                                    <constraint firstItem="Ijt-2W-UWq" firstAttribute="top" secondItem="EUi-e5-M4c" secondAttribute="top" id="2Qc-BO-bsB"/>
+                                    <constraint firstItem="EUi-e5-M4c" firstAttribute="leading" secondItem="x95-gx-1Lo" secondAttribute="leading" id="7Nz-1X-CDc"/>
                                     <constraint firstItem="Ijt-2W-UWq" firstAttribute="top" secondItem="hwX-J8-yha" secondAttribute="bottom" constant="2" id="94Q-m8-1aQ"/>
-                                    <constraint firstItem="Ijt-2W-UWq" firstAttribute="leading" secondItem="x95-gx-1Lo" secondAttribute="leading" id="GyH-jo-IBZ"/>
                                     <constraint firstAttribute="trailing" secondItem="Ijt-2W-UWq" secondAttribute="trailing" id="JYs-Dr-4MK"/>
                                     <constraint firstItem="hwX-J8-yha" firstAttribute="leading" secondItem="x95-gx-1Lo" secondAttribute="leading" id="MmR-No-BV9"/>
+                                    <constraint firstItem="Ijt-2W-UWq" firstAttribute="width" secondItem="EUi-e5-M4c" secondAttribute="width" id="MpM-Jm-u4U"/>
+                                    <constraint firstItem="Ijt-2W-UWq" firstAttribute="leading" secondItem="EUi-e5-M4c" secondAttribute="trailing" constant="2" id="VTA-pi-MVk"/>
                                     <constraint firstAttribute="trailing" secondItem="hwX-J8-yha" secondAttribute="trailing" id="ksV-BC-XVD"/>
                                     <constraint firstItem="hwX-J8-yha" firstAttribute="top" secondItem="x95-gx-1Lo" secondAttribute="top" constant="2" id="yA2-5v-GEc"/>
+                                    <constraint firstItem="Ijt-2W-UWq" firstAttribute="height" secondItem="EUi-e5-M4c" secondAttribute="height" id="yj5-Hv-7T0"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -631,6 +660,7 @@
                         <outlet property="loseButton" destination="bXT-zd-Z4I" id="xwx-3h-xHl"/>
                         <outlet property="pitcherStackView" destination="eEE-T3-g58" id="kJe-q0-Ogg"/>
                         <outlet property="pitcherView" destination="x95-gx-1Lo" id="KGn-AU-EfH"/>
+                        <outlet property="resetButton" destination="EUi-e5-M4c" id="dov-wG-Rs7"/>
                         <outlet property="saveButton" destination="So7-go-0dY" id="hKI-ym-oLn"/>
                         <outlet property="strikeOutsButton" destination="2g6-S7-Mdq" id="5eO-b5-kya"/>
                         <outlet property="tapGestureRecognizer" destination="WdN-PE-xrZ" id="f5S-jW-TnI"/>
@@ -670,9 +700,6 @@
                                         <state key="normal" title="타자">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="batterButtonDidTapped:" destination="MKn-ji-cZu" eventType="touchUpInside" id="XwY-HU-sGK"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90F-cA-ank">
                                         <rect key="frame" x="151" y="2" width="147" height="329.5"/>
@@ -681,9 +708,6 @@
                                         <state key="normal" title="투수">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="pitcherButtonDidTapped:" destination="MKn-ji-cZu" eventType="touchUpInside" id="kPe-Je-bzw"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -711,11 +735,15 @@
                             <outletCollection property="gestureRecognizers" destination="4o6-IS-37r" appends="YES" id="e3F-lv-Nva"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="batterButton" destination="x7Y-hO-CQW" id="OMZ-p2-ufl"/>
+                        <outlet property="pitcherButton" destination="90F-cA-ank" id="cGs-dd-hCA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fx-vo-CH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="4o6-IS-37r">
                     <connections>
-                        <action selector="clickBackgroundView:" destination="MKn-ji-cZu" id="0XS-4q-U60"/>
+                        <action selector="backgroundViewDidTapped:" destination="MKn-ji-cZu" id="FP3-A6-zn8"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
