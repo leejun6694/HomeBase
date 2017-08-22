@@ -25,6 +25,7 @@ class BatterRecordViewController: UIViewController {
     @IBOutlet private var hitByPitchButton: UIButton!
     @IBOutlet private var runButton: UIButton!
     @IBOutlet private var RBIButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
     
     private var singleHit: Double = 0.0
     private var doubleHit: Double = 0.0
@@ -50,15 +51,13 @@ class BatterRecordViewController: UIViewController {
     var row: Int!
     var playerID: Int64!
     var scheduleID: Int64!
-
-    // MARK: Override
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
-        self.view.isOpaque = false
-        
+    private var updatePlayerRecordID: Int64 = -1
+    private var recordDidChange: Bool = false
+
+    // MARK: Methods
+    
+    private func appendRecordButtons() {
         batterButtons.append(singleHitButton)
         batterButtons.append(doubleHitButton)
         batterButtons.append(tripleHitButton)
@@ -73,6 +72,16 @@ class BatterRecordViewController: UIViewController {
         batterButtons.append(runButton)
         batterButtons.append(RBIButton)
         
+        for index in 0..<batterButtons.count {
+            batterButtons[index].tag = index
+            batterButtons[index].addTarget(
+                self,
+                action: #selector(batterRecordButtonDidTapped(_:)),
+                for: .touchUpInside)
+        }
+    }
+    
+    private func appendRecords() {
         batterRecords.append(singleHit)
         batterRecords.append(doubleHit)
         batterRecords.append(tripleHit)
@@ -86,34 +95,99 @@ class BatterRecordViewController: UIViewController {
         batterRecords.append(hitByPitch)
         batterRecords.append(run)
         batterRecords.append(RBI)
-        
-        for index in 0..<batterButtons.count {
-            batterButtons[index].tag = index
-            batterButtons[index].addTarget(
-                self,
-                action: #selector(batterRecordButtonDidTapped(_:)),
-                for: .touchUpInside)
+    }
+    
+    private func fetchPlayerRecordOnSchedule() {
+        if let existingRecord: PlayerRecord = PlayerRecordDAO.shared.selectPlayerRecordOnSchedule(
+            playerID: self.playerID, scheduleID: self.scheduleID) {
+            
+            if existingRecord.playerID != 0 {
+                recordDidChange = true
+                
+                self.updatePlayerRecordID = existingRecord.playerRecordID
+                self.batterRecords[0] = existingRecord.singleHit
+                self.batterRecords[1] = existingRecord.doubleHit
+                self.batterRecords[2] = existingRecord.tripleHit
+                self.batterRecords[3] = existingRecord.homeRun
+                self.batterRecords[4] = existingRecord.baseOnBalls
+                self.batterRecords[5] = existingRecord.sacrificeHit
+                self.batterRecords[6] = existingRecord.strikeOut
+                self.batterRecords[7] = existingRecord.groundBall
+                self.batterRecords[8] = existingRecord.flyBall
+                self.batterRecords[9] = existingRecord.stolenBase
+                self.batterRecords[10] = existingRecord.hitByPitch
+                self.batterRecords[11] = existingRecord.run
+                self.batterRecords[12] = existingRecord.RBI
+                
+                for index in 0..<batterButtons.count {
+                    
+                    batterButtons[index].setTitle(
+                        "\(batterRecordTexts[index])\n\(Int(batterRecords[index]))", for: .normal)
+                    
+                    batterButtons[index].titleLabel?.textAlignment = .center
+                }
+            }
         }
+    }
+    
+    // MARK: Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
+        self.view.isOpaque = false
+        
+        appendRecordButtons()
+        appendRecords()
+        resetButton.addTarget(self, action: #selector(resetButtonDidTapped(_:)), for: .touchUpInside)
+        
+        fetchPlayerRecordOnSchedule()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindBatterToDetail" {
-            let playerRecord = PlayerRecord(playerID: self.playerID,
-                                            scheduleID: self.scheduleID,
-                                            singleHit: self.batterRecords[0],
-                                            doubleHit: self.batterRecords[1],
-                                            tripleHit: self.batterRecords[2],
-                                            homeRun: self.batterRecords[3],
-                                            baseOnBalls: self.batterRecords[4],
-                                            strikeOut: self.batterRecords[5],
-                                            groundBall: self.batterRecords[6],
-                                            flyBall: self.batterRecords[8],
-                                            sacrificeHit: self.batterRecords[5],
-                                            stolenBase: self.batterRecords[9],
-                                            run: self.batterRecords[10],
-                                            RBI: self.batterRecords[11])
             
-            PlayerRecordDAO.shared.insert(item: playerRecord)
+            if recordDidChange == false {
+                let playerRecord = PlayerRecord(
+                    playerID: self.playerID,
+                    scheduleID: self.scheduleID,
+                    singleHit: self.batterRecords[0],
+                    doubleHit: self.batterRecords[1],
+                    tripleHit: self.batterRecords[2],
+                    homeRun: self.batterRecords[3],
+                    baseOnBalls: self.batterRecords[4],
+                    sacrificeHit: self.batterRecords[5],
+                    strikeOut: self.batterRecords[6],
+                    groundBall: self.batterRecords[7],
+                    flyBall: self.batterRecords[8],
+                    stolenBase: self.batterRecords[9],
+                    hitByPitch: self.batterRecords[10],
+                    run: self.batterRecords[11],
+                    RBI: self.batterRecords[12])
+                
+                PlayerRecordDAO.shared.insert(item: playerRecord)
+            } else {
+                let updatePlayerRecord = PlayerRecord(
+                    playerRecordID: self.updatePlayerRecordID,
+                    playerID: self.playerID,
+                    scheduleID: self.scheduleID,
+                    singleHit: self.batterRecords[0],
+                    doubleHit: self.batterRecords[1],
+                    tripleHit: self.batterRecords[2],
+                    homeRun: self.batterRecords[3],
+                    baseOnBalls: self.batterRecords[4],
+                    sacrificeHit: self.batterRecords[5],
+                    strikeOut: self.batterRecords[6],
+                    groundBall: self.batterRecords[7],
+                    flyBall: self.batterRecords[8],
+                    stolenBase: self.batterRecords[9],
+                    hitByPitch: self.batterRecords[10],
+                    run: self.batterRecords[11],
+                    RBI: self.batterRecords[12])
+                
+                PlayerRecordDAO.shared.update(item: updatePlayerRecord)
+            }
         }
     }
     
@@ -127,6 +201,13 @@ class BatterRecordViewController: UIViewController {
         self.batterRecords[sender.tag] += 1.0
         sender.setTitle("\(batterRecordTexts[sender.tag])\n\(Int(batterRecords[sender.tag]))", for: .normal)
         sender.titleLabel?.textAlignment = .center
+    }
+    
+    @objc private func resetButtonDidTapped(_ sender: UIButton) {
+        for index in 0..<batterRecords.count {
+            self.batterRecords[index] = 0.0
+            self.batterButtons[index].setTitle("\(batterRecordTexts[index])", for: .normal)
+        }
     }
   
     @IBAction private func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {

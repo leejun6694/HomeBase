@@ -27,6 +27,7 @@ class PitcherRecordViewController: UIViewController {
     @IBOutlet private var inningButton: UIButton!
     @IBOutlet private var strikeOutsButton: UIButton!
     @IBOutlet private var ERButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
     
     private var win: Double = 0.0
     private var lose: Double = 0.0
@@ -52,16 +53,12 @@ class PitcherRecordViewController: UIViewController {
     var playerID: Int64!
     var scheduleID: Int64!
     
-    // MARK: Override
+    private var updatePlayerRecordID: Int64 = -1
+    private var recordDidChange: Bool = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
-        self.view.isOpaque = false
-        
-        tapGestureRecognizer.delegate = self
-        
+    // MARK: Methods
+    
+    private func appendRecordButtons() {
         pitcherButtons.append(winButton)
         pitcherButtons.append(loseButton)
         pitcherButtons.append(holdButton)
@@ -74,6 +71,16 @@ class PitcherRecordViewController: UIViewController {
         pitcherButtons.append(strikeOutsButton)
         pitcherButtons.append(ERButton)
         
+        for index in 0..<pitcherButtons.count {
+            pitcherButtons[index].tag = index
+            pitcherButtons[index].addTarget(
+                self,
+                action: #selector(pitcherRecordButtonDidTapped(_:)),
+                for: .touchUpInside)
+        }
+    }
+    
+    private func appendRecords() {
         pitcherRecords.append(win)
         pitcherRecords.append(lose)
         pitcherRecords.append(hold)
@@ -85,14 +92,78 @@ class PitcherRecordViewController: UIViewController {
         pitcherRecords.append(inning)
         pitcherRecords.append(strikeOuts)
         pitcherRecords.append(ER)
-        
-        for index in 0..<pitcherButtons.count {
-            pitcherButtons[index].tag = index
-            pitcherButtons[index].addTarget(
-                self,
-                action: #selector(pitcherRecordButtonDidTapped(_:)),
-                for: .touchUpInside)
+    }
+    
+    private func fetchPlayerRecordOnSchedule() {
+        if let existingRecord: PlayerRecord = PlayerRecordDAO.shared.selectPlayerRecordOnSchedule(
+            playerID: self.playerID, scheduleID: self.scheduleID) {
+            
+            if existingRecord.playerID != 0 {
+                recordDidChange = true
+                
+                self.updatePlayerRecordID = existingRecord.playerRecordID
+                self.pitcherRecords[0] = existingRecord.win
+                self.pitcherRecords[1] = existingRecord.lose
+                self.pitcherRecords[2] = existingRecord.hold
+                self.pitcherRecords[3] = existingRecord.save
+                self.pitcherRecords[4] = existingRecord.walks
+                self.pitcherRecords[5] = existingRecord.hitBatters
+                self.pitcherRecords[6] = existingRecord.hits
+                self.pitcherRecords[7] = existingRecord.homeRuns
+                self.pitcherRecords[8] = existingRecord.inning
+                self.pitcherRecords[9] = existingRecord.strikeOuts
+                self.pitcherRecords[10] = existingRecord.ER
+                
+                for index in 0..<pitcherButtons.count {
+                    
+                    if index == 8 {
+                        let updateInningRemainder = (Int(pitcherRecords[index] * 10) % 10) / 3
+                        let updateInning = Int(pitcherRecords[index])
+                        
+                        self.inningRemainder = Double(updateInningRemainder)
+                        self.pitcherRecords[index] = Double(updateInning)
+                        
+                        if updateInningRemainder == 0 {
+                            pitcherButtons[index].setTitle(
+                                "\(pitcherRecordTexts[index])\n\(updateInning)",
+                                for: .normal)
+                        } else {
+                            pitcherButtons[index].setTitle(
+                                "\(pitcherRecordTexts[index])\n\(updateInning) \(updateInningRemainder)/3",
+                                for: .normal)
+                        }
+                        
+                    } else {
+                        pitcherButtons[index].setTitle(
+                            "\(pitcherRecordTexts[index])\n\(Int(pitcherRecords[index]))", for: .normal)
+                    }
+                    
+                    pitcherButtons[index].titleLabel?.textAlignment = .center
+                    
+                    if index < 4, pitcherRecords[index] > 0.0 {
+                        pitcherStackView.alpha = 0.5
+                        pitcherStackView.isUserInteractionEnabled = false
+                    }
+                }
+            }
         }
+    }
+    
+    // MARK: Override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
+        self.view.isOpaque = false
+        
+        tapGestureRecognizer.delegate = self
+        
+        appendRecordButtons()
+        appendRecords()
+        resetButton.addTarget(self, action: #selector(resetButtonDidTapped(_:)), for: .touchUpInside)
+        
+        fetchPlayerRecordOnSchedule()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,21 +171,42 @@ class PitcherRecordViewController: UIViewController {
             
             self.pitcherRecords[8] += self.inningRemainder / 3.0
             
-            let playerRecord = PlayerRecord(playerID: self.playerID,
-                                            scheduleID: self.scheduleID,
-                                            win: self.pitcherRecords[0],
-                                            lose: self.pitcherRecords[1],
-                                            save: self.pitcherRecords[3],
-                                            hold: self.pitcherRecords[2],
-                                            inning: self.pitcherRecords[8],
-                                            hits: self.pitcherRecords[6],
-                                            homeRuns: self.pitcherRecords[7],
-                                            walks: self.pitcherRecords[4],
-                                            hitBatters: self.pitcherRecords[5],
-                                            strikeOuts: self.pitcherRecords[9],
-                                            ER: self.pitcherRecords[10])
-            
-            PlayerRecordDAO.shared.insert(item: playerRecord)
+            if recordDidChange == false {
+                let playerRecord = PlayerRecord(
+                    playerID: self.playerID,
+                    scheduleID: self.scheduleID,
+                    win: self.pitcherRecords[0],
+                    lose: self.pitcherRecords[1],
+                    hold: self.pitcherRecords[2],
+                    save: self.pitcherRecords[3],
+                    walks: self.pitcherRecords[4],
+                    hitBatters: self.pitcherRecords[5],
+                    hits: self.pitcherRecords[6],
+                    homeRuns: self.pitcherRecords[7],
+                    inning: self.pitcherRecords[8],
+                    strikeOuts: self.pitcherRecords[9],
+                    ER: self.pitcherRecords[10])
+                
+                PlayerRecordDAO.shared.insert(item: playerRecord)
+            } else {
+                let updatePlayerRecord = PlayerRecord(
+                    playerRecordID: self.updatePlayerRecordID,
+                    playerID: self.playerID,
+                    scheduleID: self.scheduleID,
+                    win: self.pitcherRecords[0],
+                    lose: self.pitcherRecords[1],
+                    hold: self.pitcherRecords[2],
+                    save: self.pitcherRecords[3],
+                    walks: self.pitcherRecords[4],
+                    hitBatters: self.pitcherRecords[5],
+                    hits: self.pitcherRecords[6],
+                    homeRuns: self.pitcherRecords[7],
+                    inning: self.pitcherRecords[8],
+                    strikeOuts: self.pitcherRecords[9],
+                    ER: self.pitcherRecords[10])
+                
+                PlayerRecordDAO.shared.update(item: updatePlayerRecord)
+            }
         }
     }
     
@@ -153,6 +245,18 @@ class PitcherRecordViewController: UIViewController {
         }
       
         sender.titleLabel?.textAlignment = .center
+    }
+    
+    @objc private func resetButtonDidTapped(_ sender: UIButton) {
+        for index in 0..<pitcherRecords.count {
+            self.pitcherRecords[index] = 0.0
+            self.pitcherButtons[index].setTitle("\(pitcherRecordTexts[index])", for: .normal)
+        }
+        
+        self.inningRemainder = 0.0
+        
+        pitcherStackView.alpha = 1.0
+        pitcherStackView.isUserInteractionEnabled = true
     }
   
     @IBAction private func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {

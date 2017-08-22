@@ -126,12 +126,20 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
     
     @objc private func skipButtonDidTapped(_ sender: AnyObject) {
         showAlertTwoButton(
-            title: "\(teamName ?? "")", message: "HomeBase를 시작하시겠습니까?", confirmAction: skipAction)
+            title: "\(teamName ?? "")",
+            message: "HomeBase를 시작하시겠습니까?",
+            cancelActionTitle: "취소",
+            confirmActionTitle: "확인",
+            confirmAction: skipAction)
     }
     
     @objc private func doneButtonDidTapped(_ sender: AnyObject) {
         showAlertTwoButton(
-            title: "\(teamName ?? "")", message: "HomeBase를 시작하시겠습니까?", confirmAction: doneAction)
+            title: "\(teamName ?? "")",
+            message: "HomeBase를 시작하시겠습니까?",
+            cancelActionTitle: "취소",
+            confirmActionTitle: "확인",
+            confirmAction: doneAction)
     }
 }
 

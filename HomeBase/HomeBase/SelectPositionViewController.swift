@@ -8,9 +8,12 @@
 
 import UIKit
 
-class SelectPositionViewController: UIViewController {
+class SelectPositionViewController: UIViewController, CustomAlertShowing {
     
     // MARK: Properties
+    
+    @IBOutlet var batterButton: UIButton!
+    @IBOutlet var pitcherButton: UIButton!
     
     var row: Int!
     var playerID: Int64!
@@ -23,15 +26,43 @@ class SelectPositionViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
         self.view.isOpaque = false
+        
+        if let existingRecord = PlayerRecordDAO.shared.selectPlayerRecordOnSchedule(
+            playerID: self.playerID, scheduleID: self.scheduleID) {
+            
+            let sumOfPlayerRecord = PlayerRecordDAO.shared.selectSumOfPlayerRecord(
+                playerRecordID: existingRecord.playerRecordID)
+            let sumOfBatterRecord = PlayerRecordDAO.shared.selectSumOfBatterRecord(
+                playerRecordID: existingRecord.playerRecordID)
+            
+            if existingRecord.playerID == 0 || sumOfPlayerRecord == 0 {
+                batterButton.addTarget(self, action: #selector(batterButtonDidTapped(_:)), for: .touchUpInside)
+                pitcherButton.addTarget(self, action: #selector(pitcherButtonDidTapped(_:)), for: .touchUpInside)
+            } else if sumOfBatterRecord == 0 {
+                batterButton.addTarget(self, action: #selector(batterButtonDisabled(_:)), for: .touchUpInside)
+                pitcherButton.addTarget(self, action: #selector(pitcherButtonDidTapped(_:)), for: .touchUpInside)
+            } else {
+                batterButton.addTarget(self, action: #selector(batterButtonDidTapped(_:)), for: .touchUpInside)
+                pitcherButton.addTarget(self, action: #selector(pitcherButtonDisabled(_:)), for: .touchUpInside)
+            }
+        }
     }
     
     // MARK: Actions
     
-    @IBAction private func clickBackgroundView(_ sender: UITapGestureRecognizer) {
+    @IBAction private func backgroundViewDidTapped(_ sender: UITapGestureRecognizer) {
         dismiss(animated: false, completion: nil)
     }
     
-    @IBAction private func batterButtonDidTapped(_ sender: UIButton) {
+    @objc private func batterButtonDisabled(_ sender: UIButton) {
+        showAlertOneButton(title: "경고", message: "투수 기록이 초기화 되어야 합니다")
+    }
+    
+    @objc private func pitcherButtonDisabled(_ sender: UIButton) {
+        showAlertOneButton(title: "경고", message: "타자 기록이 초기화 되어야 합니다")
+    }
+    
+    @objc private func batterButtonDidTapped(_ sender: UIButton) {
         let batterRecordViewController = self.storyboard!.instantiateViewController(
             withIdentifier: "BatterRecordViewController") as! BatterRecordViewController
         
@@ -44,7 +75,7 @@ class SelectPositionViewController: UIViewController {
         present(batterRecordViewController, animated: false, completion: nil)
     }
     
-    @IBAction private func pitcherButtonDidTapped(_ sender: UIButton) {
+    @objc private func pitcherButtonDidTapped(_ sender: UIButton) {
         let pitcherRecordViewController = self.storyboard!.instantiateViewController(
             withIdentifier: "PitcherRecordViewController") as! PitcherRecordViewController
         
