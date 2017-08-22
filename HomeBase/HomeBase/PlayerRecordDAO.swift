@@ -257,23 +257,17 @@ class PlayerRecordDAO {
         switch resultSet {
         case let .ok(rows):
             for batting in Array(rows) {
-                print("player id: \(batting[playerID])")
-                
                 let battingHits = Double(
                     batting[singleHit.sum]!
                         + batting[doubleHit.sum]!
                         + batting[tripleHit.sum]!
                         + batting[homeRun.sum]!)
-                print(battingHits)
                 
                 let battingOuts = Double(
                     batting[strikeOut.sum]!
                         + batting[groundBall.sum]!
-                        + batting[flyBall.sum]!)
-                print(battingOuts)
-                
+                        + batting[flyBall.sum]!)                
                 if battingHits != 0.0, battingOuts != 0.0 {
-                    print("둘 다 0이 아니다")
                     playerBattingAverage[batting[playerID]] = battingHits / (battingHits + battingOuts)
                 }
             }

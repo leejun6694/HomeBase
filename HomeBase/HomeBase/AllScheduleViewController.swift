@@ -89,15 +89,20 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCellEditingStyle,
+        forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
             let deleteIndex = indexPath.row
             let selectedSchedule = scheduleArray[deleteIndex]
             
-            let title = "일정을 지우시겠습니까?"
+            let title = "삭제"
+            let message = "일정을 삭제하시겠습니까?"
             let ac = UIAlertController(
                 title: title,
-                message: "",
+                message: message,
                 preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(
@@ -116,11 +121,13 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
             
         }
     }
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    func tableView(
+        _ tableView: UITableView,
+        editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let deleteIndex = indexPath.row
         let selectedSchedule = self.scheduleArray[deleteIndex]
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive , title: "✕\n Delete") { (action, indexPath) in
             // delete item at indexPath
             let title = "일정을 지우시겠습니까?"
             let ac = UIAlertController(
@@ -140,20 +147,16 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
             ac.addAction(cancelAction)
             self.present(ac, animated: true, completion: nil)
         }
-        
+
         let editScheduleViewController = storyboard?.instantiateViewController(
             withIdentifier: "EditScheduleViewController") as? EditScheduleViewController
-        let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+        let edit = UITableViewRowAction(style: .normal, title: "✎\n Edit") { (action, indexPath) in
             let selectedSchedule = self.scheduleArray[indexPath.row]
             editScheduleViewController?.preSchedule = selectedSchedule
             self.present(editScheduleViewController!, animated: true, completion: nil)
-
         }
-        
-        edit.backgroundColor = UIColor(red: 178.0/255.0, green: 235.0/255.0, blue: 244.0/255.0, alpha: 1.0)
-        
+        edit.backgroundColor = UIColor(red: 242/255, green: 150/255, blue: 97/255, alpha: 1)
+    
         return [delete, edit]
     }
 }
-
-

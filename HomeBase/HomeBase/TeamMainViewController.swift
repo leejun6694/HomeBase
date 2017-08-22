@@ -9,25 +9,38 @@
 
 import UIKit
 
-class TeamMainViewController: UIViewController {
+class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    // MARK: Types
+    enum Section: Int {
+        case currentSchedule
+        case top3BattingAverage
+        case top3ERA
+        init?(indexPath: IndexPath) {
+            self.init(rawValue: indexPath.section)
+        }
+        static var numberOfSections: Int { return 3 }
+    }
+
     
     // MARK: Properties
     
-    @IBOutlet var mainImageView: UIImageView!
-    @IBOutlet var teamNameLabel: UILabel!
-    @IBOutlet var teamMainTableView: UITableView!
-    @IBOutlet var matchResultsTextField: UILabel!
-    @IBOutlet var teamBattingAverageTextField: UILabel!
-    @IBOutlet var teamERATextField: UILabel!
+    @IBOutlet private var mainImageView: UIImageView!
+    @IBOutlet private var teamNameLabel: UILabel!
+    @IBOutlet private var teamMainTableView: UITableView!
+    @IBOutlet fileprivate var matchResultsTextField: UILabel!
+    @IBOutlet private var teamBattingAverageTextField: UILabel!
+    @IBOutlet private var teamERATextField: UILabel!
     
-    var teamInfo: TeamInfo?
-    var schedule: [TeamSchedule] = [TeamSchedule]()
-    var player: PlayerDAO?
+    fileprivate var teamInfo: TeamInfo?
+    fileprivate var schedule: [TeamSchedule] = [TeamSchedule]()
+    fileprivate var player: PlayerDAO?
     
-    var playerBattingAverage = [Int64:Double]()
-    var playerPitchingAverage = [Int64:Double]()
+    fileprivate var playerBattingAverage = [Int64:Double]()
+    fileprivate var playerPitchingAverage = [Int64:Double]()
+    var record = TeamRecord(win: 0, draw: 0, lose: 0)
     
-    let dateFormatter: DateFormatter = {
+    fileprivate let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
@@ -35,7 +48,7 @@ class TeamMainViewController: UIViewController {
         return formatter
     }()
     
-    let batterNumberFormatter: NumberFormatter = {
+    fileprivate let batterNumberFormatter: NumberFormatter = {
         let nf = NumberFormatter()
         nf.numberStyle = .decimal
         nf.minimumFractionDigits = 3
@@ -44,7 +57,7 @@ class TeamMainViewController: UIViewController {
         return nf
     }()
     
-    let pitcherNumberFormatter: NumberFormatter = {
+    fileprivate let pitcherNumberFormatter: NumberFormatter = {
         let nf = NumberFormatter()
         nf.numberStyle = .decimal
         nf.minimumFractionDigits = 2
@@ -53,7 +66,7 @@ class TeamMainViewController: UIViewController {
         return nf
     }()
     
-    // MARK: Functions
+    // MARK: Methods
     
     fileprivate func fetchImage() {
         let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -69,8 +82,21 @@ class TeamMainViewController: UIViewController {
     
     fileprivate func calculateMatchRecords() {
         let matchRecord = TeamScheduleDAO.shared.fetchMatchResult()
-        
-        matchResultsTextField.text = "\(matchRecord.win)승 \(matchRecord.draw)무 \(matchRecord.lose)패"
+        record.win = matchRecord.win
+        record.lose = matchRecord.lose
+        record.draw = matchRecord.draw
+    
+        if !matchResultsTextField.isHighlighted {
+            var result = 0
+            let total = record.win + record.lose
+            if total != 0 {
+                let sum = Double(record.win) / Double(total)
+                result = Int( (sum * 100.0).rounded() )
+            }
+            matchResultsTextField.text = "\(result)%"
+        } else {
+            matchResultsTextField.text = "\(record.win)승 \(record.draw)무 \(record.lose)패"
+        }
     }
     
     fileprivate func calculateTeamBattingAverage() {
@@ -100,14 +126,22 @@ class TeamMainViewController: UIViewController {
         }
     }
     
+    
     // MARK: Override
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         teamMainTableView.sectionFooterHeight = 0
         self.automaticallyAdjustsScrollViewInsets = false
-        
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TeamMainViewController.labelDidChange))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.delegate = self
+        matchResultsTextField.isUserInteractionEnabled = true
+        matchResultsTextField.addGestureRecognizer(tapGesture)
+
+    
         teamMainTableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "HeaderViewCell")
         teamMainTableView.register(UINib(nibName: "FooterViewCell", bundle: nil), forCellReuseIdentifier: "FooterViewCell")
         
@@ -146,6 +180,7 @@ class TeamMainViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    
     // MARK: Actions
     
     func allScheduleButtonDidTap(_ btControl: UIButton) {
@@ -160,10 +195,30 @@ class TeamMainViewController: UIViewController {
         present(addScheduleViewController, animated: true, completion: nil)
     }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
     @IBAction func clickSettingButton(_ sender: UIButton) {
         let teamSettingViewController = self.storyboard?.instantiateViewController(withIdentifier: "TeamSettingViewController") as! TeamSettingViewController
         
         present(teamSettingViewController, animated: true, completion: nil)
+    }
+    
+    func labelDidChange(sender: UITapGestureRecognizer) {
+        if matchResultsTextField.isHighlighted {
+            var result = 0
+            let total = record.win + record.lose
+            if total != 0 {
+                let sum = Double(record.win) / Double(total)
+                result = Int( (sum * 100.0).rounded() )
+            }
+            matchResultsTextField.text = "\(result)%"
+            matchResultsTextField.isHighlighted = false
+        } else {
+            matchResultsTextField.text = "\(record.win)승 \(record.draw)무 \(record.lose)패"
+            matchResultsTextField.isHighlighted = true
+        }
     }
 }
 
@@ -172,36 +227,34 @@ class TeamMainViewController: UIViewController {
 extension TeamMainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return Section.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numberOfRows = 0
         
-        switch section {
-        case 0:
+        switch Section(rawValue: section) {
+        case .currentSchedule?:
             if schedule.count < 4 {
                 numberOfRows = schedule.count + 1
             } else {
                 numberOfRows = 5
             }
-            
-        case 1:
+        case .top3BattingAverage?:
             if playerBattingAverage.count <= 3 {
                 numberOfRows = playerBattingAverage.count
             }
             else {
                 numberOfRows = 3
             }
-        case 2:
+        case .top3ERA?:
             if playerPitchingAverage.count <= 3 {
                 numberOfRows = playerPitchingAverage.count
             }
             else {
                 numberOfRows = 3
             }
-        default:
-            break
+        case .none: break
         }
         return numberOfRows
     }
@@ -210,8 +263,9 @@ extension TeamMainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentSection = indexPath.section
         let currentRow = indexPath.row
-        
-        if currentSection == 0 {
+
+        switch Section(rawValue: currentSection) {
+        case .currentSchedule?:
             if (schedule.count < 4 && currentRow == schedule.count) || currentRow == 4{
                 let footerCell = tableView.dequeueReusableCell(withIdentifier: "FooterViewCell") as! FooterViewCell
                 footerCell.addScheduleButton.addTarget(
@@ -226,8 +280,7 @@ extension TeamMainViewController: UITableViewDataSource {
                 scheduleCell.matchOpponentLabel.text = "vs " + scheduleAtRow.matchOpponent
                 return scheduleCell
             }
-        } else if currentSection == 1 {
-            print(playerBattingAverage)
+        case .top3BattingAverage?:
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TeamRecordTableViewCell
             
             let sortedBattingAverage = playerBattingAverage.sorted(by: { $0.1 > $1.1 })
@@ -238,7 +291,7 @@ extension TeamMainViewController: UITableViewDataSource {
             }
             
             return recordCell
-        } else {
+        case .top3ERA?:
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TeamRecordTableViewCell
             
             let sortedPitchingAverage = playerPitchingAverage.sorted(by: { $0.1 < $1.1 })
@@ -249,6 +302,8 @@ extension TeamMainViewController: UITableViewDataSource {
             }
             
             return recordCell
+        case .none:
+            return UITableViewCell()
         }
     }
 }
@@ -263,24 +318,21 @@ extension TeamMainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderViewCell") as! HeaderViewCell
-        switch section {
-        case 0:
+        switch Section(rawValue: section) {
+        case .currentSchedule?:
             headerCell.titleLabel.text = "경기 일정"
             headerCell.allButton.addTarget(
                 self,
                 action: #selector(TeamMainViewController.allScheduleButtonDidTap(_:)),
                 for: .touchUpInside)
-        case 1:
+        case .top3BattingAverage?:
             headerCell.titleLabel.text = "타율 Top 3"
             headerCell.allButton.alpha = 0
-        case 2:
+        case .top3ERA?:
             headerCell.titleLabel.text = "방어율 Top 3"
             headerCell.allButton.alpha = 0
-        default:
-            break
-            
+        case .none: break
         }
         return headerCell
     }
 }
-

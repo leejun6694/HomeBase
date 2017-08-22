@@ -38,11 +38,12 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
     @IBAction func clickDoneButton(_ sender: UIBarButtonItem) {
         var overlapNumber: Bool = false
         
-        let numbers = PlayerDAO.shared.selectAllNumber()
-        for index in 0..<numbers.count {
-            if backNumberTextField.text == "\(numbers[index])" {
-                overlapNumber = true
-                break
+        if let numbers = PlayerDAO.shared.selectAllNumber() {
+            for index in 0..<numbers.count {
+                if backNumberTextField.text == "\(numbers[index])" {
+                    overlapNumber = true
+                    break
+                }
             }
         }
         

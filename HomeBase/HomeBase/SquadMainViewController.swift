@@ -16,8 +16,8 @@ class SquadMainViewController: UIViewController, CustomAlertShowing {
     
     // MARK: Properties
     
-    var playerArray = [Player]()
-    var playerRecord: PlayerRecord!
+    fileprivate var playerArray = [Player]()
+    fileprivate var playerRecord: PlayerRecord!
     
     var deleteRow: Int = 0
     var deleteIndexPath: IndexPath = IndexPath()
@@ -113,22 +113,7 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
             ac.addAction(cancelAction)
             ac.addAction(deleteAction)
             present(ac, animated: true, completion: nil)
-            
-            deleteRow = indexPath.row
-            deleteIndexPath = indexPath
-            deletePlayer = playerArray[deleteRow]
-            
-            showAlertTwoButton(
-                title: "\(deletePlayer.name)",
-                message: "선수 정보를 삭제하시겠습니까?",
-                confirmAction: deletePlayer)
         }
-    }
-    
-    func deletePlayer(action: UIAlertAction) {
-        self.playerArray.remove(at: deleteRow)
-        PlayerDAO.shared.delete(id: deletePlayer.playerID)
-        tableView.deleteRows(at: [deleteIndexPath], with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
