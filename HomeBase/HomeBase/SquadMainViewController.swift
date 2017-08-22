@@ -10,10 +10,6 @@ import UIKit
 
 class SquadMainViewController: UIViewController, CustomAlertShowing {
     
-    var viewController: UIViewController {
-        return self
-    }
-    
     // MARK: Properties
     
     var playerArray = [Player]()
@@ -34,13 +30,13 @@ class SquadMainViewController: UIViewController, CustomAlertShowing {
         tableView.delegate = self
         tableView.allowsSelectionDuringEditing = true
         self.automaticallyAdjustsScrollViewInsets = false
-        
-        let teamInfo = TeamInfoDAO.shared.select()
-        self.navigationItem.title = teamInfo?.teamName
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let teamInfo = TeamInfoDAO.shared.select()
+        self.navigationItem.title = teamInfo?.teamName
         
         playerArray = PlayerDAO.shared.selectAll()!
         tableView.reloadData()
