@@ -68,11 +68,15 @@ class SquadPlayerRecordViewController: UIViewController {
 
 extension SquadPlayerRecordViewController: SquadPlayerRecordPageViewControllerDelegate {
 
-    func positionPageViewController(_ tutorialPageViewController: SquadPlayerRecordPageViewController, didUpdatePageCount count: Int) {
+    func positionPageViewController(
+        _ tutorialPageViewController: SquadPlayerRecordPageViewController,
+        didUpdatePageCount count: Int) {
         pageControl.numberOfPages = count
     }
     
-    func positionPageViewController(_ tutorialPageViewController: SquadPlayerRecordPageViewController, didUpdatePageIndex index: Int) {
+    func positionPageViewController(
+        _ tutorialPageViewController: SquadPlayerRecordPageViewController,
+        didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
     }
 }

@@ -137,7 +137,10 @@ extension TeamSettingViewController: UINavigationControllerDelegate, UIImagePick
 
 extension TeamSettingViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String) -> Bool {
         
         let currentCount = textField.text?.characters.count ?? 0
         let replacementCount = currentCount + string.characters.count - range.length

@@ -13,15 +13,29 @@ class SquadPlayerRecordPageViewController: UIPageViewController {
     weak var positionDelegate: SquadPlayerRecordPageViewControllerDelegate?
     var player: Player!
     var playerRecord: PlayerRecord!
+    
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newPositionViewController("Batter")!,
                 self.newPositionViewController("Pitcher")!]
     }()
     
+    var pitcher: [String] = {
+        var array = ["SP", "RP", "CP"]
+        
+        return array
+    }()
+    
+    var batter: [String] = {
+        var array = ["C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH"]
+        
+        return array
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if pitcher.contains(player.position) {
+            orderedViewControllers.reverse()
+        }
         dataSource = self
         delegate = self
         
@@ -31,6 +45,7 @@ class SquadPlayerRecordPageViewController: UIPageViewController {
                                animated: true,
                                completion: nil)
         }
+        
         
         positionDelegate?.positionPageViewController(self, didUpdatePageCount: orderedViewControllers.count)
     }
@@ -104,7 +119,10 @@ class SquadPlayerRecordPageViewController: UIPageViewController {
 
 extension SquadPlayerRecordPageViewController: UIPageViewControllerDataSource {
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
         }
@@ -122,7 +140,7 @@ extension SquadPlayerRecordPageViewController: UIPageViewControllerDataSource {
         
         return orderedViewControllers[nextIndex]
 
-            }
+}
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {

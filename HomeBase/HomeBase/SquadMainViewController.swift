@@ -16,8 +16,8 @@ class SquadMainViewController: UIViewController, CustomAlertShowing {
     
     // MARK: Properties
     
-    var playerArray = [Player]()
-    var playerRecord: PlayerRecord!
+    fileprivate var playerArray = [Player]()
+    fileprivate var playerRecord: PlayerRecord!
     
     var deleteRow: Int = 0
     var deleteIndexPath: IndexPath = IndexPath()
