@@ -19,10 +19,10 @@ class BatterViewController: UIViewController {
     var recordLabel: [String] = [String]()
     
     var recordLabelArray: [String] = {
-        var array = ["경기 수", "타율", "타석", "타수", "득점",
-                     "1루타", "2루타", "3루타", "홈런", "타점",
-                     "볼넷", "사구", "삼진", "땅볼", "뜬공",
-                     "희생타", "도루", "장타율", "출루율", "OPS"]
+        var array: [String] =  [.appearance, .battingAVG, .batterBox, .atBat, .run,
+                     .single, .double, .triple, .homerun, .rbi,
+                     .baseOnBalls, .hitByPitch, .strikeOut, .groundBall, .flyBall,
+                      .sacrificeHit, .stolenBase, .sluggingAVG, .onBasePercentage, "OPS"]
         return array
     }()
     
@@ -109,6 +109,7 @@ class BatterViewController: UIViewController {
                 titleLabel.text = recordLabelArray[col * 5 + row]
                 titleLabel.textColor = .white
                 titleLabel.textAlignment = .center
+                titleLabel.numberOfLines = 2
                 let recordContent = UILabel()
                 contentStackView.addArrangedSubview(recordContent)
                 recordContent.text = "\(recordLabel[col * 5 + row])"

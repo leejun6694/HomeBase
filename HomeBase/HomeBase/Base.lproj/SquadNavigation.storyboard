@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RVy-Hh-luA" id="PzQ-4e-XU0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMP-Dk-5CX">
@@ -289,8 +289,8 @@
                                 </items>
                                 <color key="barTintColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선수 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baz-ON-zK0">
-                                <rect key="frame" x="150.5" y="30.5" width="74" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선수 추가" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baz-ON-zK0">
+                                <rect key="frame" x="94" y="30.5" width="187.5" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.99607843139999996" green="0.76078431369999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -315,15 +315,19 @@
                             <constraint firstItem="baz-ON-zK0" firstAttribute="width" secondItem="6vC-uj-Ilk" secondAttribute="width" multiplier="0.5" id="LKL-iQ-z4p"/>
                             <constraint firstItem="kqO-UN-nqE" firstAttribute="top" secondItem="rXn-HL-c2A" secondAttribute="bottom" constant="15" id="N7N-go-1Z8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rXn-HL-c2A" secondAttribute="trailing" id="P15-ZR-ODX"/>
+                            <constraint firstAttribute="trailing" secondItem="pRf-di-9kj" secondAttribute="trailing" id="Ph3-Bw-Rr5"/>
                             <constraint firstAttribute="trailing" secondItem="pRf-di-9kj" secondAttribute="trailing" id="Qdh-7P-B3M"/>
                             <constraint firstItem="W5g-JV-akP" firstAttribute="top" secondItem="pRf-di-9kj" secondAttribute="bottom" id="Uw9-xU-Hag"/>
                             <constraint firstItem="kqO-UN-nqE" firstAttribute="trailing" secondItem="rXn-HL-c2A" secondAttribute="trailing" id="YeB-iR-Ihr"/>
+                            <constraint firstItem="pRf-di-9kj" firstAttribute="leading" secondItem="ozM-ra-mMM" secondAttribute="leading" id="c4x-AF-pRW"/>
                             <constraint firstItem="baz-ON-zK0" firstAttribute="centerX" secondItem="6vC-uj-Ilk" secondAttribute="centerX" id="eDp-kW-yJX"/>
                             <constraint firstItem="CXj-oF-cSg" firstAttribute="trailing" secondItem="kqO-UN-nqE" secondAttribute="trailing" id="hg9-bh-Zbw"/>
+                            <constraint firstItem="pRf-di-9kj" firstAttribute="top" secondItem="6vC-uj-Ilk" secondAttribute="bottom" id="jSo-o8-qSz"/>
                             <constraint firstItem="baz-ON-zK0" firstAttribute="centerX" secondItem="6vC-uj-Ilk" secondAttribute="centerX" id="jTP-QR-4FX"/>
                             <constraint firstItem="rXn-HL-c2A" firstAttribute="top" secondItem="6vC-uj-Ilk" secondAttribute="bottom" constant="30" id="jdM-Gx-WHY"/>
                             <constraint firstItem="CXj-oF-cSg" firstAttribute="top" secondItem="kqO-UN-nqE" secondAttribute="bottom" constant="30" id="qMQ-x4-fJe"/>
                             <constraint firstItem="CXj-oF-cSg" firstAttribute="leading" secondItem="kqO-UN-nqE" secondAttribute="leading" id="tAf-mT-z9M"/>
+                            <constraint firstItem="W5g-JV-akP" firstAttribute="top" secondItem="pRf-di-9kj" secondAttribute="bottom" id="uZR-36-3b7"/>
                             <constraint firstItem="baz-ON-zK0" firstAttribute="centerY" secondItem="6vC-uj-Ilk" secondAttribute="centerY" id="vwp-xc-UFg"/>
                             <constraint firstItem="Fkt-Bf-MYN" firstAttribute="trailing" secondItem="CXj-oF-cSg" secondAttribute="trailing" id="wWt-xw-bOG"/>
                             <constraint firstItem="Fkt-Bf-MYN" firstAttribute="top" secondItem="CXj-oF-cSg" secondAttribute="bottom" id="wYd-96-ZU9"/>
@@ -461,7 +465,7 @@
                                 <color key="barTintColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선수 수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgX-cn-OB0" userLabel="선수 수정">
-                                <rect key="frame" x="150" y="30.5" width="74" height="24"/>
+                                <rect key="frame" x="112" y="30.5" width="150" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.99607843139999996" green="0.76078431369999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

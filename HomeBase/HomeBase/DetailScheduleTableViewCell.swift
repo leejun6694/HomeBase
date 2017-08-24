@@ -9,11 +9,8 @@
 import UIKit
 
 class DetailScheduleTableViewCell: UITableViewCell {
-    
-    // MARK: Properties
-    
+    // MARK: Properties    
     @IBOutlet var playerBackNumber: UILabel!
     @IBOutlet var playerLabel: UILabel!
     @IBOutlet var playerResultButton: UIButton!
-    
 }
