@@ -55,16 +55,20 @@ class SelectPositionViewController: UIViewController, CustomAlertShowing {
     }
     
     @objc private func batterButtonDisabled(_ sender: UIButton) {
-        showAlertOneButton(title: "경고", message: "투수 기록이 초기화 되어야 합니다")
+        showAlertOneButton(
+            title: .alertActionTitle,
+            message: .alertMessageOfInitializePitcherRecord)
     }
     
     @objc private func pitcherButtonDisabled(_ sender: UIButton) {
-        showAlertOneButton(title: "경고", message: "타자 기록이 초기화 되어야 합니다")
+        showAlertOneButton(
+            title: .alertActionTitle,
+            message: .alertMessageOfInitializeBatterRecord)
     }
     
     @objc private func batterButtonDidTapped(_ sender: UIButton) {
         let batterRecordViewController = self.storyboard!.instantiateViewController(
-            withIdentifier: "BatterRecordViewController") as! BatterRecordViewController
+            withIdentifier: .batterRecordViewController) as! BatterRecordViewController
         
         batterRecordViewController.row = self.row
         batterRecordViewController.playerID = self.playerID
@@ -77,7 +81,7 @@ class SelectPositionViewController: UIViewController, CustomAlertShowing {
     
     @objc private func pitcherButtonDidTapped(_ sender: UIButton) {
         let pitcherRecordViewController = self.storyboard!.instantiateViewController(
-            withIdentifier: "PitcherRecordViewController") as! PitcherRecordViewController
+            withIdentifier: .pitcherRecordViewController) as! PitcherRecordViewController
         
         pitcherRecordViewController.row = self.row
         pitcherRecordViewController.playerID = self.playerID

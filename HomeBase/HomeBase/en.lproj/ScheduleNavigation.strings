@@ -1,0 +1,144 @@
+
+/* Class = "UIButton"; normalTitle = "땅볼"; ObjectID = "0oz-Hq-mMq"; */
+"0oz-Hq-mMq.normalTitle" = "GroundBall";
+
+/* Class = "UIButton"; normalTitle = "탈삼진"; ObjectID = "2g6-S7-Mdq"; */
+"2g6-S7-Mdq.normalTitle" = "SO";
+
+/* Class = "UIButton"; normalTitle = "확인"; ObjectID = "3EP-CL-loC"; */
+"3EP-CL-loC.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "경기 시간"; ObjectID = "3fR-vo-7vZ"; */
+"3fR-vo-7vZ.text" = "Match time";
+
+/* Class = "UIButton"; normalTitle = "볼넷"; ObjectID = "8iA-dr-ncP"; */
+"8iA-dr-ncP.normalTitle" = "BB";
+
+/* Class = "UIButton"; normalTitle = "투수"; ObjectID = "90F-cA-ank"; */
+"90F-cA-ank.normalTitle" = "Pitcher";
+
+/* Class = "UIButton"; normalTitle = "삼진"; ObjectID = "9XO-0J-faS"; */
+"9XO-0J-faS.normalTitle" = "SO";
+
+/* Class = "UIButton"; normalTitle = "홀드"; ObjectID = "AJd-jd-uDs"; */
+"AJd-jd-uDs.normalTitle" = "Hold";
+
+/* Class = "UIButton"; normalTitle = "자책점"; ObjectID = "DSy-Io-fVH"; */
+"DSy-Io-fVH.normalTitle" = "ER";
+
+/* Class = "UIButton"; normalTitle = "초기화"; ObjectID = "EUi-e5-M4c"; */
+"EUi-e5-M4c.normalTitle" = "reset";
+
+/* Class = "UIButton"; normalTitle = "사구"; ObjectID = "Feg-2B-1Mj"; */
+"Feg-2B-1Mj.normalTitle" = "HBP";
+
+/* Class = "UIButton"; normalTitle = "1루타"; ObjectID = "G3O-8t-gqM"; */
+"G3O-8t-gqM.normalTitle" = "1B";
+
+/* Class = "UIButton"; normalTitle = "피홈런"; ObjectID = "HKC-LQ-7oe"; */
+"HKC-LQ-7oe.normalTitle" = "HR";
+
+/* Class = "UILabel"; text = "00"; ObjectID = "IXo-8l-Sfc"; */
+"IXo-8l-Sfc.text" = "00";
+
+/* Class = "UIButton"; normalTitle = "확인"; ObjectID = "Ijt-2W-UWq"; */
+"Ijt-2W-UWq.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "서울종합운동장"; ObjectID = "NBT-9j-Frl"; */
+"NBT-9j-Frl.text" = "Seoul";
+
+/* Class = "UIButton"; normalTitle = "희생타"; ObjectID = "NCV-m1-Hp1"; */
+"NCV-m1-Hp1.normalTitle" = "sacrificeHit";
+
+/* Class = "UIButton"; normalTitle = "3루타"; ObjectID = "RtC-AZ-ZKP"; */
+"RtC-AZ-ZKP.normalTitle" = "3B";
+
+/* Class = "UIButton"; normalTitle = "볼넷"; ObjectID = "SjZ-sa-7Tc"; */
+"SjZ-sa-7Tc.normalTitle" = "BB";
+
+/* Class = "UIButton"; normalTitle = "세이브"; ObjectID = "So7-go-0dY"; */
+"So7-go-0dY.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "1 Jan 2017 00:00"; ObjectID = "Tn8-id-JYq"; */
+"Tn8-id-JYq.text" = "1 Jan 2017 00:00";
+
+/* Class = "UIButton"; normalTitle = "피안타"; ObjectID = "VWd-8B-0g6"; */
+"VWd-8B-0g6.normalTitle" = "Hits";
+
+/* Class = "UILabel"; text = "시작 시간"; ObjectID = "VaD-o3-JiT"; */
+"VaD-o3-JiT.text" = "Strat time";
+
+/* Class = "UILabel"; text = "1 Jan 2017 00:00"; ObjectID = "Ve9-CA-2ii"; */
+"Ve9-CA-2ii.text" = "1 Jan 2017 00:00";
+
+/* Class = "UIButton"; normalTitle = "득점"; ObjectID = "XHC-Fl-v3B"; */
+"XHC-Fl-v3B.normalTitle" = "Run";
+
+/* Class = "UIButton"; normalTitle = "결과 입력"; ObjectID = "YEF-AC-JFl"; */
+"YEF-AC-JFl.normalTitle" = "Enter score";
+
+/* Class = "UITextField"; placeholder = "상대 팀명을 입력하세요"; ObjectID = "Z8o-uS-sas"; */
+"Z8o-uS-sas.placeholder" = "Please enter a team name";
+
+/* Class = "UIButton"; normalTitle = "이닝"; ObjectID = "ZME-WO-36f"; */
+"ZME-WO-36f.normalTitle" = "Inning";
+
+/* Class = "UIButton"; normalTitle = "패배"; ObjectID = "bXT-zd-Z4I"; */
+"bXT-zd-Z4I.normalTitle" = "Lose";
+
+/* Class = "UITextField"; placeholder = "경기 장소를 입력하세요"; ObjectID = "dDG-0f-Uyk"; */
+"dDG-0f-Uyk.placeholder" = "Please enter a place to play";
+
+/* Class = "UINavigationItem"; title = "전체 경기 일정"; ObjectID = "dUi-qu-vLC"; */
+"dUi-qu-vLC.title" = "All Schedule";
+
+/* Class = "UIButton"; normalTitle = "도루"; ObjectID = "gKU-ub-cwt"; */
+"gKU-ub-cwt.normalTitle" = "SB";
+
+/* Class = "UIButton"; normalTitle = "홈런"; ObjectID = "hqO-8F-YIE"; */
+"hqO-8F-YIE.normalTitle" = "HR";
+
+/* Class = "UIButton"; normalTitle = "뜬공"; ObjectID = "hql-uW-JUN"; */
+"hql-uW-JUN.normalTitle" = "FlyBall";
+
+/* Class = "UILabel"; text = ":"; ObjectID = "kOW-zi-HPV"; */
+"kOW-zi-HPV.text" = ":";
+
+/* Class = "UILabel"; text = "일정 수정"; ObjectID = "knk-ZB-m79"; */
+"knk-ZB-m79.text" = "Edit Schedule";
+
+/* Class = "UILabel"; text = "Player"; ObjectID = "kzI-vH-1QR"; */
+"kzI-vH-1QR.text" = "Player";
+
+/* Class = "UIButton"; normalTitle = "Away"; ObjectID = "lCf-TZ-GI5"; */
+"lCf-TZ-GI5.normalTitle" = "Away";
+
+/* Class = "UIButton"; normalTitle = "초기화"; ObjectID = "lnS-Qb-bDQ"; */
+"lnS-Qb-bDQ.normalTitle" = "Reset";
+
+/* Class = "UIButton"; normalTitle = "Home"; ObjectID = "lyc-Tb-jsn"; */
+"lyc-Tb-jsn.normalTitle" = "Home";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "m4t-hV-7nR"; */
+"m4t-hV-7nR.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "mcH-Nw-14l"; */
+"mcH-Nw-14l.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "2루타"; ObjectID = "pNL-f3-cqt"; */
+"pNL-f3-cqt.normalTitle" = "2B";
+
+/* Class = "UIButton"; normalTitle = "타점"; ObjectID = "pip-Ko-Wge"; */
+"pip-Ko-Wge.normalTitle" = "RBI";
+
+/* Class = "UIButton"; normalTitle = "승리"; ObjectID = "q1Y-lv-rhm"; */
+"q1Y-lv-rhm.normalTitle" = "Win";
+
+/* Class = "UILabel"; text = "경기 장소"; ObjectID = "rRq-nJ-WfE"; */
+"rRq-nJ-WfE.text" = "Match place";
+
+/* Class = "UIButton"; normalTitle = "타자"; ObjectID = "x7Y-hO-CQW"; */
+"x7Y-hO-CQW.normalTitle" = "Batter";
+
+/* Class = "UIButton"; normalTitle = "사구"; ObjectID = "xNZ-fE-ItD"; */
+"xNZ-fE-ItD.normalTitle" = "HBP";

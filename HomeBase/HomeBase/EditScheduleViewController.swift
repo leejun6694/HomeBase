@@ -41,28 +41,43 @@ class EditScheduleViewController: UIViewController {
         let alertController: UIAlertController
         
         if opponentTextField.text == "" {
-            alertController = UIAlertController(title: "경고",
-                                                message: "상대 팀명을 입력하세요",
-                                                preferredStyle: .alert)
+            alertController = UIAlertController(
+                title: .alertActionTitle,
+                message: .alertMessageOfEnterOpponentTeamName,
+                preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            let okAction = UIAlertAction(
+                title: .confirmActionTitle,
+                style: .default,
+                handler: nil)
             alertController.addAction(okAction)
         }
         else if matchPlaceTextField.text == "" {
-            alertController = UIAlertController(title: "경고",
-                                                message: "경기 장소를 입력하세요",
-                                                preferredStyle: .alert)
+            alertController = UIAlertController(
+                title: .alertActionTitle,
+                message: .alertMessageOfEnterPlaceToMatch,
+                preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            let okAction = UIAlertAction(
+                title: .confirmActionTitle,
+                style: .default,
+                handler: nil)
             alertController.addAction(okAction)
         }
         else {
-            alertController = UIAlertController(title: "일정 수정",
-                                                message: "경기를 수정하시겠습니까?",
-                                                preferredStyle: .alert)
+            alertController = UIAlertController(
+                title: .alertMessageOfEditMatchSchedule,
+                message: .alertMessageOfEditMatchSchedule,
+                preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: editSchedule)
-            let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
+            let okAction = UIAlertAction(
+                title: .confirmActionTitle,
+                style: .default,
+                handler: editSchedule)
+            let cancelAction = UIAlertAction(
+                title: .cancelActionTitle,
+                style: .destructive,
+                handler: nil)
             alertController.addAction(cancelAction)
             alertController.addAction(okAction)
         }

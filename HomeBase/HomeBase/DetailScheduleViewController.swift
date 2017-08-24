@@ -73,11 +73,17 @@ class DetailScheduleViewController: UIViewController, CustomAlertShowing {
         }
         
         if compareHour > 24 {
-            beforeDateLabel.text = "경기 시작 \(Int(compareHour / 24))일 전입니다"
+            beforeDateLabel.text = String.localizedStringWithFormat(
+                .matchAlarmDay,
+                Int(compareHour / 24))
         } else if compareHour >= 1 {
-            beforeDateLabel.text = "경기 시작 \(Int(compareHour) % 24)시간 전입니다"
+            beforeDateLabel.text = String.localizedStringWithFormat(
+                .matchAlarmHour,
+                Int(compareHour) % 24)
         } else if compareHour > 0 {
-            beforeDateLabel.text = "경기 시작 \(Int(compareHour * 60))분 전입니다"
+            beforeDateLabel.text = String.localizedStringWithFormat(
+                .matchAlarmMinute,
+                Int(compareHour * 60))
         }
         
         homeScore = scheduleItem.homeScore
@@ -94,15 +100,21 @@ class DetailScheduleViewController: UIViewController, CustomAlertShowing {
     
     @IBAction private func homeScoreButtonDidTapped(_ sender: UIButton) {
         let alertController = UIAlertController(
-            title: "홈 팀 점수를 입력하세요",
+            title: .alertMessageOfEnterHomeTeamScore,
             message: "",
             preferredStyle: .alert)
         
         alertController.addTextField(configurationHandler: configurationTextField(textField:))
         
-        let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: { (action) -> Void in
-            if let homeTextField = alertController.textFields?[0] {
+        let cancelAction = UIAlertAction(
+            title: .cancelActionTitle,
+            style: .destructive,
+            handler: nil)
+        let okAction = UIAlertAction(
+            title: .confirmActionTitle,
+            style: .default,
+            handler: { (action) -> Void in
+                if let homeTextField = alertController.textFields?[0] {
                 self.homeScoreButton.setTitle(homeTextField.text ?? "", for: .normal)
                 
                 TeamScheduleDAO.shared.updateHomeScore(
@@ -118,14 +130,21 @@ class DetailScheduleViewController: UIViewController, CustomAlertShowing {
     }
     
     @IBAction private func awayScoreButtonDidTapped(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "원정 팀 점수를 입력하세요",
-                                                message: "",
-                                                preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: .alertMessageOfEnterOpponetTeamScore,
+            message: "",
+            preferredStyle: .alert)
         
         alertController.addTextField(configurationHandler: configurationTextField(textField:))
         
-        let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: { (action) -> Void in
+        let cancelAction = UIAlertAction(
+            title: .cancelActionTitle,
+            style: .destructive,
+            handler: nil)
+        let okAction = UIAlertAction(
+            title: .confirmActionTitle,
+            style: .default,
+            handler: { (action) -> Void in
             if let awayTextField = alertController.textFields?[0] {
                 self.awayScoreButton.setTitle(awayTextField.text ?? "", for: .normal)
                 
@@ -148,12 +167,14 @@ class DetailScheduleViewController: UIViewController, CustomAlertShowing {
     
     @objc fileprivate func playerResultButtonDidTapped(_ sender: UIButton) {
         if homeScore == -1 || awayScore == -1 {
-            showAlertOneButton(title: "경고", message: "경기 결과를 먼저 입력하세요")
+            showAlertOneButton(
+                title: .alertActionTitle,
+                message: .alertMessageOfEnterMatchResultFirst)
         } else {
             let buttonRow = sender.tag
             
             let selectPositionViewController = self.storyboard!.instantiateViewController(
-                withIdentifier: "SelectPositionViewController") as! SelectPositionViewController
+                withIdentifier: .selectPositionViewController) as! SelectPositionViewController
             
             selectPositionViewController.row = buttonRow
             selectPositionViewController.playerID = self.playerArray[buttonRow].playerID
@@ -183,13 +204,15 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "DetailScheduleTableViewCell", for: indexPath) as! DetailScheduleTableViewCell
+            withIdentifier: .detailScheduleTableViewCell, for: indexPath) as! DetailScheduleTableViewCell
         
         cell.playerBackNumber.text = "\(playerArray[indexPath.row].backNumber)"
         cell.playerLabel.text = playerArray[indexPath.row].name
         cell.playerResultButton.tag = indexPath.row
         
-        cell.playerResultButton.setTitle("결과 입력", for: .normal)
+        cell.playerResultButton.setTitle(
+            .alertTitleOfEnterResult,
+            for: .normal)
         cell.playerResultButton.addTarget(
             self,
             action: #selector(playerResultButtonDidTapped(_:)),
@@ -205,7 +228,9 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
                     playerRecordID: playerRecordItem.playerRecordID)
                 
                 if sumOfPlayerRecord == 0 {
-                    cell.playerResultButton.setTitle("결과 입력", for: .normal)
+                    cell.playerResultButton.setTitle(
+                        .alertTitleOfEnterResult,
+                        for: .normal)
                 } else if sumOfBatterRecord != 0 {
                     let hits = (playerRecordItem.singleHit) +
                         (playerRecordItem.doubleHit) +

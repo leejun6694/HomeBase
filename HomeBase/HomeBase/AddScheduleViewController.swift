@@ -53,17 +53,21 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
     
     @IBAction private func doneButtonDidTapped(_ sender: UIBarButtonItem) {
         if opponentTextField.text == "" {
-            showAlertOneButton(title: "경고", message: "상대 팀명을 입력하세요")
+            showAlertOneButton(
+                title: .alertActionTitle,
+                message: .alertMessageOfEnterOpponentTeamName)
         }
         else if matchPlaceTextField.text == "" {
-            showAlertOneButton(title: "경고", message: "경기 장소를 입력하세요")
+            showAlertOneButton(
+                title: .alertActionTitle,
+                message: .alertMessageOfEnterPlaceToMatch)
         }
         else {
             showAlertTwoButton(
-                title: "일정 추가",
-                message: "경기를 추가하시겠습니까?",
-                cancelActionTitle: "취소",
-                confirmActionTitle: "확인",
+                title: .alertTitleOfAddSchedule,
+                message: .alertMessageOfAddSchedule,
+                cancelActionTitle: .cancelActionTitle,
+                confirmActionTitle: .confirmActionTitle,
                 confirmAction: addSchedule)
         }
     }

@@ -27,7 +27,7 @@ extension CustomAlertShowing {
     ///   - title: The title of the alert.
     ///   - message: Descriptive text that provides additional details about the reason for the alert.
     func showAlertOneButton(title: String = "", message: String = "") {
-        showAlertTwoButton(title: title, message: message, cancelActionTitle: "확인")
+        showAlertTwoButton(title: title, message: message, cancelActionTitle: .confirmActionTitle )
     }
     
     /// UIAlertController with the two action that cancel and confirm

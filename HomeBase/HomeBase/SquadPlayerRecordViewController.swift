@@ -30,7 +30,7 @@ class SquadPlayerRecordViewController: UIViewController {
     
     @IBAction func clickEditButton(_ sender: UIBarButtonItem) {
         let squadEditPlayerViewController = self.storyboard?.instantiateViewController(
-            withIdentifier: "SquadEditPlayerViewController") as! SquadEditPlayerViewController
+            withIdentifier: .squadEditPlayerViewController) as! SquadEditPlayerViewController
         
         squadEditPlayerViewController.player = self.player
         

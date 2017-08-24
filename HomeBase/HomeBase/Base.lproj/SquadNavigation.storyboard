@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RVy-Hh-luA" id="PzQ-4e-XU0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMP-Dk-5CX">
@@ -266,9 +266,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="선수 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baz-ON-zK0">
-                                <rect key="frame" x="155" y="32" width="64" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선수 추가" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baz-ON-zK0">
+                                <rect key="frame" x="93.5" y="32" width="187.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -286,12 +285,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="6vC-uj-Ilk" secondAttribute="trailing" id="0gJ-E3-yAm"/>
+                            <constraint firstItem="baz-ON-zK0" firstAttribute="centerY" secondItem="6vC-uj-Ilk" secondAttribute="centerY" id="3Zu-DS-d48"/>
                             <constraint firstItem="Fkt-Bf-MYN" firstAttribute="leading" secondItem="CXj-oF-cSg" secondAttribute="leading" id="4m0-Tf-2Y2"/>
                             <constraint firstItem="kqO-UN-nqE" firstAttribute="leading" secondItem="rXn-HL-c2A" secondAttribute="leading" id="8S1-WM-iHw"/>
                             <constraint firstAttribute="leadingMargin" secondItem="rXn-HL-c2A" secondAttribute="leading" id="KEt-Cm-yC5"/>
+                            <constraint firstItem="baz-ON-zK0" firstAttribute="width" secondItem="6vC-uj-Ilk" secondAttribute="width" multiplier="0.5" id="LKL-iQ-z4p"/>
                             <constraint firstItem="kqO-UN-nqE" firstAttribute="top" secondItem="rXn-HL-c2A" secondAttribute="bottom" constant="5" id="N7N-go-1Z8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rXn-HL-c2A" secondAttribute="trailing" id="P15-ZR-ODX"/>
                             <constraint firstItem="kqO-UN-nqE" firstAttribute="trailing" secondItem="rXn-HL-c2A" secondAttribute="trailing" id="YeB-iR-Ihr"/>
+                            <constraint firstItem="baz-ON-zK0" firstAttribute="centerX" secondItem="6vC-uj-Ilk" secondAttribute="centerX" id="eDp-kW-yJX"/>
                             <constraint firstItem="CXj-oF-cSg" firstAttribute="trailing" secondItem="kqO-UN-nqE" secondAttribute="trailing" id="hg9-bh-Zbw"/>
                             <constraint firstItem="rXn-HL-c2A" firstAttribute="top" secondItem="6vC-uj-Ilk" secondAttribute="bottom" constant="30" id="jdM-Gx-WHY"/>
                             <constraint firstItem="CXj-oF-cSg" firstAttribute="top" secondItem="kqO-UN-nqE" secondAttribute="bottom" constant="30" id="qMQ-x4-fJe"/>
@@ -405,9 +407,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="선수 수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgX-cn-OB0" userLabel="선수 수정">
-                                <rect key="frame" x="155" y="32" width="64" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선수 수정" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgX-cn-OB0" userLabel="선수 수정">
+                                <rect key="frame" x="112" y="32" width="150" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -424,8 +425,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="OgX-cn-OB0" firstAttribute="centerY" secondItem="qod-CS-6o0" secondAttribute="centerY" id="6wh-Ii-Jfh"/>
                             <constraint firstItem="qod-CS-6o0" firstAttribute="top" secondItem="lsO-in-W63" secondAttribute="bottom" id="82v-9O-kr8"/>
                             <constraint firstItem="fs0-yW-Jji" firstAttribute="leading" secondItem="brC-sf-dlK" secondAttribute="leading" id="Ef2-Yx-5Li"/>
+                            <constraint firstItem="OgX-cn-OB0" firstAttribute="centerX" secondItem="qod-CS-6o0" secondAttribute="centerX" id="Lb4-eO-dlO"/>
                             <constraint firstItem="HgZ-6D-neY" firstAttribute="top" secondItem="qod-CS-6o0" secondAttribute="bottom" constant="30" id="MkG-aw-F1u"/>
                             <constraint firstItem="ZtR-mG-cmR" firstAttribute="top" secondItem="fs0-yW-Jji" secondAttribute="bottom" id="Mxk-gD-h1E"/>
                             <constraint firstAttribute="trailing" secondItem="qod-CS-6o0" secondAttribute="trailing" id="Nq8-cR-RFf"/>
@@ -437,6 +440,7 @@
                             <constraint firstItem="brC-sf-dlK" firstAttribute="trailing" secondItem="HgZ-6D-neY" secondAttribute="trailing" id="dLc-D7-5iE"/>
                             <constraint firstItem="brC-sf-dlK" firstAttribute="top" secondItem="HgZ-6D-neY" secondAttribute="bottom" constant="5" id="gNU-3h-PYv"/>
                             <constraint firstItem="fs0-yW-Jji" firstAttribute="trailing" secondItem="brC-sf-dlK" secondAttribute="trailing" id="pap-o1-tHD"/>
+                            <constraint firstItem="OgX-cn-OB0" firstAttribute="width" secondItem="qod-CS-6o0" secondAttribute="width" multiplier="0.4" id="qqA-CO-Hbk"/>
                             <constraint firstItem="brC-sf-dlK" firstAttribute="leading" secondItem="HgZ-6D-neY" secondAttribute="leading" id="sUB-IE-gJ6"/>
                             <constraint firstItem="ZtR-mG-cmR" firstAttribute="leading" secondItem="fs0-yW-Jji" secondAttribute="leading" id="smR-IX-rHa"/>
                         </constraints>
@@ -449,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNz-Gg-Mh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3137" y="-163"/>
+            <point key="canvasLocation" x="3136.8000000000002" y="-163.26836581709148"/>
         </scene>
     </scenes>
     <resources>
