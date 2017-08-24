@@ -47,6 +47,8 @@ class BatterRecordViewController: UIViewController {
                                      "홈런", "볼넷", "희생타",
                                      "삼진", "땅볼", "뜬공",
                                      "도루", "사구", "득점", "타점"]
+    private var tapGestures = [UITapGestureRecognizer]()
+    private var longPressGestures = [UILongPressGestureRecognizer]()
     
     var row: Int!
     var playerID: Int64!
@@ -55,16 +57,187 @@ class BatterRecordViewController: UIViewController {
     private var updatePlayerRecordID: Int64 = -1
     private var recordDidChange: Bool = false
 
-//    private lazy var singleTap: UITapGestureRecognizer = {
-//        [unowned self] in
-//        return UITapGestureRecognizer(
-//            target: self,
-//            action: #selector(self.batterRecordButtonDidTapped(_:)))
-//    }()
-//    
-//    private let singleLongPress = UILongPressGestureRecognizer(
-//        target: self,
-//        action: #selector(batterRecordButtonLongPressed(_:)))
+    private lazy var singleHitTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var doubleHitTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var tripleHitTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var homeRunTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var baseOnBallTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var sacrificeHitTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var strikeOutTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var groundBallTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var flyBallTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var stolenBaseTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var hitByPitchTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var runTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var RBITap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var singleHitLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var doubleHitLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var tripleHitLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var homeRunLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var baseOnBallLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var sacrificeHitLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var strikeOutLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var groundBallLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var flyBallLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var stolenBaseLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var hitByPitchLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var runLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var RBILongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.batterRecordButtonLongPressed(_:)))
+    }()
     
     // MARK: Methods
     
@@ -85,14 +258,43 @@ class BatterRecordViewController: UIViewController {
         
         for index in 0..<batterButtons.count {
             batterButtons[index].tag = index
-            batterButtons[index].addTarget(
-                self,
-                action: #selector(batterRecordButtonDidTapped(_:)),
-                for: .touchUpInside)
+            batterButtons[index].titleLabel?.textAlignment = .center
         }
-//        batterButtons[0].addGestureRecognizer(singleTap)
-//        batterButtons[1].addGestureRecognizer(singleTap)
-//        batterButtons[0].addGestureRecognizer(singleLongPress)
+    }
+    
+    private func appendGestureRecognizers() {
+        tapGestures.append(singleHitTap)
+        tapGestures.append(doubleHitTap)
+        tapGestures.append(tripleHitTap)
+        tapGestures.append(homeRunTap)
+        tapGestures.append(baseOnBallTap)
+        tapGestures.append(sacrificeHitTap)
+        tapGestures.append(strikeOutTap)
+        tapGestures.append(groundBallTap)
+        tapGestures.append(flyBallTap)
+        tapGestures.append(stolenBaseTap)
+        tapGestures.append(hitByPitchTap)
+        tapGestures.append(runTap)
+        tapGestures.append(RBITap)
+        
+        longPressGestures.append(singleHitLongPress)
+        longPressGestures.append(doubleHitLongPress)
+        longPressGestures.append(tripleHitLongPress)
+        longPressGestures.append(homeRunLongPress)
+        longPressGestures.append(baseOnBallLongPress)
+        longPressGestures.append(sacrificeHitLongPress)
+        longPressGestures.append(strikeOutLongPress)
+        longPressGestures.append(groundBallLongPress)
+        longPressGestures.append(flyBallLongPress)
+        longPressGestures.append(stolenBaseLongPress)
+        longPressGestures.append(hitByPitchLongPress)
+        longPressGestures.append(runLongPress)
+        longPressGestures.append(RBILongPress)
+        
+        for index in 0..<batterButtons.count {
+            batterButtons[index].addGestureRecognizer(tapGestures[index])
+            batterButtons[index].addGestureRecognizer(longPressGestures[index])
+        }
     }
     
     private func appendRecords() {
@@ -134,11 +336,13 @@ class BatterRecordViewController: UIViewController {
                 self.batterRecords[12] = existingRecord.RBI
                 
                 for index in 0..<batterButtons.count {
-                    
-                    batterButtons[index].setTitle(
-                        "\(batterRecordTexts[index])\n\(Int(batterRecords[index]))", for: .normal)
-                    
-                    batterButtons[index].titleLabel?.textAlignment = .center
+                    if batterRecords[index] == 0.0 {
+                        batterButtons[index].setTitle(
+                            "\(batterRecordTexts[index])", for: .normal)
+                    } else {
+                        batterButtons[index].setTitle(
+                            "\(batterRecordTexts[index])\n\(Int(batterRecords[index]))", for: .normal)
+                    }
                 }
             }
         }
@@ -153,6 +357,7 @@ class BatterRecordViewController: UIViewController {
         self.view.isOpaque = false
         
         appendRecordButtons()
+        appendGestureRecognizers()
         appendRecords()
         resetButton.addTarget(self, action: #selector(resetButtonDidTapped(_:)), for: .touchUpInside)
         
@@ -208,30 +413,37 @@ class BatterRecordViewController: UIViewController {
     // MARK: Actions
     
     /// Tap action for Batter buttons.
-    /// Increase button's record and show record on button title
+    /// Increase button's record and show record on button title.
     ///
-    /// - Parameter sender: batter button
-    @objc private func batterRecordButtonDidTapped(_ sender: UIButton) {
-        self.batterRecords[sender.tag] += 1.0
-        sender.setTitle(
-            "\(batterRecordTexts[sender.tag])\n\(Int(batterRecords[sender.tag]))",
+    /// - Parameter sender: batter button's UITapGestureRecognizer
+    @objc private func batterRecordButtonDidTapped(_ sender: UITapGestureRecognizer) {
+        let button = sender.view as! UIButton
+        
+        self.batterRecords[button.tag] += 1.0
+        button.setTitle(
+            "\(batterRecordTexts[button.tag])\n\(Int(batterRecords[button.tag]))",
             for: .normal)
-        sender.titleLabel?.textAlignment = .center
     }
     
-//    @objc private func batterRecordButtonDidTapped(_ sender: UITapGestureRecognizer) {
-//        if sender.state == .ended {
-//            print("tap")
-//        }
-//    }
-//    
-//    @objc private func batterRecordButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
-////        guard let button = sender.view as? UIButton else { return }
-//        
-//        if sender.state == .ended {
-//            print("longlong")
-//        }
-//    }
+    /// Long Press action for Batter Buttons.
+    /// Decrease button's record and show record on button title.
+    ///
+    /// - Parameter sender: batter button's UILongPressGestureRecognizer
+    @objc private func batterRecordButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
+        let button = sender.view as! UIButton
+        
+        if sender.state == .ended, self.batterRecords[button.tag] > 0.0 {
+            self.batterRecords[button.tag] -= 1.0
+            
+            if self.batterRecords[button.tag] == 0.0 {
+                button.setTitle("\(batterRecordTexts[button.tag])", for: .normal)
+            } else {
+                button.setTitle(
+                    "\(batterRecordTexts[button.tag])\n\(Int(batterRecords[button.tag]))",
+                    for: .normal)
+            }
+        }
+    }
     
     @objc private func resetButtonDidTapped(_ sender: UIButton) {
         for index in 0..<batterRecords.count {
