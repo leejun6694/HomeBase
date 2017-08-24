@@ -104,12 +104,12 @@ class SquadPlayerRecordPageViewController: UIPageViewController {
     private func newPositionViewController(_ position: String) -> UIViewController? {
         if position == "Batter" {
             let contentViewController = storyboard?.instantiateViewController(
-                withIdentifier: "BatterViewController") as! BatterViewController
+                withIdentifier: .batterViewController) as! BatterViewController
             contentViewController.record = playerRecord
             return contentViewController
         } else {
             let contentViewController = storyboard?.instantiateViewController(
-                withIdentifier: "PitcherViewController") as! PitcherViewController
+                withIdentifier: .pitcherViewController) as! PitcherViewController
             contentViewController.record = playerRecord
             return contentViewController
         }

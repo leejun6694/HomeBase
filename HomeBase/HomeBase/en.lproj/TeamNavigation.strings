@@ -1,0 +1,51 @@
+
+/* Class = "UITextField"; placeholder = "팀 이름을 등록하세요"; ObjectID = "2EO-PC-flG"; */
+"2EO-PC-flG.placeholder" = "Please register your team name";
+
+/* Class = "UILabel"; text = "0승 0무 0패"; ObjectID = "BiN-Sf-A8v"; */
+"BiN-Sf-A8v.text" = "0W 0T 0L";
+
+/* Class = "UILabel"; text = "팀 타율"; ObjectID = "LTw-w1-eao"; */
+"LTw-w1-eao.text" = "Team BA";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "NwK-8d-R7H"; */
+"NwK-8d-R7H.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QMM-OA-VVL"; */
+"QMM-OA-VVL.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "이미지 변경"; ObjectID = "aQk-jL-Typ"; */
+"aQk-jL-Typ.normalTitle" = "Change image";
+
+/* Class = "UILabel"; text = "팀 이름"; ObjectID = "ayj-xK-viY"; */
+"ayj-xK-viY.text" = "Team name";
+
+/* Class = "UILabel"; text = "0.000"; ObjectID = "bXu-B1-ct8"; */
+"bXu-B1-ct8.text" = "0.000";
+
+/* Class = "UILabel"; text = "팀 이름"; ObjectID = "ft5-Dm-CmM"; */
+"ft5-Dm-CmM.text" = "Team name";
+
+/* Class = "UITabBarItem"; title = "Team"; ObjectID = "ge0-1H-sT9"; */
+"ge0-1H-sT9.title" = "Team";
+
+/* Class = "UILabel"; text = "ⓒ 2017. LemonKooma all rights reserved."; ObjectID = "j7R-bt-T8i"; */
+"j7R-bt-T8i.text" = "ⓒ 2017. LemonKooma all rights reserved.";
+
+/* Class = "UILabel"; text = "설정"; ObjectID = "kF9-Y0-5ml"; */
+"kF9-Y0-5ml.text" = "Setting";
+
+/* Class = "UILabel"; text = "팀 방어율"; ObjectID = "nUP-fQ-cjz"; */
+"nUP-fQ-cjz.text" = "Team ERA";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "q7z-a0-agU"; */
+"q7z-a0-agU.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sUC-ck-Eug"; */
+"sUC-ck-Eug.text" = "Label";
+
+/* Class = "UILabel"; text = "0.000"; ObjectID = "srt-Ss-ySc"; */
+"srt-Ss-ySc.text" = "0.000";
+
+/* Class = "UILabel"; text = "팀 이미지"; ObjectID = "zjM-H2-8t5"; */
+"zjM-H2-8t5.text" = "Team image";

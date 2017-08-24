@@ -146,7 +146,7 @@ class BatterRecordViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindBatterToDetail" {
+        if segue.identifier == .unwindBatterToDetail {
             
             if recordDidChange == false {
                 let playerRecord = PlayerRecord(

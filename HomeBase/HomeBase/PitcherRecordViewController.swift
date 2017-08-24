@@ -167,7 +167,7 @@ class PitcherRecordViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindPitcherToDetail" {
+        if segue.identifier == .unwindPitcherToDetail {
             
             self.pitcherRecords[8] += self.inningRemainder / 3.0
             

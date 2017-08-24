@@ -34,7 +34,9 @@ class TeamSettingViewController: UIViewController, CustomAlertShowing {
     // MARK: Functions
     
     fileprivate func changeTeamImage() {
-        showAlertOneButton(title: "팀 이미지 변경", message: "변경된 이미지를 적용하려면 Done을 누르세요")
+        showAlertOneButton(
+            title: .alertTitleOfEditTeamImage,
+            message: .alertMessageOfEditTeamImage)
     }
     
     fileprivate func changeTeamInfo(action: UIAlertAction) {
@@ -78,14 +80,14 @@ class TeamSettingViewController: UIViewController, CustomAlertShowing {
         let countTextField = teamNameTextField.text?.characters.count ?? 0
         
         if countTextField < 2 {
-            showAlertOneButton(message: "팀 명은 최소 2글자 입니다")
+            showAlertOneButton(message: .alertMessageOfShortageTeamName)
         }
         else {
             showAlertTwoButton(
-                title: "팀 정보 수정",
-                message: "팀 정보를 수정하시겠습니까?",
-                cancelActionTitle: "취소",
-                confirmActionTitle: "확인",
+                title: .alertTitleOfEditTeamInfo,
+                message: .alertMessageOfEditTeamInfo,
+                cancelActionTitle: .cancelActionTitle,
+                confirmActionTitle: .confirmActionTitle,
                 confirmAction: changeTeamInfo)
         }
     }
@@ -149,7 +151,7 @@ extension TeamSettingViewController: UITextFieldDelegate {
             return true
         }
         else {
-            showAlertOneButton(message: "팀 명은 최대 10글자 입니다")
+            showAlertOneButton(message: .alertMessageOfAbundanceTeamName)
            
             return false
         }

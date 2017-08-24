@@ -46,7 +46,7 @@ class AllScheduleViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueScheduleToDetail" {
+        if segue.identifier == .segueScheduleToDetail {
             if let row = self.scheduleTableView.indexPathForSelectedRow?.row {
                 
                 let detailViewController = segue.destination as! DetailScheduleViewController
@@ -59,7 +59,7 @@ class AllScheduleViewController: UIViewController {
     
     @IBAction private func addButtonDidTapped(_ sender: UIBarButtonItem) {
         guard let addScheduleViewController = storyboard?.instantiateViewController(
-            withIdentifier: "AddScheduleViewController") else { return }
+            withIdentifier: .addScheduleViewController) else { return }
         
         present(addScheduleViewController, animated: true, completion: nil)
     }
@@ -82,7 +82,7 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "AllScheduleTableViewCell", for: indexPath) as! AllScheduleTableViewCell
+            withIdentifier: .allScheduleTableViewCell, for: indexPath) as! AllScheduleTableViewCell
         
         cell.matchDateLabel.text = dateFormatter.string(from: scheduleArray[indexPath.row].matchDate)
         cell.matchOpponentLabel.text = "vs " + scheduleArray[indexPath.row].matchOpponent + " >"
@@ -101,7 +101,7 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         
         return cell
     }
-    
+
     func tableView(
         _ tableView: UITableView,
         commit editingStyle: UITableViewCellEditingStyle,
@@ -134,7 +134,7 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
             
         }
     }
-    
+
     func tableView(
         _ tableView: UITableView,
         editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -143,14 +143,17 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         let selectedSchedule = self.scheduleArray[deleteIndex]
         let delete = UITableViewRowAction(style: .destructive , title: " ✕ ") { (action, indexPath) in
             // delete item at indexPath
-            let title = "vs \(self.scheduleArray[deleteIndex].matchOpponent)"
+
             let ac = UIAlertController(
-                title: title,
-                message: "일정을 삭제하시겠습니까?",
+                title: .deleteActionTitle,
+                message: .alertMessageOfDeleteSchedule,
                 preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(
+                title: .cancelActionTitle,
+                style: .cancel,
+                handler: nil)
             let deleteAction = UIAlertAction(
-                title: "삭제",
+                title: .deleteActionTitle,
                 style: .destructive,
                 handler: { (action) -> Void in
                     self.scheduleArray.remove(at: deleteIndex)
@@ -164,8 +167,10 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         delete.backgroundColor = UIColor(red: 255.0/255.0, green: 60.0/255.0, blue: 50.0/255.0, alpha: 0.9)
 
         let editScheduleViewController = storyboard?.instantiateViewController(
-            withIdentifier: "EditScheduleViewController") as? EditScheduleViewController
+            withIdentifier: .editScheduleViewController) as? EditScheduleViewController
+        
         let edit = UITableViewRowAction(style: .normal, title: " ✎ ") { (action, indexPath) in
+
             let selectedSchedule = self.scheduleArray[indexPath.row]
             editScheduleViewController?.preSchedule = selectedSchedule
             self.present(editScheduleViewController!, animated: true, completion: nil)

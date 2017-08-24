@@ -21,7 +21,6 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         static var numberOfSections: Int { return 3 }
     }
-
     
     // MARK: Properties
     
@@ -101,7 +100,13 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
             }
             matchResultsTextField.text = "\(result)%"
         } else {
-            matchResultsTextField.text = "\(record.win)승 \(record.draw)무 \(record.lose)패"
+            let label = String.localizedStringWithFormat(
+                .resultTextField,
+                record.win,
+                record.draw,
+                record.lose)
+
+            matchResultsTextField.text = label
         }
     }
     
@@ -148,8 +153,8 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
         matchResultsTextField.addGestureRecognizer(tapGesture)
 
     
-        teamMainTableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "HeaderViewCell")
-        teamMainTableView.register(UINib(nibName: "FooterViewCell", bundle: nil), forCellReuseIdentifier: "FooterViewCell")
+        teamMainTableView.register(UINib(nibName: .headerViewCell, bundle: nil), forCellReuseIdentifier: .headerViewCell)
+        teamMainTableView.register(UINib(nibName: .footerViewCell, bundle: nil), forCellReuseIdentifier: .footerViewCell)
         
         teamMainTableView.dataSource = self
         teamMainTableView.delegate = self
@@ -193,12 +198,12 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func allScheduleButtonDidTap(_ btControl: UIButton) {
         let allScheduleViewController = storyboard?.instantiateViewController(
-            withIdentifier: "AllScheduleViewController")
+            withIdentifier: .allScheduleViewController)
         self.navigationController?.pushViewController(allScheduleViewController!, animated: true)
     }
     
     func addScheduleButtonDidTap(_ btControl: UIButton) {
-        guard let addScheduleViewController = storyboard?.instantiateViewController(withIdentifier: "AddScheduleViewController") else { return }
+        guard let addScheduleViewController = storyboard?.instantiateViewController(withIdentifier: .addScheduleViewController) else { return }
         
         present(addScheduleViewController, animated: true, completion: nil)
     }
@@ -208,7 +213,7 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func clickSettingButton(_ sender: UIButton) {
-        let teamSettingViewController = self.storyboard?.instantiateViewController(withIdentifier: "TeamSettingViewController") as! TeamSettingViewController
+        let teamSettingViewController = self.storyboard?.instantiateViewController(withIdentifier: .teamSettingViewController) as! TeamSettingViewController
         
         present(teamSettingViewController, animated: true, completion: nil)
     }
@@ -224,7 +229,11 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
             matchResultsTextField.text = "\(result)%"
             matchResultsTextField.isHighlighted = false
         } else {
-            matchResultsTextField.text = "\(record.win)승 \(record.draw)무 \(record.lose)패"
+                matchResultsTextField.text = String.localizedStringWithFormat(
+                    .resultTextField,
+                    record.win,
+                    record.draw,
+                    record.lose)
             matchResultsTextField.isHighlighted = true
         }
     }
@@ -275,21 +284,21 @@ extension TeamMainViewController: UITableViewDataSource {
         switch Section(rawValue: currentSection) {
         case .currentSchedule?:
             if (schedule.count < 4 && currentRow == schedule.count) || currentRow == 4{
-                let footerCell = tableView.dequeueReusableCell(withIdentifier: "FooterViewCell") as! FooterViewCell
+                let footerCell = tableView.dequeueReusableCell(withIdentifier: .footerViewCell) as! FooterViewCell
                 footerCell.addScheduleButton.addTarget(
                     self,
                     action: #selector(TeamMainViewController.addScheduleButtonDidTap(_:)),
                     for: .touchUpInside)
                 return footerCell
             } else {
-                let scheduleCell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as! TeamScheduleTableViewCell
+                let scheduleCell = tableView.dequeueReusableCell(withIdentifier: .scheduleCell, for: indexPath) as! TeamScheduleTableViewCell
                 let scheduleAtRow = schedule[indexPath.row]
                 scheduleCell.matchDateLabel.text = dateFormatter.string(from: scheduleAtRow.matchDate)
                 scheduleCell.matchOpponentLabel.text = "vs " + scheduleAtRow.matchOpponent
                 return scheduleCell
             }
         case .top3BattingAverage?:
-            let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TeamRecordTableViewCell
+            let recordCell = tableView.dequeueReusableCell(withIdentifier: .recordCell, for: indexPath) as! TeamRecordTableViewCell
             
             let sortedBattingAverage = playerBattingAverage.sorted(by: { $0.1 > $1.1 })
             
@@ -300,7 +309,7 @@ extension TeamMainViewController: UITableViewDataSource {
             
             return recordCell
         case .top3ERA?:
-            let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! TeamRecordTableViewCell
+            let recordCell = tableView.dequeueReusableCell(withIdentifier: .recordCell, for: indexPath) as! TeamRecordTableViewCell
             
             let sortedPitchingAverage = playerPitchingAverage.sorted(by: { $0.1 < $1.1 })
             
@@ -325,19 +334,19 @@ extension TeamMainViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderViewCell") as! HeaderViewCell
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: .headerViewCell) as! HeaderViewCell
         switch Section(rawValue: section) {
         case .currentSchedule?:
-            headerCell.titleLabel.text = "경기 일정"
+            headerCell.titleLabel.text = .firstSectionTitle
             headerCell.allButton.addTarget(
                 self,
                 action: #selector(TeamMainViewController.allScheduleButtonDidTap(_:)),
                 for: .touchUpInside)
         case .top3BattingAverage?:
-            headerCell.titleLabel.text = "타율 Top 3"
+            headerCell.titleLabel.text = .secondSectionTitle
             headerCell.allButton.alpha = 0
         case .top3ERA?:
-            headerCell.titleLabel.text = "방어율 Top 3"
+            headerCell.titleLabel.text = .thirdSectionTitle
             headerCell.allButton.alpha = 0
         case .none: break
         }

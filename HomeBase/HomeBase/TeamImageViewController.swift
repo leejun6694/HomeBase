@@ -17,7 +17,6 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
     fileprivate lazy var pickerButton: UIButton = {
         let pickerButton = UIButton(type: .system)
         
-        pickerButton.setTitle("팀 대표 이미지를 등록하세요", for: .normal)
         pickerButton.titleLabel?.font = UIFont(name: "System", size: 22.0)
         pickerButton.setTitleColor(
             UIColor(red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0), for: .normal)
@@ -115,6 +114,11 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
         self.view.addConstraints(skipButtonConstraints())
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        pickerButton.setTitle(.alertTitleOfPitcherButton, for: .normal)
+
+    }
     // MARK: Actions
     
     @objc private func pickerButtonDidTapped(_ sender: AnyObject) {
@@ -129,18 +133,18 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
     @objc private func skipButtonDidTapped(_ sender: AnyObject) {
         showAlertTwoButton(
             title: "\(teamName ?? "")",
-            message: "HomeBase를 시작하시겠습니까?",
-            cancelActionTitle: "취소",
-            confirmActionTitle: "확인",
+            message: .startMessage,
+            cancelActionTitle: .cancelActionTitle,
+            confirmActionTitle: .confirmActionTitle,
             confirmAction: skipAction)
     }
     
     @objc private func doneButtonDidTapped(_ sender: AnyObject) {
         showAlertTwoButton(
             title: "\(teamName ?? "")",
-            message: "HomeBase를 시작하시겠습니까?",
-            cancelActionTitle: "취소",
-            confirmActionTitle: "확인",
+            message: .startMessage,
+            cancelActionTitle: .cancelActionTitle,
+            confirmActionTitle: .confirmActionTitle,
             confirmAction: doneAction)
     }
 }

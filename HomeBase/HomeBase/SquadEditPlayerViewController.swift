@@ -51,17 +51,23 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
         }
         
         if playerNameTextField.text == "" {
-            showAlertOneButton(title: "경고", message: "선수 이름을 입력하세요")
+            showAlertOneButton(
+                title: .alertActionTitle,
+                message: .alertMessageOfEnterPlayerName)
         } else if backNumberTextField.text == "" {
-            showAlertOneButton(title: "경고", message: "선수 번호를 입력하세요")
+            showAlertOneButton(
+                title: .alertActionTitle,
+                message: .alertMessageOfEnterPlayerBackNumber)
         } else if overlapNumber == true {
-            showAlertOneButton(title: "경고", message: "팀에 중복되는 번호가 있습니다")
+            showAlertOneButton(
+                title: .alertActionTitle,
+                message: .alertMessageOfDuplicatePlayerBackNumber)
         } else {
             showAlertTwoButton(
-                title: "선수 수정",
-                message: "선수 정보를 수정하시겠습니까?",
-                cancelActionTitle: "취소",
-                confirmActionTitle: "확인",
+                title: .alertTitleOfEditPlayer,
+                message: .alertMessageOfEditPlayer,
+                cancelActionTitle: .cancelActionTitle,
+                confirmActionTitle: .confirmActionTitle,
                 confirmAction: editPlayer)
         }
     }
@@ -145,7 +151,9 @@ extension SquadEditPlayerViewController: UITextFieldDelegate {
             return true
         }
         else {
-            showAlertOneButton(title: "경고", message: "선수 번호는 최대 99 입니다")
+            showAlertOneButton(
+                title: .alertActionTitle,
+                message: .alertMessageOfMaxPlayerBackNumber)
             
             return false
         }
