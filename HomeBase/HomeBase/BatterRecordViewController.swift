@@ -55,6 +55,17 @@ class BatterRecordViewController: UIViewController {
     private var updatePlayerRecordID: Int64 = -1
     private var recordDidChange: Bool = false
 
+//    private lazy var singleTap: UITapGestureRecognizer = {
+//        [unowned self] in
+//        return UITapGestureRecognizer(
+//            target: self,
+//            action: #selector(self.batterRecordButtonDidTapped(_:)))
+//    }()
+//    
+//    private let singleLongPress = UILongPressGestureRecognizer(
+//        target: self,
+//        action: #selector(batterRecordButtonLongPressed(_:)))
+    
     // MARK: Methods
     
     private func appendRecordButtons() {
@@ -79,6 +90,9 @@ class BatterRecordViewController: UIViewController {
                 action: #selector(batterRecordButtonDidTapped(_:)),
                 for: .touchUpInside)
         }
+//        batterButtons[0].addGestureRecognizer(singleTap)
+//        batterButtons[1].addGestureRecognizer(singleTap)
+//        batterButtons[0].addGestureRecognizer(singleLongPress)
     }
     
     private func appendRecords() {
@@ -204,6 +218,20 @@ class BatterRecordViewController: UIViewController {
             for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
+    
+//    @objc private func batterRecordButtonDidTapped(_ sender: UITapGestureRecognizer) {
+//        if sender.state == .ended {
+//            print("tap")
+//        }
+//    }
+//    
+//    @objc private func batterRecordButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
+////        guard let button = sender.view as? UIButton else { return }
+//        
+//        if sender.state == .ended {
+//            print("longlong")
+//        }
+//    }
     
     @objc private func resetButtonDidTapped(_ sender: UIButton) {
         for index in 0..<batterRecords.count {
