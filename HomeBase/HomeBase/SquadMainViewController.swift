@@ -29,6 +29,8 @@ class SquadMainViewController: UIViewController, CustomAlertShowing {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.allowsSelectionDuringEditing = true
+        tableView.separatorStyle = .none
+        
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
@@ -82,7 +84,7 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
         let player = playerArray[indexPath.row]
         cell.playerNameLabel.text = player.name
         cell.playerBackNumberLabel.text = "\(player.backNumber)"
-        cell.positionLabel.text = player.position
+        cell.positionLabel.text = player.position + " >"
         return cell
     }
     
@@ -91,15 +93,15 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
             let deleteIndex = indexPath.row
             let deletePlayer = playerArray[deleteIndex]
 
-            let title = "\(deletePlayer.name) 선수 삭제"
-            let message = "정말로 지우시겠습니까?"
+            let title = "\(deletePlayer.name)"
+            let message = "선수를 삭제하시겠습니까?"
             let ac = UIAlertController(
                 title: title,
                 message: message,
                 preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(
-                title: "Delete",
+                title: "삭제",
                 style: .destructive,
                 handler: { (action) -> Void in
                     self.playerArray.remove(at: deleteIndex)
@@ -143,5 +145,36 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
             squadPlayerRecordPageViewController?.player = selectedPlayer
             squadPlayerRecordPageViewController?.playerRecord = self.playerRecord
         }
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteIndex = indexPath.row
+        let selectedPlayer = self.playerArray[deleteIndex]
+        let delete = UITableViewRowAction(style: .destructive , title: " ✕ ") { (action, indexPath) in
+            // delete item at indexPath
+            let title = "\(selectedPlayer.name)"
+            let ac = UIAlertController(
+                title: title,
+                message: "선수를 삭제하시겠습니까?",
+                preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(
+                title: "삭제",
+                style: .destructive,
+                handler: { (action) -> Void in
+                    self.playerArray.remove(at: deleteIndex)
+                    PlayerDAO.shared.delete(id: selectedPlayer.playerID)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(deleteAction)
+            ac.addAction(cancelAction)
+            self.present(ac, animated: true, completion: nil)
+        }
+        delete.backgroundColor = UIColor(red: 255.0/255.0, green: 60.0/255.0, blue: 50.0/255.0, alpha: 0.9)
+       
+        return [delete]
     }
 }

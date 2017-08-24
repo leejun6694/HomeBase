@@ -32,6 +32,7 @@
 		72425F0A1F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72425F091F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift */; };
 		72765A4F1F49809800EC9F44 /* CustomAlertShowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72765A4E1F49809800EC9F44 /* CustomAlertShowing.swift */; };
 		728C3F8E1F45691900A4E9DB /* SquadEditPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C3F8D1F45691900A4E9DB /* SquadEditPlayerViewController.swift */; };
+		72AB8F511F4EC64200A033E6 /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 72AB8F501F4EC64200A033E6 /* LaunchImage.png */; };
 		72D6BBD81F4035D40058B698 /* SelectPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6BBD71F4035D40058B698 /* SelectPositionViewController.swift */; };
 		72D6BBDA1F4046600058B698 /* BatterRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6BBD91F4046600058B698 /* BatterRecordViewController.swift */; };
 		72D6BBDC1F40467C0058B698 /* PitcherRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6BBDB1F40467C0058B698 /* PitcherRecordViewController.swift */; };
@@ -105,6 +106,7 @@
 		72425F091F3AF61A0071FA13 /* DetailScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		72765A4E1F49809800EC9F44 /* CustomAlertShowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertShowing.swift; sourceTree = "<group>"; };
 		728C3F8D1F45691900A4E9DB /* SquadEditPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadEditPlayerViewController.swift; sourceTree = "<group>"; };
+		72AB8F501F4EC64200A033E6 /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage.png; sourceTree = "<group>"; };
 		72D6BBD71F4035D40058B698 /* SelectPositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPositionViewController.swift; sourceTree = "<group>"; };
 		72D6BBD91F4046600058B698 /* BatterRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatterRecordViewController.swift; sourceTree = "<group>"; };
 		72D6BBDB1F40467C0058B698 /* PitcherRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitcherRecordViewController.swift; sourceTree = "<group>"; };
@@ -202,13 +204,14 @@
 				722A54FD1F38373E00499113 /* Team */,
 				72425EFA1F3A02AC0071FA13 /* Schedule */,
 				722A54FE1F38374C00499113 /* Squad */,
+				72AB8F4F1F4EC64200A033E6 /* Resource */,
 				722A542B1F35C79E00499113 /* Main.storyboard */,
 				C98CD8CF1F457FF300C09D58 /* HeaderViewCell.xib */,
 				C98CD8CD1F457FF300C09D58 /* FooterViewCell.xib */,
 				722A55021F3841B100499113 /* StartNavigation.storyboard */,
 				722A54F21F3834E600499113 /* TeamNavigation.storyboard */,
-				722A54FF1F38385D00499113 /* SquadNavigation.storyboard */,
 				72425EF71F3A025D0071FA13 /* ScheduleNavigation.storyboard */,
+				722A54FF1F38385D00499113 /* SquadNavigation.storyboard */,
 				C98CD8C91F457DA300C09D58 /* AddScheduleViewController.storyboard */,
 				C98CD8D61F4C3F6C00C09D58 /* Assets.xcassets */,
 				722A54301F35C79E00499113 /* LaunchScreen.storyboard */,
@@ -280,6 +283,15 @@
 				72D6BBDB1F40467C0058B698 /* PitcherRecordViewController.swift */,
 			);
 			name = Schedule;
+			sourceTree = "<group>";
+		};
+		72AB8F4F1F4EC64200A033E6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				72AB8F501F4EC64200A033E6 /* LaunchImage.png */,
+			);
+			name = Resource;
+			path = Base.lproj/Resource;
 			sourceTree = "<group>";
 		};
 		77E74DEAFC64D055BFDDFCBE /* Pods */ = {
@@ -418,6 +430,7 @@
 				C98CD8D31F457FF300C09D58 /* HeaderViewCell.xib in Resources */,
 				722A55011F38385D00499113 /* SquadNavigation.storyboard in Resources */,
 				722A54F41F3834E600499113 /* TeamNavigation.storyboard in Resources */,
+				72AB8F511F4EC64200A033E6 /* LaunchImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

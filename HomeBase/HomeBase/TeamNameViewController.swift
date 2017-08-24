@@ -10,17 +10,18 @@ import UIKit
 
 class TeamNameViewController: UIViewController, CustomAlertShowing {
     
-    var viewController: UIViewController {
-        return self
-    }
-    
     // MARK: Properties
     
     fileprivate lazy var nameTextField: UITextField = {
         let nameTextField = UITextField()
         
-        nameTextField.placeholder = "팀 이름을 등록하세요 (2 - 10자)"
+        nameTextField.attributedPlaceholder = NSAttributedString(
+            string: "팀 이름을 등록하세요 (2 - 10자)",
+            attributes: [NSForegroundColorAttributeName: UIColor(
+                red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0)])
         nameTextField.font = UIFont(name: "System", size: 22.0)
+        nameTextField.textColor = UIColor(
+            red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         nameTextField.textAlignment = .center
         nameTextField.borderStyle = .none
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +34,8 @@ class TeamNameViewController: UIViewController, CustomAlertShowing {
         
         nextButton.setTitle("next", for: .normal)
         nextButton.titleLabel?.font = UIFont(name: "System", size: 20.0)
+        nextButton.setTitleColor(
+            UIColor(red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0), for: .normal)
         nextButton.titleLabel?.textAlignment = .center
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         

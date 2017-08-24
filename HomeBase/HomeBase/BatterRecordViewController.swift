@@ -199,7 +199,9 @@ class BatterRecordViewController: UIViewController {
     /// - Parameter sender: batter button
     @objc private func batterRecordButtonDidTapped(_ sender: UIButton) {
         self.batterRecords[sender.tag] += 1.0
-        sender.setTitle("\(batterRecordTexts[sender.tag])\n\(Int(batterRecords[sender.tag]))", for: .normal)
+        sender.setTitle(
+            "\(batterRecordTexts[sender.tag])\n\(Int(batterRecords[sender.tag]))",
+            for: .normal)
         sender.titleLabel?.textAlignment = .center
     }
     

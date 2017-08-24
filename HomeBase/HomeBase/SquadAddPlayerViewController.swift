@@ -97,8 +97,13 @@ extension SquadAddPlayerViewController: UIPickerViewDataSource, UIPickerViewDele
         return kindOfPosition.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return kindOfPosition[row]
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.text = kindOfPosition[row]
+        pickerLabel.textAlignment = .center
+        
+        return pickerLabel
     }
 }
 

@@ -10,10 +10,6 @@ import UIKit
 
 class AddScheduleViewController: UIViewController, CustomAlertShowing {
     
-    var viewController: UIViewController {
-        return self
-    }
-    
     // MARK: Properties
     
     @IBOutlet weak var opponentTextField: UITextField!
@@ -39,6 +35,8 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
         
         opponentTextField.delegate = self
         matchPlaceTextField.delegate = self
+        
+        matchTimePicker.setValue(UIColor.white, forKey: "textColor")
     }
     
     // MARK: Actions
