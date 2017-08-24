@@ -18,10 +18,10 @@ class PitcherViewController: UIViewController {
     var record: PlayerRecord!
     var recordLabel: [String] = [String]()
     var recordLabelArray: [String] = {
-        var array = ["경기 수", "방어율", "이닝", "자책점",
-                     "승리", "패배", "홀드", "세이브",
-                     "탈삼진", "볼넷", "사구", "피안타",
-                     "피홈런", "WHIP", "K/9", "K/BB"]
+        var array: [String] = [ .appearance, .era, .inning, .er,
+                     .win, .lose, .hold, .save,
+                     .strikeOut, .baseOnBalls, .hitByPitch, .hits,
+                     .homerun, "WHIP", "K/9", "K/BB"]
         return array
     }()
     

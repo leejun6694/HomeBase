@@ -112,14 +112,16 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
             let selectedSchedule = scheduleArray[deleteIndex]
             
             let title = "vs \(self.scheduleArray[deleteIndex].matchOpponent)"
-            let message = "일정을 삭제하시겠습니까?"
             let ac = UIAlertController(
                 title: title,
-                message: message,
+                message: .alertMessageOfDeleteSchedule,
                 preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(
+                title: .cancelActionTitle,
+                style: .cancel,
+                handler: nil)
             let deleteAction = UIAlertAction(
-                title: "삭제",
+                title: .deleteActionTitle,
                 style: .destructive,
                 handler: { (action) -> Void in
                     self.scheduleArray.remove(at: deleteIndex)
