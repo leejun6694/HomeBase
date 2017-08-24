@@ -18,8 +18,6 @@ class TeamNameViewController: UIViewController, CustomAlertShowing {
     
     fileprivate lazy var nameTextField: UITextField = {
         let nameTextField = UITextField()
-        
-        nameTextField.placeholder = "팀 이름을 등록하세요 (2 - 10자)"
         nameTextField.font = UIFont(name: "System", size: 22.0)
         nameTextField.textAlignment = .center
         nameTextField.borderStyle = .none
@@ -46,6 +44,8 @@ class TeamNameViewController: UIViewController, CustomAlertShowing {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameTextField.placeholder = .nameTextFieldPlaceholder
+        
         self.tabBarController?.tabBar.isHidden = true
         
         self.view.addSubview(nameTextField)
@@ -67,10 +67,10 @@ class TeamNameViewController: UIViewController, CustomAlertShowing {
         let currentCount = self.nameTextField.text?.characters.count ?? 0
         
         if currentCount < 2 {
-            showAlertOneButton(message: "팀 명은 최소 2글자 입니다")
+            showAlertOneButton(message: .alertMessageOfShortageTeamName)
         } else {
             let teamImageViewController = storyboard?.instantiateViewController(
-                withIdentifier: "TeamImageViewController") as? TeamImageViewController
+                withIdentifier: .teamImageViewController) as? TeamImageViewController
             
             teamImageViewController?.teamName = self.nameTextField.text ?? ""
             self.navigationController?.pushViewController(teamImageViewController!, animated: true)
@@ -93,7 +93,7 @@ extension TeamNameViewController: UITextFieldDelegate {
         if replacementCount <= 10 {
             return true
         } else {
-            showAlertOneButton(message: "팀 명은 최대 10글자 입니다")
+            showAlertOneButton(message: .alertMessageOfAbundanceTeamName)
                         
             return false
         }
@@ -122,7 +122,7 @@ extension TeamNameViewController {
         
         let widthConstraint = NSLayoutConstraint(
             item: nameTextField, attribute: .width, relatedBy: .equal,
-            toItem: view, attribute: .width, multiplier: 0.5, constant: 0.0)
+            toItem: view, attribute: .width, multiplier: 0.9, constant: 0.0)
         
         return [centerXConstraint, centerYConstraint, widthConstraint]
     }

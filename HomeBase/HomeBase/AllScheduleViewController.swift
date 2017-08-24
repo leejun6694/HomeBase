@@ -45,7 +45,7 @@ class AllScheduleViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueScheduleToDetail" {
+        if segue.identifier == .segueScheduleToDetail {
             if let row = self.scheduleTableView.indexPathForSelectedRow?.row {
                 
                 let detailViewController = segue.destination as! DetailScheduleViewController
@@ -58,7 +58,7 @@ class AllScheduleViewController: UIViewController {
     
     @IBAction private func addButtonDidTapped(_ sender: UIBarButtonItem) {
         guard let addScheduleViewController = storyboard?.instantiateViewController(
-            withIdentifier: "AddScheduleViewController") else { return }
+            withIdentifier: .addScheduleViewController) else { return }
         
         present(addScheduleViewController, animated: true, completion: nil)
     }
@@ -81,46 +81,14 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "AllScheduleTableViewCell", for: indexPath) as! AllScheduleTableViewCell
+            withIdentifier: .allScheduleTableViewCell, for: indexPath) as! AllScheduleTableViewCell
         
         cell.matchDateLabel.text = dateFormatter.string(from: scheduleArray[indexPath.row].matchDate)
         cell.matchOpponentLabel.text = "vs " + scheduleArray[indexPath.row].matchOpponent
         
         return cell
     }
-    
-    func tableView(
-        _ tableView: UITableView,
-        commit editingStyle: UITableViewCellEditingStyle,
-        forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            let deleteIndex = indexPath.row
-            let selectedSchedule = scheduleArray[deleteIndex]
-            
-            let title = "삭제"
-            let message = "일정을 삭제하시겠습니까?"
-            let ac = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            let deleteAction = UIAlertAction(
-                title: "Delete",
-                style: .destructive,
-                handler: { (action) -> Void in
-                    self.scheduleArray.remove(at: deleteIndex)
-                    TeamScheduleDAO.shared.delete(id: selectedSchedule.scheduleID)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            ac.addAction(deleteAction)
-            ac.addAction(cancelAction)
-            present(ac, animated: true, completion: nil)
-        }
-        if editingStyle == .insert {
-            
-        }
-    }
+
     func tableView(
         _ tableView: UITableView,
         editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -129,14 +97,16 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         let selectedSchedule = self.scheduleArray[deleteIndex]
         let delete = UITableViewRowAction(style: .destructive , title: "✕\n Delete") { (action, indexPath) in
             // delete item at indexPath
-            let title = "일정을 지우시겠습니까?"
             let ac = UIAlertController(
-                title: title,
-                message: "",
+                title: .deleteActionTitle,
+                message: .alertMessageOfDeleteSchedule,
                 preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(
+                title: .cancelActionTitle,
+                style: .cancel,
+                handler: nil)
             let deleteAction = UIAlertAction(
-                title: "Delete",
+                title: .deleteActionTitle,
                 style: .destructive,
                 handler: { (action) -> Void in
                     self.scheduleArray.remove(at: deleteIndex)
@@ -149,7 +119,7 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         let editScheduleViewController = storyboard?.instantiateViewController(
-            withIdentifier: "EditScheduleViewController") as? EditScheduleViewController
+            withIdentifier: .editScheduleViewController) as? EditScheduleViewController
         let edit = UITableViewRowAction(style: .normal, title: "✎\n Edit") { (action, indexPath) in
             let selectedSchedule = self.scheduleArray[indexPath.row]
             editScheduleViewController?.preSchedule = selectedSchedule

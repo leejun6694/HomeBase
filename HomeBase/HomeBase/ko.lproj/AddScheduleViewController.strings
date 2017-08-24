@@ -1,0 +1,15 @@
+
+/* Class = "UITextField"; placeholder = "경기 장소를 입력하세요"; ObjectID = "17h-1I-fVw"; */
+"17h-1I-fVw.placeholder" = "경기 장소를 입력하세요";
+
+/* Class = "UITextField"; placeholder = "상대 팀명을 입력하세요"; ObjectID = "GzJ-ey-1Ih"; */
+"GzJ-ey-1Ih.placeholder" = "상대 팀명을 입력하세요";
+
+/* Class = "UILabel"; text = "시작 시간"; ObjectID = "P74-hl-DbR"; */
+"P74-hl-DbR.text" = "시작 시간";
+
+/* Class = "UILabel"; text = "일정 추가"; ObjectID = "VTM-iK-wlz"; */
+"VTM-iK-wlz.text" = "일정 추가";
+
+/* Class = "UILabel"; text = "1 Jan 2017 00:00"; ObjectID = "mzu-Jh-dqg"; */
+"mzu-Jh-dqg.text" = "1 Jan 2017 00:00";

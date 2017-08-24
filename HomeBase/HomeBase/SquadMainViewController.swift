@@ -50,16 +50,16 @@ class SquadMainViewController: UIViewController, CustomAlertShowing {
     // MARK: Actions
     
     @IBAction func addButtonDidTap(_ sender: UIBarButtonItem) {
-        guard let squadAddPlayerViewController = storyboard?.instantiateViewController(withIdentifier: "SquadAddPlayerViewController") else { return }
+        guard let squadAddPlayerViewController = storyboard?.instantiateViewController(withIdentifier: .squadAddPlayerViewController) else { return }
         present(squadAddPlayerViewController, animated: true, completion: nil)
     }
     @IBAction func editButtonDidTap(_ sender: UIBarButtonItem) {
         if isEditing {
             // UIViewController has editing property
-            sender.title = "Edit"
+            sender.title = .editButtonTitle
             setEditing(false, animated: true)
         } else {
-            sender.title = "Done"
+            sender.title = .doneButtonTitle
             setEditing(true, animated: true)
         }
     }
@@ -77,7 +77,7 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SquadCell", for: indexPath) as! SquadPlayerTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: .squadCell, for: indexPath) as! SquadPlayerTableViewCell
         
         let player = playerArray[indexPath.row]
         cell.playerNameLabel.text = player.name
@@ -90,16 +90,16 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             let deleteIndex = indexPath.row
             let deletePlayer = playerArray[deleteIndex]
-
-            let title = "\(deletePlayer.name) 선수 삭제"
-            let message = "정말로 지우시겠습니까?"
+            
             let ac = UIAlertController(
-                title: title,
-                message: message,
+                title: .alertTitleOfDeletePlayer,
+                message: .alertMessageOfDeletePlayer,
                 preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(
+                title: .cancelActionTitle,
+                style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(
-                title: "Delete",
+                title: .deleteActionTitle,
                 style: .destructive,
                 handler: { (action) -> Void in
                     self.playerArray.remove(at: deleteIndex)
@@ -120,7 +120,7 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
         let currentRow = indexPath.row
         if tableView.isEditing {
             let squadEditPlayerViewController = storyboard?.instantiateViewController(
-                withIdentifier: "SquadEditPlayerViewController") as? SquadEditPlayerViewController
+                withIdentifier: .squadEditPlayerViewController) as? SquadEditPlayerViewController
             // Edit
             let selectedPlayer = playerArray[indexPath.row]
             squadEditPlayerViewController?.player = selectedPlayer
@@ -129,9 +129,9 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
 
         } else {
             let squadPlayerRecordViewController = storyboard?.instantiateViewController(
-                withIdentifier: "SquadPlayerRecordViewController") as? SquadPlayerRecordViewController
+                withIdentifier: .squadPlayerRecordViewController) as? SquadPlayerRecordViewController
             let squadPlayerRecordPageViewController = storyboard?.instantiateViewController(
-                withIdentifier: "SquadPlayerRecordPageViewController") as? SquadPlayerRecordPageViewController
+                withIdentifier: .squadPlayerRecordPageViewController) as? SquadPlayerRecordPageViewController
 
             self.navigationController?.pushViewController(squadPlayerRecordViewController!, animated: true)
             let selectedPlayer = playerArray[currentRow]
