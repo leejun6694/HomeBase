@@ -35,6 +35,7 @@ class AllScheduleViewController: UIViewController {
         
         scheduleTableView.delegate = self
         scheduleTableView.dataSource = self
+        scheduleTableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,9 +85,54 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
             withIdentifier: .allScheduleTableViewCell, for: indexPath) as! AllScheduleTableViewCell
         
         cell.matchDateLabel.text = dateFormatter.string(from: scheduleArray[indexPath.row].matchDate)
-        cell.matchOpponentLabel.text = "vs " + scheduleArray[indexPath.row].matchOpponent
+        cell.matchOpponentLabel.text = "vs " + scheduleArray[indexPath.row].matchOpponent + " >"
+        
+        switch (indexPath.row % 2) {
+        case 0:
+            cell.backgroundColor = UIColor(
+                red: 60.0/255.0, green: 66.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+        case 1:
+            cell.backgroundColor = UIColor(
+                red: 60.0/255.0, green: 66.0/255.0, blue: 90.0/255.0, alpha: 0.7)
+        default:
+            cell.backgroundColor = UIColor(
+                red: 60.0/255.0, green: 66.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+        }
         
         return cell
+    }
+
+    func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCellEditingStyle,
+        forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let deleteIndex = indexPath.row
+            let selectedSchedule = scheduleArray[deleteIndex]
+            
+            let title = "vs \(self.scheduleArray[deleteIndex].matchOpponent)"
+            let message = "일정을 삭제하시겠습니까?"
+            let ac = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(
+                title: "삭제",
+                style: .destructive,
+                handler: { (action) -> Void in
+                    self.scheduleArray.remove(at: deleteIndex)
+                    TeamScheduleDAO.shared.delete(id: selectedSchedule.scheduleID)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(deleteAction)
+            ac.addAction(cancelAction)
+            present(ac, animated: true, completion: nil)
+        }
+        if editingStyle == .insert {
+            
+        }
     }
 
     func tableView(
@@ -95,8 +141,9 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         
         let deleteIndex = indexPath.row
         let selectedSchedule = self.scheduleArray[deleteIndex]
-        let delete = UITableViewRowAction(style: .destructive , title: "✕\n Delete") { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive , title: " ✕ ") { (action, indexPath) in
             // delete item at indexPath
+
             let ac = UIAlertController(
                 title: .deleteActionTitle,
                 message: .alertMessageOfDeleteSchedule,
@@ -117,15 +164,18 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
             ac.addAction(cancelAction)
             self.present(ac, animated: true, completion: nil)
         }
+        delete.backgroundColor = UIColor(red: 255.0/255.0, green: 60.0/255.0, blue: 50.0/255.0, alpha: 0.9)
 
         let editScheduleViewController = storyboard?.instantiateViewController(
             withIdentifier: .editScheduleViewController) as? EditScheduleViewController
-        let edit = UITableViewRowAction(style: .normal, title: "✎\n Edit") { (action, indexPath) in
+        
+        let edit = UITableViewRowAction(style: .normal, title: " ✎ ") { (action, indexPath) in
+
             let selectedSchedule = self.scheduleArray[indexPath.row]
             editScheduleViewController?.preSchedule = selectedSchedule
             self.present(editScheduleViewController!, animated: true, completion: nil)
         }
-        edit.backgroundColor = UIColor(red: 242/255, green: 150/255, blue: 97/255, alpha: 1)
+        edit.backgroundColor = UIColor(red: 47.0/255.0, green: 113.0/255.0, blue: 176.0/255.0, alpha: 0.9)
     
         return [delete, edit]
     }

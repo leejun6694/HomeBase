@@ -107,10 +107,12 @@ class BatterViewController: UIViewController {
                 let titleLabel = UILabel()
                 contentStackView.addArrangedSubview(titleLabel)
                 titleLabel.text = recordLabelArray[col * 5 + row]
+                titleLabel.textColor = .white
                 titleLabel.textAlignment = .center
                 let recordContent = UILabel()
                 contentStackView.addArrangedSubview(recordContent)
                 recordContent.text = "\(recordLabel[col * 5 + row])"
+                recordContent.textColor = .white
                 recordContent.textAlignment = .center
                 contentStackView.distribution = .fillEqually
             }

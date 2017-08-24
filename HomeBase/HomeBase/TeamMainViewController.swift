@@ -75,7 +75,13 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
         
         if let data = try? Data(contentsOf: url, options: .alwaysMapped) {
             self.mainImageView.image = UIImage(data: data)
-            self.mainImageView.alpha = 0.5
+            self.mainImageView.contentMode = .scaleToFill
+            self.mainImageView.alpha = 0.7
+        } else {
+            self.mainImageView.image = #imageLiteral(resourceName: "HomeBase")
+            self.mainImageView.contentMode = .scaleAspectFit
+            self.mainImageView.backgroundColor = UIColor(
+                red: 83.0/255.0, green: 83.0/255.0, blue: 83.0/255.0, alpha: 1.0)
         }
     }
     
@@ -153,6 +159,8 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
         teamMainTableView.dataSource = self
         teamMainTableView.delegate = self
         teamMainTableView.allowsSelection = false
+        teamMainTableView.separatorStyle = .none
+        teamMainTableView.separatorColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {

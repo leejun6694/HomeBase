@@ -17,7 +17,10 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sJI-6V-Szn">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.99607843139999996" green="0.76078431369999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.99607843139999996" green="0.76078431369999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="Uke-z7-oaz" kind="relationship" relationship="viewControllers" id="6ug-nr-wLQ"/>

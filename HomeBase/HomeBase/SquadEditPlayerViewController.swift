@@ -42,8 +42,10 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
         if let numbers = PlayerDAO.shared.selectAllNumber() {
             for index in 0..<numbers.count {
                 if backNumberTextField.text == "\(numbers[index])" {
-                    overlapNumber = true
-                    break
+                    if backNumberTextField.text != "\(player.backNumber)" {
+                        overlapNumber = true
+                        break
+                    }
                 }
             }
         }
@@ -125,10 +127,14 @@ extension SquadEditPlayerViewController: UIPickerViewDataSource, UIPickerViewDel
         return kindOfPosition.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return kindOfPosition[row]
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.text = kindOfPosition[row]
+        pickerLabel.textAlignment = .center
+        
+        return pickerLabel
     }
-    
 }
 
 

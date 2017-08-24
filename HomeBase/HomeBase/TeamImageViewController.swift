@@ -10,11 +10,6 @@ import UIKit
 
 class TeamImageViewController: UIViewController, CustomAlertShowing {
     
-    var viewController: UIViewController {
-        return self
-    }
-    
-    
     // MARK: Properties
     
     var teamName: String!
@@ -23,6 +18,8 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
         let pickerButton = UIButton(type: .system)
         
         pickerButton.titleLabel?.font = UIFont(name: "System", size: 22.0)
+        pickerButton.setTitleColor(
+            UIColor(red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0), for: .normal)
         pickerButton.titleLabel?.textAlignment = .center
         pickerButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -36,6 +33,8 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
         
         skipButton.setTitle("skip", for: .normal)
         skipButton.titleLabel?.font = UIFont(name: "System", size: 20.0)
+        skipButton.setTitleColor(
+            UIColor(red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0), for: .normal)
         skipButton.titleLabel?.textAlignment = .center
         skipButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -57,6 +56,8 @@ class TeamImageViewController: UIViewController, CustomAlertShowing {
         
         doneButton.setTitle("done", for: .normal)
         doneButton.titleLabel?.font = UIFont(name: "System", size: 20.0)
+        doneButton.setTitleColor(
+            UIColor(red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0), for: .normal)
         doneButton.titleLabel?.textAlignment = .center
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         

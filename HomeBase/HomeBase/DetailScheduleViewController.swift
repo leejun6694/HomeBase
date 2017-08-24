@@ -60,6 +60,7 @@ class DetailScheduleViewController: UIViewController, CustomAlertShowing {
         matchTableView.allowsSelection = false
         matchTableView.delegate = self
         matchTableView.dataSource = self
+        matchTableView.separatorStyle = .none
     
         let compareDate = scheduleItem.matchDate.timeIntervalSince(currentDate)
         let compareHour = compareDate / 3600

@@ -99,12 +99,13 @@ class EditScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         opponentTextField.text = preSchedule.matchOpponent
         matchPlaceTextField.text = preSchedule.matchPlace
         
         matchTimePicker.minuteInterval = 10
         matchTimePicker.setDate(preSchedule.matchDate, animated: true)
+        matchTimePicker.setValue(UIColor.white, forKey: "textColor")
+        
         matchTimeLabel.text = dateFormatter.string(from: matchTimePicker.date)
         
         opponentTextField.delegate = self
