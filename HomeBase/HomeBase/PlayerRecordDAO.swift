@@ -441,7 +441,7 @@ class PlayerRecordDAO {
                         + batting[groundBall.sum]!
                         + batting[flyBall.sum]!)                
 
-                if battingHits != 0.0, battingOuts != 0.0 {
+                if (battingHits + battingOuts) != 0.0 {
                     playerBattingAverage[batting[playerID]] = battingHits / (battingHits + battingOuts)
                 }
             }
