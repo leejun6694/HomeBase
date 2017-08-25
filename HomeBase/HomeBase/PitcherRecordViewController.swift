@@ -48,13 +48,141 @@ class PitcherRecordViewController: UIViewController {
     private var pitcherRecordTexts: [String] = [.win, .lose, .hold, .save,
                                       .baseOnBalls, .hitByPitch, .hits, .homerun,
                                       .inning, .strikeOut, .er]
-    
+    private var tapGestures = [UITapGestureRecognizer]()
+    private var longPressGestures = [UILongPressGestureRecognizer]()
+  
     var row: Int!
     var playerID: Int64!
     var scheduleID: Int64!
     
     private var updatePlayerRecordID: Int64 = -1
     private var recordDidChange: Bool = false
+    
+    private lazy var winTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var loseTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var holdTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var saveTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var walksTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var hitBattersTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var hitsTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var homeRunsTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var inningTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var strikeOutsTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var ERTap: UITapGestureRecognizer = {
+        [unowned self] in
+        return UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonDidTapped(_:)))
+    }()
+    
+    private lazy var walksLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var hitBattersLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var hitsLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var homeRunsLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var inningLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var strikeOutsLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonLongPressed(_:)))
+    }()
+    
+    private lazy var ERLongPress: UILongPressGestureRecognizer = {
+        [unowned self] in
+        return UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(self.pitcherRecordButtonLongPressed(_:)))
+    }()
     
     // MARK: Methods
     
@@ -77,6 +205,37 @@ class PitcherRecordViewController: UIViewController {
                 self,
                 action: #selector(pitcherRecordButtonDidTapped(_:)),
                 for: .touchUpInside)
+            pitcherButtons[index].titleLabel?.textAlignment = .center
+        }
+    }
+    
+    private func appendGestureRecognizers() {
+        tapGestures.append(winTap)
+        tapGestures.append(loseTap)
+        tapGestures.append(holdTap)
+        tapGestures.append(saveTap)
+        tapGestures.append(walksTap)
+        tapGestures.append(hitBattersTap)
+        tapGestures.append(hitsTap)
+        tapGestures.append(homeRunsTap)
+        tapGestures.append(inningTap)
+        tapGestures.append(strikeOutsTap)
+        tapGestures.append(ERTap)
+        
+        longPressGestures.append(walksLongPress)
+        longPressGestures.append(hitBattersLongPress)
+        longPressGestures.append(hitsLongPress)
+        longPressGestures.append(homeRunsLongPress)
+        longPressGestures.append(inningLongPress)
+        longPressGestures.append(strikeOutsLongPress)
+        longPressGestures.append(ERLongPress)
+        
+        for index in 0..<pitcherButtons.count {
+            pitcherButtons[index].addGestureRecognizer(tapGestures[index])
+            
+            if index > 3 {
+                pitcherButtons[index].addGestureRecognizer(longPressGestures[index - 4])
+            }
         }
     }
     
@@ -123,7 +282,9 @@ class PitcherRecordViewController: UIViewController {
                         self.inningRemainder = Double(updateInningRemainder)
                         self.pitcherRecords[index] = Double(updateInning)
                         
-                        if updateInningRemainder == 0 {
+                        if updateInningRemainder == 0, updateInning == 0 {
+                            pitcherButtons[index].setTitle("\(pitcherRecordTexts[index])", for: .normal)
+                        } else if updateInningRemainder == 0 {
                             pitcherButtons[index].setTitle(
                                 "\(pitcherRecordTexts[index])\n\(updateInning)",
                                 for: .normal)
@@ -134,11 +295,15 @@ class PitcherRecordViewController: UIViewController {
                         }
                         
                     } else {
-                        pitcherButtons[index].setTitle(
-                            "\(pitcherRecordTexts[index])\n\(Int(pitcherRecords[index]))", for: .normal)
+                        if pitcherRecords[index] == 0.0 {
+                            pitcherButtons[index].setTitle(
+                                "\(pitcherRecordTexts[index])", for: .normal)
+                        } else {
+                            pitcherButtons[index].setTitle(
+                                "\(pitcherRecordTexts[index])\n\(Int(pitcherRecords[index]))",
+                                for: .normal)
+                        }
                     }
-                    
-                    pitcherButtons[index].titleLabel?.textAlignment = .center
                     
                     if index < 4, pitcherRecords[index] > 0.0 {
                         pitcherStackView.alpha = 0.5
@@ -160,6 +325,7 @@ class PitcherRecordViewController: UIViewController {
         tapGestureRecognizer.delegate = self
         
         appendRecordButtons()
+        appendGestureRecognizers()
         appendRecords()
         resetButton.addTarget(self, action: #selector(resetButtonDidTapped(_:)), for: .touchUpInside)
         
@@ -215,36 +381,80 @@ class PitcherRecordViewController: UIViewController {
     /// Tap action for Pitcher buttons.
     /// Increase button's record and show record on button title
     ///
-    /// - Parameter sender: pitcher button
-    @objc private func pitcherRecordButtonDidTapped(_ sender: UIButton) {
-        if sender.tag == 8 {
+    /// - Parameter sender: pitcher button's UITapGestureRecognizer
+    @objc private func pitcherRecordButtonDidTapped(_ sender: UITapGestureRecognizer) {
+        let button = sender.view as! UIButton
+        
+        if button.tag == 8 {
             self.inningRemainder += 1.0
             if inningRemainder == 3.0 {
-                self.pitcherRecords[sender.tag] += 1.0
+                self.pitcherRecords[button.tag] += 1.0
                 self.inningRemainder = 0.0
             }
             
             if self.inningRemainder == 0.0 {
-                sender.setTitle(
-                    "\(pitcherRecordTexts[sender.tag])\n\(Int(pitcherRecords[sender.tag]))", for: .normal)
+                button.setTitle(
+                    "\(pitcherRecordTexts[button.tag])\n\(Int(pitcherRecords[button.tag]))",
+                    for: .normal)
             } else {
-                sender.setTitle(
-                    "\(pitcherRecordTexts[sender.tag])\n\(Int(pitcherRecords[sender.tag])) \(Int(inningRemainder))/3",
+                button.setTitle(
+                    "\(pitcherRecordTexts[button.tag])\n\(Int(pitcherRecords[button.tag])) \(Int(inningRemainder))/3",
                     for: .normal)
             }
         } else {
-            self.pitcherRecords[sender.tag] += 1.0
-            sender.setTitle(
-                "\(pitcherRecordTexts[sender.tag])\n\(Int(pitcherRecords[sender.tag]))",
+            self.pitcherRecords[button.tag] += 1.0
+            button.setTitle(
+                "\(pitcherRecordTexts[button.tag])\n\(Int(pitcherRecords[button.tag]))",
                 for: .normal)
         }
         
-        if sender.tag < 4 {
+        if button.tag < 4 {
             pitcherStackView.alpha = 0.5
             pitcherStackView.isUserInteractionEnabled = false
         }
-      
-        sender.titleLabel?.textAlignment = .center
+    }
+    
+    /// Long Press action for Pitcher buttons.
+    /// Decrease button's record and show record on button title
+    ///
+    /// - Parameter sender: pitcher button's UILongPressGestureRecognizer
+    @objc private func pitcherRecordButtonLongPressed(_ sender: UILongPressGestureRecognizer) {
+        let button = sender.view as! UIButton
+        
+        if button.tag == 8, sender.state == .ended {
+            if self.inningRemainder != 0.0 || self.pitcherRecords[button.tag] != 0.0 {
+                if self.inningRemainder == 0.0 {
+                    self.pitcherRecords[button.tag] -= 1.0
+                    self.inningRemainder = 2.0
+                } else {
+                    self.inningRemainder -= 1.0
+                }
+            }
+            
+            if self.inningRemainder == 0.0, self.pitcherRecords[button.tag] == 0.0 {
+                button.setTitle("\(pitcherRecordTexts[button.tag])", for: .normal)
+            } else if self.inningRemainder == 0.0 {
+                button.setTitle(
+                    "\(pitcherRecordTexts[button.tag])\n\(Int(pitcherRecords[button.tag]))",
+                    for: .normal)
+            } else {
+                button.setTitle(
+                    "\(pitcherRecordTexts[button.tag])\n\(Int(pitcherRecords[button.tag])) \(Int(inningRemainder))/3",
+                    for: .normal)
+            }
+        } else if sender.state == .ended {
+            if self.pitcherRecords[button.tag] > 0.0 {
+                self.pitcherRecords[button.tag] -= 1.0
+                
+                if self.pitcherRecords[button.tag] == 0.0 {
+                    button.setTitle("\(pitcherRecordTexts[button.tag])", for: .normal)
+                } else {
+                    button.setTitle(
+                        "\(pitcherRecordTexts[button.tag])\n\(Int(pitcherRecords[button.tag]))",
+                        for: .normal)
+                }
+            }
+        }
     }
     
     @objc private func resetButtonDidTapped(_ sender: UIButton) {

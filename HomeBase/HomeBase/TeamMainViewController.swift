@@ -137,9 +137,7 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    
     // MARK: Override
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,7 +182,6 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
         teamMainTableView.reloadData()
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

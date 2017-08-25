@@ -23,7 +23,7 @@ class SelectPositionViewController: UIViewController, CustomAlertShowing {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
         self.view.isOpaque = false
         

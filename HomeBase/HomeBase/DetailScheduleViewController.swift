@@ -96,7 +96,6 @@ class DetailScheduleViewController: UIViewController, CustomAlertShowing {
         }
     }
     
-    
     // MARK: Actions
     
     @IBAction private func homeScoreButtonDidTapped(_ sender: UIButton) {
@@ -183,7 +182,9 @@ class DetailScheduleViewController: UIViewController, CustomAlertShowing {
             
             selectPositionViewController.modalPresentationStyle = .overCurrentContext
             
-            present(selectPositionViewController, animated: false, completion: nil)
+            let presenter: UIViewController = self.tabBarController ?? self
+            
+            presenter.present(selectPositionViewController, animated: false, completion: nil)
         }
     }
     
