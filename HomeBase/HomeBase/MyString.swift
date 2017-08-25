@@ -81,7 +81,7 @@ extension String {
         "HomeBase를 시작하시겠습니까?",
         comment: "Start Message")
     static let alertMessageOfDeleteSchedule = NSLocalizedString(
-        "일정을 지우시겠습니까?",
+        "일정을 삭제하시겠습니까?",
         comment: "Delete Schedule Alert Maessage")
     static let alertMessageOfEnterOpponentTeamName = NSLocalizedString(
         "상대 팀명을 입력하세요",
@@ -156,7 +156,15 @@ extension String {
     static let matchAlarmMinute = NSLocalizedString(
         "경기 시작 %d 분 전입니다",
         comment: "Match Alarm Before Minute")
-
+    static let atBatAndHit = NSLocalizedString(
+        "%d타수 %d안타",
+        comment: "At Bat And Hit")
+    static let inningAndER = NSLocalizedString(
+        "%d이닝 %d자책",
+        comment: "Inning And ER")
+    static let threeInningAndER = NSLocalizedString(
+        "%d %d/3이닝 %d자책",
+        comment: "/3Inning And ER")
     
     // Section
     
@@ -231,6 +239,8 @@ extension String {
         "세이브", comment: "Save")
     static let hits = NSLocalizedString(
         "피안타", comment: "Hits")
+    static let rbi = NSLocalizedString(
+        "타점", comment: "RBI")
 
 
 }

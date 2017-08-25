@@ -9,7 +9,7 @@
 "3EP-CL-loC.normalTitle" = "OK";
 
 /* Class = "UILabel"; text = "경기 시간"; ObjectID = "3fR-vo-7vZ"; */
-"3fR-vo-7vZ.text" = "Match time";
+"3fR-vo-7vZ.text" = "time";
 
 /* Class = "UIButton"; normalTitle = "볼넷"; ObjectID = "8iA-dr-ncP"; */
 "8iA-dr-ncP.normalTitle" = "BB";
@@ -135,7 +135,7 @@
 "q1Y-lv-rhm.normalTitle" = "Win";
 
 /* Class = "UILabel"; text = "경기 장소"; ObjectID = "rRq-nJ-WfE"; */
-"rRq-nJ-WfE.text" = "Match place";
+"rRq-nJ-WfE.text" = "place";
 
 /* Class = "UIButton"; normalTitle = "타자"; ObjectID = "x7Y-hO-CQW"; */
 "x7Y-hO-CQW.normalTitle" = "Batter";

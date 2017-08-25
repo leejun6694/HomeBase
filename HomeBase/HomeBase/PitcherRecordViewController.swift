@@ -45,12 +45,12 @@ class PitcherRecordViewController: UIViewController {
     
     private var pitcherButtons = [UIButton]()
     private var pitcherRecords = [Double]()
-    private var pitcherRecordTexts = ["승리", "패배", "홀드", "세이브",
-                                      "볼넷", "사구", "피안타", "피홈런",
-                                      "이닝", "탈삼진", "자책점"]
+    private var pitcherRecordTexts: [String] = [.win, .lose, .hold, .save,
+                                      .baseOnBalls, .hitByPitch, .hits, .homerun,
+                                      .inning, .strikeOut, .er]
     private var tapGestures = [UITapGestureRecognizer]()
     private var longPressGestures = [UILongPressGestureRecognizer]()
-    
+  
     var row: Int!
     var playerID: Int64!
     var scheduleID: Int64!

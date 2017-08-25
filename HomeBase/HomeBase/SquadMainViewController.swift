@@ -157,11 +157,14 @@ extension SquadMainViewController: UITableViewDataSource, UITableViewDelegate {
             let title = "\(selectedPlayer.name)"
             let ac = UIAlertController(
                 title: title,
-                message: "선수를 삭제하시겠습니까?",
+                message: .alertMessageOfDeletePlayer,
                 preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(
+                title: .cancelActionTitle,
+                style: .cancel,
+                handler: nil)
             let deleteAction = UIAlertAction(
-                title: "삭제",
+                title: .deleteActionTitle,
                 style: .destructive,
                 handler: { (action) -> Void in
                     self.playerArray.remove(at: deleteIndex)

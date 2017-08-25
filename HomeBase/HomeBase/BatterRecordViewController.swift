@@ -43,10 +43,10 @@ class BatterRecordViewController: UIViewController {
     
     private var batterButtons = [UIButton]()
     private var batterRecords = [Double]()
-    private let batterRecordTexts = ["1루타", "2루타", "3루타",
-                                     "홈런", "볼넷", "희생타",
-                                     "삼진", "땅볼", "뜬공",
-                                     "도루", "사구", "득점", "타점"]
+    private let batterRecordTexts: [String] = [.single, .double, .triple,
+                                     .homerun, .baseOnBalls, .sacrificeHit,
+                                     .strikeOut, .groundBall, .flyBall,
+                                     .stolenBase, .hitByPitch, .run, .rbi]
     private var tapGestures = [UITapGestureRecognizer]()
     private var longPressGestures = [UILongPressGestureRecognizer]()
     

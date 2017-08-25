@@ -241,21 +241,23 @@ extension DetailScheduleViewController: UITableViewDelegate, UITableViewDataSour
                     let atBat = hits + (playerRecordItem.strikeOut) +
                         (playerRecordItem.groundBall) +
                         (playerRecordItem.flyBall)
-                    
-                    cell.playerResultButton.setTitle("\(Int(atBat))타수 \(Int(hits))안타", for: .normal)
+    
+                    cell.playerResultButton.setTitle( String.localizedStringWithFormat(
+                    .atBatAndHit, Int(atBat), Int(hits)), for: .normal)
                 } else {
                     let pitcherInning = Int((playerRecordItem.inning))
                     let inningRemainder = (Int((playerRecordItem.inning) * 10) % 10) / 3
                     let pitcherER = Int((playerRecordItem.ER))
                     
                     if inningRemainder == 0 {
-                        cell.playerResultButton.setTitle(
-                            "\(pitcherInning)이닝 \(pitcherER)자책",
-                            for: .normal)
+                        cell.playerResultButton.setTitle( String.localizedStringWithFormat(
+                            .inningAndER, pitcherInning, pitcherER), for: .normal)
                     } else {
-                        cell.playerResultButton.setTitle(
-                            "\(pitcherInning) \(inningRemainder)/3이닝 \(pitcherER)자책",
-                            for: .normal)
+                        cell.playerResultButton.setTitle( String.localizedStringWithFormat(
+                            .threeInningAndER,
+                            pitcherInning,
+                            inningRemainder,
+                            pitcherER), for: .normal)
                     }
                 }
             }
