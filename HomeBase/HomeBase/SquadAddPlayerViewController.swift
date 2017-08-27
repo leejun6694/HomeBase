@@ -54,11 +54,13 @@ class SquadAddPlayerViewController: UIViewController, CustomAlertShowing {
             showAlertOneButton(
                 title: .alertActionTitle,
                 message: .alertMessageOfEnterPlayerBackNumber)
-        } else if overlapNumber == true {
-            showAlertOneButton(
-                title: .alertActionTitle,
-                message: .alertMessageOfDuplicatePlayerBackNumber)
-        } else {
+        }
+//        else if overlapNumber == true {
+//            showAlertOneButton(
+//                title: .alertActionTitle,
+//                message: .alertMessageOfDuplicatePlayerBackNumber)
+//        } 
+        else {
             showAlertTwoButton(
                 title: .alertTitleOfAddPlayer,
                 message: .alertMessageOfAddPlayer,
