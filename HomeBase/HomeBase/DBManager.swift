@@ -42,6 +42,7 @@ class DBManager: NSObject {
         
         do {
             let db = try Connection("\(path)/db.sqlite3")
+            print(path)
             return db
         } catch {
             NSLog("Database Connection Error")

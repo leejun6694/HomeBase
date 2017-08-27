@@ -28,7 +28,7 @@ class PlayerDAO {
         let statement = player.create(ifNotExists: true) { t in
             t.column(playerID, primaryKey: .autoincrement)
             t.column(name)
-            t.column(backNumber)
+            t.column(backNumber, unique: true)
             t.column(position)
         }
         let result = DBManager.shared.createTable(statement)
