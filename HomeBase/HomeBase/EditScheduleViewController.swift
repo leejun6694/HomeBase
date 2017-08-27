@@ -86,12 +86,38 @@ class EditScheduleViewController: UIViewController {
     }
     
     @objc fileprivate func editSchedule(action: UIAlertAction) {
+        let id = preSchedule.scheduleID
+        let opponent = opponentTextField.text!
+        let date = matchTimePicker.date
+        print(dateFormatter.string(from: date))
         let updatedteamSchedule = TeamSchedule(
-            scheduleID: preSchedule.scheduleID,
-            matchOpponent: opponentTextField.text!,
-            matchDate: matchTimePicker.date,
+            scheduleID: id,
+            matchOpponent: opponent,
+            matchDate: date,
             matchPlace: matchPlaceTextField.text!)
         TeamScheduleDAO.shared.update(item: updatedteamSchedule)
+        let currentDate = Date()
+        let compareDate = date.timeIntervalSince(currentDate)
+        let compareHour = compareDate / 3600
+        let compareDay = compareDate / (3600 * 24)
+        print("Compare Hour \(compareHour)")
+        var hour = false
+        var day = false
+        if compareHour >= 1 {
+            hour = true
+            print("Edit HOUR")
+            if compareDay >= 1 {
+                day = true
+                print("Edit DAY")
+            }
+        }
+        MyNotification.update(
+            contentOfBody: opponent,
+            appliedDate: date,
+            day: day,
+            hour: hour,
+            identifierID: id)
+
         dismiss(animated: true, completion: nil)
     }
     
@@ -102,7 +128,7 @@ class EditScheduleViewController: UIViewController {
         opponentTextField.text = preSchedule.matchOpponent
         matchPlaceTextField.text = preSchedule.matchPlace
         
-        matchTimePicker.minuteInterval = 10
+        matchTimePicker.minuteInterval = 1
         matchTimePicker.setDate(preSchedule.matchDate, animated: true)
         matchTimePicker.setValue(UIColor.white, forKey: "textColor")
         

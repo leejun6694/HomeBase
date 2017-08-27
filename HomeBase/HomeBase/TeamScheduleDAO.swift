@@ -47,7 +47,7 @@ class TeamScheduleDAO {
 
     // insert
     
-    func insert(item: T) {
+    @discardableResult func insert(item: T) -> Int64? {
         let query = teamSchedule.insert(
             matchOpponent <- item.matchOpponent,
             matchDate <- item.matchDate,
@@ -57,9 +57,11 @@ class TeamScheduleDAO {
         
         let result = DBManager.shared.insert(query)
         switch result {
-        case .ok(_): break
+        case let .ok(id):
+            return id
         case .error(_): break
         }
+        return nil
     }
     
     // update

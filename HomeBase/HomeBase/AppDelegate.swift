@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let startNavigation = storyBoard.instantiateInitialViewController()
             
             self.window?.rootViewController = startNavigation
+        }
+        
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        MyNotification.center.requestAuthorization(options: options) {
+            (granted, error) in
+            if !granted {
+                print("Authorize error")
+            }
         }
 
         return true
