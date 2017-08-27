@@ -114,7 +114,6 @@ class TeamMainViewController: UIViewController, UIGestureRecognizerDelegate {
         let teamHit = PlayerRecordDAO.shared.selectHits()
         let teamOut = PlayerRecordDAO.shared.selectOuts()
         
-        
         if (teamHit + teamOut) == 0.0 {
             teamBattingAverageTextField.text = "0.000"
         }

@@ -38,6 +38,4 @@ extension String {
     static let segueScheduleToDetail = "segueScheduleToDetail"
     static let unwindPitcherToDetail = "unwindPitcherToDetail"
     static let unwindBatterToDetail = "unwindBatterToDetail"
-    
-
 }
