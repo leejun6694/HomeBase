@@ -30,7 +30,7 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        matchTimePicker.minuteInterval = 10
+        matchTimePicker.minuteInterval = 1
         matchTimeLabel.text = dateFormatter.string(from: matchTimePicker.date)
         
         opponentTextField.delegate = self
@@ -71,13 +71,34 @@ class AddScheduleViewController: UIViewController, CustomAlertShowing {
     }
     
     @objc fileprivate func addSchedule(action: UIAlertAction) {
+        let opponent = opponentTextField.text!
+        let date = matchTimePicker.date
         let teamSchedule = TeamSchedule(
-            matchOpponent: opponentTextField.text!,
-            matchDate: matchTimePicker.date,
+            matchOpponent: opponent,
+            matchDate: date,
             matchPlace: matchPlaceTextField.text!)
         
-        TeamScheduleDAO.shared.insert(item: teamSchedule)
+        let scheduleId = TeamScheduleDAO.shared.insert(item: teamSchedule)
         
+        let currentDate = Date()
+        let compareDate = matchTimePicker.date.timeIntervalSince(currentDate)
+        let compareHour = compareDate / 3600
+        let compareDay = compareDate / (3600 * 24)
+        var hour = false
+        var day = false
+        if compareHour >= 1 {
+            hour = true
+            if compareDay >= 1 {
+                day = true
+            }
+        }
+        MyNotification.add(
+            contentOfBody: opponent,
+            appliedDate: date,
+            day: day,
+            hour: hour,
+            identifierID: scheduleId!)
+
         dismiss(animated: true, completion: nil)
     }
 }

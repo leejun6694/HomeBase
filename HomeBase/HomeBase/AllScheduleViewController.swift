@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import SQLite
 
 class AllScheduleViewController: UIViewController {
@@ -104,41 +105,6 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(
         _ tableView: UITableView,
-        commit editingStyle: UITableViewCellEditingStyle,
-        forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            let deleteIndex = indexPath.row
-            let selectedSchedule = scheduleArray[deleteIndex]
-            
-            let title = "vs \(self.scheduleArray[deleteIndex].matchOpponent)"
-            let ac = UIAlertController(
-                title: title,
-                message: .alertMessageOfDeleteSchedule,
-                preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(
-                title: .cancelActionTitle,
-                style: .cancel,
-                handler: nil)
-            let deleteAction = UIAlertAction(
-                title: .deleteActionTitle,
-                style: .destructive,
-                handler: { (action) -> Void in
-                    self.scheduleArray.remove(at: deleteIndex)
-                    TeamScheduleDAO.shared.delete(id: selectedSchedule.scheduleID)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            ac.addAction(deleteAction)
-            ac.addAction(cancelAction)
-            present(ac, animated: true, completion: nil)
-        }
-        if editingStyle == .insert {
-            
-        }
-    }
-
-    func tableView(
-        _ tableView: UITableView,
         editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let deleteIndex = indexPath.row
@@ -161,6 +127,8 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
                     self.scheduleArray.remove(at: deleteIndex)
                     TeamScheduleDAO.shared.delete(id: selectedSchedule.scheduleID)
                     tableView.deleteRows(at: [indexPath], with: .automatic)
+                    MyNotification.remove(identifierID: selectedSchedule.scheduleID)
+
             })
             ac.addAction(deleteAction)
             ac.addAction(cancelAction)

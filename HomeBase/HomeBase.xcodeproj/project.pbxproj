@@ -63,6 +63,7 @@
 		C98CD8E61F4D901700C09D58 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C98CD8E81F4D901700C09D58 /* Localizable.strings */; };
 		C98CD8F21F4DF3C100C09D58 /* FooterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98CD8F41F4DF3C100C09D58 /* FooterViewCell.xib */; };
 		C98CD8FA1F4EB49800C09D58 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98CD8F91F4EB49800C09D58 /* Storyboard.swift */; };
+		C98CD91A1F51828A00C09D58 /* MyNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98CD9191F51828A00C09D58 /* MyNotification.swift */; };
 		C9A3E45E1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */; };
 		C9A3E4601F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */; };
 		C9A3E4621F3A2A7200F592A0 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3E4611F3A2A7200F592A0 /* DBManager.swift */; };
@@ -156,6 +157,7 @@
 		C98CD8F61F4DF3C400C09D58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FooterViewCell.strings; sourceTree = "<group>"; };
 		C98CD8F81F4DF3CC00C09D58 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/FooterViewCell.strings; sourceTree = "<group>"; };
 		C98CD8F91F4EB49800C09D58 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		C98CD9191F51828A00C09D58 /* MyNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNotification.swift; sourceTree = "<group>"; };
 		C9A3E45D1F39B1BB00F592A0 /* SquadAddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadAddPlayerViewController.swift; sourceTree = "<group>"; };
 		C9A3E45F1F39B4BD00F592A0 /* SquadPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		C9A3E4611F3A2A7200F592A0 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				72765A4E1F49809800EC9F44 /* CustomAlertShowing.swift */,
 				72425E411F398A180071FA13 /* MainTabBarController.swift */,
 				C9A3E4611F3A2A7200F592A0 /* DBManager.swift */,
+				C98CD9191F51828A00C09D58 /* MyNotification.swift */,
 				C98CD8E21F4D5A5000C09D58 /* MyString.swift */,
 				C98CD8F91F4EB49800C09D58 /* Storyboard.swift */,
 				C926BE2E1F3C38B600B7A54B /* Model */,
@@ -409,7 +412,7 @@
 				TargetAttributes = {
 					722A54231F35C79E00499113 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 836DYQVDP8;
+						DevelopmentTeam = V9TZ6H4V4N;
 						ProvisioningStyle = Automatic;
 					};
 					722A54371F35C79E00499113 = {
@@ -612,6 +615,7 @@
 				722A55071F3841F700499113 /* StartNavigationViewController.swift in Sources */,
 				C926BE361F3C3A8600B7A54B /* TeamInfoDAO.swift in Sources */,
 				722A55091F38420C00499113 /* TeamNameViewController.swift in Sources */,
+				C98CD91A1F51828A00C09D58 /* MyNotification.swift in Sources */,
 				C926BE321F3C38DC00B7A54B /* PlayerDAO.swift in Sources */,
 				72D6BBDC1F40467C0058B698 /* PitcherRecordViewController.swift in Sources */,
 				C98CD8D01F457FF300C09D58 /* FooterViewCell.swift in Sources */,
@@ -834,7 +838,7 @@
 			baseConfigurationReference = B2571951D557027D0D74E103 /* Pods-HomeBase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 836DYQVDP8;
+				DEVELOPMENT_TEAM = V9TZ6H4V4N;
 				INFOPLIST_FILE = HomeBase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lemonkooma.HomeBase;
@@ -848,7 +852,7 @@
 			baseConfigurationReference = 72023B3B200B389AEBFC2FDE /* Pods-HomeBase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 836DYQVDP8;
+				DEVELOPMENT_TEAM = V9TZ6H4V4N;
 				INFOPLIST_FILE = HomeBase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lemonkooma.HomeBase;

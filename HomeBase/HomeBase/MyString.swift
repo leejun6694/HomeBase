@@ -165,6 +165,15 @@ extension String {
     static let threeInningAndER = NSLocalizedString(
         "%d %d/3이닝 %d자책",
         comment: "/3Inning And ER")
+       
+    // notification
+    static let oneHourBefore = NSLocalizedString(
+        "%@팀과의 경기 한 시간 전 입니다",
+        comment: "Notification Message An Hour Before The Match")
+    static let oneDayBefore = NSLocalizedString(
+        "%@팀과의 경기 하루 전 입니다",
+        comment: "Notification Message A Day Before The Match")
+
     
     // Section
     
