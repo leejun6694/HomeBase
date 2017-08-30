@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PitcherRecordViewController: UIViewController {
+class PitcherRecordViewController: UIViewController, CustomAlertShowing {
    
     // MARK: Properties
     
@@ -353,7 +353,13 @@ class PitcherRecordViewController: UIViewController {
                     strikeOuts: self.pitcherRecords[9],
                     ER: self.pitcherRecords[10])
                 
-                PlayerRecordDAO.shared.insert(item: playerRecord)
+                do {
+                    try PlayerRecordDAO.shared.insert(item: playerRecord)
+                } catch let error {
+                    showAlertOneButton(
+                        title: .alertActionTitle,
+                        message: error.localizedDescription)
+                }
             } else {
                 let updatePlayerRecord = PlayerRecord(
                     playerRecordID: self.updatePlayerRecordID,
@@ -371,7 +377,13 @@ class PitcherRecordViewController: UIViewController {
                     strikeOuts: self.pitcherRecords[9],
                     ER: self.pitcherRecords[10])
                 
-                PlayerRecordDAO.shared.update(item: updatePlayerRecord)
+                do {
+                    try PlayerRecordDAO.shared.update(item: updatePlayerRecord)
+                } catch let error {
+                    showAlertOneButton(
+                        title: .alertActionTitle,
+                        message: error.localizedDescription)
+                }
             }
         }
     }

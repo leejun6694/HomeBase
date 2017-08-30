@@ -37,19 +37,6 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
     }
     
     @IBAction func clickDoneButton(_ sender: UIBarButtonItem) {
-        var overlapNumber: Bool = false
-        
-        if let numbers = PlayerDAO.shared.selectAllNumber() {
-            for index in 0..<numbers.count {
-                if backNumberTextField.text == "\(numbers[index])" {
-                    if backNumberTextField.text != "\(player.backNumber)" {
-                        overlapNumber = true
-                        break
-                    }
-                }
-            }
-        }
-        
         if playerNameTextField.text == "" {
             showAlertOneButton(
                 title: .alertActionTitle,
@@ -58,10 +45,6 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
             showAlertOneButton(
                 title: .alertActionTitle,
                 message: .alertMessageOfEnterPlayerBackNumber)
-        } else if overlapNumber == true {
-            showAlertOneButton(
-                title: .alertActionTitle,
-                message: .alertMessageOfDuplicatePlayerBackNumber)
         } else {
             showAlertTwoButton(
                 title: .alertTitleOfEditPlayer,
@@ -84,10 +67,17 @@ class SquadEditPlayerViewController: UIViewController, CustomAlertShowing {
                 backNumber: Int(updatedBackNumberString)!,
                 position: updatedPosition)
             
-            PlayerDAO.shared.update(item: updatePlayer)
+            do {
+                try PlayerDAO.shared.update(item: updatePlayer)
+                dismiss(animated: true, completion: nil)
+            } catch let error {
+                print(error)
+                showAlertOneButton(
+                    title: .alertActionTitle,
+                    message: .alertMessageOfDuplicatePlayerBackNumber)
+                
+            }
         }
-        
-        dismiss(animated: true, completion: nil)
     }
     
     

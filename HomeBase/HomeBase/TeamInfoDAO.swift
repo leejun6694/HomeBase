@@ -57,6 +57,7 @@ class TeamInfoDAO {
         let resultSet = DBManager.shared.select(teamInfo)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for teamInfos in Array(rows) {
                 let teamInfoItem = TeamInfo(teamName: teamInfos[teamName])
                 return teamInfoItem

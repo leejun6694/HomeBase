@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BatterRecordViewController: UIViewController {
+class BatterRecordViewController: UIViewController, CustomAlertShowing {
     
     // MARK: Properties
     
@@ -385,7 +385,13 @@ class BatterRecordViewController: UIViewController {
                     run: self.batterRecords[11],
                     RBI: self.batterRecords[12])
                 
-                PlayerRecordDAO.shared.insert(item: playerRecord)
+                do {
+                    try PlayerRecordDAO.shared.insert(item: playerRecord)
+                } catch let error {
+                    showAlertOneButton(
+                        title: .alertActionTitle,
+                        message: error.localizedDescription)
+                }
             } else {
                 let updatePlayerRecord = PlayerRecord(
                     playerRecordID: self.updatePlayerRecordID,
@@ -405,7 +411,13 @@ class BatterRecordViewController: UIViewController {
                     run: self.batterRecords[11],
                     RBI: self.batterRecords[12])
                 
-                PlayerRecordDAO.shared.update(item: updatePlayerRecord)
+                do {
+                    try PlayerRecordDAO.shared.update(item: updatePlayerRecord)
+                } catch let error {
+                    showAlertOneButton(
+                        title: .alertActionTitle,
+                        message: error.localizedDescription)
+                }
             }
         }
     }

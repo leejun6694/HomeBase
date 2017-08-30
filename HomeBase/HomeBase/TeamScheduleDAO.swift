@@ -120,6 +120,7 @@ class TeamScheduleDAO {
         let resultSet = DBManager.shared.select(orderdSchedule)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for schedule in Array(rows) {
                 let scheduleItem = T(
                     scheduleID: schedule[scheduleID],
@@ -143,6 +144,7 @@ class TeamScheduleDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for result in Array(rows) {
                 if result[homeScore] == -1 || result[awayScore] == -1 {
                     continue
@@ -170,6 +172,7 @@ class TeamScheduleDAO {
         let result = DBManager.shared.aggregate(teamSchedule.count)
         switch result {
         case let .ok(value):
+            guard let value = value else { break }
             return value
         case .error: break
         }
