@@ -12,13 +12,25 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    enum ShortcutIdentifier: String {
+        case team
+        case person
+        
+        init?(fullIdentifier: String) {
+            guard let shortIdentifier = fullIdentifier.components(separatedBy: ".").last else {
+                return nil
+            }
+            self.init(rawValue: shortIdentifier)
+        }
+    }
+    
     var window: UIWindow?
+    var shortcutItem: UIApplicationShortcutItem?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         let teamInfo = TeamInfoDAO.shared.select()
-        
         if teamInfo == nil {
             let storyBoard = UIStoryboard(name: "StartNavigation", bundle: nil)
             let startNavigation = storyBoard.instantiateInitialViewController()
@@ -34,7 +46,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            
+            handleShortcut(shortcutItem)
+            return false
+        }
+        
         return true
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -58,6 +77,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+
+    
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        
+        completionHandler(handleShortcut(shortcutItem))
+    }
+
+    @discardableResult fileprivate func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
+        
+        let shortcutType = shortcutItem.type
+        guard let shortcutIdentifier = ShortcutIdentifier(fullIdentifier: shortcutType) else {
+            return false
+        }
+        
+        return selectTabBarItemForIdentifier(shortcutIdentifier)
+    }
+    
+    fileprivate func selectTabBarItemForIdentifier(_ identifier: ShortcutIdentifier) -> Bool {
+        
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
+            return false
+        }
+        
+        switch (identifier) {
+        case .team:
+            tabBarController.selectedIndex = 0
+            return true
+        case .person:
+            tabBarController.selectedIndex = 1
+            return true
+        }
+    }
+
 
 
 }

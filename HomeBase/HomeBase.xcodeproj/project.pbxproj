@@ -841,7 +841,7 @@
 				DEVELOPMENT_TEAM = V9TZ6H4V4N;
 				INFOPLIST_FILE = HomeBase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lemonkooma.HomeBase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompony.HomeBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -855,7 +855,7 @@
 				DEVELOPMENT_TEAM = V9TZ6H4V4N;
 				INFOPLIST_FILE = HomeBase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lemonkooma.HomeBase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompony.HomeBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

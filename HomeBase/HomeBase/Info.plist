@@ -47,5 +47,38 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>team</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>go to team tab</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>team</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).team</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>version</key>
+				<string>3</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>person</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>go to squad tab</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>sauad</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).person</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>version</key>
+				<string>3</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
