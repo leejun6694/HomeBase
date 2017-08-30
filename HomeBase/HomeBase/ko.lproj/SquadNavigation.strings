@@ -1,0 +1,57 @@
+
+/* Class = "UILabel"; text = "SP"; ObjectID = "0DE-Xp-Ufx"; */
+"0DE-Xp-Ufx.text" = "SP";
+
+/* Class = "UILabel"; text = "Position"; ObjectID = "CXj-oF-cSg"; */
+"CXj-oF-cSg.text" = "Position";
+
+/* Class = "UITabBarItem"; title = "Squad"; ObjectID = "CeO-zP-RG0"; */
+"CeO-zP-RG0.title" = "Squad";
+
+/* Class = "UILabel"; text = "00"; ObjectID = "Dah-h7-onO"; */
+"Dah-h7-onO.text" = "00";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "Gjn-O0-JiE"; */
+"Gjn-O0-JiE.title" = "Title";
+
+/* Class = "UITextField"; placeholder = "선수 이름을 입력해주세요"; ObjectID = "HgZ-6D-neY"; */
+"HgZ-6D-neY.placeholder" = "선수 이름을 입력해주세요";
+
+/* Class = "UILabel"; text = "선수 번호"; ObjectID = "Mdx-Q5-Axv"; */
+"Mdx-Q5-Axv.text" = "선수 번호";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "NMP-Dk-5CX"; */
+"NMP-Dk-5CX.text" = "Label";
+
+/* Class = "UILabel"; text = "선수 수정"; ObjectID = "OgX-cn-OB0"; */
+"OgX-cn-OB0.text" = "선수 수정";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "T48-2f-Ito"; */
+"T48-2f-Ito.title" = "Edit";
+
+/* Class = "UILabel"; text = "선수 추가"; ObjectID = "baz-ON-zK0"; */
+"baz-ON-zK0.text" = "선수 추가";
+
+/* Class = "UITextField"; placeholder = "선수 번호를 입력해 주세요"; ObjectID = "brC-sf-dlK"; */
+"brC-sf-dlK.placeholder" = "선수 번호를 입력해 주세요";
+
+/* Class = "UINavigationItem"; title = "팀 이름"; ObjectID = "cTH-Bp-pWn"; */
+"cTH-Bp-pWn.title" = "팀 이름";
+
+/* Class = "UILabel"; text = "Position"; ObjectID = "fs0-yW-Jji"; */
+"fs0-yW-Jji.text" = "Position";
+
+/* Class = "UILabel"; text = "SP"; ObjectID = "k17-Kw-jWa"; */
+"k17-Kw-jWa.text" = "SP";
+
+/* Class = "UITextField"; placeholder = "선수 번호를 입력해 주세요"; ObjectID = "kqO-UN-nqE"; */
+"kqO-UN-nqE.placeholder" = "선수 번호를 입력해 주세요";
+
+/* Class = "UILabel"; text = "00"; ObjectID = "od1-Ma-Rhs"; */
+"od1-Ma-Rhs.text" = "00";
+
+/* Class = "UITextField"; placeholder = "선수 이름을 입력해주세요"; ObjectID = "rXn-HL-c2A"; */
+"rXn-HL-c2A.placeholder" = "선수 이름을 입력해주세요";
+
+/* Class = "UILabel"; text = "선수 포지션"; ObjectID = "vdg-Yo-WtG"; */
+"vdg-Yo-WtG.text" = "선수 포지션";

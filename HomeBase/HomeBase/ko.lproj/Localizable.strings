@@ -1,0 +1,230 @@
+/* Start Message */
+"HomeBase를 시작하시겠습니까?" = "HomeBase를 시작하시겠습니까?";
+
+/* Enter Score Alert Title */
+"결과 입력" = "결과 입력";
+
+/* Alert Action Title */
+"경고" = "경고";
+
+/* Enter Match Result First Alert Message */
+"경기 결과를 먼저 입력하세요" = "경기 결과를 먼저 입력하세요";
+
+/* Enter Place to Match Alert Message */
+"경기 장소를 입력하세요" = "경기 장소를 입력하세요";
+
+/* Edit Match Schedule Alert Message */
+"경기를 수정하시겠습니까?" = "경기를 수정하시겠습니까?";
+
+/* Add Schedule Alert Message */
+"경기를 추가하시겠습니까?" = "경기를 추가하시겠습니까?";
+
+/* Top 3 ERA Section Title */
+"방어율 Top 3" = "방어율 Top 3";
+
+/* Edit Team Image Alert Message */
+"변경된 이미지를 적용하려면 Done을 누르세요" = "변경된 이미지를 적용하려면 Done을 누르세요";
+
+/* Delete Action Title */
+"삭제" = "삭제";
+
+/* Enter Opponent Team Name Alert Message */
+"상대 팀명을 입력하세요" = "상대 팀명을 입력하세요";
+
+/* Max Player Back Number Alert Message */
+"선수 번호는 최대 99 입니다" = "선수 번호는 최대 99 입니다";
+
+/* Enter Player Back Number Alert Message */
+"선수 번호를 입력하세요" = "선수 번호를 입력하세요";
+
+/* Edit Player Alert Title */
+"선수 수정" = "선수 수정";
+
+/* Enter Player Name Alert Message */
+"선수 이름을 입력하세요" = "선수 이름을 입력하세요";
+
+/* Edit Player Alert Message */
+"선수 정보를 수정하시겠습니까?" = "선수 정보를 수정하시겠습니까?";
+
+/* Add Player Alert Message */
+"선수 정보를 추가하시겠습니까?" = "선수 정보를 추가하시겠습니까?";
+
+/* Add Player Alert Title */
+"선수 추가" = "선수 추가";
+
+/* Enter Opponent Team Score Alert Message */
+"원정 팀 점수를 입력하세요" = "원정 팀 점수를 입력하세요";
+
+/* Edit Schedule Alert Title */
+"일정 수정" = "일정 수정";
+
+/* Add Schedule Alert Title */
+"일정 추가" = "일정 추가";
+
+/* Delete Schedule Alert Maessage */
+"일정을 지우시겠습니까?" = "일정을 지우시겠습니까?";
+
+/* Current Sechedule Section Title */
+"최근 경기" = "최근 경기";
+
+/* Cancel Action Title */
+"취소" = "취소";
+
+/* Top 3 Batting Average */
+"타율 Top 3" = "타율 Top 3";
+
+/* Initialize The Batter Record Alert Message */
+"타자 기록이 초기화 되어야 합니다" = "타자 기록이 초기화 되어야 합니다";
+
+/* Initialize The Pitcher Record Alert Message */
+"투수 기록이 초기화 되어야 합니다" = "투수 기록이 초기화 되어야 합니다";
+
+/* Picker Button Title */
+"팀 대표 이미지를 등록하세요" = "팀 대표 이미지를 등록하세요";
+
+/* Abundance team name alert message */
+"팀 명은 최대 10글자 입니다" = "팀 명은 최대 10글자 입니다";
+
+/* Shortage team name alert message */
+"팀 명은 최소 2글자 입니다" = "팀 명은 최소 2글자 입니다";
+
+/* Team name textfield placeholder */
+"팀 이름을 등록하세요 (2 - 10자)" = "팀 이름을 등록하세요 (2 - 10자)";
+
+/* Edit Team Image Alert Title */
+"팀 이미지 변경" = "팀 이미지 변경";
+
+/* Edit Team Info Alert Title */
+"팀 정보 수정" = "팀 정보 수정";
+
+/* Edit Team Info Alert Message */
+"팀 정보를 수정하시겠습니까?" = "팀 정보를 수정하시겠습니까?";
+
+/* Duplicate Player Back Number Alert Message */
+"팀에 중복되는 번호가 있습니다" = "팀에 중복되는 번호가 있습니다";
+
+/* Enter Home Team Score Alert Message */
+"홈 팀 점수를 입력하세요" = "홈 팀 점수를 입력하세요";
+
+/* Confirm Action Title */
+"확인" = "확인";
+
+/* Result TextField */
+"%d승 %d무 %d패" = "%d승 %d무 %d패";
+
+/* Match Alarm Before Day */
+"경기 시작 %d 일 전입니다" = "경기 시작 %d 일 전입니다";
+
+/* Match Alarm Before Hour */
+"경기 시작 %d 시간 전입니다" = "경기 시작 %d 시간 전입니다";
+
+/* Match Alarm Before Minute */
+"경기 시작 %d 분 전입니다" = "경기 시작 %d 분 전입니다";
+
+/* Notification Message An Hour Before The Match */
+"%@팀과의 경기 한 시간 전 입니다" = "%@팀과의 경기 한 시간 전 입니다";
+
+/* Notification Message A Day Before The Match */
+"%@팀과의 경기 하루 전 입니다" = "%@팀과의 경기 하루 전 입니다";
+
+/* At Bat And Hit */
+"%d타수 %d안타" = "%d타수 %d안타";
+
+/* Inning And ER */
+"%d이닝 %d자책" = "%d이닝 %d자책";
+
+/* /3Inning And ER */
+"%d %d/3이닝 %d자책" = "%d %d/3이닝 %d자책";
+
+/* Done Button Title */
+"완료" = "완료";
+
+/* Edit Button Title */
+"수정" = "수정";
+
+/* Delete Player Alert Message */
+"선수 정보를 삭제하시겠습니까?" = "선수 정보를 삭제하시겠습니까?";
+
+/* Delete Player Alert Title */
+"선수 삭제" = "선수 삭제";
+
+/* Apearance */
+"경기 수" = "경기 수";
+
+/* Batting AVG */
+"타율" = "타율";
+
+/* Batter Box */
+"타석" = "타석";
+
+/* AtBat */
+"타수" = "타수";
+
+/* Run */
+"득점" = "득점";
+
+/* 1B */
+"1루타" = "1루타";
+
+/* 2B*/
+"2루타" = "2루타";
+
+/* 3B */
+"3루타" = "3루타";
+
+/* Home Run*/
+"홈런" = "홈런";
+
+/* BB */
+"볼넷" = "볼넷";
+
+/* HBP */
+"사구" = "사구";
+
+/* SO */
+"삼진" = "삼진";
+
+/* GroundBall */
+"땅볼" = "땅볼";
+
+/* FlyBall */
+"뜬공" = "뜬공";
+
+/* SacrificeHit */
+"희생타" = "희생타";
+
+/* SB */
+"도루" = "도루";
+
+/* SLG */
+"장타율" = "장타율";
+
+/* OBP */
+"출루율" = "출루율";
+
+/* ERA */
+"방어율" = "방어율";
+
+/* Inning */
+"이닝" = "이닝";
+
+/* ER */
+"자책점" = "자책점";
+
+/* Win */
+"승리" = "승리";
+
+/* Lose */
+"패배" = "패배";
+
+/* Hold */
+"홀드" = "홀드";
+
+/* Save */
+"세이브" = "세이브";
+
+/* Hits */
+"피안타" = "피안타";
+
+/* RBI */
+"타점" = "타점";
