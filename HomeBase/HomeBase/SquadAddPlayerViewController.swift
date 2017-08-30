@@ -34,18 +34,6 @@ class SquadAddPlayerViewController: UIViewController, CustomAlertShowing {
     }
     
     @IBAction func doneButtonDidTap(_ sender: UIBarButtonItem) {
-        var overlapNumber: Bool = false
-        
-        if let numbers = PlayerDAO.shared.selectAllNumber() {
-            for index in 0..<numbers.count {
-                if backNumberTextField.text == "\(numbers[index])" {
-                    overlapNumber = true
-                    break
-                }
-            }
-
-        }
-        
         if playerNameTextField.text == "" {
             showAlertOneButton(
                 title: .alertActionTitle,
@@ -54,13 +42,7 @@ class SquadAddPlayerViewController: UIViewController, CustomAlertShowing {
             showAlertOneButton(
                 title: .alertActionTitle,
                 message: .alertMessageOfEnterPlayerBackNumber)
-        }
-//        else if overlapNumber == true {
-//            showAlertOneButton(
-//                title: .alertActionTitle,
-//                message: .alertMessageOfDuplicatePlayerBackNumber)
-//        } 
-        else {
+        } else {
             showAlertTwoButton(
                 title: .alertTitleOfAddPlayer,
                 message: .alertMessageOfAddPlayer,
@@ -76,9 +58,16 @@ class SquadAddPlayerViewController: UIViewController, CustomAlertShowing {
         
         let position = kindOfPosition[positionPickerView.selectedRow(inComponent: 0)]
         let player = Player(name: name, backNumber: backNumber, position: position)
-        PlayerDAO.shared.insert(item: player)
+        do {
+            try PlayerDAO.shared.insert(item: player)
+            dismiss(animated: true, completion: nil)
+        } catch let error {
+            print(error)
+            showAlertOneButton(
+                title: .alertActionTitle,
+                message: .alertMessageOfDuplicatePlayerBackNumber)
+        }
         
-        dismiss(animated: true, completion: nil)
     }
 
     // MARK: Override

@@ -21,6 +21,7 @@ class PlayerDAO {
     let backNumber = Expression<Int>("backNumber")
     let position = Expression<String>("position")
     
+    
     // create
     
     private init() {
@@ -41,7 +42,7 @@ class PlayerDAO {
 
     // insert
     
-    func insert(item: T) {
+    func insert(item: T) throws {
         let query = player.insert(
             name <- item.name,
             backNumber <- item.backNumber,
@@ -50,13 +51,14 @@ class PlayerDAO {
         let result = DBManager.shared.insert(query)
         switch result {
         case .ok(_): break
-        case .error(_): break
+        case let .error(error):
+            throw error
         }
     }
     
     // update
     
-    func update(item: T) {
+    func update(item: T) throws {
         let selectedPlayer = player.filter(playerID == item.playerID)
         let query = selectedPlayer.update(
             name <- item.name,
@@ -65,8 +67,10 @@ class PlayerDAO {
         let result = DBManager.shared.update(query)
         switch result {
         case .ok(_): break
-        case .error: break
+        case let .error(error):
+            throw error
         }
+        
         
     }
     
@@ -78,7 +82,7 @@ class PlayerDAO {
         let result = DBManager.shared.delete(query)
         switch result {
         case .ok(_): break
-        case .error: break
+        case .error(_): break
         }
     }
     
@@ -91,6 +95,7 @@ class PlayerDAO {
         
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for player in Array(rows) {
                 let playerItem = T (
                     id: player[playerID],
@@ -101,7 +106,8 @@ class PlayerDAO {
                 playerArray.append(playerItem)
             }
              return playerArray
-        case .error: break
+        case .error(_):
+            break
         }
         return nil
     }
@@ -111,10 +117,12 @@ class PlayerDAO {
         let result = DBManager.shared.select(filter)
         switch result {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for playerName in Array(rows) {
                 return playerName[name]
             }
-        case .error: break
+        case .error(_):
+            break
         }
         return ""
     }
@@ -125,11 +133,12 @@ class PlayerDAO {
         let result = DBManager.shared.select(filter)
         switch result {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for number in Array(rows) {
                 numberArray.append(Int(number[backNumber]))
             }
             return numberArray
-        case .error: break
+        case .error(_): break
         }
         return nil
     }
@@ -140,8 +149,10 @@ class PlayerDAO {
         let result = DBManager.shared.aggregate(player.count)
         switch result {
         case let .ok(value):
+            guard let value = value else { break }
             return value
-        case .error: break
+        case .error(_):
+            break
         }
         return 0
     }

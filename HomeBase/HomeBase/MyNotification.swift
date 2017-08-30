@@ -13,6 +13,14 @@ class MyNotification: NSObject {
 
     static let center = UNUserNotificationCenter.current()
     
+    /// Add notification that will notify when match is a day before or an hour before
+    ///
+    /// - Parameters:
+    ///   - contentOfBody:
+    ///   - appliedDate: a time of notification
+    ///   - day: if the match is a day before, value is true
+    ///   - hour: if the match is an hour before, value is true
+    ///   - identifierID: schedule id for unique value
     static func add(
         contentOfBody: String,
         appliedDate: Date,

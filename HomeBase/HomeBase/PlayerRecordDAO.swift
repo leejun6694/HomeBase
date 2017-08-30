@@ -116,7 +116,7 @@ class PlayerRecordDAO {
     
     // insert
     
-    func insert(item: T) {
+    func insert(item: T) throws {
         let query = playerRecord.insert(
             playerID <- item.playerID,
             scheduleID <- item.scheduleID,
@@ -148,13 +148,14 @@ class PlayerRecordDAO {
         let result = DBManager.shared.insert(query)
         switch result {
         case .ok(_): break
-        case .error(_): break
+        case let .error(error):
+            throw error
         }
     }
     
     // update
     
-    func update(item: T) {
+    func update(item: T) throws {
         let selected = playerRecord.filter(playerRecordID == item.playerRecordID)
         let query = selected.update(
             playerID <- item.playerID,
@@ -186,7 +187,8 @@ class PlayerRecordDAO {
         let result = DBManager.shared.update(query)
         switch result {
         case .ok(_): break
-        case .error: break
+        case let .error(error):
+            throw error
         }
     }
     
@@ -199,6 +201,7 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for record in Array(rows) {
                 playerRecordItem = T (
                     playerRecordID: record[self.playerRecordID],
@@ -229,7 +232,8 @@ class PlayerRecordDAO {
                     ER: record[self.ER])
             }
             return playerRecordItem
-        case .error: break
+        case .error(_):
+            break
         }
         return nil
     }
@@ -242,6 +246,7 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(selectedPlayer)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for record in Array(rows) {
                 totalRecord.singleHit += record[singleHit]
                 totalRecord.doubleHit += record[doubleHit]
@@ -269,7 +274,8 @@ class PlayerRecordDAO {
                 totalRecord.ER += record[ER]
             }
             return totalRecord
-        case .error: break
+        case .error(_):
+            break
         }
         return nil
     }
@@ -293,6 +299,7 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for record in Array(rows) {
                 sumOfBatterRecord += Int(record[self.singleHit])
                 sumOfBatterRecord += Int(record[self.doubleHit])
@@ -309,7 +316,8 @@ class PlayerRecordDAO {
                 sumOfBatterRecord += Int(record[self.RBI])
             }
             return sumOfBatterRecord
-        case .error: break
+        case .error(_):
+            break
         }
         
         return sumOfBatterRecord
@@ -332,6 +340,7 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for record in Array(rows) {
                 sumOfPitcherRecord += Int(record[self.win])
                 sumOfPitcherRecord += Int(record[self.lose])
@@ -346,9 +355,9 @@ class PlayerRecordDAO {
                 sumOfPitcherRecord += Int(record[self.ER])
             }
             return sumOfPitcherRecord
-        case .error: break
+        case .error(_):
+            break
         }
-        
         return sumOfPitcherRecord
     }
     
@@ -382,6 +391,7 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for record in Array(rows) {
                 sumOfPlayerRecord += Int(record[self.singleHit])
                 sumOfPlayerRecord += Int(record[self.doubleHit])
@@ -409,7 +419,8 @@ class PlayerRecordDAO {
                 sumOfPlayerRecord += Int(record[self.ER])
             }
             return sumOfPlayerRecord
-        case .error: break
+        case .error(_):
+            break
         }
         
         return sumOfPlayerRecord
@@ -429,6 +440,7 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for batting in Array(rows) {
                 let battingHits = Double(
                     batting[singleHit.sum]!
@@ -446,7 +458,8 @@ class PlayerRecordDAO {
                 }
             }
             return playerBattingAverage
-        case .error: break
+        case .error(_):
+            break
         }
         return nil
     }
@@ -460,6 +473,7 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for pitching in Array(rows) {
                 if pitching[inning.sum] != 0.0 {
                     let pitchingERA = Double(pitching[ER.sum]!) * 9.0 / Double(pitching[inning.sum]!)
@@ -467,7 +481,8 @@ class PlayerRecordDAO {
                 }
             }
             return playerERA
-        case .error: break
+        case .error(_):
+            break
         }
         return nil
     }
@@ -482,13 +497,15 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for hit in Array(rows) {
                 teamHit += Double(hit[singleHit])
                 teamHit += Double(hit[doubleHit])
                 teamHit += Double(hit[tripleHit])
                 teamHit += Double(hit[homeRun])
             }
-        case .error: break
+        case .error(_):
+            break
         }
         return teamHit
     }
@@ -499,13 +516,15 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for out in Array(rows) {
                 teamOut += Double(out[strikeOut])
                 teamOut += Double(out[groundBall])
                 teamOut += Double(out[flyBall])
             }
            
-        case .error: break
+        case .error(_):
+            break
         }
         return teamOut
     }
@@ -516,12 +535,14 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for ERItem in Array(rows) {
                 teamER += ERItem[ER]
                 
             }
             
-        case .error: break
+        case .error(_):
+            break
         }
         return teamER
     }
@@ -532,6 +553,7 @@ class PlayerRecordDAO {
         let resultSet = DBManager.shared.select(filter)
         switch resultSet {
         case let .ok(rows):
+            guard let rows = rows else { break }
             for ERItem in Array(rows) {
                 teamInning += ERItem[inning]
             }
@@ -549,6 +571,7 @@ class PlayerRecordDAO {
         let result = DBManager.shared.aggregate(calculation)
         switch result {
         case let .ok(value):
+            guard let value = value else { break }
             return value
         case .error: break
         }
@@ -563,6 +586,7 @@ class PlayerRecordDAO {
         let result = DBManager.shared.aggregate(calculation)
         switch result {
         case let .ok(value):
+            guard let value = value else { break }
             return value
         case .error: break
         }        
