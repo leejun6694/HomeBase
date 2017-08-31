@@ -147,6 +147,12 @@ extension AllScheduleViewController: UITableViewDelegate, UITableViewDataSource 
         }
         edit.backgroundColor = UIColor(red: 47.0/255.0, green: 113.0/255.0, blue: 176.0/255.0, alpha: 0.9)
     
-        return [delete, edit]
+        let currentDate = Date()
+        if currentDate > selectedSchedule.matchDate {
+            return [delete]
+        }
+        else {
+            return [delete, edit]
+        }
     }
 }
