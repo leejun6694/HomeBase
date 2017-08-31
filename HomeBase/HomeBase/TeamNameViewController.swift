@@ -17,6 +17,8 @@ class TeamNameViewController: UIViewController, CustomAlertShowing {
         nameTextField.font = UIFont(name: "System", size: 22.0)
         nameTextField.textColor = UIColor(
             red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        nameTextField.tintColor = UIColor(
+            red: 254.0/255.0, green: 194.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         nameTextField.textAlignment = .center
         nameTextField.borderStyle = .none
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
