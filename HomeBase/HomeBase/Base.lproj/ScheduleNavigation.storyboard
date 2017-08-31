@@ -36,14 +36,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4t-hV-7nR">
-                                                    <rect key="frame" x="18" y="11" width="225" height="21"/>
+                                                    <rect key="frame" x="18" y="11" width="187.5" height="21"/>
                                                     <color key="backgroundColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcH-Nw-14l">
-                                                    <rect key="frame" x="243" y="11.5" width="114" height="21"/>
+                                                    <rect key="frame" x="205.5" y="11.5" width="151.5" height="21"/>
                                                     <color key="backgroundColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,7 +52,7 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="m4t-hV-7nR" firstAttribute="width" secondItem="9i8-8H-6hD" secondAttribute="width" multiplier="0.6" id="xX0-p0-y3X"/>
+                                                <constraint firstItem="m4t-hV-7nR" firstAttribute="width" secondItem="9i8-8H-6hD" secondAttribute="width" multiplier="0.5" id="xX0-p0-y3X"/>
                                                 <constraint firstItem="mcH-Nw-14l" firstAttribute="leading" secondItem="m4t-hV-7nR" secondAttribute="trailing" id="zUJ-N5-ffz"/>
                                             </constraints>
                                         </tableViewCellContentView>
