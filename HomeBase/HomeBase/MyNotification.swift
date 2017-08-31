@@ -96,6 +96,7 @@ class MyNotification: NSObject {
         day: Bool,
         hour: Bool,
         identifierID: Int64) {
+        //This method executes asynchronously, returning immediately and executing the provided block on a secondary thread when the results are available
         MyNotification.center.getPendingNotificationRequests { (notificationRequests) in
             var identifiers: [String] = []
             for notification:UNNotificationRequest in notificationRequests {

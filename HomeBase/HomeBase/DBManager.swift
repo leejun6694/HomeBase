@@ -29,31 +29,6 @@ enum ArithmeticResult {
     case error(Error)
 }
 
-enum SQLiteError: Error {
-    case abort // 4
-    case notAuthorized // 23
-    case busy // 5
-    case cantOpen // 14
-    case constraint // 19
-    case databaseFileCorrupted // 11
-    case genericError // 1
-    case fullDisk // 13
-    case internalMalfunction  // 2
-    case interrupt // 9
-    case ioError  // 10
-    case locked // 6
-    case datatypeMismatch // 20
-    case misused // 21
-    case noLargeFileSupport // 22
-    case nomem // 7
-    case notadb // 26
-    case notfound // 12
-    case outOfRange // 25
-    case readonly // 8
-    case tooLarge // 18
-    case other
-}
-
 class DBManager: NSObject {
     
     static let shared: DBManager = DBManager()
