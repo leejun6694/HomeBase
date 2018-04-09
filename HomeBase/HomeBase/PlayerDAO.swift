@@ -70,8 +70,6 @@ class PlayerDAO {
         case let .error(error):
             throw error
         }
-        
-        
     }
     
     // delete
